@@ -4,7 +4,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Activity, ArrowLeft, Pause, Play, Shuffle, Lightbulb, Target, Mic, Repeat, Volume2, Timer, Gauge, ChevronLeft, ChevronRight, Lock, Info, AlertTriangle, X, FlaskConical, Map } from "lucide-react";
+import { Activity, ArrowLeft, Pause, Play, Shuffle, Lightbulb, Target, Mic, Repeat, Volume2, Timer, Gauge, ChevronLeft, ChevronRight, ChevronDown, Lock, Info, AlertTriangle, X, FlaskConical, Map, Settings2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { JOURNEY_STEPS } from "@/data/journeyPath";
 import { toast } from "sonner";
@@ -91,6 +91,9 @@ const Practice = () => {
   const [targetSPS, setTargetSPS] = useState<TargetSPS>(4.0);
   const [showAllLevels, setShowAllLevels] = useState(false);
   
+  // Advanced settings collapsed by default for beginners
+  const [showAdvanced, setShowAdvanced] = useState(false);
+
   // Filler word detection toggle
   const [detectFillers, setDetectFillers] = useState(true);
   
@@ -1517,77 +1520,91 @@ const Practice = () => {
               </Card>
             )}
 
-            {/* DAF Toggle */}
-            {!isImprovisation && pacingMode === 'guided' && (
-              <div className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/10 dark:to-indigo-900/10 border border-purple-200 dark:border-purple-800 rounded-lg p-3">
-                <DAFToggle
-                  isEnabled={isDAFEnabled}
-                  isActive={isDAFActive}
-                  delayMs={delayMs}
-                  onToggle={toggleDAF}
-                  onDelayChange={setDelayMs}
-                  disabled={isRecording}
-                />
-              </div>
-            )}
+            {/* Advanced Settings — collapsed by default for beginners */}
+            <button
+              onClick={() => setShowAdvanced(!showAdvanced)}
+              className="w-full flex items-center justify-center gap-2 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Settings2 className="w-4 h-4" />
+              <span>{showAdvanced ? "Hide advanced settings" : "Advanced settings"}</span>
+              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${showAdvanced ? "rotate-180" : ""}`} />
+            </button>
 
-            {/* Filler Word Detection Toggle */}
-            <TooltipProvider>
-              <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/10 dark:to-orange-900/10 border border-amber-200 dark:border-amber-800 rounded-lg p-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg">🙊</span>
-                    <div>
-                      <div className="flex items-center gap-1.5">
-                        <Label htmlFor="filler-toggle" className="text-sm font-medium cursor-pointer">
-                          Filler word detection
-                        </Label>
-                        <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-200 dark:bg-amber-800 text-amber-700 dark:text-amber-300 font-medium">
-                          Beta
-                        </span>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <Info className="w-3.5 h-3.5 text-muted-foreground cursor-help" />
-                          </PopoverTrigger>
-                          <PopoverContent className="max-w-[220px] p-3" side="top">
-                            <p className="text-xs">The automatic analysis detects your speech habits (Um, Well, Like...) to help you improve your fluency.</p>
-                          </PopoverContent>
-                        </Popover>
+            {showAdvanced && (
+              <div className="space-y-3 animate-in fade-in slide-in-from-top-2 duration-200">
+                {/* DAF Toggle */}
+                {!isImprovisation && pacingMode === 'guided' && (
+                  <div className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/10 dark:to-indigo-900/10 border border-purple-200 dark:border-purple-800 rounded-lg p-3">
+                    <DAFToggle
+                      isEnabled={isDAFEnabled}
+                      isActive={isDAFActive}
+                      delayMs={delayMs}
+                      onToggle={toggleDAF}
+                      onDelayChange={setDelayMs}
+                      disabled={isRecording}
+                    />
+                  </div>
+                )}
+
+                {/* Filler Word Detection Toggle */}
+                <TooltipProvider>
+                  <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/10 dark:to-orange-900/10 border border-amber-200 dark:border-amber-800 rounded-lg p-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">🙊</span>
+                        <div>
+                          <div className="flex items-center gap-1.5">
+                            <Label htmlFor="filler-toggle" className="text-sm font-medium cursor-pointer">
+                              Filler word detection
+                            </Label>
+                            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-200 dark:bg-amber-800 text-amber-700 dark:text-amber-300 font-medium">
+                              Beta
+                            </span>
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Info className="w-3.5 h-3.5 text-muted-foreground cursor-help" />
+                              </PopoverTrigger>
+                              <PopoverContent className="max-w-[220px] p-3" side="top">
+                                <p className="text-xs">The automatic analysis detects your speech habits (Um, Well, Like...) to help you improve your fluency.</p>
+                              </PopoverContent>
+                            </Popover>
+                          </div>
+                        </div>
                       </div>
+                      <Switch
+                        id="filler-toggle"
+                        checked={detectFillers}
+                        onCheckedChange={setDetectFillers}
+                        disabled={isRecording}
+                      />
                     </div>
                   </div>
-                  <Switch
-                    id="filler-toggle"
-                    checked={detectFillers}
-                    onCheckedChange={setDetectFillers}
-                    disabled={isRecording}
-                  />
-                </div>
-              </div>
-            </TooltipProvider>
+                </TooltipProvider>
 
-            {/* Chain Mode Toggle — warmup & articulation only */}
-            {(isWarmup || categoryId === 'articulation') && currentCategory && currentCategory.exercises.length > 1 && (
-              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/10 dark:to-teal-900/10 border border-emerald-200 dark:border-emerald-800 rounded-lg p-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Repeat className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                    <div>
-                      <Label htmlFor="chain-toggle" className="text-sm font-medium cursor-pointer">
-                        Chain mode
-                      </Label>
-                      <p className="text-[10px] text-muted-foreground">
-                        Chain all {currentCategory.exercises.length} items without stopping the mic
-                      </p>
+                {/* Chain Mode Toggle — warmup & articulation only */}
+                {(isWarmup || categoryId === 'articulation') && currentCategory && currentCategory.exercises.length > 1 && (
+                  <div className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/10 dark:to-teal-900/10 border border-emerald-200 dark:border-emerald-800 rounded-lg p-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Repeat className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                        <div>
+                          <Label htmlFor="chain-toggle" className="text-sm font-medium cursor-pointer">
+                            Chain mode
+                          </Label>
+                          <p className="text-[10px] text-muted-foreground">
+                            Chain all {currentCategory.exercises.length} items without stopping the mic
+                          </p>
+                        </div>
+                      </div>
+                      <Switch
+                        id="chain-toggle"
+                        checked={chainMode}
+                        onCheckedChange={setChainMode}
+                        disabled={isRecording}
+                      />
                     </div>
                   </div>
-                  <Switch
-                    id="chain-toggle"
-                    checked={chainMode}
-                    onCheckedChange={setChainMode}
-                    disabled={isRecording}
-                  />
-                </div>
+                )}
               </div>
             )}
 

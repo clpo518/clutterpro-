@@ -134,9 +134,10 @@ export const UnifiedHeroSection = () => {
                 <ArrowRight className="w-5 h-5 ml-1" />
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="text-base px-8 h-14" asChild>
+            <Button variant="outline" size="lg" className="text-base px-8 h-14 flex flex-col items-center gap-0" asChild>
               <a href="#patients">
-                I'm a patient
+                <span>I'm a patient</span>
+                <span className="text-[10px] text-muted-foreground font-normal -mt-0.5">Free with your SLP</span>
               </a>
             </Button>
           </motion.div>

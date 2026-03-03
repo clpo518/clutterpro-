@@ -1,11 +1,14 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Lock, CheckCircle2, Play, BookOpen, Sparkles, Trophy, ChevronRight } from "lucide-react";
+import { Lock, CheckCircle2, Play, BookOpen, Sparkles, Trophy, ChevronRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useJourneyProgress } from "@/hooks/useJourneyProgress";
 import { JOURNEY_STEPS } from "@/data/journeyPath";
+
+const VISIBLE_AHEAD = 2; // Show 2 steps after the current one by default
 
 const JourneyWidget = () => {
   const navigate = useNavigate();
@@ -17,6 +20,7 @@ const JourneyWidget = () => {
     isStepUnlocked,
     overallProgress,
   } = useJourneyProgress();
+  const [showAllSteps, setShowAllSteps] = useState(false);
 
   if (loading) {
     return (
@@ -186,7 +190,7 @@ const JourneyWidget = () => {
             </motion.button>
           )}
 
-          {/* Steps list */}
+          {/* Steps list — show completed + next few by default */}
           <div className="space-y-0.5">
             {JOURNEY_STEPS.map((step, index) => {
               const completed = isStepCompleted(index);
@@ -195,6 +199,9 @@ const JourneyWidget = () => {
               const validated = getValidatedExercises(index);
 
               if (isCurrent && !allCompleted) return null;
+
+              // Collapse: only show completed steps + VISIBLE_AHEAD beyond current
+              if (!showAllSteps && !allCompleted && !completed && index > currentStep + VISIBLE_AHEAD) return null;
 
               return (
                 <motion.div
@@ -259,6 +266,17 @@ const JourneyWidget = () => {
               );
             })}
           </div>
+
+          {/* Show all / fewer toggle */}
+          {!allCompleted && JOURNEY_STEPS.length > currentStep + VISIBLE_AHEAD + 1 && (
+            <button
+              onClick={() => setShowAllSteps(!showAllSteps)}
+              className="w-full flex items-center justify-center gap-1.5 pt-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <span>{showAllSteps ? "Show fewer" : `Show all ${JOURNEY_STEPS.length} steps`}</span>
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${showAllSteps ? "rotate-180" : ""}`} />
+            </button>
+          )}
         </CardContent>
       </Card>
     </motion.div>

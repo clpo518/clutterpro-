@@ -19,7 +19,7 @@ interface TherapistInfo {
   full_name: string | null;
 }
 
-const GOAL_DAYS = 90; // 3 mois recommandés
+const GOAL_DAYS = 90; // 3 months recommended
 
 const SubscriptionManage = () => {
   const { user } = useAuth();
@@ -41,7 +41,7 @@ const SubscriptionManage = () => {
       }
     } catch (error) {
       console.error("Portal error:", error);
-      toast.error("Erreur lors de l'ouverture du portail de paiement");
+      toast.error("Error opening the billing portal");
     } finally {
       setPortalLoading(false);
     }

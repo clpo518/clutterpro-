@@ -310,37 +310,57 @@ const Dashboard = () => {
             />
           )}
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            <Card>
-              <CardHeader className="pb-2">
-                <CardDescription>Sessions completed</CardDescription>
-                <CardTitle className="text-3xl">{totalSessions}</CardTitle>
-                <p className="text-xs text-muted-foreground mt-1">All time</p>
-              </CardHeader>
+          {/* Stats Grid — show motivational empty state for brand new users */}
+          {totalSessions === 0 ? (
+            <Card className="mb-8 border-primary/20 bg-gradient-to-br from-primary/5 via-background to-accent/10">
+              <CardContent className="py-8 text-center">
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <Play className="w-7 h-7 text-primary" />
+                </div>
+                <h2 className="text-xl font-semibold mb-2">
+                  Your first session awaits!
+                </h2>
+                <p className="text-muted-foreground text-sm mb-6 max-w-sm mx-auto">
+                  Record yourself reading a short text. It takes under 2 minutes and you'll see your speech rate instantly.
+                </p>
+                <Button onClick={() => navigate("/practice?category=rate-reduction&exercise=rate-1")} size="lg" className="gap-2">
+                  <Play className="w-5 h-5" />
+                  Start your first exercise
+                </Button>
+              </CardContent>
             </Card>
-            
-            <Card>
-              <CardHeader className="pb-2">
-                <CardDescription>Training time</CardDescription>
-                <CardTitle className="text-3xl">{totalMinutes} min</CardTitle>
-                <p className="text-xs text-muted-foreground mt-1">All time</p>
-              </CardHeader>
-            </Card>
-            
-            <Card>
-              <CardHeader className="pb-2">
-                <CardDescription className="flex items-center gap-2">
-                  Average rate
-                  {trend === "improving" && <TrendingDown className="w-4 h-4 text-green-500" />}
-                  {trend === "declining" && <TrendingUp className="w-4 h-4 text-red-500" />}
-                  {trend === "neutral" && <Minus className="w-4 h-4 text-muted-foreground" />}
-                </CardDescription>
-                <CardTitle className="text-3xl">{avgSps} <span className="text-lg font-normal text-muted-foreground">syll/sec</span></CardTitle>
-                <p className="text-xs text-muted-foreground mt-1">All time</p>
-              </CardHeader>
-            </Card>
-          </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardDescription>Sessions completed</CardDescription>
+                  <CardTitle className="text-3xl">{totalSessions}</CardTitle>
+                  <p className="text-xs text-muted-foreground mt-1">All time</p>
+                </CardHeader>
+              </Card>
+
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardDescription>Training time</CardDescription>
+                  <CardTitle className="text-3xl">{totalMinutes} min</CardTitle>
+                  <p className="text-xs text-muted-foreground mt-1">All time</p>
+                </CardHeader>
+              </Card>
+
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardDescription className="flex items-center gap-2">
+                    Average rate
+                    {trend === "improving" && <TrendingDown className="w-4 h-4 text-green-500" />}
+                    {trend === "declining" && <TrendingUp className="w-4 h-4 text-red-500" />}
+                    {trend === "neutral" && <Minus className="w-4 h-4 text-muted-foreground" />}
+                  </CardDescription>
+                  <CardTitle className="text-3xl">{avgSps} <span className="text-lg font-normal text-muted-foreground">syll/sec</span></CardTitle>
+                  <p className="text-xs text-muted-foreground mt-1">All time</p>
+                </CardHeader>
+              </Card>
+            </div>
+          )}
 
           {/* Journey Widget - Guided progression */}
           <JourneyWidget />
@@ -353,31 +373,33 @@ const Dashboard = () => {
             <PatientProgressCard sessions={sessions} />
           </div>
 
-          {/* Quick Action - Single CTA to Library */}
-          <div className="mb-8">
-            <Card className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground border-0 shadow-lg overflow-hidden relative">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.1),_transparent_60%)]" />
-              <CardContent className="py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
-                <div>
-                  <h2 className="text-xl font-semibold mb-1">
-                    Ready for a session?
-                  </h2>
-                  <p className="opacity-80 text-sm">
-                    Reading, dialogue, articulation... your choice
-                  </p>
-                </div>
-                <Button 
-                  size="lg" 
-                  variant="secondary"
-                  onClick={() => navigate("/library")}
-                  className="gap-2 shrink-0"
-                >
-                  <BookOpen className="w-5 h-5" />
-                  Library
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
+          {/* Quick Action - Single CTA to Library (only after first session) */}
+          {totalSessions > 0 && (
+            <div className="mb-8">
+              <Card className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground border-0 shadow-lg overflow-hidden relative">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.1),_transparent_60%)]" />
+                <CardContent className="py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
+                  <div>
+                    <h2 className="text-xl font-semibold mb-1">
+                      Ready for a session?
+                    </h2>
+                    <p className="opacity-80 text-sm">
+                      Reading, dialogue, articulation... your choice
+                    </p>
+                  </div>
+                  <Button
+                    size="lg"
+                    variant="secondary"
+                    onClick={() => navigate("/library")}
+                    className="gap-2 shrink-0"
+                  >
+                    <BookOpen className="w-5 h-5" />
+                    Library
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          )}
 
           {/* Therapist Link CTA removed - now only in Settings page */}
 
@@ -395,33 +417,8 @@ const Dashboard = () => {
             </div>
           )}
 
-          {/* Recent Sessions or Welcome Card */}
-          {sessions.length === 0 && !loading ? (
-            /* Welcome Card for new users */
-            <Card className="bg-gradient-to-br from-accent/50 via-background to-secondary/30 border-primary/10">
-              <CardContent className="py-12 text-center">
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
-                  <Sparkles className="w-8 h-8 text-primary" />
-                </div>
-                <h2 className="text-2xl font-semibold mb-3">
-                  Welcome to your space!
-                </h2>
-                <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-                  Start your first session to discover your speech rate. It's simple and quick.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Button onClick={() => navigate("/library")} size="lg" className="gap-2">
-                    <BookOpen className="w-5 h-5" />
-                    Choose an exercise
-                  </Button>
-                  <Button onClick={() => navigate("/practice")} size="lg" variant="outline" className="gap-2">
-                    <Play className="w-5 h-5" />
-                    Quick session
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ) : (
+          {/* Recent Sessions */}
+          {sessions.length > 0 && (
             <Card>
               <CardHeader>
                 <CardTitle>Recent sessions</CardTitle>

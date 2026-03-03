@@ -60,7 +60,8 @@ export const DailyGoalRing = ({
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <motion.button 
+        <motion.button
+          aria-label={goalCompleted ? `Daily goal complete: ${todayMinutes} of ${dailyGoal} minutes` : `Daily goal: ${todayMinutes} of ${dailyGoal} minutes`}
           className="relative flex items-center justify-center cursor-pointer"
           initial={justCompleted ? { scale: 0.8 } : false}
           animate={justCompleted ? { scale: [0.8, 1.15, 1] } : { scale: 1 }}
@@ -121,7 +122,7 @@ export const DailyGoalRing = ({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Target className="w-5 h-5 text-primary" />
-              <span className="font-semibold text-sm">Objectif du jour</span>
+              <span className="font-semibold text-sm">Daily goal</span>
             </div>
             {isMobile && (
               <button onClick={() => setOpen(false)} className="p-1 hover:bg-muted rounded-full">
@@ -175,7 +176,7 @@ export const DailyGoalRing = ({
           </div>
           
           <p className="text-[10px] text-muted-foreground/70 italic text-center">
-            💡 3 min/jour suffisent pour progresser !
+            💡 3 min/day is enough to make progress!
           </p>
         </div>
       </PopoverContent>
