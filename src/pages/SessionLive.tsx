@@ -29,12 +29,12 @@ interface PatientOption {
 
 /* ──── Target SPS options ──── */
 const TARGET_SPS_OPTIONS = [
-  { value: 0, label: "Aucune" },
-  { value: 3.0, label: "3.0 — Lent" },
-  { value: 3.5, label: "3.5 — Posé" },
-  { value: 4.0, label: "4.0 — Moyen" },
-  { value: 4.5, label: "4.5 — Confortable" },
-  { value: 5.0, label: "5.0 — Rapide" },
+  { value: 0, label: "None" },
+  { value: 3.0, label: "3.0 — Slow" },
+  { value: 3.5, label: "3.5 — Steady" },
+  { value: 4.0, label: "4.0 — Moderate" },
+  { value: 4.5, label: "4.5 — Comfortable" },
+  { value: 5.0, label: "5.0 — Fast" },
 ];
 
 /* ──── Color helpers relative to target ──── */
@@ -110,7 +110,7 @@ const BilanRadialGauge = ({ avg, target }: { avg: number; target: number }) => {
         <span className="text-xs text-muted-foreground">syll/s</span>
         {target > 0 && avg > 0 && (
           <motion.span className="text-[10px] text-muted-foreground mt-0.5" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.0 }}>
-            cible : {target.toFixed(1)}
+            target: {target.toFixed(1)}
           </motion.span>
         )}
       </div>
@@ -121,20 +121,20 @@ const BilanRadialGauge = ({ avg, target }: { avg: number; target: number }) => {
 /* ──── Verdict Card ──── */
 const BilanVerdict = ({ avg, target }: { avg: number; target: number }) => {
   const { title, description, emoji, bgClass } = useMemo(() => {
-    if (avg === 0) return { title: "Séance trop courte", description: "Pas assez de parole détectée.", emoji: "⏸️", bgClass: "bg-muted/50" };
-    
+    if (avg === 0) return { title: "Session too short", description: "Not enough speech detected.", emoji: "⏸️", bgClass: "bg-muted/50" };
+
     if (target > 0) {
       const ratio = avg / target;
-      if (ratio <= 0.90) return { title: "En dessous de la cible", description: `Débit moyen de ${avg.toFixed(1)} syll/s pour une cible à ${target.toFixed(1)}. Vous pouvez viser un peu plus haut.`, emoji: "🐢", bgClass: "bg-emerald-50 dark:bg-emerald-950/20" };
-      if (ratio <= 1.05) return { title: "Objectif atteint ! 🎯", description: `Débit moyen de ${avg.toFixed(1)} syll/s — pile dans la cible à ${target.toFixed(1)}. Bravo !`, emoji: "✨", bgClass: "bg-green-50 dark:bg-green-950/20" };
-      if (ratio <= 1.20) return { title: "Légèrement au-dessus", description: `Débit moyen de ${avg.toFixed(1)} syll/s pour une cible à ${target.toFixed(1)}. Pensez aux pauses.`, emoji: "⚡", bgClass: "bg-orange-50 dark:bg-orange-950/20" };
-      return { title: "Au-dessus de la cible", description: `Débit moyen de ${avg.toFixed(1)} syll/s — la cible est à ${target.toFixed(1)}. Travaillez les pauses respiratoires.`, emoji: "🌬️", bgClass: "bg-red-50 dark:bg-red-950/20" };
+      if (ratio <= 0.90) return { title: "Below target", description: `Average rate of ${avg.toFixed(1)} syll/s against a target of ${target.toFixed(1)}. You can aim a little higher.`, emoji: "🐢", bgClass: "bg-emerald-50 dark:bg-emerald-950/20" };
+      if (ratio <= 1.05) return { title: "Goal reached! 🎯", description: `Average rate of ${avg.toFixed(1)} syll/s — right on target at ${target.toFixed(1)}. Well done!`, emoji: "✨", bgClass: "bg-green-50 dark:bg-green-950/20" };
+      if (ratio <= 1.20) return { title: "Slightly above target", description: `Average rate of ${avg.toFixed(1)} syll/s against a target of ${target.toFixed(1)}. Remember to pause.`, emoji: "⚡", bgClass: "bg-orange-50 dark:bg-orange-950/20" };
+      return { title: "Above target", description: `Average rate of ${avg.toFixed(1)} syll/s — target is ${target.toFixed(1)}. Work on respiratory pauses.`, emoji: "🌬️", bgClass: "bg-red-50 dark:bg-red-950/20" };
     }
-    
-    if (avg <= 3.5) return { title: "Rythme très posé", description: "Excellent contrôle du débit — idéal pour le travail articulatoire.", emoji: "🐢", bgClass: "bg-emerald-50 dark:bg-emerald-950/20" };
-    if (avg <= 5.0) return { title: "Rythme normo-fluent", description: "Le débit est confortable et naturel. Bravo !", emoji: "✨", bgClass: "bg-green-50 dark:bg-green-950/20" };
-    if (avg <= 6.0) return { title: "Débit légèrement rapide", description: "Quelques accélérations détectées. Pensez aux pauses inter-phrases.", emoji: "⚡", bgClass: "bg-orange-50 dark:bg-orange-950/20" };
-    return { title: "Débit élevé", description: "Le rythme est rapide. Travaillez les pauses respiratoires.", emoji: "🌬️", bgClass: "bg-red-50 dark:bg-red-950/20" };
+
+    if (avg <= 3.5) return { title: "Very steady pace", description: "Excellent rate control — ideal for articulation work.", emoji: "🐢", bgClass: "bg-emerald-50 dark:bg-emerald-950/20" };
+    if (avg <= 5.0) return { title: "Normal-fluent pace", description: "The rate is comfortable and natural. Well done!", emoji: "✨", bgClass: "bg-green-50 dark:bg-green-950/20" };
+    if (avg <= 6.0) return { title: "Slightly fast rate", description: "Some accelerations detected. Remember inter-sentence pauses.", emoji: "⚡", bgClass: "bg-orange-50 dark:bg-orange-950/20" };
+    return { title: "High rate", description: "The pace is fast. Work on respiratory pauses.", emoji: "🌬️", bgClass: "bg-red-50 dark:bg-red-950/20" };
   }, [avg, target]);
 
   return (
@@ -157,9 +157,9 @@ const BilanStability = ({ avg, max, min }: { avg: number; max: number; min: numb
   const variance = avg > 0 ? ((max - avg) / avg) * 100 : 0;
 
   const { label, description, emoji, barColor } = useMemo(() => {
-    if (variance < 20) return { label: "Très stable", description: `Seulement ${range.toFixed(1)} syll/s d'écart — excellent contrôle.`, emoji: "🎯", barColor: "bg-emerald-500" };
-    if (variance < 40) return { label: "Stable", description: `${range.toFixed(1)} syll/s d'écart — quelques variations normales.`, emoji: "📈", barColor: "bg-primary" };
-    return { label: "Variable", description: `${range.toFixed(1)} syll/s d'écart — les pauses respiratoires peuvent aider.`, emoji: "🌬️", barColor: "bg-orange-500" };
+    if (variance < 20) return { label: "Very stable", description: `Only ${range.toFixed(1)} syll/s variation — excellent control.`, emoji: "🎯", barColor: "bg-emerald-500" };
+    if (variance < 40) return { label: "Stable", description: `${range.toFixed(1)} syll/s variation — some normal fluctuations.`, emoji: "📈", barColor: "bg-primary" };
+    return { label: "Variable", description: `${range.toFixed(1)} syll/s variation — respiratory pauses may help.`, emoji: "🌬️", barColor: "bg-orange-500" };
   }, [variance, range]);
 
   const stabilityPct = Math.max(0, Math.min(100, 100 - variance));
@@ -259,7 +259,7 @@ const SessionLive = () => {
       streamRef.current = stream;
 
       try { await deepgram.start(stream, { detectFillers: false }); } catch {
-        toast.info("Enregistrement sans analyse en temps réel.", { duration: 3000 });
+        toast.info("Recording without real-time analysis.", { duration: 3000 });
       }
 
       startTimeRef.current = Date.now();
@@ -277,7 +277,7 @@ const SessionLive = () => {
 
       setIsRecording(true);
     } catch {
-      toast.error("Impossible d'accéder au microphone");
+      toast.error("Unable to access microphone");
     }
   };
 
@@ -314,7 +314,7 @@ const SessionLive = () => {
       setIsRecording(false);
       setSaving(false);
     } catch {
-      toast.error("Erreur lors de la sauvegarde");
+      toast.error("Error saving session");
       setSaving(false);
     }
   };
@@ -328,10 +328,10 @@ const SessionLive = () => {
         therapist_id: user.id,
         content: clinicalNote.trim(),
       });
-      toast.success("Note clinique enregistrée");
+      toast.success("Clinical note saved");
       setClinicalNote("");
     } catch {
-      toast.error("Erreur lors de l'enregistrement");
+      toast.error("Error saving note");
     } finally {
       setSavingNote(false);
     }
@@ -353,7 +353,7 @@ const SessionLive = () => {
   const gaugeColor = useMemo(() => getRelativeColor(deepgram.packetSPS, targetSps), [deepgram.packetSPS, targetSps]);
   const gaugeEmoji = useMemo(() => getRelativeEmoji(deepgram.packetSPS, targetSps), [deepgram.packetSPS, targetSps]);
 
-  const selectedPatientName = isNoPatient ? "Sans patient" : (patients.find(p => p.id === selectedPatientId)?.full_name || "Patient");
+  const selectedPatientName = isNoPatient ? "No patient" : (patients.find(p => p.id === selectedPatientId)?.full_name || "Patient");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-secondary via-background to-accent/30 flex flex-col">
@@ -361,11 +361,11 @@ const SessionLive = () => {
       <header className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-            <ArrowLeft className="w-5 h-5" /><span className="hidden sm:inline">Retour</span>
+            <ArrowLeft className="w-5 h-5" /><span className="hidden sm:inline">Back</span>
           </button>
           <div className="flex items-center gap-2">
             <Gauge className="w-5 h-5 text-primary" />
-            <span className="font-display font-bold text-sm sm:text-base">Débitmètre en séance</span>
+            <span className="font-display font-bold text-sm sm:text-base">Live Rate Meter</span>
           </div>
           <div className="w-20" />
         </div>
@@ -424,7 +424,7 @@ const SessionLive = () => {
                 </Card>
               </motion.div>
 
-              {/* Stabilité */}
+              {/* Stability */}
               <motion.div 
                 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4 }}
               >
@@ -436,16 +436,16 @@ const SessionLive = () => {
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6 }}>
                   <Card>
                     <CardContent className="p-4 space-y-3">
-                      <p className="text-sm font-medium">📝 Ajouter une note clinique</p>
+                      <p className="text-sm font-medium">📝 Add a clinical note</p>
                       <Textarea
-                        placeholder="Observations de la séance..."
+                        placeholder="Session observations..."
                         value={clinicalNote}
                         onChange={e => setClinicalNote(e.target.value)}
                         rows={3}
                       />
                       <Button onClick={handleSaveNote} disabled={!clinicalNote.trim() || savingNote} size="sm" className="gap-2">
                         <Save className="w-4 h-4" />
-                        {savingNote ? "Enregistrement..." : "Enregistrer la note"}
+                        {savingNote ? "Saving..." : "Save note"}
                       </Button>
                     </CardContent>
                   </Card>
@@ -453,7 +453,7 @@ const SessionLive = () => {
               )}
               {isNoPatient && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6 }}>
-                  <p className="text-xs text-center text-muted-foreground">Cette mesure n'a pas été sauvegardée (aucun patient sélectionné).</p>
+                  <p className="text-xs text-center text-muted-foreground">This measurement was not saved (no patient selected).</p>
                 </motion.div>
               )}
 
@@ -462,11 +462,11 @@ const SessionLive = () => {
                 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.8 }}
               >
                 <Button variant="outline" className="flex-1 gap-2" onClick={handleNewSession}>
-                  Nouvelle mesure
+                  New measurement
                 </Button>
                 {!isNoPatient && (
                   <Button className="flex-1 gap-2" onClick={() => navigate(`/patient/${selectedPatientId}`)}>
-                    Voir le dossier
+                    View patient file
                   </Button>
                 )}
               </motion.div>
@@ -476,9 +476,9 @@ const SessionLive = () => {
             <motion.div key="setup" className="w-full space-y-6" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
               <div className="text-center">
                 <div className="text-5xl mb-3">🎯</div>
-                <h1 className="text-2xl font-display font-bold mb-2">Débitmètre en séance</h1>
+                <h1 className="text-2xl font-display font-bold mb-2">Live Rate Meter</h1>
                 <p className="text-muted-foreground text-sm">
-                  Mesurez le débit de votre patient en direct, pendant la consultation.
+                  Measure your patient's speech rate live during the consultation.
                 </p>
               </div>
 
@@ -490,25 +490,25 @@ const SessionLive = () => {
                     <h3 className="text-sm font-bold">Patient</h3>
                   </div>
                   {loadingPatients ? (
-                    <p className="text-sm text-muted-foreground">Chargement...</p>
+                    <p className="text-sm text-muted-foreground">Loading...</p>
                   ) : (
                     <>
                       <Select value={selectedPatientId} onValueChange={setSelectedPatientId}>
                         <SelectTrigger>
-                          <SelectValue placeholder="Sélectionner un patient" />
+                          <SelectValue placeholder="Select a patient" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="none">Sans patient (non sauvegardé)</SelectItem>
+                          <SelectItem value="none">No patient (not saved)</SelectItem>
                           {patients.map(p => (
                             <SelectItem key={p.id} value={p.id}>
-                              {p.full_name || "Patient sans nom"}
+                              {p.full_name || "Unnamed patient"}
                             </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
                       {isNoPatient && (
                         <p className="text-xs text-amber-600 dark:text-amber-400 mt-2 flex items-center gap-1">
-                          ⚠️ La mesure ne sera pas sauvegardée sans patient sélectionné.
+                          ⚠️ The measurement will not be saved without a selected patient.
                         </p>
                       )}
                     </>
@@ -521,7 +521,7 @@ const SessionLive = () => {
                 <CardContent className="p-4">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-lg">⏱️</span>
-                    <h3 className="text-sm font-bold">Durée</h3>
+                    <h3 className="text-sm font-bold">Duration</h3>
                   </div>
                   <div className="grid grid-cols-4 gap-2">
                     {DURATION_OPTIONS.map(opt => (
@@ -548,7 +548,7 @@ const SessionLive = () => {
                 <CardContent className="p-4">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-lg">🎯</span>
-                    <h3 className="text-sm font-bold">Vitesse cible</h3>
+                    <h3 className="text-sm font-bold">Target rate</h3>
                   </div>
                   <div className="grid grid-cols-3 gap-2">
                     {TARGET_SPS_OPTIONS.map(opt => (
@@ -565,13 +565,13 @@ const SessionLive = () => {
                           {opt.value === 0 ? "—" : opt.value.toFixed(1)}
                         </div>
                         <div className="text-[10px] text-muted-foreground">
-                          {opt.value === 0 ? "Aucune" : opt.label.split(" — ")[1]}
+                          {opt.value === 0 ? "None" : opt.label.split(" — ")[1]}
                         </div>
                       </button>
                     ))}
                   </div>
                   <p className="text-xs text-muted-foreground mt-2">
-                    Les couleurs de la jauge s'adapteront à cette cible.
+                    Gauge colors will adapt to this target.
                   </p>
                 </CardContent>
               </Card>
@@ -584,7 +584,7 @@ const SessionLive = () => {
                   className="h-16 px-10 rounded-2xl text-lg gap-3 shadow-lg shadow-primary/25"
                 >
                   <Play className="w-6 h-6" />
-                  Lancer la mesure
+                  Start measurement
                 </Button>
               </div>
             </motion.div>
@@ -602,7 +602,7 @@ const SessionLive = () => {
 
               {/* Countdown */}
               <div className="text-center">
-                <p className="text-sm text-muted-foreground mb-1">Temps restant</p>
+                <p className="text-sm text-muted-foreground mb-1">Time remaining</p>
                 <p className="text-4xl font-mono font-bold tabular-nums">{formatTime(remainingTime)}</p>
               </div>
 
@@ -628,7 +628,7 @@ const SessionLive = () => {
                 </motion.span>
                 <span className="text-xs text-muted-foreground">syll/s</span>
                 {targetSps > 0 && (
-                  <span className="text-[10px] text-muted-foreground mt-0.5">cible : {targetSps.toFixed(1)}</span>
+                  <span className="text-[10px] text-muted-foreground mt-0.5">target: {targetSps.toFixed(1)}</span>
                 )}
               </div>
 
@@ -641,7 +641,7 @@ const SessionLive = () => {
                 className="h-14 px-8 rounded-2xl text-lg gap-2"
               >
                 <Square className="w-5 h-5" />
-                {saving ? "Sauvegarde..." : "Arrêter"}
+                {saving ? "Saving..." : "Stop"}
               </Button>
             </motion.div>
           )}

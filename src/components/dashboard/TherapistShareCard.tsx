@@ -80,7 +80,7 @@ const TherapistShareCard = () => {
       const therapistData = therapistResults?.[0];
 
       if (findError || !therapistData) {
-        toast.error("Code invalide. Vérifiez le code auprès de votre orthophoniste.");
+        toast.error("Invalid code. Check the code with your SLP.");
         return;
       }
 
@@ -92,17 +92,17 @@ const TherapistShareCard = () => {
 
       if (updateError) {
         console.error("Update error:", updateError);
-        toast.error("Erreur lors de la liaison. Réessayez.");
+        toast.error("Error linking. Please try again.");
         return;
       }
 
       setLinkedTherapist(therapistData);
       setShowLinkDialog(false);
       setTherapistCode("");
-      toast.success(`Connecté avec ${therapistData.full_name || "votre orthophoniste"} !`);
+      toast.success(`Connected with ${therapistData.full_name || "your SLP"}!`);
     } catch (error) {
       console.error("Error linking therapist:", error);
-      toast.error("Une erreur est survenue");
+      toast.error("An error occurred");
     } finally {
       setLoading(false);
     }
@@ -119,15 +119,15 @@ const TherapistShareCard = () => {
         .eq("id", user.id);
 
       if (error) {
-        toast.error("Erreur lors de la déconnexion");
+        toast.error("Error unlinking");
         return;
       }
 
       setLinkedTherapist(null);
-      toast.success("Liaison supprimée");
+      toast.success("Link removed");
     } catch (error) {
       console.error("Error unlinking:", error);
-      toast.error("Une erreur est survenue");
+      toast.error("An error occurred");
     } finally {
       setLoading(false);
     }
@@ -154,11 +154,11 @@ const TherapistShareCard = () => {
             </div>
             <div className="flex-1">
               <h3 className="font-medium text-sm flex items-center gap-2">
-                Connecté avec votre orthophoniste
+                Connected with your SLP
                 <span className="text-green-500">✓</span>
               </h3>
               <p className="text-xs text-muted-foreground">
-                {linkedTherapist.full_name || "Dr."} peut voir vos progrès
+                {linkedTherapist.full_name || "Dr."} can see your progress
               </p>
             </div>
             <Button
@@ -188,9 +188,9 @@ const TherapistShareCard = () => {
               <UserPlus className="w-6 h-6 text-primary" />
             </div>
             <div className="flex-1">
-              <h3 className="font-medium text-sm">Changer d'Orthophoniste</h3>
+              <h3 className="font-medium text-sm">Change SLP</h3>
               <p className="text-xs text-muted-foreground">
-                Entrer un nouveau code praticien
+                Enter a new Pro Code
               </p>
             </div>
           </button>
@@ -205,15 +205,15 @@ const TherapistShareCard = () => {
               <UserPlus className="w-8 h-8 text-primary" />
             </div>
             <DialogTitle className="text-center text-xl">
-              Lier mon compte à mon Orthophoniste
+              Link my account to my SLP
             </DialogTitle>
             <DialogDescription className="text-center">
-              Entrez le code Pro fourni par votre praticien pour partager vos progrès.
+              Enter the Pro Code provided by your clinician to share your progress.
             </DialogDescription>
           </DialogHeader>
           <div className="py-4 space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="therapist-code">Code Pro de votre orthophoniste</Label>
+              <Label htmlFor="therapist-code">Your SLP's Pro Code</Label>
               <Input
                 id="therapist-code"
                 placeholder="Ex: PRO-ABC123"
@@ -223,7 +223,7 @@ const TherapistShareCard = () => {
                 maxLength={10}
               />
               <p className="text-xs text-muted-foreground text-center">
-                Ce code est affiché sur le tableau de bord de votre orthophoniste
+                This code is displayed on your SLP's dashboard
               </p>
             </div>
           </div>
@@ -236,12 +236,12 @@ const TherapistShareCard = () => {
               {loading ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  Vérification...
+                  Verifying...
                 </>
               ) : (
                 <>
                   <Check className="w-4 h-4" />
-                  Valider et Partager
+                  Confirm & Share
                 </>
               )}
             </Button>
@@ -253,7 +253,7 @@ const TherapistShareCard = () => {
                 setTherapistCode("");
               }}
             >
-              Annuler
+              Cancel
             </Button>
           </DialogFooter>
         </DialogContent>

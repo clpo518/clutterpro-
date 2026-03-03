@@ -49,15 +49,15 @@ const SPSWidget = () => {
         <span className="text-xs text-muted-foreground">syll/s</span>
       </div>
       <div className="h-6 w-px bg-border" />
-      <span className="text-xs text-muted-foreground">Débit en temps réel</span>
+      <span className="text-xs text-muted-foreground">Real-time speech rate</span>
     </div>
   );
 };
 
 const rebusItems = [
-  { emoji: "🐮", label: "vache", pauseAfter: true },
-  { emoji: "🍽️", label: "mange", pauseAfter: true },
-  { emoji: "🍦", label: "glace", pauseAfter: false },
+  { emoji: "🐮", label: "cow", pauseAfter: true },
+  { emoji: "🍽️", label: "eats", pauseAfter: true },
+  { emoji: "🍦", label: "ice cream", pauseAfter: false },
 ];
 
 export const UnifiedHeroSection = () => {
@@ -75,7 +75,7 @@ export const UnifiedHeroSection = () => {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 gradient-subtle" />
-      
+
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-primary/[0.03]"
@@ -88,7 +88,7 @@ export const UnifiedHeroSection = () => {
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
-      
+
       <div className="container relative z-10 px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
@@ -99,30 +99,29 @@ export const UnifiedHeroSection = () => {
           >
             <span className="badge-clinical inline-flex">
               <Activity className="w-3.5 h-3.5" />
-              Bredouillement · Tachylalie · Bégaiement
+              Cluttering · Tachylalia · Fluency Disorders
             </span>
           </motion.div>
-          
+
           <motion.h1
             className="text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground mb-6 leading-[1.1] tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Vous parlez trop vite ?{" "}
-            <span className="gradient-text">Reprenez le contrôle.</span>
+            Speak at your best.{" "}
+            <span className="gradient-text">Every session.</span>
           </motion.h1>
-          
+
           <motion.p
             className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            L'application d'entraînement pour les troubles de la fluence : bredouillement, tachylalie et bégaiement. 
-            Entraînez-vous seul ou avec votre orthophoniste.
+            ClutterPro gives speech-language pathologists and their patients the tools to measure, practice, and improve speech rate — anywhere, anytime.
           </motion.p>
-          
+
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             initial={{ opacity: 0, y: 20 }}
@@ -130,15 +129,14 @@ export const UnifiedHeroSection = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <Button asChild size="lg" className="text-base px-8 h-14 shadow-md hover:shadow-lg">
-              <Link to="/diagnostic">
-                Tester ma vitesse
+              <Link to="/auth?tab=signup">
+                Start free trial
                 <ArrowRight className="w-5 h-5 ml-1" />
               </Link>
             </Button>
             <Button variant="outline" size="lg" className="text-base px-8 h-14" asChild>
-              <a href="#orthophonistes">
-                <Stethoscope className="w-4 h-4 mr-2" />
-                Espace Orthophoniste
+              <a href="#patients">
+                I'm a patient
               </a>
             </Button>
           </motion.div>
@@ -158,9 +156,9 @@ export const UnifiedHeroSection = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.45 }}
           >
-            Mesurez votre débit de parole en syllabes par seconde — la référence en orthophonie.
+            Measure your speech rate in syllables per second — the gold standard in speech-language pathology.
           </motion.p>
-          
+
           {/* Tabbed exercise demo */}
           <motion.div
             className="mt-14"
@@ -170,13 +168,13 @@ export const UnifiedHeroSection = () => {
           >
             <div className="bg-card rounded-2xl shadow-lg border border-border/60 p-4 md:p-6">
               <p className="text-xs text-muted-foreground text-center mb-3">
-                Aperçu de 3 de nos 12 modes d'exercice
+                Preview 3 of our 12 exercise modes
               </p>
               <Tabs defaultValue="lecture" className="w-full">
                 <TabsList className="grid w-full grid-cols-3 mb-4 md:mb-6">
                   <TabsTrigger value="lecture" className="gap-1 md:gap-2 text-[11px] md:text-sm px-1.5 md:px-3">
                     <Play className="w-3 h-3 md:w-4 md:h-4 shrink-0" />
-                    <span className="truncate">Lecture</span>
+                    <span className="truncate">Reading</span>
                   </TabsTrigger>
                   <TabsTrigger value="dialogue" className="gap-1 md:gap-2 text-[11px] md:text-sm px-1.5 md:px-3">
                     <MessageSquare className="w-3 h-3 md:w-4 md:h-4 shrink-0" />
@@ -184,17 +182,17 @@ export const UnifiedHeroSection = () => {
                   </TabsTrigger>
                   <TabsTrigger value="rebus" className="gap-1 md:gap-2 text-[11px] md:text-sm px-1.5 md:px-3">
                     <span className="shrink-0">🧒</span>
-                    <span className="truncate">Enfants</span>
+                    <span className="truncate">Kids</span>
                   </TabsTrigger>
                 </TabsList>
 
-                {/* Lecture guidée */}
+                {/* Guided Reading */}
                 <TabsContent value="lecture" className="mt-0">
                   <div className="rounded-xl overflow-hidden border border-border/40 bg-card mb-3">
                     <KaraokeDemo />
                   </div>
                   <p className="text-xs text-muted-foreground text-center">
-                    Le surligneur avance mot par mot selon la vitesse que vous choisissez.
+                    The highlighter advances word by word at the speed you choose.
                   </p>
                 </TabsContent>
 
@@ -203,22 +201,22 @@ export const UnifiedHeroSection = () => {
                   <div className="flex flex-col items-center gap-4 py-4">
                     <div className="w-28 h-28 md:w-36 md:h-36 rounded-full border-4 border-emerald-500 bg-emerald-500/10 flex flex-col items-center justify-center">
                       <span className="text-3xl md:text-4xl">✅</span>
-                      <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">Parfait</span>
+                      <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">Perfect</span>
                       <span className="text-[11px] text-muted-foreground">4.0 syll/s</span>
                     </div>
                     <p className="text-xs text-muted-foreground text-center max-w-sm">
-                      Un seul indicateur visible de loin — juste un emoji qui change en temps réel selon votre débit.
+                      A single indicator visible from afar — just an emoji that changes in real time based on your speech rate.
                     </p>
                     <Button asChild size="sm" className="text-sm">
                       <Link to="/dialogue">
                         <MessageSquare className="w-4 h-4 mr-1" />
-                        Essayer le Mode Dialogue
+                        Try Dialogue Mode
                       </Link>
                     </Button>
                   </div>
                 </TabsContent>
 
-                {/* Rébus enfant */}
+                {/* Kids Rebus */}
                 <TabsContent value="rebus" className="mt-0">
                   <div className="flex flex-wrap justify-center items-end gap-4 md:gap-6 py-4 mb-3">
                     {rebusItems.map((item, index) => (
@@ -262,14 +260,14 @@ export const UnifiedHeroSection = () => {
                       className="inline-flex items-center gap-2 px-5 py-2.5 bg-orange-500 text-white rounded-xl text-sm font-medium hover:bg-orange-600 transition-all shadow-md"
                     >
                       <Play className="w-4 h-4" />
-                      Lancer la démo
+                      Play demo
                     </button>
                   </div>
                   <p className="text-sm text-muted-foreground text-center font-medium mb-1">
-                    « La vache mange une glace »
+                    "The cow eats ice cream"
                   </p>
                   <p className="text-xs text-muted-foreground text-center">
-                    Pas besoin de savoir lire : les emojis guident la parole (4-7 ans).
+                    No reading required: emojis guide the speech (ages 4-7).
                   </p>
                 </TabsContent>
               </Tabs>

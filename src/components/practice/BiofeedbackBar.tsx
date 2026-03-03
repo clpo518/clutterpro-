@@ -41,30 +41,30 @@ const BiofeedbackBar = ({
     bgClass: string;
     emoji: string;
   }>({
-    label: "Parlez...",
+    label: "Start speaking...",
     colorClass: "text-muted-foreground",
     bgClass: "bg-muted",
     emoji: "🎤"
   });
-  
+
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
   const lastChangeTime = useRef<number>(0);
 
   // Calculate current state based on SPS
   const currentState = useMemo(() => {
     if (isPaused) {
-      return { 
-        label: "En pause", 
+      return {
+        label: "Paused",
         colorClass: "text-yellow-600 dark:text-yellow-400",
         bgClass: "bg-yellow-100 dark:bg-yellow-900/30",
         emoji: "⏸️"
       };
     }
-    
-    // If SPS is too low, consider user is not speaking (avoid false "Parfait")
+
+    // If SPS is too low, consider user is not speaking (avoid false "Perfect")
     if (sps < MIN_SPEAKING_SPS) {
       return {
-        label: "Parlez...",
+        label: "Start speaking...",
         colorClass: "text-muted-foreground",
         bgClass: "bg-muted",
         emoji: "🎤"
@@ -144,7 +144,7 @@ const BiofeedbackBar = ({
               {isPaused ? (
                 <>
                   <Play className="w-5 h-5" />
-                  <span>Reprendre</span>
+                  <span>Resume</span>
                 </>
               ) : (
                 <>
@@ -194,16 +194,16 @@ const BiofeedbackBar = ({
             {isRecording && !isPaused && (
               <p className="text-[10px] text-muted-foreground/70 text-center mt-1">
                 {!isCalibrated
-                  ? "Je vous écoute, continuez à parler 🎧"
-                  : stableState.label === "Parlez..." 
-                    ? "Continuez à parler..." 
-                    : stableState.label === "Parfait"
-                      ? "Rythme idéal 👍"
-                      : stableState.label === "Bien"
-                        ? "Bon contrôle 👍"
-                        : stableState.label === "Trop vite !" || stableState.label === "Doucement..."
-                          ? "Ralentissez un peu..."
-                          : "Essayez de parler un peu plus vite"
+                  ? "I'm listening, keep speaking 🎧"
+                  : stableState.label === "Start speaking..."
+                    ? "Keep speaking..."
+                    : stableState.label === "Perfect"
+                      ? "Ideal pace 👍"
+                      : stableState.label === "Good"
+                        ? "Good control 👍"
+                        : stableState.label === "Too fast!" || stableState.label === "Slow down..."
+                          ? "Slow down a little..."
+                          : "Try to speed up a little"
                 }
               </p>
             )}
@@ -223,7 +223,7 @@ const BiofeedbackBar = ({
             className="h-12 sm:h-14 px-4 sm:px-6 rounded-xl gap-2 font-medium text-sm sm:text-base"
           >
             <Square className="w-5 h-5" />
-            <span>Terminer</span>
+            <span>Finish</span>
           </Button>
         </div>
       </div>

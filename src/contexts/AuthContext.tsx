@@ -2,6 +2,35 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 import { type User, type Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 
+// ---------------------------------------------------------------------------
+// Demo accounts — bypass Supabase for UI testing (no backend required)
+// ---------------------------------------------------------------------------
+const DEMO_PATIENT = {
+  id: "demo-patient-00000000-0000-0000-0000-000000000001",
+  email: "demo@patient.com",
+  app_metadata: { provider: "email" },
+  user_metadata: { full_name: "Alex Demo", is_therapist: false },
+  aud: "authenticated",
+  created_at: "2024-01-01T00:00:00.000Z",
+  updated_at: "2024-01-01T00:00:00.000Z",
+  role: "authenticated",
+  identities: [],
+  factors: [],
+} as unknown as User;
+
+const DEMO_SLP = {
+  id: "demo-slp-00000000-0000-0000-0000-000000000002",
+  email: "demo@slp.com",
+  app_metadata: { provider: "email" },
+  user_metadata: { full_name: "Dr. Demo SLP", is_therapist: true },
+  aud: "authenticated",
+  created_at: "2024-01-01T00:00:00.000Z",
+  updated_at: "2024-01-01T00:00:00.000Z",
+  role: "authenticated",
+  identities: [],
+  factors: [],
+} as unknown as User;
+
 interface AuthContextType {
   user: User | null;
   session: Session | null;
@@ -57,6 +86,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
+    // Restore demo session across page reloads
+    const demoKey = sessionStorage.getItem("clutterpro_demo");
+    if (demoKey === "patient") {
+      setUser(DEMO_PATIENT);
+      setLoading(false);
+      return;
+    }
+    if (demoKey === "slp") {
+      setUser(DEMO_SLP);
+      setLoading(false);
+      return;
+    }
+
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -195,6 +237,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signIn = async (email: string, password: string) => {
+    // Demo bypass — no Supabase needed
+    if (email === "demo@patient.com" && password === "demo123") {
+      sessionStorage.setItem("clutterpro_demo", "patient");
+      setUser(DEMO_PATIENT);
+      setSession(null);
+      setLoading(false);
+      return { error: null };
+    }
+    if (email === "demo@slp.com" && password === "demo123") {
+      sessionStorage.setItem("clutterpro_demo", "slp");
+      setUser(DEMO_SLP);
+      setSession(null);
+      setLoading(false);
+      return { error: null };
+    }
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -203,6 +260,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signOut = async () => {
+    sessionStorage.removeItem("clutterpro_demo");
     try {
       await supabase.auth.signOut();
     } catch (error) {

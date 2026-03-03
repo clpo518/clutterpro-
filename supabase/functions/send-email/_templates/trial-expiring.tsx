@@ -15,50 +15,50 @@ interface TrialExpiringEmailProps {
 }
 
 export function TrialExpiringEmail(props: TrialExpiringEmailProps) {
-  const { therapistName = 'Cher orthophoniste', daysRemaining, patientsCount, subscribeUrl, referralCode } = props
-  
-  const referralUrl = referralCode 
-    ? `https://parlermoinsvite.fr/pro?ref=${referralCode}` 
+  const { therapistName = 'Dear SLP', daysRemaining, patientsCount, subscribeUrl, referralCode } = props
+
+  const referralUrl = referralCode
+    ? `https://clutterpro.com/pro?ref=${referralCode}`
     : null;
-  
+
   return (
-    <BaseLayout preview={`Votre période d'essai se termine dans ${daysRemaining} jours`}>
+    <BaseLayout preview={`Your trial ends in ${daysRemaining} day${daysRemaining > 1 ? 's' : ''}`}>
       <Heading style={heading}>
-        ⏰ Votre essai se termine dans {daysRemaining} jour{daysRemaining > 1 ? 's' : ''}
+        ⏰ Your trial ends in {daysRemaining} day{daysRemaining > 1 ? 's' : ''}
       </Heading>
 
-      <Text style={paragraph}>Bonjour {therapistName},</Text>
+      <Text style={paragraph}>Hi {therapistName},</Text>
 
       <Text style={paragraph}>
-        Votre période d'essai gratuite de Parler Moins Vite Pro arrive à son terme dans {daysRemaining} jour{daysRemaining > 1 ? 's' : ''}.
+        Your free trial of ClutterPro for SLPs expires in {daysRemaining} day{daysRemaining > 1 ? 's' : ''}.
       </Text>
 
       {patientsCount > 0 && (
         <Text style={warningBox}>
-          ⚠️ Important : Vous avez actuellement {patientsCount} patient{patientsCount > 1 ? 's' : ''} suivi{patientsCount > 1 ? 's' : ''}. Sans abonnement, vous ne pourrez plus accéder à leurs données ni leur assigner des exercices.
+          ⚠️ Important: You currently have {patientsCount} active patient{patientsCount > 1 ? 's' : ''}. Without a subscription, you won't be able to access their data or assign exercises.
         </Text>
       )}
 
       <Text style={benefitsBox}>
-        ✨ Avec Parler Moins Vite Pro : Suivi illimité de vos patients, accès aux métriques cliniques avancées, génération de bilans PDF, assignation d'exercices personnalisés, et support prioritaire.
+        ✨ With ClutterPro for SLPs: Unlimited patient tracking, advanced clinical metrics, PDF report generation, personalized exercise assignments, and priority support.
       </Text>
 
       <Text style={testimonialBox}>
-        💬 "Bien conçu et facile d'utilisation. C'est vraiment l'outil qu'il me manquait pour mesurer objectivement le débit de parole." — Orthophoniste
+        💬 "Well designed and easy to use. This is truly the tool I was missing to objectively measure speech rate." — SLP
       </Text>
 
       <Button style={button} href={subscribeUrl}>
-        Souscrire maintenant
+        Subscribe now
       </Button>
 
       {referralCode && referralUrl && (
         <Text style={referralBox}>
-          💡 Astuce parrainage : Recommandez Parler Moins Vite à un confrère et recevez tous les deux 1 mois gratuit ! Partagez simplement ce lien : {referralUrl} — Votre code : {referralCode}
+          💡 Referral tip: Recommend ClutterPro to a colleague and both get 1 free month! Simply share this link: {referralUrl} — Your code: {referralCode}
         </Text>
       )}
 
       <Text style={smallText}>
-        Des questions sur nos offres ? Écrivez-nous à contact@parlermoinsvite.fr — nous serons ravis de vous aider.
+        Questions about our plans? Email us at support@clutterpro.com — we'd be happy to help.
       </Text>
     </BaseLayout>
   )

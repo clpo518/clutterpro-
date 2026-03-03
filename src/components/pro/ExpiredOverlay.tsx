@@ -23,35 +23,35 @@ const ExpiredOverlay = () => {
         </div>
 
         <h2 className="text-2xl font-display font-bold mb-3">
-          Période d'essai terminée
+          Trial period ended
         </h2>
 
         <p className="text-muted-foreground mb-6">
-          Vos données sont <strong>conservées en sécurité</strong>. 
-          Abonnez-vous pour débloquer l'accès à vos patients et continuer le suivi.
+          Your data is <strong>safely preserved</strong>.
+          Subscribe to unlock access to your patients and continue monitoring.
         </p>
 
-        {/* Pricing inline — réduit la friction */}
+        {/* Pricing inline — reduces friction */}
         <div className="grid grid-cols-2 gap-3 mb-6">
           <div className="p-4 rounded-xl border-2 border-border bg-muted/30">
-            <p className="text-sm font-medium text-muted-foreground mb-1">Essentiel</p>
-            <p className="text-2xl font-bold text-foreground">14,90€</p>
-            <p className="text-xs text-muted-foreground">/mois • 3 patients</p>
+            <p className="text-sm font-medium text-muted-foreground mb-1">Essential</p>
+            <p className="text-2xl font-bold text-foreground">$14.90</p>
+            <p className="text-xs text-muted-foreground">/mo - 3 patients</p>
           </div>
           <div className="p-4 rounded-xl border-2 border-primary/50 bg-primary/5 relative">
             <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center gap-1">
-              <Star className="w-3 h-3" /> Populaire
+              <Star className="w-3 h-3" /> Popular
             </div>
             <p className="text-sm font-medium text-muted-foreground mb-1">Expert</p>
-            <p className="text-2xl font-bold text-foreground">19,90€</p>
-            <p className="text-xs text-muted-foreground">/mois • 5 patients</p>
+            <p className="text-2xl font-bold text-foreground">$19.90</p>
+            <p className="text-xs text-muted-foreground">/mo - 5 patients</p>
           </div>
         </div>
 
         <div className="p-4 rounded-xl bg-green-500/10 border border-green-500/20 mb-6">
           <div className="flex items-center gap-3 justify-center text-green-700 dark:text-green-400">
             <ShieldAlert className="w-5 h-5" />
-            <span className="text-sm font-medium">Données patients 100% sécurisées</span>
+            <span className="text-sm font-medium">Patient data 100% secure</span>
           </div>
         </div>
 
@@ -60,17 +60,17 @@ const ExpiredOverlay = () => {
           onClick={() => navigate("/pro/subscription")}
           className="w-full gap-2 bg-gradient-to-r from-primary to-emerald-500 hover:from-primary/90 hover:to-emerald-600"
         >
-          Choisir mon offre
+          Choose my plan
           <ArrowRight className="w-5 h-5" />
         </Button>
 
         {/* Preuve sociale */}
         <p className="text-xs text-muted-foreground mt-4 italic">
-          "L'outil qu'il me manquait pour mesurer objectivement le débit." — Orthophoniste
+          "The tool I was missing to objectively measure speech rate." — SLP
         </p>
 
         <p className="text-xs text-muted-foreground mt-2">
-          Annulation à tout moment
+          Cancel anytime
         </p>
       </motion.div>
     </motion.div>

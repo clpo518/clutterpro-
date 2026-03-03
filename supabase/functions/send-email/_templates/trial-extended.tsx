@@ -15,46 +15,46 @@ interface TrialExtendedEmailProps {
 }
 
 export function TrialExtendedEmail(props: TrialExtendedEmailProps) {
-  const { userName = 'Cher utilisateur', newEndDate, isTherapist, therapistCode, dashboardUrl } = props
+  const { userName = 'Dear user', newEndDate, isTherapist, therapistCode, dashboardUrl } = props
 
   return (
-    <BaseLayout preview={`Bonne nouvelle : votre accès gratuit est prolongé jusqu'au ${newEndDate} !`}>
-      <Heading style={heading}>Votre accès est prolongé 🎉</Heading>
+    <BaseLayout preview={`Great news: your free access has been extended through ${newEndDate}!`}>
+      <Heading style={heading}>Your access has been extended 🎉</Heading>
 
-      <Text style={paragraph}>Bonjour {userName},</Text>
+      <Text style={paragraph}>Hi {userName},</Text>
 
       <Text style={paragraph}>
-        Bonne nouvelle ! Nous avons prolongé votre accès gratuit à Parler Moins Vite.
+        Great news! We've extended your free access to ClutterPro.
       </Text>
 
       <Text style={highlightBox}>
-        📅 Votre nouvel accès est valable <strong>jusqu'au {newEndDate}</strong>. Toutes les fonctionnalités restent disponibles sans aucune interruption.
+        📅 Your access is now valid <strong>through {newEndDate}</strong>. All features remain available without any interruption.
       </Text>
 
       {isTherapist && therapistCode && (
         <Text style={proCodeBox}>
-          🔑 Votre Code Pro : <strong>{therapistCode}</strong><br />
-          Partagez-le avec vos patients pour qu'ils rejoignent votre espace de suivi.
+          🔑 Your Pro Code: <strong>{therapistCode}</strong><br />
+          Share it with your patients so they can join your tracking dashboard.
         </Text>
       )}
 
       <Text style={paragraph}>
-        Profitez de cette période pour {isTherapist
-          ? "explorer le tableau de bord, inviter vos patients et découvrir les outils d'analyse clinique."
-          : "continuer vos exercices et consolider vos progrès à votre rythme."
+        Take advantage of this period to {isTherapist
+          ? "explore the dashboard, invite your patients, and discover the clinical analysis tools."
+          : "continue your exercises and build on your progress at your own pace."
         }
       </Text>
 
       <Button style={button} href={dashboardUrl}>
-        {isTherapist ? 'Accéder à mon tableau de bord' : 'Continuer mes exercices'}
+        {isTherapist ? 'Access my dashboard' : 'Continue my exercises'}
       </Button>
 
       <Text style={reassuranceBox}>
-        💚 Aucune action requise de votre part. Votre accès est automatiquement prolongé.
+        💚 No action required on your part. Your access has been automatically extended.
       </Text>
 
-      <Text style={signatureText}>À bientôt,</Text>
-      <Text style={signatureName}>L'équipe Parler Moins Vite</Text>
+      <Text style={signatureText}>Talk soon,</Text>
+      <Text style={signatureName}>The ClutterPro Team</Text>
     </BaseLayout>
   )
 }

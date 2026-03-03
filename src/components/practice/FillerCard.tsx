@@ -36,12 +36,12 @@ const FillerCard = ({ fillerCount, fillerDetails }: FillerCardProps) => {
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2">
           <MessageCircle className="w-5 h-5 text-primary" />
-          Mots parasites
+          Filler Words
         </CardTitle>
         <CardDescription>
-          Mots ou expressions de remplissage détectés automatiquement pendant la session.
+          Filler words or expressions automatically detected during the session.
           <span className="block mt-1 text-xs text-muted-foreground/80">
-            ℹ️ Ce sont des habitudes de langage ("euh", "du coup", "en fait"…), pas des blocages ou disfluences de type bégaiement. Ils sont exclus du calcul du débit (SPS).
+            ℹ️ These are speech habits ("um", "like", "you know"...), not blocks or cluttering-type disfluencies. They are excluded from the rate calculation (SPS).
           </span>
         </CardDescription>
       </CardHeader>
@@ -53,23 +53,23 @@ const FillerCard = ({ fillerCount, fillerDetails }: FillerCardProps) => {
             {hasData ? (
               <>
                 <p className={`text-2xl font-bold ${style.color}`}>
-                  {fillerCount} <span className="text-base font-normal">mot{fillerCount > 1 ? 's' : ''} parasite{fillerCount > 1 ? 's' : ''}</span>
+                  {fillerCount} <span className="text-base font-normal">filler word{fillerCount > 1 ? 's' : ''}</span>
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  {fillerCount <= 5 
-                    ? "Discours fluide et naturel" 
-                    : fillerCount <= 10 
-                      ? "Quelques hésitations détectées" 
-                      : "Travaillez sur les pauses respiratoires"}
+                  {fillerCount <= 5
+                    ? "Fluent and natural speech"
+                    : fillerCount <= 10
+                      ? "Some hesitations detected"
+                      : "Work on breathing pauses"}
                 </p>
               </>
             ) : (
               <>
                 <p className="text-base font-medium text-muted-foreground">
-                  Détection non activée
+                  Detection not enabled
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Le patient peut activer cette option avant de démarrer un exercice
+                  The patient can enable this option before starting an exercise
                 </p>
               </>
             )}
@@ -94,7 +94,7 @@ const FillerCard = ({ fillerCount, fillerDetails }: FillerCardProps) => {
               </div>
             ) : (
               <p className="text-muted-foreground text-sm">
-                Aucun mot parasite détecté
+                No filler words detected
               </p>
             )}
 
@@ -109,11 +109,11 @@ const FillerCard = ({ fillerCount, fillerDetails }: FillerCardProps) => {
                 <div className="flex items-start gap-2">
                   <span className="text-lg">💡</span>
                   <div>
-                    <p className="font-medium text-sm text-primary">Conseil</p>
+                    <p className="font-medium text-sm text-primary">Tip</p>
                     <p className="text-sm text-muted-foreground mt-1">
-                      {fillerCount > 10 
-                        ? "Beaucoup de mots de remplissage. Encourager le patient à marquer des pauses respiratoires à la place."
-                        : "Quelques hésitations. Travailler la respiration entre les phrases."}
+                      {fillerCount > 10
+                        ? "Many filler words. Encourage the patient to use breathing pauses instead."
+                        : "Some hesitations. Work on breathing between sentences."}
                     </p>
                   </div>
                 </div>
@@ -130,9 +130,9 @@ const FillerCard = ({ fillerCount, fillerDetails }: FillerCardProps) => {
                 <div className="flex items-start gap-2">
                   <span className="text-lg">🎉</span>
                   <div>
-                    <p className="font-medium text-sm text-emerald-700 dark:text-emerald-400">Très bien</p>
+                    <p className="font-medium text-sm text-emerald-700 dark:text-emerald-400">Very good</p>
                     <p className="text-sm text-muted-foreground mt-1">
-                      Discours fluide, peu ou pas de mots parasites.
+                      Fluent speech, few or no filler words.
                     </p>
                   </div>
                 </div>

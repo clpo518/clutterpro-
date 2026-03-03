@@ -27,11 +27,11 @@ const DURATION_OPTIONS: { value: Duration; label: string }[] = [
 ];
 
 const SPS_LEVELS = [
-  { sps: 1.0, label: "Ultra-lent", emoji: "🐌", shortDesc: "Phonétique" },
-  { sps: 2.0, label: "Tortue", emoji: "🐢", shortDesc: "Dictée" },
-  { sps: 3.0, label: "Lent", emoji: "🎯", shortDesc: "Posé" },
-  { sps: 4.0, label: "Modéré", emoji: "💬", shortDesc: "Conversation" },
-  { sps: 5.0, label: "Rapide", emoji: "⚡", shortDesc: "Dynamique" },
+  { sps: 1.0, label: "Ultra-slow", emoji: "🐌", shortDesc: "Phonetic" },
+  { sps: 2.0, label: "Turtle", emoji: "🐢", shortDesc: "Dictation" },
+  { sps: 3.0, label: "Slow", emoji: "🎯", shortDesc: "Steady" },
+  { sps: 4.0, label: "Moderate", emoji: "💬", shortDesc: "Conversation" },
+  { sps: 5.0, label: "Fast", emoji: "⚡", shortDesc: "Dynamic" },
   { sps: 6.0, label: "Challenge", emoji: "🏃", shortDesc: "Expert" },
 ];
 
@@ -72,7 +72,7 @@ const Dialogue = () => {
 
   // Debounced visual state
   const [stableState, setStableState] = useState({
-    label: "En attente", emoji: "🎤", colorClass: "text-muted-foreground", bgClass: "bg-muted"
+    label: "Waiting", emoji: "🎤", colorClass: "text-muted-foreground", bgClass: "bg-muted"
   });
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
   const lastChangeTime = useRef(0);
@@ -118,8 +118,8 @@ const Dialogue = () => {
 
   // Compute current feedback state
   const currentState = useMemo(() => {
-    if (isPaused) return { label: "En pause", emoji: "⏸️", colorClass: "text-yellow-600 dark:text-yellow-400", bgClass: "bg-yellow-100 dark:bg-yellow-900/30" };
-    if (deepgram.packetSPS < MIN_SPEAKING_SPS) return { label: !deepgram.isCalibrated ? "Calibration..." : "Parlez...", emoji: "🎤", colorClass: "text-muted-foreground", bgClass: "bg-muted" };
+    if (isPaused) return { label: "Paused", emoji: "⏸️", colorClass: "text-yellow-600 dark:text-yellow-400", bgClass: "bg-yellow-100 dark:bg-yellow-900/30" };
+    if (deepgram.packetSPS < MIN_SPEAKING_SPS) return { label: !deepgram.isCalibrated ? "Calibrating..." : "Speak...", emoji: "🎤", colorClass: "text-muted-foreground", bgClass: "bg-muted" };
     const zone = getSPSZone(deepgram.packetSPS, targetSPS);
     let emoji = "🎤";
     if (zone.zone === 'perfect') emoji = "✅";
@@ -154,7 +154,7 @@ const Dialogue = () => {
       streamRef.current = stream;
 
       try { await deepgram.start(stream, { detectFillers: false }); } catch {
-        toast.info("Enregistrement sans analyse en temps réel.", { duration: 3000 });
+        toast.info("Recording without real-time analysis.", { duration: 3000 });
       }
 
       const mediaRecorder = new MediaRecorder(stream);
@@ -179,7 +179,7 @@ const Dialogue = () => {
       setIsPaused(false);
       setSessionSpsHistory([]);
     } catch {
-      toast.error("Impossible d'accéder au microphone");
+      toast.error("Unable to access microphone");
     }
   };
 
@@ -251,7 +251,7 @@ const Dialogue = () => {
       setIsRecording(false);
       setSaving(false);
     } catch {
-      toast.error("Erreur lors de la sauvegarde");
+      toast.error("Error saving session");
       setSaving(false);
     }
   };
@@ -291,11 +291,11 @@ const Dialogue = () => {
       <header className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <button onClick={() => navigate("/library")} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-            <ArrowLeft className="w-5 h-5" /><span className="hidden sm:inline">Retour</span>
+            <ArrowLeft className="w-5 h-5" /><span className="hidden sm:inline">Back</span>
           </button>
           <div className="flex items-center gap-2">
             <MessageCircle className="w-5 h-5 text-primary" />
-            <span className="font-display font-bold text-sm sm:text-base">Mode Dialogue</span>
+            <span className="font-display font-bold text-sm sm:text-base">Dialogue Mode</span>
           </div>
           <div className="w-20" />
         </div>
@@ -308,9 +308,9 @@ const Dialogue = () => {
             {/* Intro */}
             <div className="text-center">
               <div className="text-5xl mb-3">💬</div>
-              <h1 className="text-2xl font-display font-bold mb-2">Mode Dialogue</h1>
+              <h1 className="text-2xl font-display font-bold mb-2">Dialogue Mode</h1>
               <p className="text-muted-foreground text-sm">
-                Posez le téléphone sur la table et discutez naturellement. L'indicateur vous guide en temps réel.
+                Place your phone on the table and talk naturally. The indicator guides you in real time.
               </p>
             </div>
 
@@ -319,7 +319,7 @@ const Dialogue = () => {
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-lg">⏱️</span>
-                  <h3 className="text-sm font-bold">Durée de la session</h3>
+                  <h3 className="text-sm font-bold">Session duration</h3>
                 </div>
                 <div className="grid grid-cols-5 gap-2">
                   {DURATION_OPTIONS.map((opt) => (
@@ -346,8 +346,8 @@ const Dialogue = () => {
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <Gauge className="w-4 h-4 text-primary" />
-                  <h3 className="text-sm font-bold">🎯 Objectif de vitesse</h3>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-muted text-muted-foreground">syllabes/sec</span>
+                  <h3 className="text-sm font-bold">🎯 Speed goal</h3>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-muted text-muted-foreground">syllables/sec</span>
                 </div>
                 <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                   {SPS_LEVELS.map((preset) => (
@@ -374,14 +374,14 @@ const Dialogue = () => {
 
             {/* Biofeedback explanation for therapists */}
             <div className="bg-muted/50 rounded-xl p-3 text-xs text-muted-foreground space-y-1">
-              <p className="font-medium text-foreground/80">💡 Comment fonctionne le biofeedback ?</p>
+              <p className="font-medium text-foreground/80">💡 How does biofeedback work?</p>
               <p>
-                Le débit est calculé <strong>par paquets de 5 syllabes</strong> : 
-                toutes les 5 syllabes prononcées, le système mesure le temps écoulé et calcule la vitesse réelle. 
-                Cela offre une jauge <strong>stable et précise</strong> — chaque mise à jour reflète un vrai segment de parole.
+                The rate is calculated <strong>in packets of 5 syllables</strong>:
+                every 5 syllables spoken, the system measures elapsed time and calculates the actual rate.
+                This provides a <strong>stable and accurate</strong> gauge — each update reflects a real speech segment.
               </p>
               <p className="text-muted-foreground/70">
-                ⏳ La jauge s'active après les 5 premières syllabes — c'est normal si elle ne réagit pas immédiatement.
+                ⏳ The gauge activates after the first 5 syllables — it is normal if it does not respond immediately.
               </p>
             </div>
 
@@ -389,7 +389,7 @@ const Dialogue = () => {
             <div className="flex justify-center pt-2">
               <Button size="lg" onClick={startRecording} className="h-16 px-10 rounded-2xl text-lg gap-3 shadow-lg shadow-primary/25">
                 <MessageCircle className="w-6 h-6" />
-                Lancer le dialogue
+                Start dialogue
               </Button>
             </div>
           </motion.div>
@@ -402,7 +402,7 @@ const Dialogue = () => {
           >
             {/* Countdown */}
             <div className="text-center">
-              <p className="text-sm text-muted-foreground mb-1">Temps restant</p>
+              <p className="text-sm text-muted-foreground mb-1">Time remaining</p>
               <p className="text-4xl font-mono font-bold tabular-nums">{formatTime(remainingTime)}</p>
             </div>
 
@@ -445,28 +445,28 @@ const Dialogue = () => {
 
             {/* Target reminder */}
             <p className="text-sm text-muted-foreground">
-              Objectif : <span className="font-bold text-foreground">{targetSPS} syll/s</span>
+              Goal: <span className="font-bold text-foreground">{targetSPS} syll/s</span>
             </p>
 
             {/* Micro-hint */}
             <p className="text-xs text-muted-foreground/70 text-center max-w-xs">
-              {stableState.label === "Parlez..." 
-                ? "Continuez à parler naturellement..." 
-                : stableState.label === "Parfait" || stableState.label === "Bien"
-                  ? "Rythme idéal, continuez comme ça ! 👍"
-                  : stableState.label === "Trop vite !" || stableState.label === "Doucement..."
-                    ? "Essayez de ralentir un peu..."
-                    : "Vous pouvez accélérer légèrement..."
+              {stableState.label === "Speak..."
+                ? "Keep talking naturally..."
+                : stableState.label === "Perfect" || stableState.label === "Good"
+                  ? "Ideal pace, keep it up! 👍"
+                  : stableState.label === "Too fast!" || stableState.label === "Slow down..."
+                    ? "Try slowing down a little..."
+                    : "You can speed up slightly..."
               }
             </p>
 
             {/* Controls */}
             <div className="flex items-center gap-4 mt-4">
               <Button variant="outline" size="lg" onClick={togglePause} className="h-14 px-6 rounded-xl gap-2">
-                {isPaused ? <><Play className="w-5 h-5" /> Reprendre</> : <><Pause className="w-5 h-5" /> Pause</>}
+                {isPaused ? <><Play className="w-5 h-5" /> Resume</> : <><Pause className="w-5 h-5" /> Pause</>}
               </Button>
               <Button variant="destructive" size="lg" onClick={stopRecording} disabled={saving} className="h-14 px-6 rounded-xl gap-2">
-                <Square className="w-5 h-5" /> Terminer
+                <Square className="w-5 h-5" /> Stop
               </Button>
             </div>
           </motion.div>

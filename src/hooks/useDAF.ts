@@ -5,8 +5,8 @@
  * The user hears their own voice with a slight delay (50-200ms),
  * which forces the brain to slow down speech automatically.
  * 
- * Based on clinical research: "l'écoute de la parole avec un feedback 
- * auditif décalé" helps reduce speech rate mechanically.
+ * Based on clinical research: "listening to speech with feedback 
+ * auditif décalé (DAF) helps reduce speech rate mechanically.
  */
 
 import { useState, useRef, useCallback, useEffect } from 'react';

@@ -4,38 +4,38 @@ import { Eye, Mic, TrendingUp, MessageCircleQuestion, Zap, Shuffle } from "lucid
 const problems = [
   {
     icon: MessageCircleQuestion,
-    title: "On vous fait souvent répéter ?",
-    description: "Vos interlocuteurs perdent le fil de ce que vous dites.",
+    title: "People often ask you to repeat yourself?",
+    description: "Your listeners lose track of what you're saying.",
   },
   {
     icon: Zap,
-    title: "Vos idées vont plus vite que vos mots ?",
-    description: "Vous pensez vite mais votre bouche ne suit pas le rythme.",
+    title: "Your ideas move faster than your words?",
+    description: "You think fast but your mouth can't keep up.",
   },
   {
     icon: Shuffle,
-    title: "Vous mélangez les syllabes sous stress ?",
-    description: "En situation importante, votre débit s'emballe.",
+    title: "You mix up syllables under stress?",
+    description: "In high-pressure situations, your speech rate spirals.",
   },
 ];
 
 const steps = [
   {
     icon: Mic,
-    title: "Pratiquez sans ennui",
-    description: "Accédez à des exercices variés : lecture guidée, virelangues et improvisation pour travailler le transfert dans la vie réelle.",
+    title: "Practice without boredom",
+    description: "Access varied exercises: guided reading, over-articulation drills, and conversational practice for real-world transfer.",
     color: "text-blue-600",
   },
   {
     icon: Eye,
-    title: "Comprenez votre débit",
-    description: "Visualisez la forme d'onde de votre voix. Un retour visuel concret pour apprendre à placer vos pauses.",
+    title: "Understand your speech rate",
+    description: "Visualize your voice waveform. Concrete visual feedback to learn where to place your pauses.",
     color: "text-green-600",
   },
   {
     icon: TrendingUp,
-    title: "Restez connecté à votre Orthophoniste",
-    description: "Ne vous entraînez plus seul. Partagez vos séances avec votre orthophoniste et recevez ses conseils à distance.",
+    title: "Stay connected with your SLP",
+    description: "Don't practice alone. Share your sessions with your speech-language pathologist and receive remote feedback.",
     color: "text-primary",
   },
 ];
@@ -54,10 +54,10 @@ export const ProblemSection = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Vous reconnaissez-vous ?
+              Do you recognize yourself?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Ces situations vous parlent ? ParlerMoinsVite est fait pour vous.
+              Sound familiar? ClutterPro was built for you.
             </p>
           </motion.div>
 
@@ -97,13 +97,13 @@ export const ProblemSection = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Comment ça marche
+              How it works
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Une méthode en 3 étapes pour reprendre le contrôle de votre débit.
+              A 3-step method to take control of your speech rate.
             </p>
           </motion.div>
-          
+
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {steps.map((step, index) => (
               <motion.div

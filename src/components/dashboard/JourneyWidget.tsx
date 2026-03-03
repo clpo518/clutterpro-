@@ -60,7 +60,7 @@ const JourneyWidget = () => {
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-lg font-semibold flex items-center gap-2">
               <Sparkles className="w-4.5 h-4.5 text-primary" />
-              Votre parcours
+              Your journey
             </h2>
             <Button
               variant="ghost"
@@ -69,7 +69,7 @@ const JourneyWidget = () => {
               onClick={() => navigate("/library")}
             >
               <BookOpen className="w-3.5 h-3.5" />
-              Mode libre
+              Free mode
             </Button>
           </div>
 
@@ -77,21 +77,21 @@ const JourneyWidget = () => {
           {currentStep === 0 && activeValidated.length === 0 ? (
             <div className="rounded-xl bg-primary/5 border border-primary/15 px-4 py-3.5 mb-4">
               <p className="text-sm font-semibold text-foreground mb-1.5">
-                Apprenez à parler à votre rythme 🎯
+                Learn to speak at your own pace
               </p>
               <p className="text-xs text-muted-foreground leading-relaxed mb-2">
-                8 étapes progressives, du plus simple au plus complexe. 
-                Réussissez 3 exercices par étape pour débloquer la suivante.
+                8 progressive steps, from simplest to most complex.
+                Complete 3 exercises per step to unlock the next one.
               </p>
               <div className="flex items-center gap-1.5 text-xs text-muted-foreground/80">
                 <span className="w-2 h-2 rounded-full bg-primary" />
-                <span>Pas de chrono</span>
+                <span>No timer</span>
                 <span className="mx-1">·</span>
                 <span className="w-2 h-2 rounded-full bg-primary" />
-                <span>À votre rythme</span>
+                <span>At your pace</span>
                 <span className="mx-1">·</span>
                 <span className="w-2 h-2 rounded-full bg-primary" />
-                <span>Guidé pas à pas</span>
+                <span>Step by step</span>
               </div>
             </div>
           ) : allCompleted ? (
@@ -102,15 +102,15 @@ const JourneyWidget = () => {
             >
               <Trophy className="w-8 h-8 text-primary flex-shrink-0" />
               <div>
-                <p className="text-sm font-semibold text-foreground">Parcours terminé ! 🏆</p>
-                <p className="text-xs text-muted-foreground">Bravo, vous avez maîtrisé les 8 étapes. Continuez à pratiquer en mode libre.</p>
+                <p className="text-sm font-semibold text-foreground">Journey complete!</p>
+                <p className="text-xs text-muted-foreground">Well done, you've mastered all 8 steps. Keep practicing in free mode.</p>
               </div>
             </motion.div>
           ) : (
             <p className="text-xs text-muted-foreground mb-2">
               {activeValidated.length === 0
-                ? `Prochaine étape : ${activeStep.title.toLowerCase()}`
-                : `${activeValidated.length}/${activeStep.requiredValidations} exercices réussis — continuez !`}
+                ? `Next step: ${activeStep.title.toLowerCase()}`
+                : `${activeValidated.length}/${activeStep.requiredValidations} exercises completed — keep going!`}
             </p>
           )}
 
@@ -153,7 +153,7 @@ const JourneyWidget = () => {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
                   <span className="text-[10px] font-semibold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">
-                    ÉTAPE {currentStep + 1}
+                    STEP {currentStep + 1}
                   </span>
                 </div>
                 <p className="text-sm font-semibold text-foreground">
@@ -161,8 +161,8 @@ const JourneyWidget = () => {
                 </p>
                 <p className="text-xs text-muted-foreground mt-0.5">
                   {activeValidated.length === 0
-                    ? `Réussissez 3 exercices pour débloquer "${JOURNEY_STEPS[currentStep + 1]?.title || 'la suite'}"`
-                    : `${activeValidated.length}/3 réussis — encore ${3 - activeValidated.length} pour débloquer la suite`}
+                    ? `Complete 3 exercises to unlock "${JOURNEY_STEPS[currentStep + 1]?.title || 'the next step'}"`
+                    : `${activeValidated.length}/3 completed — ${3 - activeValidated.length} more to unlock the next step`}
                 </p>
                 {/* Exercise dots */}
                 <div className="flex gap-1.5 mt-2">
@@ -241,7 +241,7 @@ const JourneyWidget = () => {
                         {step.title}
                       </span>
                       {completed && (
-                        <span className="text-[10px] text-primary/60">Terminé ✓</span>
+                        <span className="text-[10px] text-primary/60">Done</span>
                       )}
                     </div>
 

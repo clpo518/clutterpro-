@@ -15,16 +15,16 @@ const WaveformReferenceModal = () => {
       <DialogTrigger asChild>
         <Button variant="ghost" size="sm" className="h-8 gap-1.5 text-muted-foreground hover:text-foreground">
           <HelpCircle className="w-4 h-4" />
-          <span className="text-xs">Voir un modèle idéal</span>
+          <span className="text-xs">See an ideal model</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            📊 Comment lire votre forme d'onde ?
+            📊 How to read your waveform?
           </DialogTitle>
           <DialogDescription>
-            Comparez votre enregistrement avec ces exemples pour évaluer votre rythme.
+            Compare your recording with these examples to evaluate your rhythm.
           </DialogDescription>
         </DialogHeader>
         
@@ -33,7 +33,7 @@ const WaveformReferenceModal = () => {
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
               <CheckCircle2 className="w-5 h-5" />
-              <h3 className="font-bold">Le Rythme Calme</h3>
+              <h3 className="font-bold">Calm Rhythm</h3>
             </div>
             <div className="relative h-20 bg-slate-50 dark:bg-slate-800 rounded-lg border-2 border-green-200 dark:border-green-800 p-3 overflow-hidden">
               {/* Simulated good waveform with gaps */}
@@ -79,7 +79,7 @@ const WaveformReferenceModal = () => {
               </div>
             </div>
             <p className="text-sm text-muted-foreground italic">
-              "Des îlots de parole séparés par des respirations."
+              "Islands of speech separated by breathing pauses."
             </p>
           </div>
 
@@ -97,7 +97,7 @@ const WaveformReferenceModal = () => {
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-red-600 dark:text-red-400">
               <AlertTriangle className="w-5 h-5" />
-              <h3 className="font-bold">Le Bredouillement</h3>
+              <h3 className="font-bold">Cluttering</h3>
             </div>
             <div className="relative h-20 bg-slate-50 dark:bg-slate-800 rounded-lg border-2 border-red-200 dark:border-red-800 p-3 overflow-hidden">
               {/* Simulated bad waveform - dense, no gaps */}
@@ -112,15 +112,15 @@ const WaveformReferenceModal = () => {
               </div>
             </div>
             <p className="text-sm text-muted-foreground italic">
-              "Un bloc continu sans temps de récupération."
+              "A continuous block with no recovery time."
             </p>
           </div>
 
           {/* Tip */}
           <div className="bg-primary/5 border border-primary/20 rounded-lg p-3">
             <p className="text-sm text-center">
-              💡 <strong>Astuce :</strong> Les zones plates (silences) sont aussi importantes que les vagues (parole). 
-              Elles montrent que vous respirez correctement.
+              💡 <strong>Tip:</strong> Flat zones (silences) are just as important as the waves (speech).
+              They show that you're breathing correctly.
             </p>
           </div>
         </div>

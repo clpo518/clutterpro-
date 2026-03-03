@@ -15,42 +15,42 @@ interface PatientJoinedEmailProps {
 }
 
 export function PatientJoinedEmail(props: PatientJoinedEmailProps) {
-  const { therapistName = 'Cher orthophoniste', patientName, patientDetailUrl, referralCode, patientsCount } = props
-  
-  const referralUrl = referralCode 
-    ? `https://parlermoinsvite.fr/pro?ref=${referralCode}` 
-    : null;
-  
-  return (
-    <BaseLayout preview={`${patientName} est maintenant connecté à votre compte.`}>
-      <Heading style={heading}>Nouveau patient connecté ✨</Heading>
+  const { therapistName = 'Dear SLP', patientName, patientDetailUrl, referralCode, patientsCount } = props
 
-      <Text style={paragraph}>Bonjour {therapistName},</Text>
+  const referralUrl = referralCode
+    ? `https://clutterpro.com/pro?ref=${referralCode}`
+    : null;
+
+  return (
+    <BaseLayout preview={`${patientName} is now connected to your account.`}>
+      <Heading style={heading}>New patient connected ✨</Heading>
+
+      <Text style={paragraph}>Hi {therapistName},</Text>
 
       <Text style={successBox}>
-        🎯 {patientName} vient de rejoindre votre compte en utilisant votre code orthophoniste.
+        🎯 {patientName} has just joined your account using your SLP code.
       </Text>
 
       <Text style={paragraph}>
-        Votre patient est maintenant prêt à recevoir des exercices personnalisés et à commencer son entraînement. Vous pourrez suivre sa progression en temps réel depuis votre tableau de bord.
+        Your patient is now ready to receive personalized exercises and start their practice. You can track their progress in real time from your dashboard.
       </Text>
 
       <Text style={highlightBox}>
-        📋 Prochaine étape : Assignez-lui un premier exercice adapté à son niveau pour lancer sa pratique du bon pied.
+        📋 Next step: Assign them a first exercise suited to their level to kick off their practice on the right foot.
       </Text>
 
       <Button style={button} href={patientDetailUrl}>
-        Assigner un exercice
+        Assign an exercise
       </Button>
 
       {referralCode && referralUrl && (
         <Text style={referralBox}>
-          👥 Vos confrères aussi pourraient en profiter ! Partagez votre lien de parrainage et recevez 1 mois gratuit pour chaque inscription : {referralUrl}
+          👥 Your colleagues could benefit too! Share your referral link and get 1 free month for each signup: {referralUrl}
         </Text>
       )}
 
-      <Text style={signatureText}>Bonne collaboration,</Text>
-      <Text style={signatureName}>L'équipe Parler Moins Vite</Text>
+      <Text style={signatureText}>Happy collaborating,</Text>
+      <Text style={signatureName}>The ClutterPro Team</Text>
     </BaseLayout>
   )
 }

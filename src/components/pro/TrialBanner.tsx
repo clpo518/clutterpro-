@@ -18,21 +18,21 @@ const TrialBanner = ({ daysRemaining }: TrialBannerProps) => {
 
   const getMessage = () => {
     if (daysRemaining <= 3) {
-      return "Vos patients perdront l'accès aux exercices";
+      return "Your patients will lose access to exercises";
     }
     if (isUrgent) {
-      return "Votre période d'essai touche à sa fin";
+      return "Your trial is ending soon";
     }
     if (isModerate) {
-      return "Essai gratuit en cours";
+      return "Free trial in progress";
     }
-    return "Bienvenue dans votre essai gratuit";
+    return "Welcome to your free trial";
   };
 
   const getCtaLabel = () => {
-    if (daysRemaining <= 3) return "Sécuriser l'accès";
-    if (isUrgent) return "Choisir mon offre";
-    return "Voir les offres";
+    if (daysRemaining <= 3) return "Secure access";
+    if (isUrgent) return "Choose my plan";
+    return "View plans";
   };
 
   const Icon = isUrgent ? AlertTriangle : Clock;
@@ -67,7 +67,7 @@ const TrialBanner = ({ daysRemaining }: TrialBannerProps) => {
               <p className={`text-sm font-semibold ${
                 isUrgent ? "text-amber-700 dark:text-amber-300" : "text-foreground"
               }`}>
-                {daysRemaining} jour{daysRemaining > 1 ? "s" : ""} restant{daysRemaining > 1 ? "s" : ""}
+                {daysRemaining} day{daysRemaining > 1 ? "s" : ""} remaining
               </p>
             </div>
             <Button
@@ -106,7 +106,7 @@ const TrialBanner = ({ daysRemaining }: TrialBannerProps) => {
                   isUrgent ? "text-amber-700 dark:text-amber-300" : "text-foreground"
                 }`}
               >
-                {daysRemaining} jour{daysRemaining > 1 ? "s" : ""} restant{daysRemaining > 1 ? "s" : ""}
+                {daysRemaining} day{daysRemaining > 1 ? "s" : ""} remaining
               </span>
             </p>
             <div className="hidden md:flex items-center w-24 shrink-0">

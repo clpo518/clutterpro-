@@ -25,7 +25,7 @@ interface WeeklyReportEmailProps {
 
 export function WeeklyReportEmail(props: WeeklyReportEmailProps) {
   const {
-    userName = 'Cher utilisateur',
+    userName = 'Dear user',
     weekStartDate,
     weekEndDate,
     totalSessions,
@@ -40,15 +40,15 @@ export function WeeklyReportEmail(props: WeeklyReportEmailProps) {
   const isOnTarget = averageSps <= targetSps
 
   return (
-    <BaseLayout preview={`Votre bilan de la semaine : ${totalSessions} sessions, ${totalMinutes} minutes`}>
-      <Heading style={heading}>📊 Votre bilan hebdomadaire</Heading>
+    <BaseLayout preview={`Your weekly report: ${totalSessions} sessions, ${totalMinutes} minutes`}>
+      <Heading style={heading}>📊 Your weekly report</Heading>
 
-      <Text style={dateRange}>Semaine du {weekStartDate} au {weekEndDate}</Text>
+      <Text style={dateRange}>Week of {weekStartDate} to {weekEndDate}</Text>
 
-      <Text style={paragraph}>Bonjour {userName},</Text>
+      <Text style={paragraph}>Hi {userName},</Text>
 
       <Text style={paragraph}>
-        Voici le récapitulatif de votre semaine d'entraînement sur Parler Moins Vite !
+        Here's a recap of your training week on ClutterPro!
       </Text>
 
       <Section style={statsSection}>
@@ -69,7 +69,7 @@ export function WeeklyReportEmail(props: WeeklyReportEmailProps) {
           </Column>
           <Column style={statCell}>
             <Text style={statNumber}>{currentStreak} 🔥</Text>
-            <Text style={statLabel}>Série</Text>
+            <Text style={statLabel}>Streak</Text>
           </Column>
         </Row>
       </Section>
@@ -78,26 +78,26 @@ export function WeeklyReportEmail(props: WeeklyReportEmailProps) {
 
       {improvement !== 0 && (
         <Text style={improvement > 0 ? progressPositive : progressNegative}>
-          {improvement > 0 ? '📈' : '📉'} {improvement > 0 ? '+' : ''}{improvement}% par rapport à la semaine dernière
+          {improvement > 0 ? '📈' : '📉'} {improvement > 0 ? '+' : ''}{improvement}% compared to last week
         </Text>
       )}
 
       <Text style={targetBox}>
-        🎯 Objectif : {targetSps.toFixed(1)} syll./sec — {isOnTarget 
-          ? '✅ Excellent ! Vous êtes dans votre objectif.'
-          : `Encore ${(averageSps - targetSps).toFixed(1)} syll./sec à réduire. Continuez !`}
+        🎯 Goal: {targetSps.toFixed(1)} syll./sec — {isOnTarget
+          ? '✅ Excellent! You\'re within your target.'
+          : `Still ${(averageSps - targetSps).toFixed(1)} syll./sec to reduce. Keep going!`}
       </Text>
 
       <Button style={button} href={practiceUrl}>
-        Continuer mon entraînement
+        Continue my practice
       </Button>
 
       <Text style={motivationText}>
-        {totalSessions >= 5 
-          ? "🌟 Bravo ! Vous êtes régulier, c'est la clé du succès !"
+        {totalSessions >= 5
+          ? "🌟 Great job! You're consistent — that's the key to success!"
           : totalSessions >= 3
-          ? "👍 Bonne semaine ! Essayez d'ajouter 1-2 sessions de plus."
-          : "💪 Chaque session compte ! Fixez-vous l'objectif de 5 min/jour."}
+          ? "👍 Good week! Try adding 1-2 more sessions."
+          : "💪 Every session counts! Aim for 5 min/day."}
       </Text>
     </BaseLayout>
   )

@@ -31,7 +31,7 @@ const RebusPlayer = ({ segments, title, highlightedIndex = null, isRecording = f
       new Promise((resolve, reject) => {
         if (cancelledRef.current) return reject("cancelled");
         const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = "fr-FR";
+        utterance.lang = "en-US";
         utterance.rate = rate;
         utterance.onstart = () => setActiveIndex(idx);
         utterance.onend = () => resolve();
@@ -103,7 +103,7 @@ const RebusPlayer = ({ segments, title, highlightedIndex = null, isRecording = f
 
             {/* Breath bars */}
             {seg.pause_after && idx < segments.length - 1 && (
-              <div className="flex items-center gap-[3px] px-2 self-center" title="Pause — Respire !">
+              <div className="flex items-center gap-[3px] px-2 self-center" title="Pause — Breathe!">
                 {[0, 1, 2].map((bar) => (
                   <motion.div
                     key={bar}
@@ -132,7 +132,7 @@ const RebusPlayer = ({ segments, title, highlightedIndex = null, isRecording = f
             exit={{ opacity: 0, scale: 0.8 }}
             className="flex flex-col items-center gap-2 py-4"
           >
-            <span className="text-lg text-muted-foreground">🌬️ Reprends ton souffle…</span>
+            <span className="text-lg text-muted-foreground">🌬️ Catch your breath...</span>
             <motion.span
               key={countdown}
               initial={{ scale: 1.5, opacity: 0 }}
@@ -172,7 +172,7 @@ const RebusPlayer = ({ segments, title, highlightedIndex = null, isRecording = f
             className="gap-2 rounded-full h-14 px-8 text-base"
           >
             <Volume2 className="w-5 h-5" />
-            {isPlaying ? "Arrêter" : "Écouter 👂"}
+            {isPlaying ? "Stop" : "Listen 👂"}
           </Button>
         </div>
       )}

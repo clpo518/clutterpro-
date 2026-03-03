@@ -99,7 +99,7 @@ const Auth = () => {
       if (isLogin) {
         const { error } = await signIn(email, password);
         if (error) throw error;
-        toast.success("Connexion réussie !");
+        toast.success("Logged in successfully!");
         navigate("/dashboard");
       } else {
         // Patient signup
@@ -107,13 +107,13 @@ const Auth = () => {
           if (patientMode === "code") {
             // B2B flow: validate code
             if (!therapistCode.trim()) {
-              setTherapistCodeError("Le code praticien est obligatoire");
+              setTherapistCodeError("Pro Code is required");
               setLoading(false);
               return;
             }
 
             if (!validateTherapistCodeFormat(therapistCode)) {
-              setTherapistCodeError("Format invalide (ex: PRO-ABC123)");
+              setTherapistCodeError("Invalid format (e.g. PRO-ABC123)");
               setLoading(false);
               return;
             }
@@ -123,7 +123,7 @@ const Auth = () => {
             setValidatingCode(false);
 
             if (!valid || !therapistId) {
-              setTherapistCodeError("Code praticien invalide ou inexistant");
+              setTherapistCodeError("Invalid or non-existent Pro Code");
               setLoading(false);
               return;
             }
@@ -143,7 +143,7 @@ const Auth = () => {
                 .eq("id", newUser.id);
             }
 
-            toast.success("Compte créé avec succès ! Vous êtes maintenant lié à votre orthophoniste.");
+            toast.success("Account created successfully! You are now linked to your SLP.");
             navigate("/dashboard");
           } else if (patientMode === "solo") {
             // B2C solo signup - trial starts only after email verification
@@ -208,28 +208,28 @@ const Auth = () => {
                     status: "pending"
                   });
                 
-                toast.success("Espace Pro créé ! 🎁 Votre parrain et vous recevrez 1 mois offert après votre premier paiement.");
+                toast.success("Pro workspace created! Your referrer and you will each receive 1 free month after your first payment.");
               } else {
-                toast.success("Espace Pro créé avec succès !");
+                toast.success("Pro workspace created successfully!");
               }
             }
           } else {
-            toast.success("Espace Pro créé avec succès !");
+            toast.success("Pro workspace created successfully!");
           }
           
           navigate("/patient/list");
         }
       }
     } catch (error: unknown) {
-      const rawMessage = error instanceof Error ? error.message : "Une erreur est survenue";
+      const rawMessage = error instanceof Error ? error.message : "An error occurred";
       
       // Provide clearer French error messages for login
       if (isLogin) {
         const lower = rawMessage.toLowerCase();
         if (lower.includes("invalid login credentials") || lower.includes("invalid_credentials")) {
-          toast.error("Email ou mot de passe incorrect. Pas encore de compte ? Cliquez sur « Inscription ».");
+          toast.error("Incorrect email or password. Don't have an account? Click \"Sign up\".");
         } else if (lower.includes("email not confirmed")) {
-          toast.error("Votre email n'a pas encore été vérifié. Vérifiez votre boîte de réception.");
+          toast.error("Your email has not been verified yet. Check your inbox.");
         } else {
           toast.error(rawMessage);
         }
@@ -237,7 +237,7 @@ const Auth = () => {
         // Signup errors
         const lower = rawMessage.toLowerCase();
         if (lower.includes("user already registered") || lower.includes("already been registered")) {
-          toast.error("Un compte existe déjà avec cet email. Essayez de vous connecter.");
+          toast.error("An account already exists with this email. Try logging in.");
         } else {
           toast.error(rawMessage);
         }
@@ -265,9 +265,40 @@ const Auth = () => {
         className="w-full max-w-md"
       >
         <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors">
-          <ArrowLeft className="w-4 h-4" />Retour à l'accueil
+          <ArrowLeft className="w-4 h-4" />Back to home
         </Link>
-        
+
+        {/* Demo accounts */}
+        <div className="mb-4 p-3 rounded-xl border border-dashed border-amber-400 bg-amber-50 dark:bg-amber-900/20">
+          <p className="text-xs font-semibold text-amber-700 dark:text-amber-300 mb-2">🧪 Demo accounts</p>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={async () => {
+                setLoading(true);
+                const { error } = await signIn("demo@patient.com", "demo123");
+                if (!error) navigate("/dashboard");
+                setLoading(false);
+              }}
+              className="flex-1 text-xs py-1.5 px-2 rounded-lg bg-white dark:bg-zinc-800 border border-amber-300 hover:bg-amber-50 dark:hover:bg-zinc-700 transition-colors font-medium"
+            >
+              Patient demo
+            </button>
+            <button
+              type="button"
+              onClick={async () => {
+                setLoading(true);
+                const { error } = await signIn("demo@slp.com", "demo123");
+                if (!error) navigate("/dashboard");
+                setLoading(false);
+              }}
+              className="flex-1 text-xs py-1.5 px-2 rounded-lg bg-white dark:bg-zinc-800 border border-amber-300 hover:bg-amber-50 dark:hover:bg-zinc-700 transition-colors font-medium"
+            >
+              SLP demo
+            </button>
+          </div>
+        </div>
+
         <Card className="shadow-2xl border-border/50">
           <CardHeader className="text-center pb-2">
             {!emailVerificationSent && (
@@ -286,20 +317,20 @@ const Auth = () => {
             {!emailVerificationSent && (
               <>
                 <CardTitle className="text-2xl">
-                  {forgotPassword 
-                    ? "Réinitialiser le mot de passe"
-                    : isLogin ? "Bon retour !" : "Créer un compte"}
+                  {forgotPassword
+                    ? "Reset password"
+                    : isLogin ? "Welcome back!" : "Create account"}
                 </CardTitle>
                 <CardDescription>
                   {forgotPassword
-                    ? "Recevez un lien par email pour créer un nouveau mot de passe"
-                    : isLogin 
-                      ? "Patient ou Orthophoniste, c'est le même accès" 
+                    ? "Receive a link by email to create a new password"
+                    : isLogin
+                      ? "Patient or SLP, same login"
                       : selectedRole === "patient"
                         ? patientMode === "solo"
-                          ? "Commencez avec 7 jours d'essai gratuit"
-                          : "Commencez votre parcours vers une meilleure élocution"
-                        : "Créez votre espace de suivi professionnel"
+                          ? "Start with a 7-day free trial"
+                          : "Start your journey to better speech fluency"
+                        : "Create your professional monitoring workspace"
                   }
                 </CardDescription>
               </>
@@ -317,13 +348,13 @@ const Auth = () => {
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
                   <Mail className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="font-semibold text-lg">Vérifiez votre email</h3>
+                <h3 className="font-semibold text-lg">Check your email</h3>
                 <p className="text-sm text-muted-foreground">
-                  Un email de vérification a été envoyé à{" "}
+                  A verification email has been sent to{" "}
                   <strong className="text-foreground">{verificationEmail}</strong>
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Cliquez sur le lien dans l'email pour activer votre essai gratuit de 7 jours.
+                  Click the link in the email to activate your 7-day free trial.
                 </p>
 
                 <div className="pt-2 space-y-3">
@@ -336,9 +367,9 @@ const Auth = () => {
                       try {
                         const { error } = await supabase.auth.resend({ type: 'signup', email: verificationEmail });
                         if (error) throw error;
-                        toast.success("Email renvoyé ! Vérifiez votre boîte de réception.");
+                        toast.success("Email resent! Check your inbox.");
                       } catch {
-                        toast.error("Impossible de renvoyer l'email. Réessayez dans quelques instants.");
+                        toast.error("Unable to resend email. Please try again in a moment.");
                       } finally {
                         setResendingVerification(false);
                       }
@@ -349,7 +380,7 @@ const Auth = () => {
                     ) : (
                       <>
                         <RefreshCw className="w-4 h-4" />
-                        Renvoyer l'email
+                        Resend email
                       </>
                     )}
                   </Button>
@@ -362,7 +393,7 @@ const Auth = () => {
                     }}
                     className="text-sm text-primary hover:underline"
                   >
-                    Retour à la connexion
+                    Back to login
                   </button>
                 </div>
               </motion.div>
@@ -381,7 +412,7 @@ const Auth = () => {
                   </TabsTrigger>
                   <TabsTrigger value="therapist" className="gap-2">
                     <Stethoscope className="w-4 h-4" />
-                    Orthophoniste
+                    SLP
                   </TabsTrigger>
                 </TabsList>
               </Tabs>
@@ -395,7 +426,7 @@ const Auth = () => {
                 className="space-y-3 mb-6"
               >
                 <p className="text-sm font-medium text-center text-muted-foreground mb-4">
-                  Comment souhaitez-vous vous inscrire ?
+                  How would you like to sign up?
                 </p>
                 
                 {/* Option A: With Pro Code (B2B) */}
@@ -409,9 +440,9 @@ const Auth = () => {
                       <KeyRound className="w-5 h-5 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-semibold text-sm mb-1">J'ai un Code Pro</h3>
+                      <h3 className="font-semibold text-sm mb-1">I have a Pro Code</h3>
                       <p className="text-xs text-muted-foreground">
-                        Mon orthophoniste m'a donné un code (PRO-XXXXXX) pour me lier à son suivi
+                        My SLP gave me a code (PRO-XXXXXX) to link to their practice
                       </p>
                     </div>
                     <ArrowRight className="w-4 h-4 text-muted-foreground mt-1 group-hover:text-primary transition-colors" />
@@ -429,9 +460,9 @@ const Auth = () => {
                       <Zap className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-semibold text-sm mb-1">M'inscrire seul</h3>
+                      <h3 className="font-semibold text-sm mb-1">Sign up on my own</h3>
                       <p className="text-xs text-muted-foreground">
-                        Essai gratuit de 7 jours, puis abonnement individuel
+                        7-day free trial, then individual subscription
                       </p>
                     </div>
                     <ArrowRight className="w-4 h-4 text-muted-foreground mt-1 group-hover:text-amber-500 transition-colors" />
@@ -458,7 +489,7 @@ const Auth = () => {
                     className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4"
                   >
                     <ArrowLeft className="w-3 h-3" />
-                    Changer de mode
+                    Change mode
                   </button>
                 )}
 
@@ -468,11 +499,11 @@ const Auth = () => {
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                       <span className="text-sm font-medium text-amber-700 dark:text-amber-300">
-                        Essai gratuit — 7 jours d'accès complet
+                        Free trial — 7 days of full access
                       </span>
                     </div>
                     <p className="text-xs text-amber-600/80 dark:text-amber-400/80 mt-1 ml-6">
-                      Vous pourrez rattacher un orthophoniste plus tard dans les Réglages
+                      You can link an SLP later in Settings
                     </p>
                   </div>
                 )}
@@ -481,13 +512,13 @@ const Auth = () => {
                   {!isLogin && (
                     <div className="space-y-2">
                       <Label htmlFor="name">
-                        {selectedRole === "therapist" ? "Nom du cabinet / Praticien" : "Nom complet"}
+                        {selectedRole === "therapist" ? "Practice / Clinician name" : "Full name"}
                       </Label>
                       {selectedRole === "patient" ? (
                         <Input 
                           id="name" 
                           type="text" 
-                          placeholder="Jean Dupont" 
+                          placeholder="John Smith" 
                           value={name} 
                           onChange={(e) => setName(e.target.value)} 
                           required={!isLogin && selectedRole === "patient"} 
@@ -497,7 +528,7 @@ const Auth = () => {
                         <Input 
                           id="cabinet" 
                           type="text" 
-                          placeholder="Cabinet Orthophonie Martin" 
+                          placeholder="Smith Speech Therapy" 
                           value={cabinetName} 
                           onChange={(e) => setCabinetName(e.target.value)} 
                           required={!isLogin && selectedRole === "therapist"} 
@@ -511,7 +542,7 @@ const Auth = () => {
                   {!isLogin && selectedRole === "patient" && patientMode === "code" && (
                     <div className="space-y-2">
                       <Label htmlFor="therapist-code" className="flex items-center gap-2">
-                        🔑 Code Praticien
+                        Pro Code
                         <span className="text-destructive">*</span>
                       </Label>
                       <Input 
@@ -530,7 +561,7 @@ const Auth = () => {
                         <p className="text-sm text-destructive">{therapistCodeError}</p>
                       )}
                       <p className="text-xs text-muted-foreground">
-                        Donné par votre orthophoniste pour activer votre suivi
+                        Given by your SLP to activate your monitoring
                       </p>
                     </div>
                   )}
@@ -540,7 +571,7 @@ const Auth = () => {
                     <Input 
                       id="email" 
                       type="email" 
-                      placeholder="jean@example.com" 
+                      placeholder="john@example.com" 
                       value={email} 
                       onChange={(e) => {
                         setEmail(e.target.value);
@@ -560,7 +591,7 @@ const Auth = () => {
                           <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
                           <div className="flex-1 text-sm">
                             <p className="text-amber-800 dark:text-amber-200">
-                              Vouliez-vous dire <strong>{emailSuggestion.suggestedDomain}</strong> ?
+                              Did you mean <strong>{emailSuggestion.suggestedDomain}</strong>?
                             </p>
                             <div className="flex gap-2 mt-2">
                               <Button
@@ -573,7 +604,7 @@ const Auth = () => {
                                   setBypassSuggestion(false);
                                 }}
                               >
-                                Corriger
+                                Fix it
                               </Button>
                               <Button
                                 type="button"
@@ -585,7 +616,7 @@ const Auth = () => {
                                   setBypassSuggestion(true);
                                 }}
                               >
-                                Continuer quand même
+                                Continue anyway
                               </Button>
                             </div>
                           </div>
@@ -595,7 +626,7 @@ const Auth = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="password">Mot de passe</Label>
+                    <Label htmlFor="password">Password</Label>
                     <Input 
                       id="password" 
                       type="password" 
@@ -613,7 +644,7 @@ const Auth = () => {
                           onClick={() => setForgotPassword(true)}
                           className="text-xs text-primary hover:underline"
                         >
-                          Mot de passe oublié ?
+                          Forgot password?
                         </button>
                       </div>
                     )}
@@ -631,17 +662,17 @@ const Auth = () => {
                     {loading || validatingCode ? (
                       <Loader2 className="w-5 h-5 animate-spin" />
                     ) : isLogin ? (
-                      "Accéder à mon suivi"
+                      "Log in"
                     ) : selectedRole === "patient" ? (
-                      patientMode === "solo" ? "Démarrer mon essai gratuit" : "Créer mon espace patient"
+                      patientMode === "solo" ? "Start my free trial" : "Create my patient account"
                     ) : (
-                      "Créer mon espace Pro"
+                      "Create my Pro workspace"
                     )}
                   </Button>
 
                   {/* Security reassurance */}
                   <p className="text-xs text-center text-muted-foreground mt-3">
-                    🔒 Données de santé sécurisées & confidentielles
+                    Secure & confidential health data
                   </p>
                 </form>
               </motion.div>
@@ -651,7 +682,7 @@ const Auth = () => {
             {!isLogin && !emailVerificationSent && selectedRole === "therapist" && (
               <div className="mt-4 p-3 rounded-lg bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800">
                 <p className="text-xs text-purple-700 dark:text-purple-300 text-center">
-                  ✨ Recevez votre <strong>Code Praticien unique</strong> pour lier vos patients et suivre leurs progrès à distance.
+                  Receive your <strong>unique Pro Code</strong> to link your patients and track their progress remotely.
                 </p>
               </div>
             )}
@@ -669,7 +700,7 @@ const Auth = () => {
                   className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <ArrowLeft className="w-3 h-3" />
-                  Retour à la connexion
+                  Back to login
                 </button>
 
                 {resetEmailSent ? (
@@ -677,9 +708,9 @@ const Auth = () => {
                     <div className="w-14 h-14 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mx-auto">
                       <Activity className="w-7 h-7 text-green-600 dark:text-green-400" />
                     </div>
-                    <h3 className="font-semibold">Email envoyé !</h3>
+                    <h3 className="font-semibold">Email sent!</h3>
                     <p className="text-sm text-muted-foreground">
-                      Si un compte existe avec cette adresse, vous recevrez un lien pour réinitialiser votre mot de passe.
+                      If an account exists with this address, you will receive a link to reset your password.
                     </p>
                   </div>
                 ) : (
@@ -693,21 +724,21 @@ const Auth = () => {
                       if (error) throw error;
                       setResetEmailSent(true);
                     } catch (error: unknown) {
-                      const message = error instanceof Error ? error.message : "Une erreur est survenue";
+                      const message = error instanceof Error ? error.message : "An error occurred";
                       toast.error(message);
                     } finally {
                       setLoading(false);
                     }
                   }} className="space-y-4">
                     <p className="text-sm text-muted-foreground">
-                      Entrez votre adresse email pour recevoir un lien de réinitialisation.
+                      Enter your email address to receive a reset link.
                     </p>
                     <div className="space-y-2">
                       <Label htmlFor="reset-email">Email</Label>
                       <Input
                         id="reset-email"
                         type="email"
-                        placeholder="jean@example.com"
+                        placeholder="john@example.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
@@ -715,7 +746,7 @@ const Auth = () => {
                       />
                     </div>
                     <Button type="submit" className="w-full h-12 rounded-xl" disabled={loading}>
-                      {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Envoyer le lien"}
+                      {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Send reset link"}
                     </Button>
                   </form>
                 )}
@@ -729,7 +760,7 @@ const Auth = () => {
                   onClick={() => { setIsLogin(!isLogin); setForgotPassword(false); setResetEmailSent(false); }} 
                   className="text-primary hover:underline text-sm"
                 >
-                  {isLogin ? "Pas encore de compte ? Inscrivez-vous" : "Déjà un compte ? Connectez-vous"}
+                  {isLogin ? "Don't have an account? Sign up" : "Already have an account? Log in"}
                 </button>
               </div>
             )}

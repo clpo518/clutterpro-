@@ -17,98 +17,97 @@ interface TherapistNoPatientEmailProps {
 
 export function TherapistNoPatientEmail(props: TherapistNoPatientEmailProps) {
   const {
-    therapistName = 'Cher orthophoniste',
+    therapistName = 'Dear SLP',
     therapistCode,
     dashboardUrl,
     sessionLiveUrl,
   } = props
 
   return (
-    <BaseLayout preview="Vous n'avez pas encore invité de patient — voici comment démarrer.">
-      <Heading style={heading}>Un petit rappel pour bien démarrer 👋</Heading>
+    <BaseLayout preview="You haven't invited a patient yet — here's how to get started.">
+      <Heading style={heading}>A quick reminder to get started 👋</Heading>
 
-      <Text style={paragraph}>Bonjour {therapistName},</Text>
+      <Text style={paragraph}>Hi {therapistName},</Text>
 
       <Text style={paragraph}>
-        Cela fait une semaine que vous avez créé votre compte Pro, et vous n'avez 
-        pas encore invité de patient. Pas de souci — voici un rappel rapide pour 
-        tirer le meilleur de l'outil.
+        It's been a week since you created your Pro account, and you haven't
+        invited a patient yet. No worries — here's a quick reminder to help
+        you make the most of the tool.
       </Text>
 
       <Hr style={divider} />
 
-      <Text style={sectionTitle}>🔗 Comment inviter un patient ?</Text>
+      <Text style={sectionTitle}>🔗 How to invite a patient?</Text>
 
       <Text style={paragraph}>
-        C'est très simple : partagez votre <strong>Code Pro</strong> à vos patients. 
-        Ils le saisissent à l'inscription et sont automatiquement liés à votre compte. 
-        Vous accédez ensuite à leurs statistiques, leurs enregistrements et pouvez 
-        laisser des notes cliniques.
+        It's simple: share your <strong>Pro Code</strong> with your patients.
+        They enter it during signup and are automatically linked to your account.
+        You can then access their stats, their recordings, and leave clinical notes.
       </Text>
 
       {therapistCode && (
         <Text style={codeBox}>
-          Votre Code Pro : {therapistCode}
+          Your Pro Code: {therapistCode}
         </Text>
       )}
 
       {therapistCode && (
         <Text style={codeInstruction}>
-          Transmettez ce code par SMS, WhatsApp ou sur une ordonnance.
+          Share this code via text, WhatsApp, or on a prescription.
         </Text>
       )}
 
       <Button style={button} href={dashboardUrl}>
-        Accéder à mon tableau de bord
+        Access my dashboard
       </Button>
 
       <Hr style={divider} />
 
-      <Text style={sectionTitle}>🎯 Pas de patient ? L'outil reste utile !</Text>
+      <Text style={sectionTitle}>🎯 No patients? The tool is still useful!</Text>
 
       <Text style={paragraph}>
-        Même sans patient inscrit, vous pouvez déjà :
+        Even without a patient signed up, you can already:
       </Text>
 
       <Section style={featureCardHighlight}>
-        <Text style={featureCardTitle}>🔬 Débitmètre en séance</Text>
+        <Text style={featureCardTitle}>🔬 In-session rate meter</Text>
         <Text style={featureCardDesc}>
-          Mesurez le débit de parole de vos patients en direct pendant la consultation. 
-          Sélectionnez une cible et obtenez une mesure SPS objective en temps réel.
-          Pas besoin que le patient ait un compte.
+          Measure your patients' speech rate live during consultations.
+          Select a target and get an objective SPS measurement in real time.
+          No patient account needed.
         </Text>
       </Section>
 
       <Button style={buttonSecondary} href={sessionLiveUrl}>
-        Essayer le mode En Séance
+        Try the In-Session mode
       </Button>
 
       <Section style={featureCard}>
-        <Text style={featureCardTitle}>📚 Tester les 115+ exercices</Text>
+        <Text style={featureCardTitle}>📚 Test 115+ exercises</Text>
         <Text style={featureCardDesc}>
-          Parcourez la bibliothèque complète et testez les exercices en « Mode Découverte » 
-          — vos essais ne polluent aucune statistique patient.
+          Browse the full library and test exercises in "Discovery Mode"
+          — your tests don't affect any patient statistics.
         </Text>
       </Section>
 
       <Section style={featureCard}>
-        <Text style={featureCardTitle}>📊 Visualiser le biofeedback</Text>
+        <Text style={featureCardTitle}>📊 See the biofeedback</Text>
         <Text style={featureCardDesc}>
-          Familiarisez-vous avec la jauge de débit, les normes Van Zaalen, 
-          et le retour visuel que vos patients verront à l'entraînement.
+          Familiarize yourself with the rate gauge, Van Zaalen norms,
+          and the visual feedback your patients will see during practice.
         </Text>
       </Section>
 
       <Hr style={divider} />
 
       <Text style={paragraph}>
-        Si vous avez la moindre question sur le fonctionnement, n'hésitez vraiment pas 
-        à m'écrire — je suis disponible et je réponds personnellement.
+        If you have any questions about how it works, don't hesitate to
+        reach out — I'm available and I reply personally.
       </Text>
 
-      <Text style={signatureText}>À très vite,</Text>
-      <Text style={signatureName}>Clément — Fondateur de Parler Moins Vite</Text>
-      <Text style={signatureEmail}>clement@parlermoinsvite.fr</Text>
+      <Text style={signatureText}>Talk soon,</Text>
+      <Text style={signatureName}>Clement — Founder of ClutterPro</Text>
+      <Text style={signatureEmail}>clement@clutterpro.com</Text>
     </BaseLayout>
   )
 }

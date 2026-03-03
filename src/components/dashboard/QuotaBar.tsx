@@ -19,7 +19,7 @@ const QuotaBar = ({ sessionsToday, maxSessions, isPremium }: QuotaBarProps) => {
       <div className="container mx-auto px-4 py-2 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3 flex-1">
           <span className={`text-sm font-medium ${isLimitReached ? 'text-destructive' : 'text-muted-foreground'}`}>
-            Essais gratuits aujourd'hui :
+            Free sessions today:
           </span>
           <div className="flex items-center gap-2 flex-1 max-w-[200px]">
             <Progress 
@@ -32,7 +32,7 @@ const QuotaBar = ({ sessionsToday, maxSessions, isPremium }: QuotaBarProps) => {
           </div>
           {isLimitReached && (
             <span className="text-xs text-destructive font-medium">
-              Limite atteinte
+              Limit reached
             </span>
           )}
         </div>
@@ -41,7 +41,7 @@ const QuotaBar = ({ sessionsToday, maxSessions, isPremium }: QuotaBarProps) => {
           className="flex items-center gap-1 text-sm font-medium text-primary hover:underline"
         >
           <Zap className="w-4 h-4" />
-          Passer en illimité
+          Go unlimited
         </Link>
       </div>
     </div>

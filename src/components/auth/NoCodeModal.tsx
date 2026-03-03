@@ -16,54 +16,54 @@ interface NoCodeModalProps {
   onOpenChange: (open: boolean) => void;
 }
 
-const SUPPORT_EMAIL = "contact@parlermoinsvite.fr";
+const SUPPORT_EMAIL = "support@clutterpro.com";
 
-// Template for option A: Ortho doesn't know the app - we contact them
-const CONTACT_ORTHO_TEMPLATE = `Bonjour,
+// Template for option A: SLP doesn't know the app - we contact them
+const CONTACT_SLP_TEMPLATE = `Hello,
 
-Je souhaite utiliser l'application ParlerMoinsVite pour m'entraîner.
+I would like to use the ClutterPro app for my training.
 
-Mon orthophoniste ne connaît pas encore l'application. Voici ses coordonnées pour que vous puissiez le/la contacter :
+My SLP is not yet familiar with the app. Here are their contact details so you can reach out:
 
-Nom de l'orthophoniste : [À compléter]
-Email ou téléphone : [À compléter]
-Ville / Cabinet : [À compléter]
+SLP name: [Fill in]
+Email or phone: [Fill in]
+City / Practice: [Fill in]
 
-Mon nom : [À compléter]
-Mon email : [À compléter]
+My name: [Fill in]
+My email: [Fill in]
 
-Merci de votre aide !`;
+Thank you for your help!`;
 
 // Template for option B: Solo training request
-const SOLO_TEMPLATE = `Bonjour,
+const SOLO_TEMPLATE = `Hello,
 
-Je souhaite utiliser ParlerMoinsVite pour m'entraîner à contrôler mon débit de parole, sans suivi orthophonique pour le moment.
+I would like to use ClutterPro to train on controlling my speech rate, without SLP supervision for now.
 
-Pouvez-vous me renseigner sur les options d'accès individuel ?
+Could you let me know about individual access options?
 
-Mon nom : [À compléter]
-Mon email : [À compléter]
+My name: [Fill in]
+My email: [Fill in]
 
-Merci !`;
+Thanks!`;
 
 const NoCodeModal = ({ open, onOpenChange }: NoCodeModalProps) => {
   const [copiedOrtho, setCopiedOrtho] = useState(false);
   const [copiedSolo, setCopiedSolo] = useState(false);
 
-  const handleCopyOrthoTemplate = async () => {
-    const success = await copyToClipboard(CONTACT_ORTHO_TEMPLATE);
+  const handleCopySLPTemplate = async () => {
+    const success = await copyToClipboard(CONTACT_SLP_TEMPLATE);
     if (success) {
       setCopiedOrtho(true);
-      toast.success("Modèle de mail copié !");
+      toast.success("Email template copied!");
       setTimeout(() => setCopiedOrtho(false), 3000);
     } else {
-      toast.error("Erreur lors de la copie");
+      toast.error("Failed to copy");
     }
   };
 
-  const handleMailtoOrtho = () => {
-    const subject = encodeURIComponent("Contacter mon orthophoniste - ParlerMoinsVite");
-    const body = encodeURIComponent(CONTACT_ORTHO_TEMPLATE);
+  const handleMailtoSLP = () => {
+    const subject = encodeURIComponent("Contact my SLP - ClutterPro");
+    const body = encodeURIComponent(CONTACT_SLP_TEMPLATE);
     window.open(`mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`, "_blank");
   };
 
@@ -71,15 +71,15 @@ const NoCodeModal = ({ open, onOpenChange }: NoCodeModalProps) => {
     const success = await copyToClipboard(SOLO_TEMPLATE);
     if (success) {
       setCopiedSolo(true);
-      toast.success("Modèle de mail copié !");
+      toast.success("Email template copied!");
       setTimeout(() => setCopiedSolo(false), 3000);
     } else {
-      toast.error("Erreur lors de la copie");
+      toast.error("Failed to copy");
     }
   };
 
   const handleMailtoSolo = () => {
-    const subject = encodeURIComponent("Demande d'accès individuel - ParlerMoinsVite");
+    const subject = encodeURIComponent("Individual access request - ClutterPro");
     const body = encodeURIComponent(SOLO_TEMPLATE);
     window.open(`mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`, "_blank");
   };
@@ -88,23 +88,23 @@ const NoCodeModal = ({ open, onOpenChange }: NoCodeModalProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle className="text-xl">Je n'ai pas de code</DialogTitle>
+          <DialogTitle className="text-xl">I don't have a code</DialogTitle>
           <DialogDescription>
-            L'accès à l'application est réservé aux patients suivis par un orthophoniste
+            Access to the app is reserved for patients followed by an SLP
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4 mt-4">
-          {/* Option A: Ortho doesn't know the app */}
+          {/* Option A: SLP doesn't know the app */}
           <div className="p-4 rounded-xl border border-border bg-muted/30">
             <div className="flex items-start gap-3 mb-3">
               <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center shrink-0">
                 <Stethoscope className="w-5 h-5 text-purple-600 dark:text-purple-400" />
               </div>
               <div>
-                <h3 className="font-semibold mb-1">Mon orthophoniste ne connaît pas l'appli</h3>
+                <h3 className="font-semibold mb-1">My SLP doesn't know the app</h3>
                 <p className="text-sm text-muted-foreground">
-                  Donnez-nous ses coordonnées, <strong className="text-foreground">nous le contacterons pour vous</strong>.
+                  Give us their contact info, <strong className="text-foreground">we'll reach out to them for you</strong>.
                 </p>
               </div>
             </div>
@@ -112,16 +112,16 @@ const NoCodeModal = ({ open, onOpenChange }: NoCodeModalProps) => {
               <Button
                 variant="outline"
                 className="flex-1 gap-2"
-                onClick={handleMailtoOrtho}
+                onClick={handleMailtoSLP}
               >
                 <Mail className="w-4 h-4" />
-                Envoyer un mail
+                Send an email
               </Button>
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={handleCopyOrthoTemplate}
-                title="Copier le modèle"
+                onClick={handleCopySLPTemplate}
+                title="Copy template"
               >
                 {copiedOrtho ? (
                   <Check className="w-4 h-4 text-green-500" />
@@ -139,9 +139,9 @@ const NoCodeModal = ({ open, onOpenChange }: NoCodeModalProps) => {
                 <User className="w-5 h-5 text-amber-600 dark:text-amber-400" />
               </div>
               <div>
-                <h3 className="font-semibold mb-1">Je veux m'entraîner seul</h3>
+                <h3 className="font-semibold mb-1">I want to train on my own</h3>
                 <p className="text-sm text-muted-foreground">
-                  Pour un accès sans suivi orthophonique, contactez-nous et nous étudierons votre demande.
+                  For access without SLP supervision, contact us and we'll review your request.
                 </p>
               </div>
             </div>
@@ -152,13 +152,13 @@ const NoCodeModal = ({ open, onOpenChange }: NoCodeModalProps) => {
                 onClick={handleMailtoSolo}
               >
                 <Mail className="w-4 h-4" />
-                Envoyer un mail
+                Send an email
               </Button>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={handleCopySoloTemplate}
-                title="Copier le modèle"
+                title="Copy template"
               >
                 {copiedSolo ? (
                   <Check className="w-4 h-4 text-green-500" />
@@ -172,7 +172,7 @@ const NoCodeModal = ({ open, onOpenChange }: NoCodeModalProps) => {
           {/* Email display for webmail users */}
           <div className="text-center pt-2">
             <p className="text-xs text-muted-foreground">
-              Ou écrivez directement à : <span className="font-mono text-foreground">{SUPPORT_EMAIL}</span>
+              Or write directly to: <span className="font-mono text-foreground">{SUPPORT_EMAIL}</span>
             </p>
           </div>
         </div>
@@ -182,7 +182,7 @@ const NoCodeModal = ({ open, onOpenChange }: NoCodeModalProps) => {
             onClick={() => onOpenChange(false)}
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            Fermer
+            Close
           </button>
         </div>
       </DialogContent>

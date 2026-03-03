@@ -27,48 +27,48 @@ const PremiumModal = ({ open, onOpenChange, exerciseTitle }: PremiumModalProps) 
             <Lock className="w-8 h-8 text-amber-600 dark:text-amber-400" />
           </div>
           <DialogTitle className="text-center text-xl">
-            Débloquez tout le potentiel
+            Unlock your full potential
           </DialogTitle>
           <DialogDescription className="text-center">
             {exerciseTitle ? (
               <>
-                <strong>"{exerciseTitle}"</strong> fait partie du pack Premium.
+                <strong>"{exerciseTitle}"</strong> is part of the Premium plan.
               </>
             ) : (
-              "Accédez à la bibliothèque complète et à tous les exercices en illimité."
+              "Access the full library and all exercises without limits."
             )}
             <br />
-            Passez Premium pour une pratique sans limite !
+            Go Premium for unlimited practice!
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">
           <p className="text-center text-sm text-muted-foreground mb-4">
-            <strong className="text-primary">79€/an</strong> (soit 6,58€/mois) ou <strong>9€/mois</strong>
+            <strong className="text-primary">$79/year</strong> (only $6.58/mo) or <strong>$9/mo</strong>
           </p>
           <ul className="space-y-3 text-sm">
             <li className="flex items-center gap-3 p-2 rounded-lg bg-muted/50">
               <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
                 <Sparkles className="w-4 h-4 text-amber-600 dark:text-amber-400" />
               </div>
-              <span>Bibliothèque complète : +60 exercices variés</span>
+              <span>Full library: 60+ varied exercises</span>
             </li>
             <li className="flex items-center gap-3 p-2 rounded-lg bg-muted/50">
               <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
                 <HeadphonesIcon className="w-4 h-4 text-amber-600 dark:text-amber-400" />
               </div>
-              <span>Partage Audio avec votre Orthophoniste</span>
+              <span>Audio sharing with your SLP</span>
             </li>
             <li className="flex items-center gap-3 p-2 rounded-lg bg-muted/50">
               <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
                 <BarChart3 className="w-4 h-4 text-amber-600 dark:text-amber-400" />
               </div>
-              <span>Historique complet et courbes de progression</span>
+              <span>Full history and progress charts</span>
             </li>
             <li className="flex items-center gap-3 p-2 rounded-lg bg-muted/50">
               <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
                 <BookOpen className="w-4 h-4 text-amber-600 dark:text-amber-400" />
               </div>
-              <span>Support prioritaire VIP</span>
+              <span>Priority VIP support</span>
             </li>
           </ul>
         </div>
@@ -81,14 +81,14 @@ const PremiumModal = ({ open, onOpenChange, exerciseTitle }: PremiumModalProps) 
             }}
           >
             <Crown className="w-4 h-4" />
-            Passer Premium (Essai libre)
+            Go Premium (Free trial)
           </Button>
           <Button 
             variant="ghost" 
             className="w-full" 
             onClick={() => onOpenChange(false)}
           >
-            Annuler
+            Cancel
           </Button>
         </DialogFooter>
       </DialogContent>

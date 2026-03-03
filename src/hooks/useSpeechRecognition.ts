@@ -106,7 +106,7 @@ export const useSpeechRecognition = (): SpeechRecognitionResult => {
     recognitionRef.current = new SpeechRecognition();
     recognitionRef.current.continuous = true;
     recognitionRef.current.interimResults = true;
-    recognitionRef.current.lang = 'fr-FR';
+    recognitionRef.current.lang = 'en-US';
     
     recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
       let finalTranscript = '';

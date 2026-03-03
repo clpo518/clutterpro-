@@ -51,12 +51,12 @@ const RetellingPlayer = ({ exercise, onBack }: RetellingPlayerProps) => {
     };
   }, []);
 
-  /** Pick the best French voice */
-  const getFrenchVoice = useCallback((): SpeechSynthesisVoice | null => {
+  /** Pick the best English voice */
+  const getEnglishVoice = useCallback((): SpeechSynthesisVoice | null => {
     const voices = window.speechSynthesis.getVoices();
-    const fr = voices.filter(v => v.lang.startsWith("fr"));
-    const preferred = fr.find(v => /google|microsoft|amelie|thomas/i.test(v.name));
-    return preferred || fr[0] || null;
+    const en = voices.filter(v => v.lang.startsWith("en"));
+    const preferred = en.find(v => /google|microsoft|samantha|daniel/i.test(v.name));
+    return preferred || en[0] || null;
   }, []);
 
   /** Stop current speech */
@@ -80,15 +80,15 @@ const RetellingPlayer = ({ exercise, onBack }: RetellingPlayerProps) => {
   /** Phase 1: Read the story aloud via Web Speech API */
   const handleListen = useCallback(() => {
     if (listenCount >= 2) {
-      toast.info("Nombre d'écoutes maximum atteint (2)");
+      toast.info("Maximum number of listens reached (2)");
       return;
     }
     if (isSpeaking) return;
 
     const utterance = new SpeechSynthesisUtterance(exercise.text);
-    const voice = getFrenchVoice();
+    const voice = getEnglishVoice();
     if (voice) utterance.voice = voice;
-    utterance.lang = "fr-FR";
+    utterance.lang = "en-US";
     utterance.rate = 0.9;
     utterance.pitch = 1.0;
 
@@ -105,12 +105,12 @@ const RetellingPlayer = ({ exercise, onBack }: RetellingPlayerProps) => {
     utterance.onerror = () => {
       setIsSpeaking(false);
       setIsPaused(false);
-      toast.error("Erreur de synthèse vocale");
+      toast.error("Speech synthesis error");
     };
 
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(utterance);
-  }, [exercise.text, listenCount, isSpeaking, getFrenchVoice]);
+  }, [exercise.text, listenCount, isSpeaking, getEnglishVoice]);
 
   /** Phase 2: Start recording retelling */
   const startRetelling = useCallback(async () => {
@@ -122,7 +122,7 @@ const RetellingPlayer = ({ exercise, onBack }: RetellingPlayerProps) => {
       try {
         await deepgram.start(stream, { detectFillers: false });
       } catch {
-        toast.info("Enregistrement sans transcription temps réel.", { duration: 3000 });
+        toast.info("Recording without real-time transcription.", { duration: 3000 });
       }
 
       startTimeRef.current = Date.now();
@@ -135,7 +135,7 @@ const RetellingPlayer = ({ exercise, onBack }: RetellingPlayerProps) => {
       setIsRecording(true);
       setPhase("retell");
     } catch {
-      toast.error("Impossible d'accéder au microphone");
+      toast.error("Unable to access the microphone");
     }
   }, [deepgram, stopAudio]);
 
@@ -151,7 +151,7 @@ const RetellingPlayer = ({ exercise, onBack }: RetellingPlayerProps) => {
     setTranscript(text);
 
     if (!text.trim()) {
-      toast.error("Aucune parole détectée. Réessayez.");
+      toast.error("No speech detected. Please try again.");
       setPhase("ready");
       return;
     }
@@ -176,7 +176,7 @@ const RetellingPlayer = ({ exercise, onBack }: RetellingPlayerProps) => {
       setPhase("bilan");
     } catch (err: any) {
       console.error("Analysis error:", err);
-      setBilanError(err?.message || "Erreur lors de l'analyse");
+      setBilanError(err?.message || "Error during analysis");
       setPhase("bilan");
     } finally {
       setBilanLoading(false);
@@ -202,7 +202,7 @@ const RetellingPlayer = ({ exercise, onBack }: RetellingPlayerProps) => {
       {/* Phase indicator */}
       <div className="flex justify-center gap-2 text-xs">
         {(["listen", "retell", "bilan"] as const).map((p, i) => {
-          const labels = ["1. Écouter", "2. Raconter", "3. Bilan"];
+          const labels = ["1. Listen", "2. Retell", "3. Summary"];
           const isCurrent = phase === p || (phase === "ready" && p === "listen") || (phase === "analyzing" && p === "bilan");
           const isDone = (p === "listen" && ["ready", "retell", "analyzing", "bilan"].includes(phase)) ||
                          (p === "retell" && ["analyzing", "bilan"].includes(phase));
@@ -238,7 +238,7 @@ const RetellingPlayer = ({ exercise, onBack }: RetellingPlayerProps) => {
                           className="gap-2"
                         >
                           <Volume2 className="w-5 h-5" />
-                          Écouter l'histoire
+                          Listen to the story
                         </Button>
                       ) : (
                         <div className="flex items-center gap-2">
@@ -251,7 +251,7 @@ const RetellingPlayer = ({ exercise, onBack }: RetellingPlayerProps) => {
                             {isPaused ? (
                               <>
                                 <Play className="w-5 h-5" />
-                                Reprendre
+                                Resume
                               </>
                             ) : (
                               <>
@@ -271,12 +271,12 @@ const RetellingPlayer = ({ exercise, onBack }: RetellingPlayerProps) => {
                             className="gap-2"
                           >
                             <StopCircle className="w-5 h-5" />
-                            Arrêter
+                            Stop
                           </Button>
                         </div>
                       )}
                       <p className="text-xs text-muted-foreground">
-                        Écoute {listenCount}/2
+                        Listen {listenCount}/2
                       </p>
                     </div>
                   </>
@@ -290,18 +290,18 @@ const RetellingPlayer = ({ exercise, onBack }: RetellingPlayerProps) => {
                       className="space-y-4"
                     >
                       <div className="text-4xl mb-2">🎤</div>
-                      <h3 className="text-lg font-bold">À vous de raconter !</h3>
+                      <h3 className="text-lg font-bold">Your turn to retell!</h3>
                       <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                        Restituez l'histoire de mémoire. Soyez concis et mentionnez les points importants.
+                        Retell the story from memory. Be concise and mention the key points.
                       </p>
                       <div className="flex justify-center gap-3">
                         {listenCount < 2 && (
                           <Button variant="outline" onClick={() => setPhase("listen")} className="gap-2">
-                            <RotateCcw className="w-4 h-4" /> Réécouter
+                            <RotateCcw className="w-4 h-4" /> Listen again
                           </Button>
                         )}
                         <Button onClick={startRetelling} size="lg" className="gap-2">
-                          <Mic className="w-5 h-5" /> Je suis prêt à raconter
+                          <Mic className="w-5 h-5" /> I'm ready to retell
                         </Button>
                       </div>
                     </motion.div>
@@ -324,7 +324,7 @@ const RetellingPlayer = ({ exercise, onBack }: RetellingPlayerProps) => {
             <Card>
               <CardContent className="p-6 text-center">
                 <div className="mb-4">
-                  <p className="text-sm text-muted-foreground mb-2">Racontez l'histoire de mémoire</p>
+                  <p className="text-sm text-muted-foreground mb-2">Retell the story from memory</p>
                   <div className="text-2xl font-mono font-bold tabular-nums">{formatTime(elapsedTime)}</div>
                 </div>
 
@@ -342,7 +342,7 @@ const RetellingPlayer = ({ exercise, onBack }: RetellingPlayerProps) => {
                     className="gap-2 h-14 px-6 rounded-xl"
                   >
                     <Square className="w-5 h-5" fill="currentColor" />
-                    J'ai terminé
+                    I'm done
                   </Button>
                 </div>
               </CardContent>

@@ -84,7 +84,7 @@ const TranscriptHeatmap = ({ wordTimestamps, className }: TranscriptHeatmapProps
     const word = wordTimestamps[index];
     
     if (word?.isFiller) {
-      parts.push('🔵 Mot parasite');
+      parts.push('🔵 Filler word');
     }
     
     const markers = markerMap.get(index);
@@ -105,8 +105,8 @@ const TranscriptHeatmap = ({ wordTimestamps, className }: TranscriptHeatmapProps
     return (
       <Card className={cn("border-dashed", className)}>
         <CardContent className="py-8 text-center text-muted-foreground">
-          <p>Données de transcription non disponibles pour cette session.</p>
-          <p className="text-sm mt-2">Les nouvelles sessions incluront ces données automatiquement.</p>
+          <p>Transcript data not available for this session.</p>
+          <p className="text-sm mt-2">New sessions will include this data automatically.</p>
         </CardContent>
       </Card>
     );
@@ -121,13 +121,13 @@ const TranscriptHeatmap = ({ wordTimestamps, className }: TranscriptHeatmapProps
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="flex items-center gap-2 text-base">
-                🔬 Détection du bégaiement
+                🔬 Cluttering Detection
                 <Badge variant="secondary" className="text-xs bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300">
-                  En test
+                  Beta
                 </Badge>
               </CardTitle>
               <CardDescription className="mt-1">
-                Repère automatiquement les répétitions de sons, les allongements de syllabes et les silences inhabituels
+                Automatically detects sound repetitions, syllable prolongations, and unusual silences
               </CardDescription>
             </div>
             <Button 
@@ -137,7 +137,7 @@ const TranscriptHeatmap = ({ wordTimestamps, className }: TranscriptHeatmapProps
               className="text-purple-600 hover:text-purple-700 hover:bg-purple-100"
             >
               <Info className="w-4 h-4 mr-1" />
-              Comment ça marche
+              How it works
             </Button>
           </div>
         </CardHeader>
@@ -148,38 +148,38 @@ const TranscriptHeatmap = ({ wordTimestamps, className }: TranscriptHeatmapProps
             <div className="space-y-2">
               <div className="flex flex-wrap gap-3 p-3 rounded-lg bg-background border">
                 <div className="flex items-center gap-2">
-                  <span className="font-medium text-sm">Observations :</span>
+                  <span className="font-medium text-sm">Observations:</span>
                 </div>
                 {analysis.summary.blocks > 0 && (
                   <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200">
-                    🟠 {analysis.summary.blocks} Pause{analysis.summary.blocks > 1 ? 's' : ''} longue{analysis.summary.blocks > 1 ? 's' : ''}
+                    🟠 {analysis.summary.blocks} Long pause{analysis.summary.blocks > 1 ? 's' : ''}
                   </Badge>
                 )}
                 {analysis.summary.repetitions > 0 && (
                   <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200">
-                    🟡 {analysis.summary.repetitions} Répétition{analysis.summary.repetitions > 1 ? 's' : ''}
+                    🟡 {analysis.summary.repetitions} Repetition{analysis.summary.repetitions > 1 ? 's' : ''}
                   </Badge>
                 )}
                 {analysis.summary.prolongations > 0 && (
                   <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
-                    🟣 {analysis.summary.prolongations} Allongement{analysis.summary.prolongations > 1 ? 's' : ''}
+                    🟣 {analysis.summary.prolongations} Prolongation{analysis.summary.prolongations > 1 ? 's' : ''}
                   </Badge>
                 )}
                 {fillerCount > 0 && (
                   <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-                    🔵 {fillerCount} Mot{fillerCount > 1 ? 's' : ''} parasite{fillerCount > 1 ? 's' : ''}
+                    🔵 {fillerCount} Filler word{fillerCount > 1 ? 's' : ''}
                   </Badge>
                 )}
               </div>
               {analysis.summary.blocks > 0 && (
                 <p className="text-xs text-muted-foreground px-1">
-                  💡 Les pauses longues ne sont pas forcément des blocages. Elles peuvent correspondre à un moment de réflexion ou de recherche de mots.
+                  💡 Long pauses are not necessarily blocks. They may correspond to a moment of reflection or word-finding.
                 </p>
               )}
             </div>
           ) : (
             <div className="p-3 rounded-lg bg-green-50 border border-green-200 text-green-700 text-sm">
-              ✅ Aucun indice de disfluence détecté dans cette session
+              ✅ No disfluency markers detected in this session
             </div>
           )}
           
@@ -192,7 +192,7 @@ const TranscriptHeatmap = ({ wordTimestamps, className }: TranscriptHeatmapProps
                 <span key={index}>
                   {/* Block indicator (red bar before the word) */}
                   {hasBlock && (
-                    <span className="inline-flex items-center mx-1 text-orange-500" title="Pause longue détectée (silence > 2s)">
+                    <span className="inline-flex items-center mx-1 text-orange-500" title="Long pause detected (silence > 2s)">
                       <span className="inline-block w-0.5 h-5 bg-orange-400 rounded-full mx-1" />
                       <span className="text-xs text-orange-500 font-mono">[⏸]</span>
                     </span>
@@ -214,19 +214,19 @@ const TranscriptHeatmap = ({ wordTimestamps, className }: TranscriptHeatmapProps
             <div className="flex items-center gap-1.5">
               <span className="inline-block w-0.5 h-4 bg-orange-400 rounded-full" />
               <span className="text-xs font-mono text-orange-500 mr-1">[⏸]</span>
-              <span>Pause longue (silence &gt;2s)</span>
+              <span>Long pause (silence &gt;2s)</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="underline decoration-yellow-400 decoration-2 underline-offset-2 bg-yellow-50 px-1">exemple</span>
-              <span>Répétition</span>
+              <span className="underline decoration-yellow-400 decoration-2 underline-offset-2 bg-yellow-50 px-1">example</span>
+              <span>Repetition</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="bg-purple-100 text-purple-900 rounded px-1">exemple</span>
-              <span>Allongement (&gt;0.8s)</span>
+              <span className="bg-purple-100 text-purple-900 rounded px-1">example</span>
+              <span>Prolongation (&gt;0.8s)</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="bg-blue-100 text-blue-800 rounded px-1">exemple</span>
-              <span>Mot parasite</span>
+              <span className="bg-blue-100 text-blue-800 rounded px-1">example</span>
+              <span>Filler word</span>
             </div>
           </div>
           
@@ -234,9 +234,9 @@ const TranscriptHeatmap = ({ wordTimestamps, className }: TranscriptHeatmapProps
           <div className="flex items-start gap-2 text-xs text-muted-foreground bg-amber-50/50 border border-amber-100 rounded-lg p-3">
             <AlertTriangle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
             <p>
-              <strong>Outil de repérage acoustique (en test).</strong>{' '}
-              Détecte les silences anormaux et les répétitions dans le signal audio, pas la tension musculaire. 
-              Ne remplace pas l'observation clinique directe.
+              <strong>Acoustic analysis (beta).</strong>{' '}
+              Measures audible symptoms, not physical tension.
+              Does not replace direct clinical observation.
             </p>
           </div>
         </CardContent>

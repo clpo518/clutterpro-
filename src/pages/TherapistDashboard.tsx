@@ -75,8 +75,8 @@ const TherapistDashboard = () => {
   // Show payment success toast
   useEffect(() => {
     if (searchParams.get("payment") === "success") {
-      toast.success("Abonnement activé ! 🎉", {
-        description: "Merci pour votre confiance. Vos sièges sont maintenant débloqués.",
+      toast.success("Subscription activated!", {
+        description: "Thank you for your trust. Your seats are now unlocked.",
         icon: <CheckCircle className="w-5 h-5 text-green-500" />,
         duration: 8000,
       });
@@ -208,91 +208,91 @@ const TherapistDashboard = () => {
 
   const copyInviteCode = async () => {
     if (!profile?.therapist_code) {
-      toast.error("Aucun code d'invitation disponible");
+      toast.error("No invite code available");
       return;
     }
 
     const success = await copyToClipboard(profile.therapist_code);
     if (success) {
       setCopied(true);
-      toast.success("Code copié !");
+      toast.success("Code copied!");
       setTimeout(() => setCopied(false), 3000);
     } else {
-      toast.error("Erreur lors de la copie");
+      toast.error("Error copying");
     }
   };
 
   const copyEmailTemplate = async () => {
     if (!profile?.therapist_code) {
-      toast.error("Aucun code d'invitation disponible");
+      toast.error("No invite code available");
       return;
     }
 
-    const emailTemplate = `Objet : Invitation : Votre outil d'entraînement à la maison 🗣️
+    const emailTemplate = `Subject: Invitation: Your at-home training tool
 
-Bonjour,
+Hello,
 
-Pour compléter nos séances et accélérer vos progrès, je vous invite à utiliser l'application ParlerMoinsVite.
+To complement our sessions and accelerate your progress, I invite you to use the ClutterPro app.
 
-C'est un outil interactif conçu pour vous aider au quotidien :
+It's an interactive tool designed to help you daily:
 
-🎯 Mode Guidé : Un surligneur vous guide mot par mot au rythme idéal pour ancrer de bonnes habitudes.
+- Guided Mode: A highlighter guides you word by word at the ideal pace to build good habits.
 
-🌊 Analyse de la forme d'onde : Après chaque exercice, visualisez vos pauses et accélérations pour comprendre votre débit.
+- Waveform Analysis: After each exercise, visualize your pauses and accelerations to understand your speech rate.
 
-📖 Exercices guidés : Accédez à une bibliothèque de textes (lecture lente, articulation) directement sur votre téléphone.
+- Guided Exercises: Access a library of texts (slow reading, articulation) directly on your phone.
 
-🤝 Suivi à distance : En liant votre compte au mien, je pourrai écouter vos exercices et vous conseiller entre deux rendez-vous.
+- Remote Monitoring: By linking your account to mine, I can listen to your exercises and advise you between appointments.
 
-Pour commencer, c'est très simple :
+Getting started is easy:
 
-1. Allez sur https://www.parlermoinsvite.fr
-2. Créez votre compte gratuit avec mon Code Pro : ${profile.therapist_code}
+1. Go to https://www.clutterpro.com
+2. Create your free account with my Pro Code: ${profile.therapist_code}
 
-À très bientôt !`;
+See you soon!`;
 
     const success = await copyToClipboard(emailTemplate);
     if (success) {
       setEmailCopied(true);
-      toast.success("Modèle d'email copié !");
+      toast.success("Email template copied!");
       setTimeout(() => setEmailCopied(false), 3000);
     } else {
-      toast.error("Erreur lors de la copie");
+      toast.error("Error copying");
     }
   };
 
   const openMailClient = () => {
     if (!profile?.therapist_code) {
-      toast.error("Aucun code d'invitation disponible");
+      toast.error("No invite code available");
       return;
     }
 
-    const subject = encodeURIComponent("Votre outil d'entraînement à la maison 🗣️");
-    const body = encodeURIComponent(`Bonjour,
+    const subject = encodeURIComponent("Your at-home training tool");
+    const body = encodeURIComponent(`Hello,
 
-Pour compléter nos séances et accélérer vos progrès, je vous invite à utiliser l'application ParlerMoinsVite.
+To complement our sessions and accelerate your progress, I invite you to use the ClutterPro app.
 
-C'est un outil interactif conçu pour vous aider au quotidien :
+It's an interactive tool designed to help you daily:
 
-🎯 Mode Guidé : Un surligneur vous guide mot par mot au rythme idéal.
-🌊 Analyse audio : Visualisez vos pauses et accélérations après chaque exercice.
-📖 Exercices guidés : Accédez à une bibliothèque de textes directement sur votre téléphone.
-🤝 Suivi à distance : En liant votre compte au mien, je pourrai suivre vos exercices.
+- Guided Mode: A highlighter guides you word by word at the ideal pace.
+- Audio Analysis: Visualize your pauses and accelerations after each exercise.
+- Guided Exercises: Access a library of texts directly on your phone.
+- Remote Monitoring: By linking your account to mine, I can track your exercises.
 
-Pour commencer :
+Getting started:
 
-1. Allez sur https://www.parlermoinsvite.fr
-2. Créez votre compte gratuit avec mon Code Pro : ${profile.therapist_code}
+1. Go to https://www.clutterpro.com
+2. Create your free account with my Pro Code: ${profile.therapist_code}
 
-À très bientôt !`);
+See you soon!`);
 
     window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
-    toast.success("Client email ouvert !");
+    toast.success("Email client opened!");
   };
 
   const formatDate = (dateString: string | null) => {
-    if (!dateString) return "Jamais";
-    return new Date(dateString).toLocaleDateString("fr-FR", {
+    if (!dateString) return "Never";
+    return new Date(dateString).toLocaleDateString("en-US", {
       day: "numeric",
       month: "short",
     });
@@ -306,18 +306,18 @@ Pour commencer :
 
   const getStatusIndicator = (patient: Patient) => {
     const status = patient.retentionStatus;
-    if (status === "new") return { color: "bg-blue-500", label: "Nouveau" };
-    if (status === "dropout") return { color: "bg-red-500", label: "Abandon" };
-    if (status === "slipping") return { color: "bg-orange-500", label: "À risque" };
-    return { color: "bg-green-500", label: "Actif" };
+    if (status === "new") return { color: "bg-blue-500", label: "New" };
+    if (status === "dropout") return { color: "bg-red-500", label: "Inactive" };
+    if (status === "slipping") return { color: "bg-orange-500", label: "At risk" };
+    return { color: "bg-green-500", label: "Active" };
   };
 
   // Format relative time for "last activity"
   const formatRelativeTime = (daysSince: number): { text: string; isNever: boolean } => {
-    if (daysSince < 0) return { text: "Pas encore d'exercice", isNever: true };
-    if (daysSince === 0) return { text: "Aujourd'hui", isNever: false };
-    if (daysSince === 1) return { text: "Hier", isNever: false };
-    return { text: `Il y a ${daysSince}j`, isNever: false };
+    if (daysSince < 0) return { text: "No exercises yet", isNever: true };
+    if (daysSince === 0) return { text: "Today", isNever: false };
+    if (daysSince === 1) return { text: "Yesterday", isNever: false };
+    return { text: `${daysSince}d ago`, isNever: false };
   };
 
   // Filter patients by archived status
@@ -331,7 +331,7 @@ Pour commencer :
   const dropoutCount = activePatients.filter(p => p.retentionStatus === "dropout").length;
   const slippingCount = activePatients.filter(p => p.retentionStatus === "slipping").length;
 
-  const firstName = profile?.full_name?.split(" ")[0] || user?.email?.split("@")[0] || "Docteur";
+  const firstName = profile?.full_name?.split(" ")[0] || user?.email?.split("@")[0] || "Doctor";
   const fullName = profile?.full_name || firstName;
 
   // Contextual greeting with variety
@@ -339,26 +339,26 @@ Pour commencer :
     const hour = new Date().getHours();
     const day = new Date().getDay(); // 0=Sun ... 6=Sat
     const variants = hour < 12
-      ? ["Bonjour", "Belle matinée", "Bonne matinée"]
+      ? ["Good morning", "Great morning", "Hello"]
       : hour < 18
-        ? ["Bon après-midi", "Belle après-midi", "Hey"]
-        : ["Bonsoir", "Belle soirée", "Bonne fin de journée"];
+        ? ["Good afternoon", "Hello", "Hey"]
+        : ["Good evening", "Hello", "Hey"];
     // Pick variant based on day of week for consistency within a day
     return variants[day % variants.length];
   };
 
   // Contextual subtitle with rotating positive messages
   const getSubtitle = () => {
-    if (patients.length === 0) return "Votre espace est prêt, invitez votre premier patient 🚀";
-    if (dropoutCount > 0) return `${dropoutCount} patient${dropoutCount > 1 ? 's' : ''} nécessite${dropoutCount > 1 ? 'nt' : ''} votre attention`;
-    if (slippingCount > 0) return `${slippingCount} patient${slippingCount > 1 ? 's' : ''} à relancer cette semaine`;
-    
+    if (patients.length === 0) return "Your workspace is ready, invite your first patient";
+    if (dropoutCount > 0) return `${dropoutCount} patient${dropoutCount > 1 ? 's' : ''} need${dropoutCount > 1 ? '' : 's'} your attention`;
+    if (slippingCount > 0) return `${slippingCount} patient${slippingCount > 1 ? 's' : ''} to follow up with this week`;
+
     const positiveMessages = [
-      `${activePatientCount} patient${activePatientCount > 1 ? 's' : ''} actif${activePatientCount > 1 ? 's' : ''} — tout roule ! 🎯`,
-      `${activePatientCount} patient${activePatientCount > 1 ? 's' : ''} en bonne voie — bravo ! ✨`,
-      `Tous vos patients sont actifs — excellent travail ! 💪`,
-      `${activePatientCount} patient${activePatientCount > 1 ? 's' : ''} motivé${activePatientCount > 1 ? 's' : ''} — belle dynamique ! 🔥`,
-      `Vos patients progressent bien — continuez ainsi ! 🌟`,
+      `${activePatientCount} active patient${activePatientCount > 1 ? 's' : ''} — all on track!`,
+      `${activePatientCount} patient${activePatientCount > 1 ? 's' : ''} doing well — great job!`,
+      `All your patients are active — excellent work!`,
+      `${activePatientCount} motivated patient${activePatientCount > 1 ? 's' : ''} — great momentum!`,
+      `Your patients are progressing well — keep it up!`,
     ];
     const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
     return positiveMessages[dayOfYear % positiveMessages.length];
@@ -379,13 +379,13 @@ Pour commencer :
         p.id === patientId ? { ...p, is_archived: archive } : p
       ));
 
-      toast.success(archive 
-        ? "Patient archivé. Un siège s'est libéré." 
-        : "Patient restauré avec succès."
+      toast.success(archive
+        ? "Patient archived. A seat has been freed."
+        : "Patient restored successfully."
       );
     } catch (error) {
       console.error("Error updating patient:", error);
-      toast.error("Erreur lors de la mise à jour");
+      toast.error("Error updating patient");
     } finally {
       setArchivingPatient(null);
     }
@@ -404,10 +404,10 @@ Pour commencer :
             <UserPlus className="w-10 h-10 text-primary" />
           </div>
           <CardTitle className="text-2xl">
-            Votre espace pro est prêt ! ✅
+            Your Pro workspace is ready!
           </CardTitle>
           <CardDescription className="text-base mt-2">
-            Il ne reste qu'à inviter votre patient. Dès qu'il créera son compte, il apparaîtra automatiquement ici.
+            All that's left is to invite your patient. Once they create their account, they will appear here automatically.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6 pt-4">
@@ -417,18 +417,18 @@ Pour commencer :
               1
             </div>
             <div className="flex-1">
-              <p className="font-medium mb-2">Voici votre Code Pro unique :</p>
+              <p className="font-medium mb-2">Here is your unique Pro Code:</p>
               <div className="flex items-center gap-2">
                 <code className="text-2xl font-mono font-bold text-primary bg-primary/10 px-4 py-2 rounded-lg">
                   {profile?.therapist_code || "PRO-XXXXXX"}
                 </code>
                 <Button onClick={copyInviteCode} size="sm" variant="outline" className="gap-2">
                   {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                  {copied ? "Copié !" : "Copier"}
+                  {copied ? "Copied!" : "Copy"}
                 </Button>
               </div>
               <p className="text-xs text-muted-foreground mt-2">
-                Ce code est le même pour tous vos patients — partagez-le autant de fois que nécessaire.
+                This code is the same for all your patients — share it as many times as needed.
               </p>
             </div>
           </div>
@@ -439,19 +439,19 @@ Pour commencer :
               2
             </div>
             <div className="flex-1">
-              <p className="font-medium mb-2">Transmettez ce code à votre patient par email</p>
+              <p className="font-medium mb-2">Send this code to your patient by email</p>
               <div className="flex flex-wrap gap-2">
                 <Button onClick={openMailClient} variant="default" className="gap-2">
                   <Mail className="w-4 h-4" />
-                  Envoyer par email
+                  Send by email
                 </Button>
                 <Button onClick={copyEmailTemplate} variant="outline" className="gap-2">
                   {emailCopied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                  {emailCopied ? "Copié !" : "Copier le modèle"}
+                  {emailCopied ? "Copied!" : "Copy template"}
                 </Button>
               </div>
               <p className="text-xs text-muted-foreground mt-2">
-                Un email personnalisé expliquant les bénéfices de l'application
+                A personalized email explaining the app's benefits
               </p>
             </div>
           </div>
@@ -462,9 +462,9 @@ Pour commencer :
               3
             </div>
             <div>
-              <p className="font-medium mb-1">Le patient crée son compte avec votre Code Pro</p>
+              <p className="font-medium mb-1">The patient creates their account with your Pro Code</p>
               <p className="text-sm text-muted-foreground">
-                Tout est expliqué dans l'email, il n'aura qu'à suivre les étapes.
+                Everything is explained in the email, they just need to follow the steps.
               </p>
             </div>
           </div>
@@ -475,9 +475,9 @@ Pour commencer :
               4
             </div>
             <div>
-              <p className="font-medium mb-1">C'est tout ! Le patient apparaîtra automatiquement ici</p>
+              <p className="font-medium mb-1">That's it! The patient will appear here automatically</p>
               <p className="text-sm text-muted-foreground">
-                Aucune action de votre part : dès qu'il crée son compte, vous verrez ses sessions et ses progrès.
+                No action needed on your part: as soon as they create their account, you'll see their sessions and progress.
               </p>
             </div>
           </div>
@@ -486,23 +486,23 @@ Pour commencer :
           <div className="p-4 rounded-xl bg-chart-2/10 border border-chart-2/30">
             <p className="font-medium text-sm mb-3 flex items-center gap-2">
               <Lightbulb className="w-4 h-4 text-chart-2" />
-              En attendant, vous avez déjà accès à toute la plateforme :
+              In the meantime, you already have access to the full platform:
             </p>
             <div className="flex flex-wrap gap-2 mb-3">
               <Button asChild variant="outline" size="sm" className="gap-2">
                 <Link to="/library">
-                  📖 Explorer les exercices
+                  Browse exercises
                 </Link>
               </Button>
               <Button asChild variant="outline" size="sm" className="gap-2">
                 <Link to="/settings">
                   <Settings className="w-4 h-4" />
-                  Personnaliser mon profil
+                  Customize my profile
                 </Link>
               </Button>
             </div>
             <p className="text-xs text-muted-foreground">
-              💡 Les sessions que vous lancez depuis votre compte sont en <span className="font-medium">mode découverte</span> (test personnel). Pour qu'une session soit enregistrée dans le dossier d'un patient, celui-ci doit se connecter avec son propre compte.
+              Sessions you launch from your account are in <span className="font-medium">discovery mode</span> (personal testing). For a session to be recorded in a patient's file, they must log in with their own account.
             </p>
           </div>
         </CardContent>
@@ -543,16 +543,16 @@ Pour commencer :
             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
               <Activity className="w-6 h-6 text-primary-foreground" />
             </div>
-            <span className="font-display font-bold text-xl hidden sm:inline">ParlerMoinsVite</span>
+            <span className="font-display font-bold text-xl hidden sm:inline">ClutterPro</span>
             <span className="text-xs bg-chart-2/20 text-chart-2 px-2 py-0.5 rounded-full font-medium hidden sm:inline">PRO</span>
           </Link>
           <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground">
-            <span>Cabinet de <span className="font-medium text-foreground">{fullName}</span></span>
+            <span>Practice of <span className="font-medium text-foreground">{fullName}</span></span>
           </div>
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground" onClick={() => navigate("/library")}>
               <FlaskConical className="w-4 h-4" />
-              <span className="hidden sm:inline">Tester les exercices</span>
+              <span className="hidden sm:inline">Test exercises</span>
             </Button>
             <Button variant="ghost" size="icon" onClick={() => navigate("/settings")}>
               <Settings className="w-5 h-5" />
@@ -585,12 +585,12 @@ Pour commencer :
               className="gap-2 bg-emerald-600 hover:bg-emerald-700 text-white shadow-md whitespace-nowrap"
             >
               <Gauge className="w-4 h-4" />
-              Débitmètre en séance
+              In-session rate meter
             </Button>
           </div>
 
           {loading ? (
-            <div className="text-center py-12 text-muted-foreground">Chargement...</div>
+            <div className="text-center py-12 text-muted-foreground">Loading...</div>
           ) : patients.length === 0 ? (
             renderEmptyState()
           ) : (
@@ -602,16 +602,16 @@ Pour commencer :
                   <span>
                     {dropoutCount > 0 && (
                       <span className="text-red-600 dark:text-red-400 font-medium">
-                        {dropoutCount} inactif{dropoutCount > 1 ? 's' : ''} (5j+)
+                        {dropoutCount} inactive (5d+)
                       </span>
                     )}
                     {dropoutCount > 0 && slippingCount > 0 && <span className="mx-1.5 text-muted-foreground">·</span>}
                     {slippingCount > 0 && (
                       <span className="text-orange-600 dark:text-orange-400 font-medium">
-                        {slippingCount} à risque
+                        {slippingCount} at risk
                       </span>
                     )}
-                    <span className="text-muted-foreground ml-2">— pensez à les relancer</span>
+                    <span className="text-muted-foreground ml-2">— consider following up</span>
                   </span>
                 </div>
               )}
@@ -628,10 +628,10 @@ Pour commencer :
                     <div>
                       <CardTitle className="flex items-center gap-2">
                         <Users className="w-5 h-5" />
-                        Patients de {fullName}
+                        Patients of {fullName}
                       </CardTitle>
                       <CardDescription className="flex items-center gap-2 mt-1">
-                        <span>{activePatientCount} actif{activePatientCount > 1 ? "s" : ""} · {archivedPatients.length} archivé{archivedPatients.length > 1 ? "s" : ""}</span>
+                        <span>{activePatientCount} active · {archivedPatients.length} archived</span>
                         <span className="text-muted-foreground/50">|</span>
                         <span className="font-mono text-xs font-medium text-foreground">{profile?.therapist_code || "N/A"}</span>
                         <Button variant="ghost" size="icon" className="h-6 w-6" onClick={(e) => { e.stopPropagation(); copyInviteCode(); }}>
@@ -652,13 +652,13 @@ Pour commencer :
                                 onClick={openMailClient}
                               >
                                 <UserPlus className="w-4 h-4" />
-                                Inviter
+                                Invite
                               </Button>
                             </span>
                           </TooltipTrigger>
                           {isAtSeatLimit && (
                             <TooltipContent>
-                              <p>Limite atteinte. Archivez un patient ou passez au plan supérieur.</p>
+                              <p>Limit reached. Archive a patient or upgrade your plan.</p>
                             </TooltipContent>
                           )}
                         </Tooltip>
@@ -667,11 +667,11 @@ Pour commencer :
                         <TabsList>
                           <TabsTrigger value="active" className="gap-1.5 text-xs">
                             <Users className="w-3.5 h-3.5" />
-                            Actifs ({activePatientCount})
+                            Active ({activePatientCount})
                           </TabsTrigger>
                           <TabsTrigger value="archived" className="gap-1.5 text-xs">
                             <Archive className="w-3.5 h-3.5" />
-                            Archives ({archivedPatients.length})
+                            Archived ({archivedPatients.length})
                           </TabsTrigger>
                         </TabsList>
                       </Tabs>
@@ -683,17 +683,17 @@ Pour commencer :
                     <table className="w-full">
                       <thead>
                         <tr className="border-b">
-                          <th className="text-left py-3 px-4 font-medium text-muted-foreground">Statut</th>
-                          <th className="text-left py-3 px-4 font-medium text-muted-foreground">Nom</th>
+                          <th className="text-left py-3 px-4 font-medium text-muted-foreground">Status</th>
+                          <th className="text-left py-3 px-4 font-medium text-muted-foreground">Name</th>
                           <th className="text-left py-3 px-4 font-medium text-muted-foreground">
                             <div className="flex items-center gap-1">
                               <Flame className="w-4 h-4 text-orange-500" />
-                              Série
+                              Streak
                             </div>
                           </th>
-                          <th className="text-left py-3 px-4 font-medium text-muted-foreground">Dernière activité</th>
-                          <th className="text-left py-3 px-4 font-medium text-muted-foreground">Sessions/sem.</th>
-                          <th className="text-left py-3 px-4 font-medium text-muted-foreground">Vitesse moy.</th>
+                          <th className="text-left py-3 px-4 font-medium text-muted-foreground">Last activity</th>
+                          <th className="text-left py-3 px-4 font-medium text-muted-foreground">Sessions/wk</th>
+                          <th className="text-left py-3 px-4 font-medium text-muted-foreground">Avg. rate</th>
                           <th className="text-right py-3 px-4 font-medium text-muted-foreground">Actions</th>
                         </tr>
                       </thead>
@@ -718,7 +718,7 @@ Pour commencer :
                                     activeTab === "archived" ? 'text-muted-foreground' :
                                     patient.retentionStatus === 'dropout' ? 'text-red-600' :
                                     patient.retentionStatus === 'slipping' ? 'text-orange-600' : 'text-muted-foreground'
-                                  }`}>{activeTab === "archived" ? "Archivé" : status.label}</span>
+                                  }`}>{activeTab === "archived" ? "Archived" : status.label}</span>
                                 </div>
                               </td>
                               <td className="py-3 px-4 font-medium">{patient.full_name || "Patient"}</td>
@@ -739,11 +739,11 @@ Pour commencer :
                                         <TooltipTrigger asChild>
                                           <span className="text-sm text-amber-600 font-medium cursor-help flex items-center gap-1">
                                             <AlertCircle className="w-3.5 h-3.5" />
-                                            À relancer
+                                            Follow up
                                           </span>
                                         </TooltipTrigger>
                                         <TooltipContent side="top" className="max-w-[200px]">
-                                          <p className="text-xs">Ce patient s'est inscrit mais n'a encore fait aucun exercice. Pensez à le relancer !</p>
+                                          <p className="text-xs">This patient signed up but hasn't completed any exercises yet. Consider following up!</p>
                                         </TooltipContent>
                                       </Tooltip>
                                     );
@@ -791,7 +791,7 @@ Pour commencer :
                                     className="gap-1"
                                   >
                                     <Eye className="w-4 h-4" />
-                                    Voir
+                                    View
                                   </Button>
                                   {activeTab === "active" ? (
                                     <Tooltip>
@@ -809,7 +809,7 @@ Pour commencer :
                                           <Archive className="w-4 h-4" />
                                         </Button>
                                       </TooltipTrigger>
-                                      <TooltipContent>Archiver ce patient</TooltipContent>
+                                      <TooltipContent>Archive this patient</TooltipContent>
                                     </Tooltip>
                                   ) : (
                                     <Tooltip>
@@ -830,9 +830,9 @@ Pour commencer :
                                         </span>
                                       </TooltipTrigger>
                                       <TooltipContent>
-                                        {isAtSeatLimit 
-                                          ? "Limite de sièges atteinte" 
-                                          : "Restaurer ce patient"
+                                        {isAtSeatLimit
+                                          ? "Seat limit reached"
+                                          : "Restore this patient"
                                         }
                                       </TooltipContent>
                                     </Tooltip>
@@ -845,9 +845,9 @@ Pour commencer :
                         {(activeTab === "active" ? activePatients : archivedPatients).length === 0 && (
                           <tr>
                             <td colSpan={7} className="py-8 text-center text-muted-foreground">
-                              {activeTab === "active" 
-                                ? "Aucun patient actif" 
-                                : "Aucun patient archivé"
+                              {activeTab === "active"
+                                ? "No active patients"
+                                : "No archived patients"
                               }
                             </td>
                           </tr>

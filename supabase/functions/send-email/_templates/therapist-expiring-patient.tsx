@@ -13,54 +13,54 @@ interface TherapistExpiringPatientEmailProps {
 }
 
 export function TherapistExpiringPatientEmail(props: TherapistExpiringPatientEmailProps) {
-  const { patientName = 'Bonjour', therapistName = 'votre orthophoniste', daysRemaining } = props
+  const { patientName = 'Hi there', therapistName = 'your SLP', daysRemaining } = props
 
   return (
-    <BaseLayout preview={`Votre accès à Parler Moins Vite est en jeu`}>
+    <BaseLayout preview={`Your access to ClutterPro is at stake`}>
       <Heading style={heading}>
-        ⚠️ Votre accès se termine dans {daysRemaining} jour{daysRemaining > 1 ? 's' : ''}
+        ⚠️ Your access ends in {daysRemaining} day{daysRemaining > 1 ? 's' : ''}
       </Heading>
 
-      <Text style={paragraph}>Bonjour {patientName},</Text>
+      <Text style={paragraph}>Hi {patientName},</Text>
 
       <Text style={paragraph}>
-        L'abonnement de {therapistName} à Parler Moins Vite arrive à expiration dans {daysRemaining} jour{daysRemaining > 1 ? 's' : ''}.
+        {therapistName}'s ClutterPro subscription expires in {daysRemaining} day{daysRemaining > 1 ? 's' : ''}.
       </Text>
 
       <Text style={warningBox}>
-        🔒 Sans renouvellement, vous perdrez l'accès à vos exercices, votre historique de sessions et le suivi de vos progrès. Toutes vos données seront conservées, mais inaccessibles.
+        🔒 Without renewal, you'll lose access to your exercises, session history, and progress tracking. All your data will be preserved but inaccessible.
       </Text>
 
       <Text style={paragraph}>
-        <strong>Que pouvez-vous faire ?</strong>
+        <strong>What can you do?</strong>
       </Text>
 
       <Text style={actionBox}>
-        📞 Contactez {therapistName} pour l'informer de la situation. Un simple message suffit :
+        📞 Contact {therapistName} to let them know. A simple message is enough:
       </Text>
 
       <Text style={scriptBox}>
-        « Bonjour, je viens de recevoir un message de Parler Moins Vite indiquant que mon accès va bientôt expirer. Serait-il possible de renouveler votre abonnement pour que je puisse continuer mes exercices ? Merci ! »
+        "Hi, I just received a message from ClutterPro saying my access is about to expire. Would it be possible to renew your subscription so I can continue my exercises? Thank you!"
       </Text>
 
       <Text style={reassuranceBox}>
-        💾 Rassurez-vous : vos données (sessions, progrès, exercices) sont sauvegardées et seront immédiatement accessibles dès que votre orthophoniste renouvelle son abonnement.
+        💾 Rest assured: Your data (sessions, progress, exercises) is saved and will be immediately accessible as soon as your SLP renews their subscription.
       </Text>
 
       <Text style={paragraph}>
-        <strong>Vous souhaitez continuer seul(e) ?</strong>
+        <strong>Want to continue on your own?</strong>
       </Text>
 
       <Text style={paragraph}>
-        Vous pouvez aussi passer en <strong>Mode Autonomie</strong> et continuer vos exercices de manière indépendante, avec 7 jours d'essai gratuit. Il vous suffit d'aller dans vos Réglages et de choisir « Passer en mode autonome ».
+        You can also switch to <strong>Solo Mode</strong> and continue your exercises independently, with a 7-day free trial. Simply go to your Settings and choose "Switch to solo mode."
       </Text>
 
-      <Button style={autonomeButton} href="https://www.parlermoinsvite.fr/settings">
-        Continuer en Mode Autonomie →
+      <Button style={autonomeButton} href="https://www.clutterpro.com/settings">
+        Continue in Solo Mode →
       </Button>
 
       <Text style={smallText}>
-        Ce message est envoyé automatiquement pour vous permettre de continuer votre progression. Des questions ? Écrivez-nous à contact@parlermoinsvite.fr.
+        This message is sent automatically to help you continue your progress. Questions? Email us at support@clutterpro.com.
       </Text>
     </BaseLayout>
   )

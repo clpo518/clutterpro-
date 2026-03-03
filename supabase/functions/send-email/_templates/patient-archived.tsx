@@ -14,49 +14,49 @@ export function PatientArchivedEmail({
   contactEmail,
 }: PatientArchivedEmailProps) {
   return (
-    <BaseLayout preview="Votre suivi a été mis en pause">
+    <BaseLayout preview="Your follow-up has been paused">
       <Heading style={heading}>
-        {patientName}, votre suivi est en pause
+        {patientName}, your follow-up is paused
       </Heading>
 
       <Text style={paragraph}>
-        Bonjour {patientName},
+        Hi {patientName},
       </Text>
 
       <Text style={paragraph}>
-        Nous vous informons que votre accompagnement avec {therapistName} a été mis en pause. 
-        Cela signifie que vous n'avez plus accès aux exercices et à votre historique d'entraînement pour le moment.
+        We're letting you know that your follow-up with {therapistName} has been paused.
+        This means you no longer have access to exercises and your training history for the time being.
       </Text>
 
       <Text style={paragraph}>
-        Pas d'inquiétude, vos données sont conservées ! Votre progression et vos statistiques 
-        restent sauvegardées et seront disponibles dès que votre suivi sera réactivé.
+        Don't worry, your data is preserved! Your progress and statistics
+        remain saved and will be available as soon as your follow-up is reactivated.
       </Text>
 
       <Text style={subheading}>
-        Comment reprendre votre entraînement ?
+        How to resume your practice?
       </Text>
 
       <Text style={paragraph}>
-        Si vous souhaitez continuer à vous entraîner et profiter de tous les exercices, 
-        contactez simplement votre orthophoniste {therapistName} pour qu'il/elle réactive votre accès.
+        If you'd like to continue practicing and enjoy all exercises,
+        simply contact your SLP {therapistName} to have them reactivate your access.
       </Text>
 
       {contactEmail && (
         <Button style={button} href={`mailto:${contactEmail}`}>
-          Contacter mon orthophoniste
+          Contact my SLP
         </Button>
       )}
 
       <Text style={paragraph}>
-        Une question ? Écrivez-nous à contact@parlermoinsvite.fr, nous sommes là pour vous aider.
+        Questions? Email us at support@clutterpro.com, we're here to help.
       </Text>
 
       <Text style={signoff}>
-        À très bientôt,
+        See you soon,
       </Text>
       <Text style={signatureName}>
-        L'équipe Parler Moins Vite
+        The ClutterPro Team
       </Text>
     </BaseLayout>
   )

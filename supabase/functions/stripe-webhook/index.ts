@@ -52,16 +52,16 @@ async function notifyAdminNewPayment(
       console.warn("RESEND_API_KEY not set, skipping admin notification");
       return;
     }
-    const role = isTherapist ? "Orthophoniste" : "Patient";
-    const subject = `💰 Nouveau paiement – ${userName} (${role})`;
+    const role = isTherapist ? "SLP" : "Patient";
+    const subject = `New payment - ${userName} (${role})`;
     const html = `
       <div style="font-family:sans-serif;max-width:500px;margin:0 auto;padding:24px;">
-        <h2 style="color:#3a9e8e;">Nouveau paiement reçu 🎉</h2>
-        <p><strong>Utilisateur :</strong> ${userName}</p>
-        <p><strong>Email :</strong> ${userEmail}</p>
-        <p><strong>Rôle :</strong> ${role}</p>
-        <p><strong>Plan :</strong> ${planName}</p>
-        <p style="color:#6e7282;font-size:13px;margin-top:24px;">— Parler Moins Vite (notification automatique)</p>
+        <h2 style="color:#3a9e8e;">New payment received</h2>
+        <p><strong>User:</strong> ${userName}</p>
+        <p><strong>Email:</strong> ${userEmail}</p>
+        <p><strong>Role:</strong> ${role}</p>
+        <p><strong>Plan:</strong> ${planName}</p>
+        <p style="color:#6e7282;font-size:13px;margin-top:24px;">— ClutterPro (automated notification)</p>
       </div>
     `;
     const res = await fetch("https://api.resend.com/emails", {
@@ -71,8 +71,8 @@ async function notifyAdminNewPayment(
         Authorization: `Bearer ${resendKey}`,
       },
       body: JSON.stringify({
-        from: "Parler Moins Vite <noreply@parlermoinsvite.fr>",
-        to: ["contact@parlermoinsvite.fr"],
+        from: "ClutterPro <noreply@clutterpro.com>",
+        to: ["support@clutterpro.com"],
         subject,
         html,
       }),
@@ -225,16 +225,16 @@ serve(async (req) => {
               ? (subscriptionPlan === "expert" ? "Expert (5 patients)" : "Essentiel (3 patients)")
               : "Premium";
             await sendEmail("subscription_confirmed", userEmail, {
-              userName: userName || "Utilisateur",
+              userName: userName || "User",
               planName: planLabel,
               isTherapist: isB2BPlan,
               dashboardUrl: isB2BPlan
-                ? "https://www.parlermoinsvite.fr/patient/list"
-                : "https://www.parlermoinsvite.fr/practice",
+                ? "https://www.clutterpro.com/patient/list"
+                : "https://www.clutterpro.com/practice",
             });
             // Notify admin
             await notifyAdminNewPayment(
-              userName || "Utilisateur",
+              userName || "User",
               userEmail,
               planLabel,
               isB2BPlan
@@ -389,10 +389,10 @@ serve(async (req) => {
             if (email) {
               const isTherapist = fullProfile?.is_therapist === true;
               await sendEmail("subscription_canceled", email, {
-                userName: userName || "Utilisateur",
+                userName: userName || "User",
                 resubscribeUrl: isTherapist
-                  ? "https://www.parlermoinsvite.fr/pro/subscription"
-                  : "https://www.parlermoinsvite.fr/pricing",
+                  ? "https://www.clutterpro.com/pro/subscription"
+                  : "https://www.clutterpro.com/pricing",
               });
             }
           }
@@ -441,10 +441,10 @@ serve(async (req) => {
             if (email) {
               const isTherapist = fullProfile?.is_therapist === true;
               await sendEmail("payment_failed", email, {
-                userName: userName || "Utilisateur",
+                userName: userName || "User",
                 updatePaymentUrl: isTherapist
-                  ? "https://www.parlermoinsvite.fr/pro/subscription/manage"
-                  : "https://www.parlermoinsvite.fr/subscription/manage",
+                  ? "https://www.clutterpro.com/pro/subscription/manage"
+                  : "https://www.clutterpro.com/subscription/manage",
               });
             }
           }
@@ -492,7 +492,7 @@ serve(async (req) => {
                   ? `${(charge.amount_refunded / 100).toFixed(2)}€` 
                   : "N/A";
                 await sendEmail("refund_confirmation", email, {
-                  userName: userName || "Utilisateur",
+                  userName: userName || "User",
                   refundAmount,
                 });
               }

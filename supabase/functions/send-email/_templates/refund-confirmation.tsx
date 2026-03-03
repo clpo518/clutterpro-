@@ -11,30 +11,30 @@ interface RefundConfirmationEmailProps {
 }
 
 export function RefundConfirmationEmail(props: RefundConfirmationEmailProps) {
-  const { userName = 'Cher utilisateur', refundAmount } = props
+  const { userName = 'Dear user', refundAmount } = props
   return (
-    <BaseLayout preview="Confirmation de votre remboursement">
-      <Heading style={heading}>💳 Remboursement confirmé</Heading>
+    <BaseLayout preview="Confirmation of your refund">
+      <Heading style={heading}>💳 Refund confirmed</Heading>
 
-      <Text style={paragraph}>Bonjour {userName},</Text>
+      <Text style={paragraph}>Hi {userName},</Text>
 
       <Text style={paragraph}>
-        Nous vous confirmons que votre remboursement de {refundAmount} a été effectué avec succès.
+        We confirm that your refund of {refundAmount} has been processed successfully.
       </Text>
 
       <Text style={infoBox}>
-        💡 Information : Le remboursement apparaîtra sur votre compte bancaire sous 5 à 10 jours ouvrés selon votre banque.
+        💡 Note: The refund will appear on your bank statement within 5 to 10 business days depending on your bank.
       </Text>
 
       <Text style={paragraph}>
-        Votre accès premium a été désactivé. Vos données de progression restent sauvegardées si vous souhaitez revenir plus tard.
+        Your premium access has been deactivated. Your progress data remains saved if you'd like to come back later.
       </Text>
 
       <Text style={paragraph}>
-        Nous espérons vous revoir bientôt sur Parler Moins Vite. Si vous avez des questions, écrivez-nous à contact@parlermoinsvite.fr
+        We hope to see you again on ClutterPro. If you have any questions, email us at support@clutterpro.com
       </Text>
 
-      <Text style={paragraph}>Merci d'avoir utilisé Parler Moins Vite. 🙏</Text>
+      <Text style={paragraph}>Thank you for using ClutterPro. 🙏</Text>
     </BaseLayout>
   )
 }

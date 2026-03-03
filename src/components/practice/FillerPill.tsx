@@ -46,7 +46,7 @@ const FillerPill = ({ count, isRecording }: FillerPillProps) => {
               )}
             >
               <span className="text-base">🙊</span>
-              <span className="text-xs">Parasites :</span>
+              <span className="text-xs">Fillers:</span>
               <motion.span
                 key={count}
                 initial={{ scale: 1.3 }}
@@ -60,7 +60,7 @@ const FillerPill = ({ count, isRecording }: FillerPillProps) => {
           </AnimatePresence>
         </TooltipTrigger>
         <TooltipContent side="top" className="max-w-xs text-center">
-          <p>Nombre de "euh", "du coup", "en fait"... détectés pendant votre lecture.</p>
+          <p>Number of "um", "like", "you know"... detected during your reading.</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

@@ -9,53 +9,53 @@ import { Badge } from "@/components/ui/badge";
 const metrics = [
   {
     icon: Activity,
-    title: "SPS (Syllabes/Seconde)",
-    description: "Mesure le débit d'articulation par paquets de 5 syllabes (hors pauses et silences).",
-    details: "Le calcul attend 5 syllabes prononcées, puis divise par le temps de parole réel du paquet (silences exclus). Ce mode par paquets donne un retour stable et cliniquement fiable, sans être perturbé par les pauses naturelles.",
+    title: "SPS (Syllables/Second)",
+    description: "Measures articulation rate in batches of 5 syllables (excluding pauses and silences).",
+    details: "The calculation waits for 5 syllables to be spoken, then divides by the actual speech time of the batch (silences excluded). This batch mode gives stable and clinically reliable feedback, unaffected by natural pauses.",
     color: "text-emerald-500",
     bgColor: "bg-emerald-500/10"
   },
   {
     icon: Timer,
-    title: "Ratio de Fluence",
-    description: "Temps de parole / Temps total de session.",
-    details: "> 80% = Parole continue | 60-80% = Pauses naturelles | < 60% = Blocages possibles",
+    title: "Fluency Ratio",
+    description: "Speech time / Total session time.",
+    details: "> 80% = Continuous speech | 60-80% = Natural pauses | < 60% = Possible blocks",
     color: "text-cyan-500",
     bgColor: "bg-cyan-500/10"
   },
   {
     icon: MessageCircleWarning,
-    title: "Disfluences (Mots Parasites)",
-    description: "\"euh\", \"du coup\", \"en fait\" détectés automatiquement.",
-    details: "L'algorithme identifie les disfluences en temps réel",
+    title: "Disfluencies (Filler Words)",
+    description: "\"um\", \"like\", \"you know\" detected automatically.",
+    details: "The algorithm identifies disfluencies in real time",
     color: "text-orange-500",
     bgColor: "bg-orange-500/10"
   },
   {
     icon: Type,
-    title: "Comptage Syllabique",
-    description: "Algorithme optimisé pour le français.",
-    details: "Gestion des 'e' muets, contractions ('j'suis', 't'as')",
+    title: "Syllable Counting",
+    description: "Algorithm optimized for English.",
+    details: "Handles contractions, compound words, and silent letters",
     color: "text-primary",
     bgColor: "bg-primary/10"
   },
   {
     icon: Activity,
-    title: "Vitesse Max & Écarts",
-    description: "Pic de vitesse atteint pendant la session.",
-    details: "Un écart important entre la moyenne et le max peut révéler des accélérations involontaires — un indicateur clé en tachylalie et bredouillement.",
+    title: "Max Rate & Variability",
+    description: "Peak rate reached during the session.",
+    details: "A large gap between average and max can reveal involuntary accelerations — a key indicator in tachylalia and cluttering.",
     color: "text-red-500",
     bgColor: "bg-red-500/10"
   },
   {
     icon: AudioWaveform,
-    title: "Analyse du Bégaiement",
-    description: "Détection acoustique des blocages, répétitions et allongements.",
-    details: "🔴 Blocages (silences > 1s) • 🟡 Répétitions • 🟣 Allongements",
+    title: "Stuttering Analysis",
+    description: "Acoustic detection of blocks, repetitions, and prolongations.",
+    details: "Blocks (silences > 1s) - Repetitions - Prolongations",
     color: "text-purple-500",
     bgColor: "bg-purple-500/10",
     isBeta: true,
-    betaNote: "Première version — en cours d'amélioration"
+    betaNote: "First version — being improved"
   }
 ];
 
@@ -74,9 +74,9 @@ export const MetricsInfoCard = () => {
               <BookOpen className="w-5 h-5 text-cyan-500" />
             </div>
             <div>
-              <CardTitle className="text-lg">Comprendre les métriques</CardTitle>
+              <CardTitle className="text-lg">Understanding the metrics</CardTitle>
               <p className="text-sm text-muted-foreground">
-                SPS, Fluence, Fillers — Tout ce qu'il faut savoir
+                SPS, Fluency, Fillers — Everything you need to know
               </p>
             </div>
           </div>
@@ -114,7 +114,7 @@ export const MetricsInfoCard = () => {
                           <h4 className="font-medium text-sm">{metric.title}</h4>
                           {metric.isBeta && (
                             <Badge variant="secondary" className="text-[10px] px-1.5 py-0 bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-300">
-                              Bêta
+                              Beta
                             </Badge>
                           )}
                         </div>

@@ -16,13 +16,13 @@ export const PricingTeaser = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             <Gift className="w-4 h-4" />
-            Accès complet inclus
+            Full access included
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Gratuit pour les patients
+            Free for patients
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Votre orthophoniste prend en charge l'abonnement. Vous bénéficiez de toutes les fonctionnalités.
+            Your SLP covers the subscription. You get access to all features.
           </p>
         </motion.div>
 
@@ -38,27 +38,27 @@ export const PricingTeaser = () => {
             <div className="absolute -top-3 left-1/2 -translate-x-1/2">
               <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary text-primary-foreground text-sm font-medium">
                 <Sparkles className="w-4 h-4" />
-                Tout est inclus
+                Everything included
               </span>
             </div>
-            
+
             <div className="text-center mb-8">
               <h3 className="text-xl font-semibold text-foreground mb-2">
-                Accès Patient Complet
+                Full Patient Access
               </h3>
               <p className="text-muted-foreground">
-                Inclus dans l'abonnement de votre orthophoniste
+                Included in your SLP's subscription
               </p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
               {[
-                "Bibliothèque complète : +60 exercices variés",
-                "Mesure de vitesse en temps réel (SPS)",
-                "Détection des disfluences (euh, du coup...)",
-                "Historique et courbes de progression",
-                "Partage audio avec votre orthophoniste",
-                "Objectifs personnalisés selon votre âge",
+                "Full library: 60+ varied exercises",
+                "Real-time speech rate measurement (SPS)",
+                "Disfluency detection (um, like...)",
+                "History and progress charts",
+                "Audio sharing with your SLP",
+                "Personalized goals based on your age",
               ].map((feature, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -70,12 +70,12 @@ export const PricingTeaser = () => {
             <div className="text-center">
               <Button className="hover:scale-105 transition-transform duration-200" size="lg" asChild>
                 <Link to="/auth?tab=signup">
-                  Créer mon compte patient
+                  Create my patient account
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
               <p className="text-xs text-muted-foreground mt-3">
-                Vous aurez besoin du code Pro de votre orthophoniste
+                You'll need your SLP's Pro Code
               </p>
             </div>
           </motion.div>
@@ -91,18 +91,18 @@ export const PricingTeaser = () => {
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <div className="flex-1 text-center sm:text-left">
                 <h3 className="text-lg font-semibold text-foreground mb-1">
-                  Pas d'orthophoniste ?
+                  No SLP?
                 </h3>
                 <p className="text-sm text-muted-foreground mb-3">
-                  Commencez avec <strong>7 jours d'essai gratuit</strong>, puis un abonnement simple sans engagement.
+                  Start with a <strong>7-day free trial</strong>, then a simple no-commitment subscription.
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  ☕ Une équipe dédiée, des exercices mis à jour et l'hébergement sécurisé de vos données.
+                  A dedicated team, regularly updated exercises, and secure data hosting.
                 </p>
               </div>
               <Button variant="outline" className="border-amber-500/50 hover:bg-amber-500/10" asChild>
                 <Link to="/auth?tab=signup">
-                  Essayer gratuitement
+                  Try for free
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
@@ -123,15 +123,15 @@ export const PricingTeaser = () => {
               </div>
               <div className="flex-1">
                 <h4 className="font-semibold text-foreground mb-1">
-                  Vous êtes orthophoniste ?
+                  Are you an SLP?
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  Essai gratuit de 30 jours. Gérez jusqu'à 5 patients avec un seul abonnement.
+                  Free 30-day trial. Manage up to 5 patients with a single subscription.
                 </p>
               </div>
               <Button variant="outline" asChild>
                 <Link to="/">
-                  Découvrir l'offre Pro
+                  Discover the Pro plan
                 </Link>
               </Button>
             </div>

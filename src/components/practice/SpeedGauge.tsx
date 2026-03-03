@@ -19,19 +19,19 @@ const SpeedGauge = ({ wpm, maxWpm = 250 }: SpeedGaugeProps) => {
     
     if (wpm === 0) {
       color = "hsl(var(--muted-foreground))";
-      label = "En attente...";
+      label = "Waiting...";
       bgColor = "bg-muted";
     } else if (wpm < 150) {
       color = "hsl(var(--speed-calm))";
-      label = "Rythme parfait";
+      label = "Perfect pace";
       bgColor = "bg-speed-calm/20";
     } else if (wpm < 190) {
       color = "hsl(var(--speed-fast))";
-      label = "Un peu rapide";
+      label = "A bit fast";
       bgColor = "bg-speed-fast/20";
     } else {
       color = "hsl(var(--speed-critical))";
-      label = "Ralentissez !";
+      label = "Slow down!";
       bgColor = "bg-speed-critical/20";
     }
     
@@ -120,7 +120,7 @@ const SpeedGauge = ({ wpm, maxWpm = 250 }: SpeedGaugeProps) => {
         >
           {wpm}
         </motion.p>
-        <p className="text-muted-foreground text-sm">mots / minute</p>
+        <p className="text-muted-foreground text-sm">words / minute</p>
       </div>
       
       {/* Status badge */}

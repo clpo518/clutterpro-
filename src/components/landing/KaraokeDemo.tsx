@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Play, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const DEMO_TEXT = "Le bredouillement se caractérise par un débit excessif et une articulation parfois imprécise.";
+const DEMO_TEXT = "Cluttering is characterized by an excessive speech rate and sometimes imprecise articulation.";
 const WORDS = DEMO_TEXT.split(" ");
 const SPEED_MS = 460; // ~4.0 SPS (rythme modéré conseillé)
 
@@ -111,7 +111,7 @@ export const KaraokeDemo = () => {
                 ) : (
                   <>
                     <Play className="w-5 h-5" />
-                    Lancer la démo
+                    Launch demo
                   </>
                 )}
               </Button>

@@ -52,16 +52,16 @@ export function AdminWeeklyDigestEmail(props: AdminWeeklyDigestProps) {
   const newTotal = newTherapists + newPatients
 
   return (
-    <BaseLayout preview={`Admin digest : +${newTotal} inscrits, ${sessionsThisWeek} sessions, $${deepgramCostWeek} Deepgram`}>
-      <Heading style={heading}>🏠 Digest Admin Hebdomadaire</Heading>
+    <BaseLayout preview={`Admin digest: +${newTotal} signups, ${sessionsThisWeek} sessions, $${deepgramCostWeek} Deepgram`}>
+      <Heading style={heading}>🏠 Admin Weekly Digest</Heading>
 
-      <Text style={dateRange}>Semaine du {weekStartDate} au {weekEndDate}</Text>
+      <Text style={dateRange}>Week of {weekStartDate} to {weekEndDate}</Text>
 
       <Text style={paragraph}>
-        Voici le résumé de la semaine pour Parler Moins Vite.
+        Here's the weekly summary for ClutterPro.
       </Text>
 
-      <Text style={sectionTitle}>📥 Nouvelles inscriptions</Text>
+      <Text style={sectionTitle}>📥 New signups</Text>
       <Section style={statsSection}>
         <Row>
           <Column style={statCell}>
@@ -70,7 +70,7 @@ export function AdminWeeklyDigestEmail(props: AdminWeeklyDigestProps) {
           </Column>
           <Column style={statCell}>
             <Text style={statNumber}>{newTherapists}</Text>
-            <Text style={statLabel}>Orthos</Text>
+            <Text style={statLabel}>SLPs</Text>
           </Column>
           <Column style={statCell}>
             <Text style={statNumber}>{newPatients}</Text>
@@ -81,46 +81,46 @@ export function AdminWeeklyDigestEmail(props: AdminWeeklyDigestProps) {
 
       <Hr style={divider} />
 
-      <Text style={sectionTitle}>📊 Activité</Text>
+      <Text style={sectionTitle}>📊 Activity</Text>
       <Section style={statsSection}>
         <Row>
           <Column style={statCell}>
             <Text style={statNumber}>{totalUsers}</Text>
-            <Text style={statLabel}>Inscrits total</Text>
+            <Text style={statLabel}>Total users</Text>
           </Column>
           <Column style={statCell}>
             <Text style={statNumber}>{activeUsers}</Text>
-            <Text style={statLabel}>Actifs (7j)</Text>
+            <Text style={statLabel}>Active (7d)</Text>
           </Column>
           <Column style={statCell}>
             <Text style={statNumber}>{sessionsThisWeek}</Text>
-            <Text style={statLabel}>Sessions sem.</Text>
+            <Text style={statLabel}>Sessions wk</Text>
           </Column>
         </Row>
       </Section>
 
       <Hr style={divider} />
 
-      <Text style={sectionTitle}>💳 Abonnements</Text>
+      <Text style={sectionTitle}>💳 Subscriptions</Text>
       <Section style={statsSection}>
         <Row>
           <Column style={statCell}>
             <Text style={statNumber}>{payingCount}</Text>
-            <Text style={statLabel}>Payants</Text>
+            <Text style={statLabel}>Paying</Text>
           </Column>
           <Column style={statCell}>
             <Text style={statNumber}>{totalTrials}</Text>
-            <Text style={statLabel}>En essai</Text>
+            <Text style={statLabel}>On trial</Text>
           </Column>
           <Column style={statCell}>
             <Text style={statNumber}>{trialsExpiringSoon}</Text>
-            <Text style={statLabel}>Expire &lt;7j</Text>
+            <Text style={statLabel}>Expire &lt;7d</Text>
           </Column>
         </Row>
         <Row>
           <Column style={statCell}>
             <Text style={statNumber}>{canceledCount}</Text>
-            <Text style={statLabel}>Annulés</Text>
+            <Text style={statLabel}>Canceled</Text>
           </Column>
           <Column style={{ ...statCell, backgroundColor: 'transparent' }} />
           <Column style={{ ...statCell, backgroundColor: 'transparent' }} />
@@ -129,16 +129,16 @@ export function AdminWeeklyDigestEmail(props: AdminWeeklyDigestProps) {
 
       <Hr style={divider} />
 
-      <Text style={sectionTitle}>💰 Coûts Deepgram</Text>
+      <Text style={sectionTitle}>💰 Deepgram Costs</Text>
       <Section style={statsSection}>
         <Row>
           <Column style={statCell}>
             <Text style={statNumber}>${deepgramCostWeek}</Text>
-            <Text style={statLabel}>Cette sem.</Text>
+            <Text style={statLabel}>This wk</Text>
           </Column>
           <Column style={statCell}>
             <Text style={statNumber}>${deepgramCostMonth}</Text>
-            <Text style={statLabel}>Ce mois</Text>
+            <Text style={statLabel}>This mo</Text>
           </Column>
           <Column style={statCell}>
             <Text style={statNumber}>${deepgramCostTotal}</Text>
@@ -148,11 +148,11 @@ export function AdminWeeklyDigestEmail(props: AdminWeeklyDigestProps) {
       </Section>
 
       <Button style={button} href={dashboardUrl}>
-        Voir le dashboard complet
+        View full dashboard
       </Button>
 
       <Text style={footNote}>
-        Cet email est envoyé automatiquement chaque dimanche soir.
+        This email is sent automatically every Sunday evening.
       </Text>
     </BaseLayout>
   )

@@ -83,14 +83,14 @@ serve(async (req) => {
       .single();
 
     const patientName = patientProfile?.full_name || patientAuth.user.email.split("@")[0];
-    const therapistName = therapistProfile?.full_name || "Votre orthophoniste";
+    const therapistName = therapistProfile?.full_name || "Your SLP";
 
     const emailResult = await sendEmail("prescription_assigned", patientAuth.user.email, {
       patientName,
       therapistName,
       exerciseTitle,
       message: message || undefined,
-      exerciseUrl: "https://www.parlermoinsvite.fr/dashboard",
+      exerciseUrl: "https://www.clutterpro.com/dashboard",
     });
 
     if (!emailResult.success) {

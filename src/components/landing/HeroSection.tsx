@@ -40,10 +40,10 @@ export const HeroSection = () => {
           >
             <span className="badge-clinical inline-flex">
               <Activity className="w-3.5 h-3.5" />
-              Bredouillement · Tachylalie · Bégaiement
+              Cluttering · Tachylalia · Stuttering
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary text-muted-foreground text-xs font-medium">
-              Recommandé par les orthophonistes
+              Recommended by SLPs
             </span>
           </motion.div>
           
@@ -54,8 +54,8 @@ export const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Vous parlez trop vite ?{" "}
-            <span className="gradient-text">Reprenez le contrôle.</span>
+            Speak too fast?{" "}
+            <span className="gradient-text">Take back control.</span>
           </motion.h1>
           
           {/* Subheadline */}
@@ -65,8 +65,8 @@ export const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            L'application d'entraînement pour les troubles de la fluence : bredouillement, tachylalie et bégaiement. 
-            Mesurez votre débit, visualisez vos progrès et entraînez-vous 5 min/jour.
+            The training app for fluency disorders: cluttering, tachylalia, and stuttering.
+            Measure your speech rate, visualize your progress, and practice 5 min/day.
           </motion.p>
           
           {/* CTAs */}
@@ -78,14 +78,14 @@ export const HeroSection = () => {
           >
             <Button asChild size="lg" className="text-base px-8 h-14 shadow-md hover:shadow-lg">
               <Link to="/diagnostic">
-                Tester ma vitesse
+                Test my speed
                 <ArrowRight className="w-5 h-5 ml-1" />
               </Link>
             </Button>
             <Button variant="outline" size="lg" className="text-base px-8 h-14" asChild>
               <a href="#exercises">
                 <Play className="w-4 h-4 mr-2" />
-                Voir la démo
+                See the demo
               </a>
             </Button>
           </motion.div>
@@ -102,7 +102,7 @@ export const HeroSection = () => {
             </div>
             
             <p className="text-center text-sm text-muted-foreground mt-5">
-              👆 Voici exactement ce que vous utiliserez. Le surligneur vous guide mot à mot.
+              👆 This is exactly what you will use. The highlighter guides you word by word.
             </p>
           </motion.div>
         </div>

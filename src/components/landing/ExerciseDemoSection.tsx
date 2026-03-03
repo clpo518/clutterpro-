@@ -4,15 +4,15 @@ import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 const rebusItems = [
-  { emoji: "🐮", label: "vache", pauseAfter: true },
-  { emoji: "🍽️", label: "mange", pauseAfter: true },
-  { emoji: "🍦", label: "glace", pauseAfter: false },
+  { emoji: "🐮", label: "cow", pauseAfter: true },
+  { emoji: "🍽️", label: "eats", pauseAfter: true },
+  { emoji: "🍦", label: "ice cream", pauseAfter: false },
 ];
 
 export const ExerciseDemoSection = () => {
   const [activeWord, setActiveWord] = useState(0);
   const [activeRebus, setActiveRebus] = useState(-1);
-  const words = ["Je", "prends", "le", "temps", "de", "parler."];
+  const words = ["I", "take", "the", "time", "to", "speak."];
 
   const animateWords = () => {
     setActiveWord(0);
@@ -41,10 +41,10 @@ export const ExerciseDemoSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Des outils concrets pour ralentir
+            Practical tools to slow down
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Aperçu de 3 de nos 12 modes d'exercice. Chacun cible un aspect différent du débit de parole.
+            A preview of 3 of our 12 exercise modes. Each targets a different aspect of speech rate.
           </p>
         </motion.div>
 
@@ -64,11 +64,11 @@ export const ExerciseDemoSection = () => {
                 </TabsTrigger>
                 <TabsTrigger value="lecture" className="gap-1 md:gap-2 text-[11px] md:text-sm px-1.5 md:px-3">
                   <Play className="w-3 h-3 md:w-4 md:h-4 shrink-0" />
-                  <span className="truncate">Lecture</span>
+                  <span className="truncate">Reading</span>
                 </TabsTrigger>
                 <TabsTrigger value="rebus" className="gap-1 md:gap-2 text-[11px] md:text-sm px-1.5 md:px-3">
                   <span className="shrink-0">🧒</span>
-                  <span className="truncate">Enfants</span>
+                  <span className="truncate">Children</span>
                 </TabsTrigger>
               </TabsList>
 
@@ -76,10 +76,10 @@ export const ExerciseDemoSection = () => {
               <TabsContent value="dialogue">
                 <div className="text-center mb-8">
                   <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                    💬 Mode Dialogue — En situation réelle
+                    💬 Dialogue Mode — In real-life situations
                   </span>
                   <p className="text-muted-foreground">
-                    Posez le téléphone sur la table et discutez. L'indicateur vous guide en temps réel.
+                    Place your phone on the table and talk. The indicator guides you in real time.
                   </p>
                 </div>
 
@@ -87,11 +87,11 @@ export const ExerciseDemoSection = () => {
                   {/* Simulated big gauge */}
                   <div className="w-40 h-40 rounded-full border-4 border-emerald-500 bg-emerald-100 dark:bg-emerald-900/30 flex flex-col items-center justify-center">
                     <span className="text-5xl">✅</span>
-                    <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400 mt-1">Parfait</span>
+                    <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400 mt-1">Perfect</span>
                     <span className="text-xs text-muted-foreground">4.0 syll/s</span>
                   </div>
                   <p className="text-sm text-muted-foreground text-center max-w-sm">
-                    Un seul gros indicateur visible de loin — pas de chiffres stressants, juste un emoji qui change en temps réel.
+                    One large indicator visible from a distance — no stressful numbers, just an emoji that changes in real time.
                   </p>
                 </div>
 
@@ -100,24 +100,24 @@ export const ExerciseDemoSection = () => {
                     href="/auth"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 hover:scale-105 transition-all duration-200 shadow-lg shadow-primary/25"
                   >
-                    💬 Essayer le Mode Dialogue
+                    💬 Try Dialogue Mode
                   </a>
                 </div>
 
                 <p className="text-center text-sm text-muted-foreground mt-6">
-                  Sessions de 30 sec à 5 min. Transférez vos acquis en conversation réelle.
+                  Sessions from 30 sec to 5 min. Transfer your progress to real conversations.
                 </p>
               </TabsContent>
 
-              {/* Lecture tab */}
+              {/* Reading tab */}
               <TabsContent value="lecture">
                 <div className="text-center mb-8">
                   <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
                     <Play className="w-4 h-4" />
-                    Exercice : Le Syllabeur
+                    Exercise: The Syllable Pacer
                   </span>
                   <p className="text-muted-foreground">
-                    Lisez chaque mot lentement, en marquant une pause entre chacun.
+                    Read each word slowly, pausing between each one.
                   </p>
                 </div>
 
@@ -151,12 +151,12 @@ export const ExerciseDemoSection = () => {
                     className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 hover:scale-105 transition-all duration-200 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30"
                   >
                     <Play className="w-5 h-5" />
-                    Lancer la démo
+                    Launch demo
                   </button>
                 </div>
 
                 <p className="text-center text-sm text-muted-foreground mt-6">
-                  Nos exercices visuels vous guident pour insérer les bonnes pauses respiratoires.
+                  Our visual exercises guide you to insert the right breathing pauses.
                 </p>
               </TabsContent>
 
@@ -164,10 +164,10 @@ export const ExerciseDemoSection = () => {
               <TabsContent value="rebus">
                 <div className="text-center mb-8">
                   <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 text-orange-600 dark:text-orange-400 text-sm font-medium mb-4">
-                    🖼️ Mode Rébus — Enfant / Non-lecteur
+                    🖼️ Rebus Mode — Child / Non-reader
                   </span>
                   <p className="text-muted-foreground">
-                    L'enfant regarde les images et répète à voix haute, en soufflant entre chaque image.
+                    The child looks at the images and repeats them aloud, breathing between each image.
                   </p>
                 </div>
 
@@ -217,12 +217,12 @@ export const ExerciseDemoSection = () => {
                     className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-xl font-medium hover:bg-orange-600 hover:scale-105 transition-all duration-200 shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/30"
                   >
                     <Play className="w-5 h-5" />
-                    Lancer la démo
+                    Launch demo
                   </button>
                 </div>
 
                 <p className="text-center text-sm text-muted-foreground mt-6">
-                  Pas besoin de savoir lire : les emojis guident la parole, les barres orange marquent les pauses respiratoires.
+                  No reading required: emojis guide speech, orange bars mark breathing pauses.
                 </p>
               </TabsContent>
             </Tabs>

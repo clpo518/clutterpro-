@@ -58,8 +58,8 @@ const Dashboard = () => {
   // Show payment success toast
   useEffect(() => {
     if (searchParams.get("payment") === "success") {
-      toast.success("Bienvenue dans l'aventure Premium ! 🎉", {
-        description: "Merci pour votre confiance. Tous les exercices sont maintenant débloqués.",
+      toast.success("Welcome to Premium!", {
+        description: "Thank you for your trust. All exercises are now unlocked.",
         icon: <CheckCircle className="w-5 h-5 text-green-500" />,
         duration: 8000,
       });
@@ -86,7 +86,7 @@ const Dashboard = () => {
           if (profileData.birth_year === null && !profileData.is_therapist) {
             setShowCalibrationModal(true);
           }
-          
+
           // Check for patient welcome tour (only for non-therapists, only if never completed, and only for fresh signups)
           const accountAgeMs = Date.now() - new Date(profileData.created_at || 0).getTime();
           const isNewAccount = accountAgeMs < 10 * 60 * 1000; // less than 10 minutes old
@@ -95,6 +95,17 @@ const Dashboard = () => {
               setShowPatientWelcome(true);
             }, profileData.birth_year === null ? 500 : 100);
           }
+        } else {
+          // Demo mode fallback: build profile from user metadata (no DB required)
+          const meta = user.user_metadata || {};
+          setProfile({
+            full_name: (meta.full_name as string) || null,
+            target_wpm: 180,
+            is_therapist: !!(meta.is_therapist),
+            is_premium: true,
+            linked_therapist_id: null,
+            birth_year: 2000,
+          });
         }
 
         // Fetch stats + recent sessions in parallel
@@ -130,7 +141,7 @@ const Dashboard = () => {
         // sessionsToday counting removed - Content lock freemium model
       } catch (error) {
         console.error("Error fetching data:", error);
-        toast.error("Erreur lors du chargement des données");
+        toast.error("Error loading data");
       } finally {
         setLoading(false);
       }
@@ -170,7 +181,7 @@ const Dashboard = () => {
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("fr-FR", {
+    return new Date(dateString).toLocaleDateString("en-US", {
       day: "numeric",
       month: "short",
       hour: "2-digit",
@@ -178,7 +189,7 @@ const Dashboard = () => {
     });
   };
 
-  const firstName = profile?.full_name?.split(" ")[0] || user?.email?.split("@")[0] || "Utilisateur";
+  const firstName = profile?.full_name?.split(" ")[0] || user?.email?.split("@")[0] || "User";
   
   // Use centralized limit check for B2B access logic
   const { isPremium, linkedTherapistValid, hasActiveTrial, trialDaysRemaining, isSolo, loading: limitLoading } = useLimitCheck();
@@ -241,7 +252,7 @@ const Dashboard = () => {
             <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
               <Activity className="w-5 h-5 text-primary-foreground" />
             </div>
-            <span className="font-semibold text-lg hidden sm:inline">ParlerMoinsVite</span>
+            <span className="font-semibold text-lg hidden sm:inline">ClutterPro</span>
           </Link>
           <div className="flex items-center gap-2">
             {/* Gamification: Streak Badge */}
@@ -282,10 +293,10 @@ const Dashboard = () => {
           {/* Welcome */}
           <div className="mb-8">
             <h1 className="text-2xl md:text-3xl font-semibold mb-1.5 tracking-tight">
-              Bonjour {firstName} 👋
+              Hello {firstName} 👋
             </h1>
             <p className="text-muted-foreground">
-              {isSolo ? "Mode Autonomie · " : ""}Votre espace d'entraînement, à votre rythme.
+              {isSolo ? "Solo Mode · " : ""}Your training space, at your own pace.
             </p>
           </div>
 
@@ -303,30 +314,30 @@ const Dashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             <Card>
               <CardHeader className="pb-2">
-                <CardDescription>Séances réalisées</CardDescription>
+                <CardDescription>Sessions completed</CardDescription>
                 <CardTitle className="text-3xl">{totalSessions}</CardTitle>
-                <p className="text-xs text-muted-foreground mt-1">Depuis le début</p>
+                <p className="text-xs text-muted-foreground mt-1">All time</p>
               </CardHeader>
             </Card>
             
             <Card>
               <CardHeader className="pb-2">
-                <CardDescription>Temps d'entraînement</CardDescription>
+                <CardDescription>Training time</CardDescription>
                 <CardTitle className="text-3xl">{totalMinutes} min</CardTitle>
-                <p className="text-xs text-muted-foreground mt-1">Depuis le début</p>
+                <p className="text-xs text-muted-foreground mt-1">All time</p>
               </CardHeader>
             </Card>
             
             <Card>
               <CardHeader className="pb-2">
                 <CardDescription className="flex items-center gap-2">
-                  Vitesse moyenne
+                  Average rate
                   {trend === "improving" && <TrendingDown className="w-4 h-4 text-green-500" />}
                   {trend === "declining" && <TrendingUp className="w-4 h-4 text-red-500" />}
                   {trend === "neutral" && <Minus className="w-4 h-4 text-muted-foreground" />}
                 </CardDescription>
                 <CardTitle className="text-3xl">{avgSps} <span className="text-lg font-normal text-muted-foreground">syll/sec</span></CardTitle>
-                <p className="text-xs text-muted-foreground mt-1">Depuis le début</p>
+                <p className="text-xs text-muted-foreground mt-1">All time</p>
               </CardHeader>
             </Card>
           </div>
@@ -349,10 +360,10 @@ const Dashboard = () => {
               <CardContent className="py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
                 <div>
                   <h2 className="text-xl font-semibold mb-1">
-                    Prêt pour une séance ?
+                    Ready for a session?
                   </h2>
                   <p className="opacity-80 text-sm">
-                    Lecture, dialogue, articulation… à vous de choisir
+                    Reading, dialogue, articulation... your choice
                   </p>
                 </div>
                 <Button 
@@ -362,7 +373,7 @@ const Dashboard = () => {
                   className="gap-2 shrink-0"
                 >
                   <BookOpen className="w-5 h-5" />
-                  Bibliothèque
+                  Library
                 </Button>
               </CardContent>
             </Card>
@@ -393,19 +404,19 @@ const Dashboard = () => {
                   <Sparkles className="w-8 h-8 text-primary" />
                 </div>
                 <h2 className="text-2xl font-semibold mb-3">
-                  Bienvenue dans votre espace ! 🎉
+                  Welcome to your space!
                 </h2>
                 <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-                  Lancez votre première séance pour découvrir votre rythme de parole. C'est simple et rapide.
+                  Start your first session to discover your speech rate. It's simple and quick.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <Button onClick={() => navigate("/library")} size="lg" className="gap-2">
                     <BookOpen className="w-5 h-5" />
-                    Choisir un exercice
+                    Choose an exercise
                   </Button>
                   <Button onClick={() => navigate("/practice")} size="lg" variant="outline" className="gap-2">
                     <Play className="w-5 h-5" />
-                    Séance rapide
+                    Quick session
                   </Button>
                 </div>
               </CardContent>
@@ -413,17 +424,17 @@ const Dashboard = () => {
           ) : (
             <Card>
               <CardHeader>
-                <CardTitle>Dernières séances</CardTitle>
+                <CardTitle>Recent sessions</CardTitle>
                 <CardDescription>
-                  {sessions.length > 0 
-                    ? "Vos 5 dernières sessions d'entraînement"
-                    : "Aucune session pour le moment"}
+                  {sessions.length > 0
+                    ? "Your last 5 training sessions"
+                    : "No sessions yet"}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {loading ? (
                   <div className="flex justify-center py-8">
-                    <div className="animate-pulse text-muted-foreground">Chargement...</div>
+                    <div className="animate-pulse text-muted-foreground">Loading...</div>
                   </div>
                 ) : (
                   <div className="space-y-2">
@@ -448,7 +459,7 @@ const Dashboard = () => {
                                 <ExerciseTypeBadge exerciseType={session.exercise_type} />
                               </div>
                               <p className="text-sm text-muted-foreground">
-                                {formatDuration(session.duration_seconds)} • Moy. {wpmToSps(session.avg_wpm)} syll/sec
+                                {formatDuration(session.duration_seconds)} • Avg. {wpmToSps(session.avg_wpm)} syll/sec
                               </p>
                             </div>
                           </div>

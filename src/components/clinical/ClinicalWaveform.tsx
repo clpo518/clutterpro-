@@ -159,10 +159,10 @@ const ClinicalWaveform = ({ audioUrl }: ClinicalWaveformProps) => {
           <div>
             <CardTitle className="text-slate-800 flex items-center gap-2">
               <div className={`w-2 h-2 rounded-full ${isPlaying ? 'bg-emerald-500 animate-pulse' : 'bg-slate-300'}`} />
-              Analyse Audio
+              Audio Analysis
             </CardTitle>
             <CardDescription className="text-slate-500">
-              Visualisez les pauses et l'intensité vocale
+              Visualize pauses and vocal intensity
             </CardDescription>
           </div>
           <div className="flex items-center gap-2">
@@ -197,9 +197,9 @@ const ClinicalWaveform = ({ audioUrl }: ClinicalWaveformProps) => {
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-50 z-10 rounded-lg gap-3">
               <AlertTriangle className="w-8 h-8 text-amber-500" />
               <p className="text-sm text-slate-600 font-medium text-center">
-                L'audio n'a pas pu être chargé.
+                Audio could not be loaded.
                 <br />
-                <span className="text-slate-400 font-normal">Vérifiez votre connexion et réessayez.</span>
+                <span className="text-slate-400 font-normal">Check your connection and try again.</span>
               </p>
               <Button
                 variant="outline"
@@ -214,14 +214,14 @@ const ClinicalWaveform = ({ audioUrl }: ClinicalWaveformProps) => {
                 className="gap-2"
               >
                 <RotateCcw className="w-4 h-4" />
-                Réessayer
+                Retry
               </Button>
             </div>
           ) : !isReady && (
             <div className="absolute inset-0 flex items-center justify-center bg-slate-50 z-10 rounded-lg">
               <div className="flex items-center gap-3 text-slate-500">
                 <div className="w-5 h-5 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
-                <span className="text-sm">Chargement de l'audio...</span>
+                <span className="text-sm">Loading audio...</span>
               </div>
             </div>
           )}
@@ -301,14 +301,14 @@ const ClinicalWaveform = ({ audioUrl }: ClinicalWaveformProps) => {
         <div className="px-4 pb-4 flex items-center gap-6 text-xs text-slate-500">
           <div className="flex items-center gap-2">
             <div className="w-4 h-3 rounded-sm bg-emerald-500" />
-            <span>Déjà lu</span>
+            <span>Already played</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-3 rounded-sm bg-emerald-200" />
-            <span>À lire</span>
+            <span>Remaining</span>
           </div>
           <div className="flex items-center gap-2 text-slate-400">
-            <span className="italic">Pics = intensité vocale</span>
+            <span className="italic">Peaks = vocal intensity</span>
           </div>
         </div>
       </CardContent>

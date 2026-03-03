@@ -4,24 +4,24 @@ import { Activity, Timer, Mic, Sparkles, Dna } from "lucide-react";
 const pillars = [
   {
     icon: Activity,
-    title: "Articulation Claire",
-    description: "Exercices pour prononcer chaque syllabe distinctement et gagner en clarté.",
+    title: "Clear Articulation",
+    description: "Exercises to pronounce each syllable distinctly and improve clarity.",
     color: "from-cyan-500/20 to-teal-500/10",
     iconColor: "text-cyan-600 dark:text-cyan-400",
     bgColor: "bg-cyan-100 dark:bg-cyan-900/30"
   },
   {
     icon: Timer,
-    title: "Rythme & Pauses",
-    description: "Apprenez à insérer des pauses naturelles entre vos phrases pour un débit maîtrisé.",
+    title: "Rhythm & Pausing",
+    description: "Learn to insert natural pauses between your phrases for a controlled speech rate.",
     color: "from-purple-500/20 to-violet-500/10",
     iconColor: "text-purple-600 dark:text-purple-400",
     bgColor: "bg-purple-100 dark:bg-purple-900/30"
   },
   {
     icon: Mic,
-    title: "Mode Dialogue",
-    description: "Transférez vos acquis en situation réelle : discutez avec votre entourage ou votre orthophoniste, guidé par un indicateur visuel en temps réel.",
+    title: "Dialogue Mode",
+    description: "Transfer your skills to real-life situations: talk with friends, family, or your SLP, guided by a real-time visual indicator.",
     color: "from-primary/20 to-accent/10",
     iconColor: "text-primary",
     bgColor: "bg-primary/10"
@@ -41,13 +41,13 @@ export const MethodSection = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             <Sparkles className="w-4 h-4" />
-            Méthode Scientifique
+            Evidence-Based Method
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Les 3 Piliers Cliniques
+            The 3 Clinical Pillars
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Une approche complète pour la fluence, adaptée au bredouillement, à la tachylalie et au bégaiement.
+            A comprehensive approach to fluency, tailored for cluttering, tachylalia, and fluency disorders.
           </p>
         </motion.div>
 
@@ -88,12 +88,12 @@ export const MethodSection = () => {
             </div>
             <div className="text-center md:text-left">
               <h3 className="text-xl font-bold text-foreground mb-2">
-                Un objectif adapté à VOUS
+                A goal tailored to YOU
               </h3>
               <p className="text-muted-foreground max-w-2xl">
-                Un enfant, un ado et un adulte ne parlent pas à la même vitesse — c'est normal ! 
-                L'application s'adapte automatiquement à votre âge pour vous donner un objectif 
-                réaliste et personnalisé. Fini les "faux positifs" frustrants.
+                A child, a teenager, and an adult don't speak at the same rate — and that's normal!
+                The app automatically adjusts to your age to give you a
+                realistic, personalized target. No more frustrating false positives.
               </p>
             </div>
           </div>
@@ -108,7 +108,7 @@ export const MethodSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <p className="text-sm text-muted-foreground">
-            ✨ Une méthode éprouvée, recommandée par des orthophonistes spécialisés.
+            A proven method, recommended by specialized speech-language pathologists.
           </p>
         </motion.div>
       </div>

@@ -13,31 +13,31 @@ interface SubscriptionExpiringEmailProps {
 }
 
 export function SubscriptionExpiringEmail(props: SubscriptionExpiringEmailProps) {
-  const { userName = 'Cher utilisateur', expirationDate, renewUrl } = props
+  const { userName = 'Dear user', expirationDate, renewUrl } = props
   return (
-    <BaseLayout preview={`Votre abonnement expire le ${expirationDate}`}>
-      <Heading style={heading}>⏰ Votre abonnement expire bientôt</Heading>
+    <BaseLayout preview={`Your subscription expires on ${expirationDate}`}>
+      <Heading style={heading}>⏰ Your subscription expires soon</Heading>
 
-      <Text style={paragraph}>Bonjour {userName},</Text>
+      <Text style={paragraph}>Hi {userName},</Text>
 
       <Text style={paragraph}>
-        Votre abonnement Parler Moins Vite arrive à expiration le {expirationDate}.
+        Your ClutterPro subscription expires on {expirationDate}.
       </Text>
 
       <Text style={paragraph}>
-        Pour continuer à bénéficier de toutes les fonctionnalités premium et maintenir votre progression, pensez à renouveler votre abonnement.
+        To continue enjoying all premium features and maintain your progress, please renew your subscription.
       </Text>
 
       <Text style={statsBox}>
-        📊 Votre progression compte ! Ne perdez pas votre série d'entraînement et continuez à améliorer votre débit de parole.
+        📊 Your progress matters! Don't lose your training streak and keep improving your speech rate.
       </Text>
 
       <Button style={button} href={renewUrl}>
-        Renouveler mon abonnement
+        Renew my subscription
       </Button>
 
       <Text style={smallText}>
-        Si votre abonnement est configuré en renouvellement automatique, vous pouvez ignorer cet email.
+        If your subscription is set to auto-renew, you can ignore this email.
       </Text>
     </BaseLayout>
   )

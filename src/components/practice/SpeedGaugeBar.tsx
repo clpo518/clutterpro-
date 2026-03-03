@@ -35,32 +35,32 @@ const SpeedGaugeBar = ({
     if (sps === 0) {
       color = "hsl(var(--muted-foreground))";
       bgColor = "bg-muted";
-      label = "En attente";
+      label = "Waiting";
       emoji = "⏳";
     } else if (ratio < 0.5) {
       color = "hsl(210 80% 60%)"; // Blue
       bgColor = "bg-blue-500";
-      label = "Très lent";
+      label = "Very slow";
       emoji = "🐢";
     } else if (ratio < 0.8) {
       color = "hsl(142 76% 45%)"; // Green
       bgColor = "bg-green-500";
-      label = "Bien";
+      label = "Good";
       emoji = "👍";
     } else if (ratio <= 1.2) {
       color = "hsl(142 76% 45%)"; // Green
       bgColor = "bg-emerald-500";
-      label = "Parfait";
+      label = "Perfect";
       emoji = "✅";
     } else if (ratio <= 1.5) {
       color = "hsl(38 92% 50%)"; // Orange
       bgColor = "bg-orange-500";
-      label = "Rapide";
+      label = "Fast";
       emoji = "⚡";
     } else {
       color = "hsl(0 84% 60%)"; // Red
       bgColor = "bg-red-500";
-      label = "Trop vite";
+      label = "Too fast";
       emoji = "🔴";
     }
     
@@ -132,9 +132,9 @@ const SpeedGaugeBar = ({
       
       {/* Scale labels */}
       <div className="flex justify-between text-[10px] text-muted-foreground px-1">
-        <span>Lent</span>
+        <span>Slow</span>
         <span>Normal</span>
-        <span>Rapide</span>
+        <span>Fast</span>
       </div>
     </div>
   );

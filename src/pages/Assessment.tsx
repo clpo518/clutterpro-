@@ -25,73 +25,73 @@ interface Question {
 const questions: Question[] = [
   {
     id: 1,
-    text: "Avez-vous du mal à planifier ce que vous allez dire ?",
-    subtitle: "Vous arrive-t-il souvent de commencer une phrase sans savoir comment vous allez la finir, ou de perdre le fil de votre pensée ?",
-    category: "Compétences de planification"
+    text: "Do you have trouble planning what you're going to say?",
+    subtitle: "Do you often start a sentence without knowing how you'll finish it, or lose the thread of your thought mid-speech?",
+    category: "Planning skills"
   },
   {
     id: 2,
-    text: "Parlez-vous sans effort apparent, même quand vous butez ?",
-    subtitle: "Contrairement au bégaiement classique, ressentez-vous peu de tension physique (bouche, cou) quand vous parlez ?",
-    category: "Peu d'effort excessif"
+    text: "Do you speak without apparent effort, even when you stumble?",
+    subtitle: "Unlike classic stuttering, do you feel little physical tension (mouth, neck) when speaking?",
+    category: "Low physical effort"
   },
   {
     id: 3,
-    text: "Votre débit est-il irrégulier ?",
-    subtitle: "Avez-vous l'impression de parler par « à-coups » ou par « salves » (accélérations soudaines) ?",
-    category: "Débit irrégulier"
+    text: "Is your speech rate irregular?",
+    subtitle: "Do you feel like you speak in \"bursts\" or sudden rushes of acceleration?",
+    category: "Irregular rate"
   },
   {
     id: 4,
-    text: "Avez-vous tendance à « manger » la fin des mots ?",
-    subtitle: "Exemple : dire « l'ordi » pour « l'ordinateur » ou fusionner plusieurs syllabes ensemble.",
-    category: "Télescopages"
+    text: "Do you tend to clip the ends of words?",
+    subtitle: "For example, saying \"gonna\" for \"going to\" or collapsing multiple syllables together.",
+    category: "Word telescoping"
   },
   {
     id: 5,
-    text: "Parlez-vous trop vite ?",
-    subtitle: "Est-ce la remarque que votre entourage vous fait le plus souvent (« Ralentis ! ») ?",
-    category: "Tachylalie"
+    text: "Do you speak too fast?",
+    subtitle: "Is \"slow down!\" the most common feedback you get from people around you?",
+    category: "Fast speech rate"
   },
   {
     id: 6,
-    text: "Votre voix baisse-t-elle en fin de phrase ?",
-    subtitle: "Finissez-vous souvent vos phrases en marmonnant ou en manquant de souffle, rendant la fin inaudible ?",
-    category: "Voix inintelligible"
+    text: "Does your voice drop off at the end of sentences?",
+    subtitle: "Do you often mumble or run out of breath at the end of phrases, making the ending inaudible?",
+    category: "Unintelligible speech"
   },
   {
     id: 7,
-    text: "Manquez-vous de pauses respiratoires ?",
-    subtitle: "Avez-vous tendance à tout dire d'un seul trait, sans laisser de silences pour la ponctuation ?",
-    category: "Manque de pauses"
+    text: "Do you lack breathing pauses?",
+    subtitle: "Do you tend to say everything in one go, without leaving silences for punctuation?",
+    category: "Lack of pauses"
   },
   {
     id: 8,
-    text: "Répétez-vous souvent des bouts de phrases ?",
-    subtitle: "Exemple : « Je vais... je vais aller au cinéma » (pour gagner du temps pendant que vous réfléchissez).",
-    category: "Répétition de segments"
+    text: "Do you often repeat parts of phrases?",
+    subtitle: "For example: \"I'm gonna... I'm gonna go to the movies\" (buying time while you think).",
+    category: "Phrase repetitions"
   },
   {
     id: 9,
-    text: "Avez-vous aussi des blocages ?",
-    subtitle: "Vous arrive-t-il d'être totalement bloqué sur un son (b-b-bonjour) avec une sensation de lutte ?",
-    category: "Coexistence bégaiement"
+    text: "Do you also experience blocks?",
+    subtitle: "Do you ever get completely stuck on a sound (l-l-like this) with a sense of struggle?",
+    category: "Co-occurring stuttering"
   },
   {
     id: 10,
-    text: "Butez-vous sur les mots longs ?",
-    subtitle: "Avez-vous du mal à prononcer rapidement des mots complexes (ex: « Anticonstitutionnellement », « Spectaculaire ») ?",
-    category: "Coordination motrice"
+    text: "Do you struggle with long words?",
+    subtitle: "Do you have difficulty pronouncing complex words quickly (e.g. \"uncharacteristically\", \"enthusiastically\")?",
+    category: "Motor coordination"
   }
 ];
 
 const scaleLabels = [
-  { value: 0, label: "Jamais" },
-  { value: 1, label: "Rarement" },
-  { value: 2, label: "Parfois" },
-  { value: 3, label: "Souvent" },
-  { value: 4, label: "Très souvent" },
-  { value: 5, label: "Toujours" }
+  { value: 0, label: "Never" },
+  { value: 1, label: "Rarely" },
+  { value: 2, label: "Sometimes" },
+  { value: 3, label: "Often" },
+  { value: 4, label: "Very often" },
+  { value: 5, label: "Always" }
 ];
 
 const Assessment = () => {
@@ -133,11 +133,11 @@ const Assessment = () => {
           <div className="container mx-auto px-4 py-4 flex items-center justify-between">
             <Link to="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
-              <span>Retour</span>
+              <span>Back</span>
             </Link>
             <div className="flex items-center gap-2">
               <Stethoscope className="w-5 h-5 text-primary" />
-              <span className="font-display font-bold">Résultats</span>
+              <span className="font-display font-bold">Results</span>
             </div>
             <div className="w-20" />
           </div>
@@ -162,7 +162,7 @@ const Assessment = () => {
                 </div>
                 
                 <h2 className={`text-2xl font-bold text-center mb-2 ${isHighRisk ? 'text-orange-700 dark:text-orange-400' : 'text-green-700 dark:text-green-400'}`}>
-                  {isHighRisk ? "Risque de Bredouillement Élevé" : "Débit Rapide Simple"}
+                  {isHighRisk ? "High Cluttering Risk" : "Fast Speech Rate"}
                 </h2>
                 
                 <div className="text-center mb-4">
@@ -174,7 +174,7 @@ const Assessment = () => {
               <CardContent className="p-6">
                 <div className="mb-6 p-4 rounded-lg bg-muted/50">
                   <p className="text-sm text-muted-foreground mb-2">
-                    <strong>Seuil clinique :</strong> Score &gt; 24 = Signes caractéristiques du bredouillement
+                    <strong>Clinical threshold:</strong> Score &gt; 24 = Signs characteristic of cluttering
                   </p>
                   <div className="relative h-3 bg-muted rounded-full overflow-hidden">
                     <div 
@@ -192,7 +192,7 @@ const Assessment = () => {
                   </div>
                   <div className="flex justify-between text-xs mt-1 text-muted-foreground">
                     <span>0</span>
-                    <span>24 (seuil)</span>
+                    <span>24 (threshold)</span>
                     <span>50</span>
                   </div>
                 </div>
@@ -200,15 +200,15 @@ const Assessment = () => {
                 <p className="text-center text-muted-foreground mb-6">
                   {isHighRisk ? (
                     <>
-                      Votre score indique des <strong>signes caractéristiques du bredouillement</strong>. 
-                      Il est conseillé de consulter un orthophoniste. 
-                      Notre application peut vous aider à <strong>ralentir dès maintenant</strong>.
+                      Your score indicates <strong>signs characteristic of cluttering</strong>.
+                      It is recommended to consult an SLP.
+                      Our app can help you <strong>start slowing down right now</strong>.
                     </>
                   ) : (
                     <>
-                      Vous ne semblez pas avoir de bredouillement pathologique, 
-                      mais un entraînement vous aidera à <strong>gagner en charisme</strong> et 
-                      en clarté dans vos présentations.
+                      You don't appear to have pathological cluttering,
+                      but training will help you <strong>gain confidence</strong> and
+                      clarity in your presentations.
                     </>
                   )}
                 </p>
@@ -216,7 +216,7 @@ const Assessment = () => {
                 <div className="flex items-center justify-center gap-2 mb-6 p-3 rounded-lg bg-purple-100 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800">
                   <Stethoscope className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                   <span className="text-sm text-purple-800 dark:text-purple-200">
-                    Ce test est basé sur l'Inventaire Prédictif du Bredouillement validé cliniquement.
+                    This test is based on the clinically validated Predictive Cluttering Inventory.
                   </span>
                 </div>
 
@@ -230,13 +230,13 @@ const Assessment = () => {
                     onClick={() => navigate("/auth")}
                   >
                     <Sparkles className="w-5 h-5 mr-2" />
-                    Commencer mon programme d'entraînement
+                    Start my training program
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </motion.div>
 
                 <p className="text-center text-xs text-muted-foreground mt-4">
-                  Gratuit • 5 minutes par jour • Résultats en 2 semaines
+                  Free • 5 minutes a day • Results in 2 weeks
                 </p>
               </CardContent>
             </Card>
@@ -252,11 +252,11 @@ const Assessment = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="w-5 h-5" />
-            <span>Retour</span>
+            <span>Back</span>
           </Link>
           <div className="flex items-center gap-2">
             <Brain className="w-5 h-5 text-primary" />
-            <span className="font-display font-bold">Auto-diagnostic</span>
+            <span className="font-display font-bold">Self-Assessment</span>
           </div>
           <div className="text-sm text-muted-foreground">
             {currentQuestionIndex + 1}/{questions.length}
@@ -269,7 +269,7 @@ const Assessment = () => {
         <div className="mb-8">
           <Progress value={progress} className="h-2" />
           <p className="text-sm text-muted-foreground mt-2 text-center">
-            Question {currentQuestionIndex + 1} sur {questions.length}
+            Question {currentQuestionIndex + 1} of {questions.length}
           </p>
         </div>
 
@@ -324,8 +324,8 @@ const Assessment = () => {
 
                 {/* Mobile labels */}
                 <div className="flex justify-between mt-2 sm:hidden text-xs text-muted-foreground">
-                  <span>Jamais</span>
-                  <span>Toujours</span>
+                  <span>Never</span>
+                  <span>Always</span>
                 </div>
               </CardContent>
             </Card>
@@ -341,7 +341,7 @@ const Assessment = () => {
             className="gap-2"
           >
             <ArrowLeft className="w-4 h-4" />
-            Précédent
+            Previous
           </Button>
 
           <Button
@@ -351,12 +351,12 @@ const Assessment = () => {
           >
             {currentQuestionIndex === questions.length - 1 ? (
               <>
-                Voir mes résultats
+                See my results
                 <Activity className="w-4 h-4" />
               </>
             ) : (
               <>
-                Suivant
+                Next
                 <ArrowRight className="w-4 h-4" />
               </>
             )}
@@ -367,8 +367,8 @@ const Assessment = () => {
         <div className="mt-8 p-4 rounded-lg bg-muted/50 text-center">
           <p className="text-sm text-muted-foreground">
             <Stethoscope className="w-4 h-4 inline mr-1" />
-            Ce test est basé sur l'<strong>Inventaire Prédictif du Bredouillement</strong>, 
-            un outil de dépistage validé par la recherche en orthophonie.
+            This test is based on the <strong>Predictive Cluttering Inventory</strong>,
+            a screening tool validated by speech-language pathology research.
           </p>
         </div>
       </main>

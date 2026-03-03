@@ -29,8 +29,8 @@ interface WelcomeTourModalProps {
 const slides = [
   {
     icon: PartyPopper,
-    title: "Bienvenue dans votre espace Pro !",
-    description: "Merci de rejoindre ParlerMoinsVite. Vous allez pouvoir suivre vos patients, mesurer leur débit et piloter leur rééducation à distance.",
+    title: "Welcome to your Pro workspace!",
+    description: "Thank you for joining ClutterPro. You'll be able to monitor your patients, measure their speech rate, and guide their therapy remotely.",
     visual: "welcome",
     color: "from-primary to-emerald-500",
     iconBg: "bg-primary/10",
@@ -38,8 +38,8 @@ const slides = [
   },
   {
     icon: KeyRound,
-    title: "Votre Code Pro",
-    description: "Un code unique vous est attribué (ex: PRO-A1B2C3). Communiquez-le à vos patients pour qu'ils se connectent à votre espace.",
+    title: "Your Pro Code",
+    description: "A unique code is assigned to you (e.g. PRO-A1B2C3). Share it with your patients so they can connect to your workspace.",
     visual: "code",
     color: "from-primary to-primary/80",
     iconBg: "bg-primary/10",
@@ -47,8 +47,8 @@ const slides = [
   },
   {
     icon: Users,
-    title: "Vos patients s'inscrivent",
-    description: "Ils créent un compte et saisissent votre code. Ils apparaissent automatiquement dans votre tableau de bord.",
+    title: "Your patients sign up",
+    description: "They create an account and enter your code. They automatically appear in your dashboard.",
     visual: "signup",
     color: "from-blue-500 to-indigo-500",
     iconBg: "bg-blue-100 dark:bg-blue-900/30",
@@ -56,8 +56,8 @@ const slides = [
   },
   {
     icon: BarChart3,
-    title: "Suivi en temps réel",
-    description: "Visualisez l'activité de chaque patient : exercices réalisés, débit syllabique (SPS), régularité d'entraînement.",
+    title: "Real-time monitoring",
+    description: "View each patient's activity: exercises completed, syllabic rate (SPS), and training consistency.",
     visual: "tracking",
     color: "from-green-500 to-emerald-500",
     iconBg: "bg-green-100 dark:bg-green-900/30",
@@ -65,8 +65,8 @@ const slides = [
   },
   {
     icon: Bell,
-    title: "Alertes & rétention",
-    description: "Identifiez les patients à risque d'abandon. Envoyez des exercices ciblés et des encouragements en un clic.",
+    title: "Alerts & retention",
+    description: "Identify patients at risk of dropping out. Send targeted exercises and encouragement in one click.",
     visual: "alerts",
     color: "from-amber-500 to-orange-500",
     iconBg: "bg-amber-100 dark:bg-amber-900/30",
@@ -74,8 +74,8 @@ const slides = [
   },
   {
     icon: FileText,
-    title: "Bilans automatiques",
-    description: "Générez des rapports PDF en un clic avec métriques SPS, évolution, et notes cliniques. Prêts pour vos comptes-rendus.",
+    title: "Automatic reports",
+    description: "Generate PDF reports in one click with SPS metrics, progress tracking, and clinical notes. Ready for your records.",
     visual: "reports",
     color: "from-purple-500 to-violet-500",
     iconBg: "bg-purple-100 dark:bg-purple-900/30",
@@ -150,14 +150,14 @@ const WelcomeTourModal = ({ open, onClose, therapistCode }: WelcomeTourModalProp
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
             >
-              Prêt(e) à transformer le suivi de vos patients ?
+              Ready to transform your patient monitoring?
             </motion.p>
           </div>
         );
       case "code":
         return (
           <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
-            <p className="text-xs text-muted-foreground mb-2">Votre code praticien</p>
+            <p className="text-xs text-muted-foreground mb-2">Your Pro Code</p>
             <div className="flex items-center gap-2">
               <code className="text-2xl font-mono font-bold text-primary">
                 {therapistCode || "PRO-XXXXXX"}
@@ -186,9 +186,9 @@ const WelcomeTourModal = ({ open, onClose, therapistCode }: WelcomeTourModalProp
               <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-sm font-medium">M</div>
               <div>
                 <p className="text-sm font-medium">Marie D.</p>
-                <p className="text-xs text-muted-foreground">Liée il y a 2 min</p>
+                <p className="text-xs text-muted-foreground">Linked 2 min ago</p>
               </div>
-              <span className="ml-auto text-xs px-2 py-1 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Nouveau</span>
+              <span className="ml-auto text-xs px-2 py-1 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">New</span>
             </div>
           </div>
         );
@@ -196,7 +196,7 @@ const WelcomeTourModal = ({ open, onClose, therapistCode }: WelcomeTourModalProp
         return (
           <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
             <div className="flex justify-between text-xs text-muted-foreground mb-2">
-              <span>SPS moyen</span>
+              <span>Average SPS</span>
               <span className="text-green-600 font-medium">↑ 12%</span>
             </div>
             <div className="flex items-end gap-1 h-12">
@@ -217,9 +217,9 @@ const WelcomeTourModal = ({ open, onClose, therapistCode }: WelcomeTourModalProp
           <div className="bg-muted/50 rounded-xl p-4 border border-border/50 space-y-2">
             <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400">
               <Bell className="w-4 h-4" />
-              <span className="text-sm font-medium">2 patients inactifs</span>
+              <span className="text-sm font-medium">2 inactive patients</span>
             </div>
-            <p className="text-xs text-muted-foreground">Thomas L. - 5 jours sans session</p>
+            <p className="text-xs text-muted-foreground">Thomas L. - 5 days without a session</p>
           </div>
         );
       case "reports":
@@ -231,7 +231,7 @@ const WelcomeTourModal = ({ open, onClose, therapistCode }: WelcomeTourModalProp
               </div>
               <div>
                 <p className="text-sm font-medium">Bilan_Marie_D.pdf</p>
-                <p className="text-xs text-muted-foreground">Généré automatiquement</p>
+                <p className="text-xs text-muted-foreground">Automatically generated</p>
               </div>
             </div>
           </div>
@@ -249,7 +249,7 @@ const WelcomeTourModal = ({ open, onClose, therapistCode }: WelcomeTourModalProp
         <div className="p-6 sm:p-8">
           <div className="text-center mb-2">
             <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-              Comment ça marche
+              How it works
             </span>
           </div>
 
@@ -305,7 +305,7 @@ const WelcomeTourModal = ({ open, onClose, therapistCode }: WelcomeTourModalProp
                 className="gap-1"
               >
                 <ChevronLeft className="w-4 h-4" />
-                Retour
+                Back
               </Button>
             )}
             <Button 
@@ -314,11 +314,11 @@ const WelcomeTourModal = ({ open, onClose, therapistCode }: WelcomeTourModalProp
             >
               {currentSlide < slides.length - 1 ? (
                 <>
-                  Suivant
+                  Next
                   <ChevronRight className="w-4 h-4" />
                 </>
               ) : (
-                "C'est parti !"
+                "Let's go!"
               )}
             </Button>
           </div>
@@ -329,7 +329,7 @@ const WelcomeTourModal = ({ open, onClose, therapistCode }: WelcomeTourModalProp
               onClick={onClose}
               className="w-full text-center text-sm text-muted-foreground hover:text-foreground mt-4 transition-colors"
             >
-              Passer l'introduction
+              Skip introduction
             </button>
           )}
         </div>

@@ -31,7 +31,7 @@ const CoachBilan = ({
 
   return (
     <div className="space-y-3">
-      {/* Section 1: Verdict Principal */}
+      {/* Section 1: Main Verdict */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -53,14 +53,14 @@ const CoachBilan = ({
               <div className="flex items-center gap-4 mt-3 text-xs text-muted-foreground">
                 {wordCount !== undefined && wordCount > 0 && (
                   <span className="flex items-center gap-1">
-                    <span className="font-medium text-foreground">{wordCount}</span> mots prononcés
+                    <span className="font-medium text-foreground">{wordCount}</span> words spoken
                   </span>
                 )}
                 {duration !== undefined && duration > 0 && (
                   <span className="flex items-center gap-1">
                     <span className="font-medium text-foreground">
                       {Math.floor(duration / 60)}:{(duration % 60).toString().padStart(2, '0')}
-                    </span> de pratique
+                    </span> of practice
                   </span>
                 )}
               </div>
@@ -69,7 +69,7 @@ const CoachBilan = ({
         </div>
       </motion.div>
 
-      {/* Section 2: Stabilité */}
+      {/* Section 2: Stability */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -89,7 +89,7 @@ const CoachBilan = ({
         </div>
       </motion.div>
 
-      {/* Section 3: Conseil Contextuel */}
+      {/* Section 3: Contextual Advice */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -100,7 +100,7 @@ const CoachBilan = ({
           <span className="text-xl">💡</span>
           <div className="flex-1">
             <h4 className="font-semibold text-primary">
-              Conseil du Coach
+              Coach's Tip
             </h4>
             <p className="text-sm text-muted-foreground mt-1">
               {feedback.contextualTip}
@@ -109,7 +109,7 @@ const CoachBilan = ({
         </div>
       </motion.div>
 
-      {/* Section 4: Rappel de l'exercice (if available) */}
+      {/* Section 4: Exercise Reminder (if available) */}
       {feedback.exerciseReminder && (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -121,7 +121,7 @@ const CoachBilan = ({
             <span className="text-xl">📝</span>
             <div className="flex-1">
               <h4 className="font-medium text-foreground text-sm">
-                Rappel de l'exercice
+                Exercise Reminder
               </h4>
               <p className="text-sm text-muted-foreground mt-1 italic">
                 "{feedback.exerciseReminder}"

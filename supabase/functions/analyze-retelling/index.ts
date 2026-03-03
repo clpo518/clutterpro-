@@ -21,38 +21,38 @@ serve(async (req) => {
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
-    const systemPrompt = `Tu es un orthophoniste spécialisé dans l'évaluation du bredouillement (cluttering).
-Tu analyses la restitution orale d'un patient qui a écouté une histoire courte.
+    const systemPrompt = `You are an SLP specializing in cluttering assessment.
+You are analyzing the oral retelling of a patient who listened to a short story.
 
-IMPORTANT : Ce n'est PAS un test de mémoire. Tu évalues la QUALITÉ de la restitution :
-- Le patient a-t-il mentionné les points clés (même reformulés) ?
-- A-t-il été concis ou a-t-il fait des digressions ?
-- Y a-t-il des parenthèses dans des parenthèses (enchâssements) ?
-- Les informations sont-elles dans un ordre logique ?
+IMPORTANT: This is NOT a memory test. You are evaluating the QUALITY of the retelling:
+- Did the patient mention the key points (even if rephrased)?
+- Were they concise or did they digress?
+- Are there parenthetical digressions within digressions (embedding)?
+- Is the information presented in a logical order?
 
-Ton feedback doit être ENCOURAGEANT et cliniquement pertinent.
-Réponds UNIQUEMENT avec un JSON valide, sans markdown ni backticks.`;
+Your feedback must be ENCOURAGING and clinically relevant.
+Respond ONLY with valid JSON, no markdown or backticks.`;
 
-    const userPrompt = `Histoire originale : "${originalText}"
+    const userPrompt = `Original story: "${originalText}"
 
-Points clés attendus :
+Expected key points:
 ${keyPoints.map((kp: string, i: number) => `${i + 1}. ${kp}`).join("\n")}
 
-Transcription du patient : "${transcript}"
+Patient's transcription: "${transcript}"
 
-Analyse cette restitution et réponds en JSON avec ce schéma exact :
+Analyze this retelling and respond in JSON with this exact schema:
 {
   "keyPointResults": [
-    { "keyPoint": "texte du point clé", "found": true/false, "comment": "bref commentaire" }
+    { "keyPoint": "key point text", "found": true/false, "comment": "brief comment" }
   ],
-  "score": nombre de points trouvés,
-  "total": nombre total de points clés,
-  "concision": "concis" | "acceptable" | "digressif",
-  "concisionComment": "commentaire sur la concision",
-  "digressions": ["liste des digressions détectées, vide si aucune"],
-  "organisation": "logique" | "partiellement logique" | "désorganisé",
-  "organisationComment": "commentaire sur l'ordre des informations",
-  "globalFeedback": "feedback encourageant global en 2-3 phrases"
+  "score": number of points found,
+  "total": total number of key points,
+  "concision": "concise" | "acceptable" | "digressive",
+  "concisionComment": "comment on conciseness",
+  "digressions": ["list of detected digressions, empty if none"],
+  "organisation": "logical" | "partially logical" | "disorganized",
+  "organisationComment": "comment on information order",
+  "globalFeedback": "encouraging global feedback in 2-3 sentences"
 }`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
@@ -72,20 +72,20 @@ Analyse cette restitution et réponds en JSON avec ce schéma exact :
 
     if (!response.ok) {
       if (response.status === 429) {
-        return new Response(JSON.stringify({ error: "Trop de requêtes, réessayez dans quelques instants." }), {
+        return new Response(JSON.stringify({ error: "Too many requests, please try again shortly." }), {
           status: 429,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
       if (response.status === 402) {
-        return new Response(JSON.stringify({ error: "Crédits insuffisants." }), {
+        return new Response(JSON.stringify({ error: "Insufficient credits." }), {
           status: 402,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
       const t = await response.text();
       console.error("AI gateway error:", response.status, t);
-      return new Response(JSON.stringify({ error: "Erreur d'analyse" }), {
+      return new Response(JSON.stringify({ error: "Analysis error" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });

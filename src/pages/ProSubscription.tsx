@@ -15,7 +15,7 @@ const ProSubscription = () => {
 
   const handleSubscribe = async (plan: "essentiel" | "expert") => {
     if (!user) {
-      toast.error("Veuillez vous connecter");
+      toast.error("Please log in to continue");
       navigate("/auth");
       return;
     }
@@ -39,7 +39,7 @@ const ProSubscription = () => {
       }
     } catch (error) {
       console.error("Checkout error:", error);
-      toast.error("Erreur lors de la création du paiement");
+      toast.error("Error creating payment session");
     } finally {
       setLoadingPlan(null);
     }
@@ -48,33 +48,33 @@ const ProSubscription = () => {
   const plans = [
     {
       id: "essentiel",
-      name: "Offre 3 patients",
-      price: "14,90",
+      name: "3-Patient Plan",
+      price: "29",
       seats: 3,
-      tagline: "L'équivalent de 3 cafés par mois.",
+      tagline: "The cost of 3 coffees a month.",
       features: [
-        "3 comptes patients actifs",
-        "Suivi en temps réel",
-        "Analyse audio & waveforms",
-        "Prescriptions à distance",
-        "Notes cliniques privées",
-        "Support inclus",
+        "3 active patient accounts",
+        "Real-time monitoring",
+        "Audio analysis & waveforms",
+        "Remote exercise prescriptions",
+        "Private clinical notes",
+        "Support included",
       ],
       popular: false,
     },
     {
       id: "expert",
-      name: "Offre 5 patients",
-      price: "19,90",
+      name: "5-Patient Plan",
+      price: "39",
       seats: 5,
-      tagline: "L'équivalent de 4 cafés par mois.",
+      tagline: "The cost of 4 coffees a month.",
       features: [
-        "5 comptes patients actifs",
-        "Suivi en temps réel",
-        "Analyse audio & waveforms",
-        "Prescriptions à distance",
-        "Notes cliniques privées",
-        "Support inclus",
+        "5 active patient accounts",
+        "Real-time monitoring",
+        "Audio analysis & waveforms",
+        "Remote exercise prescriptions",
+        "Private clinical notes",
+        "Support included",
       ],
       popular: true,
     },
@@ -87,11 +87,11 @@ const ProSubscription = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/patient/list" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="w-5 h-5" />
-            <span>Retour</span>
+            <span>Back</span>
           </Link>
           <div className="flex items-center gap-2">
             <Activity className="w-5 h-5 text-primary" />
-            <span className="font-display font-bold">Abonnement Pro</span>
+            <span className="font-display font-bold">Pro Subscription</span>
           </div>
           <div className="w-20" />
         </div>
@@ -107,13 +107,13 @@ const ProSubscription = () => {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-4">
               <Zap className="w-4 h-4" />
-              <span className="text-sm font-medium">Tarification simple</span>
+              <span className="text-sm font-medium">Simple pricing</span>
             </div>
             <h1 className="text-3xl md:text-4xl font-display font-bold mb-4">
-              Choisissez votre formule
+              Choose your plan
             </h1>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Licence nominative par orthophoniste. Annulation à tout moment.
+              Named license per SLP. Cancel anytime.
             </p>
           </div>
 
@@ -134,7 +134,7 @@ const ProSubscription = () => {
                   {plan.popular && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                       <span className="px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-medium">
-                        Populaire
+                        Most popular
                       </span>
                     </div>
                   )}
@@ -148,13 +148,13 @@ const ProSubscription = () => {
                     {/* Price */}
                     <div className="text-center">
                       <div className="flex items-baseline justify-center gap-1">
-                        <span className="text-4xl font-bold">{plan.price}€</span>
-                        <span className="text-muted-foreground">/mois</span>
+                        <span className="text-4xl font-bold">${plan.price}</span>
+                        <span className="text-muted-foreground">/mo</span>
                       </div>
                       <div className="flex items-center justify-center gap-2 mt-2">
                         <Coffee className="w-4 h-4 text-muted-foreground" />
                         <span className="text-sm text-muted-foreground">
-                          {plan.id === "essentiel" ? "3 cafés" : "4 cafés"}
+                          {plan.id === "essentiel" ? "3 coffees" : "4 coffees"}
                         </span>
                       </div>
                     </div>
@@ -163,7 +163,7 @@ const ProSubscription = () => {
                     <div className="p-4 rounded-xl bg-primary/10 border border-primary/20 text-center">
                       <div className="flex items-center justify-center gap-2 text-primary font-bold text-lg">
                         <Users className="w-5 h-5" />
-                        {plan.seats} Comptes Patients Actifs
+                        {plan.seats} Active Patient Accounts
                       </div>
                     </div>
 
@@ -189,10 +189,10 @@ const ProSubscription = () => {
                       {loadingPlan === plan.id ? (
                         <>
                           <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                          Redirection...
+                          Redirecting...
                         </>
                       ) : (
-                        `Choisir ${plan.name}`
+                        `Choose ${plan.name}`
                       )}
                     </Button>
                   </CardContent>
@@ -205,10 +205,10 @@ const ProSubscription = () => {
           <div className="mt-16 space-y-8">
             <div className="text-center">
               <h2 className="text-2xl font-display font-bold mb-2">
-                Comment fonctionne le système de comptes patients ?
+                How does the patient account system work?
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Gérez votre file active en toute flexibilité. Archivez les patients en pause, réactivez-les quand ils reviennent.
+                Manage your active caseload with full flexibility. Archive patients on pause, reactivate when they return.
               </p>
             </div>
 
@@ -226,9 +226,9 @@ const ProSubscription = () => {
                 <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4 mt-2">
                   <UserPlus className="w-6 h-6 text-green-600" />
                 </div>
-                <h3 className="font-semibold mb-2 text-center">Patients actifs</h3>
+                <h3 className="font-semibold mb-2 text-center">Active patients</h3>
                 <p className="text-sm text-muted-foreground text-center">
-                  Vos patients en cours de suivi utilisent un compte actif. Ils s'entraînent, vous suivez leur progression.
+                  Patients currently in therapy use an active account. They practice, you track their progress.
                 </p>
                 <div className="mt-4 flex justify-center gap-2">
                   {[1, 2, 3].map((i) => (
@@ -251,9 +251,9 @@ const ProSubscription = () => {
                 <div className="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center mx-auto mb-4 mt-2">
                   <Archive className="w-6 h-6 text-amber-600" />
                 </div>
-                <h3 className="font-semibold mb-2 text-center">Archiver un patient</h3>
+                <h3 className="font-semibold mb-2 text-center">Archive a patient</h3>
                 <p className="text-sm text-muted-foreground text-center">
-                  Patient en pause ? Archivez-le en un clic. Ses données sont conservées, le compte est libéré.
+                  Patient on a break? Archive in one click. Data is preserved, the slot is freed.
                 </p>
                 <div className="mt-4 flex justify-center items-center gap-2">
                   <div className="w-8 h-8 rounded-full bg-muted border-2 border-muted-foreground/30 flex items-center justify-center opacity-50">
@@ -276,13 +276,13 @@ const ProSubscription = () => {
                 <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-4 mt-2">
                   <RefreshCw className="w-6 h-6 text-blue-600" />
                 </div>
-                <h3 className="font-semibold mb-2 text-center">Rotation flexible</h3>
+                <h3 className="font-semibold mb-2 text-center">Flexible rotation</h3>
                 <p className="text-sm text-muted-foreground text-center">
-                  Réactivez un patient archivé à tout moment. Gérez des dizaines de patients avec seulement 3 ou 5 comptes actifs.
+                  Reactivate an archived patient anytime. Manage dozens of patients with just 3 or 5 active slots.
                 </p>
                 <div className="mt-4 flex justify-center items-center gap-1">
                   <RefreshCw className="w-5 h-5 text-blue-500 animate-spin" style={{ animationDuration: '3s' }} />
-                  <span className="text-xs text-muted-foreground ml-2">∞ patients au total</span>
+                  <span className="text-xs text-muted-foreground ml-2">∞ total patients</span>
                 </div>
               </motion.div>
             </div>
@@ -294,11 +294,11 @@ const ProSubscription = () => {
                   <Zap className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-1">En pratique</h4>
+                  <h4 className="font-semibold mb-1">In practice</h4>
                   <p className="text-sm text-muted-foreground">
-                    Avec <strong>3 comptes actifs</strong>, vous pouvez suivre 3 patients simultanément. 
-                    Quand l'un termine sa rééducation, archivez-le et activez un nouveau patient. 
-                    L'historique complet reste accessible pour les bilans.
+                    With <strong>3 active slots</strong>, you can follow 3 patients simultaneously.
+                    When one finishes therapy, archive them and activate a new patient.
+                    Full history remains accessible for reports.
                   </p>
                 </div>
               </div>
@@ -308,7 +308,7 @@ const ProSubscription = () => {
           {/* Benefits Section */}
           <div className="mt-16 space-y-8">
             <h2 className="text-2xl font-display font-bold text-center">
-              Pourquoi les orthophonistes choisissent ParlerMoinsVite
+              Why SLPs choose ClutterPro
             </h2>
             
             <div className="grid md:grid-cols-3 gap-6">
@@ -316,9 +316,9 @@ const ProSubscription = () => {
                 <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">
                   <Users className="w-6 h-6 text-green-600" />
                 </div>
-                <h3 className="font-semibold mb-2">Assiduité documentée</h3>
+                <h3 className="font-semibold mb-2">Documented adherence</h3>
                 <p className="text-sm text-muted-foreground">
-                  Visualisez l'engagement réel de vos patients entre les séances. Fini les "j'ai pas eu le temps".
+                  See your patients' real engagement between sessions. No more "I didn't have time."
                 </p>
               </div>
               
@@ -326,9 +326,9 @@ const ProSubscription = () => {
                 <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-4">
                   <Activity className="w-6 h-6 text-blue-600" />
                 </div>
-                <h3 className="font-semibold mb-2">Métriques cliniques prêtes</h3>
+                <h3 className="font-semibold mb-2">Ready clinical metrics</h3>
                 <p className="text-sm text-muted-foreground">
-                  Courbes de débit, heatmaps syllabiques, analyses automatiques. Gagnez 20 min par bilan.
+                  Rate curves, syllable heatmaps, automatic analyses. Save 20 min per report.
                 </p>
               </div>
               
@@ -336,9 +336,9 @@ const ProSubscription = () => {
                 <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-4">
                   <Zap className="w-6 h-6 text-purple-600" />
                 </div>
-                <h3 className="font-semibold mb-2">Prescriptions à distance</h3>
+                <h3 className="font-semibold mb-2">Remote prescriptions</h3>
                 <p className="text-sm text-muted-foreground">
-                  Assignez des exercices personnalisés. Vos patients s'entraînent, vous suivez les résultats.
+                  Assign personalized exercises. Your patients practice, you track the results.
                 </p>
               </div>
             </div>
@@ -348,15 +348,15 @@ const ProSubscription = () => {
           <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground mt-12">
             <div className="flex items-center gap-2">
               <Shield className="w-4 h-4" />
-              Paiement sécurisé Stripe
+              Secure Stripe payment
             </div>
             <div className="flex items-center gap-2">
               <Check className="w-4 h-4" />
-              Sans engagement
+              Cancel anytime
             </div>
             <div className="flex items-center gap-2">
               <Zap className="w-4 h-4" />
-              Activation instantanée
+              Instant activation
             </div>
           </div>
         </motion.div>

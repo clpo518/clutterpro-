@@ -169,8 +169,8 @@ export const DailyGoalRing = ({
               : "bg-muted text-muted-foreground"
           }`}>
             {goalCompleted 
-              ? "✅ Objectif atteint ! Bravo !" 
-              : `Encore ${dailyGoal - todayMinutes} min pour atteindre l'objectif`
+              ? "✅ Goal reached! Well done!" 
+              : `${dailyGoal - todayMinutes} min more to reach the goal`
             }
           </div>
           

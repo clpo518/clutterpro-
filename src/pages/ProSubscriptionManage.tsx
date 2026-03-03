@@ -111,7 +111,7 @@ const ProSubscriptionManage = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/patient/list" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="w-5 h-5" />
-            <span>Retour</span>
+            <span>Back</span>
           </Link>
           <div className="flex items-center gap-2">
             <Activity className="w-5 h-5 text-primary" />
@@ -131,12 +131,12 @@ const ProSubscriptionManage = () => {
           {/* Title */}
           <div className="text-center">
             <h1 className="text-2xl md:text-3xl font-display font-bold mb-2">
-              Gestion de votre abonnement Pro
+              Manage your Pro subscription
             </h1>
             <p className="text-muted-foreground">
-              {stats?.subscriptionPlan === "trial" 
-                ? "Vous êtes en période d'essai"
-                : "Vous êtes abonné à ParlerMoinsVite Pro"
+              {stats?.subscriptionPlan === "trial"
+                ? "You are on a trial period"
+                : "You are subscribed to ClutterPro"
               }
             </p>
           </div>
@@ -150,13 +150,13 @@ const ProSubscriptionManage = () => {
                 </div>
                 <div className="space-y-2">
                   <h2 className="text-lg font-semibold text-foreground">
-                    👥 Vos patients comptent sur vous
+                    Your patients are counting on you
                   </h2>
                   <p className="text-muted-foreground">
-                    <strong className="text-foreground">{stats.activePatients} patient{stats.activePatients > 1 ? 's' : ''}</strong> {stats.activePatients > 1 ? 'utilisent' : 'utilise'} activement ParlerMoinsVite sous votre suivi.
+                    <strong className="text-foreground">{stats.activePatients} patient{stats.activePatients > 1 ? 's' : ''}</strong> {stats.activePatients > 1 ? 'are' : 'is'} actively using ClutterPro under your supervision.
                   </p>
                   <p className="text-sm text-green-600 dark:text-green-400 font-medium">
-                    {stats.activePatients > 1 ? 'Ils perdraient' : 'Il perdrait'} l'accès aux exercices si vous résiliez.
+                    {stats.activePatients > 1 ? 'They would' : 'They would'} lose access to exercises if you cancel.
                   </p>
                 </div>
               </div>
@@ -172,13 +172,13 @@ const ProSubscriptionManage = () => {
                 </div>
                 <div className="space-y-2">
                   <h2 className="text-lg font-semibold text-foreground">
-                    📊 Données cliniques accumulées
+                    Accumulated clinical data
                   </h2>
                   <p className="text-muted-foreground">
-                    <strong className="text-foreground">{stats.totalSessions} session{stats.totalSessions > 1 ? 's' : ''}</strong> enregistrées avec courbes de débit, analyses et historique complet.
+                    <strong className="text-foreground">{stats.totalSessions} session{stats.totalSessions > 1 ? 's' : ''}</strong> recorded with rate curves, analyses, and complete history.
                   </p>
                   <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
-                    Ces données resteraient inaccessibles sans abonnement actif.
+                    This data would become inaccessible without an active subscription.
                   </p>
                 </div>
               </div>
@@ -193,10 +193,10 @@ const ProSubscriptionManage = () => {
               </div>
               <div className="space-y-2">
                 <h2 className="text-lg font-semibold text-foreground">
-                  📈 Continuité du suivi
+                  Continuity of care
                 </h2>
                 <p className="text-muted-foreground">
-                  La rééducation du débit nécessite un suivi régulier sur plusieurs mois. Sans ParlerMoinsVite, vous ne pourrez plus mesurer objectivement la vitesse de parole en séance ni suivre l'évolution de vos patients.
+                  Speech rate therapy requires regular monitoring over several months. Without ClutterPro, you won't be able to objectively measure speech rate in sessions or track your patients' progress.
                 </p>
               </div>
             </div>
@@ -210,20 +210,20 @@ const ProSubscriptionManage = () => {
               </div>
               <div className="space-y-4">
                 <h2 className="text-lg font-semibold text-foreground">
-                  ⚠️ En cas de résiliation...
+                  If you cancel...
                 </h2>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3 text-muted-foreground">
                     <Clock className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
-                    <span>Vos patients perdent l'accès aux exercices.</span>
+                    <span>Your patients lose access to exercises.</span>
                   </li>
                   <li className="flex items-start gap-3 text-muted-foreground">
                     <BarChart3 className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
-                    <span>Vous ne pourrez plus consulter les nouvelles sessions.</span>
+                    <span>You won't be able to view new sessions.</span>
                   </li>
                   <li className="flex items-start gap-3 text-muted-foreground">
                     <Heart className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
-                    <span>Le lien thérapeutique numérique est suspendu.</span>
+                    <span>The digital therapeutic link is suspended.</span>
                   </li>
                 </ul>
               </div>
@@ -238,10 +238,10 @@ const ProSubscriptionManage = () => {
               </div>
               <div className="flex-1 space-y-2">
                 <h2 className="text-lg font-semibold text-foreground">
-                  Moyen de paiement
+                  Payment method
                 </h2>
                 <p className="text-sm text-muted-foreground">
-                  Mettez à jour votre carte bancaire ou consultez vos factures.
+                  Update your card or view your invoices.
                 </p>
                 <Button
                   variant="outline"
@@ -255,7 +255,7 @@ const ProSubscriptionManage = () => {
                   ) : (
                     <CreditCard className="w-4 h-4" />
                   )}
-                  Gérer le paiement
+                  Manage payment
                 </Button>
               </div>
             </div>
@@ -280,7 +280,7 @@ const ProSubscriptionManage = () => {
                 className="w-full h-14 text-lg shadow-lg shadow-primary/25 hover:shadow-xl transition-all"
               >
                 <CheckCircle className="w-5 h-5 mr-2" />
-                Je garde mon abonnement
+                Keep my subscription
               </Button>
             </motion.div>
 
@@ -288,21 +288,21 @@ const ProSubscriptionManage = () => {
             <div className="text-center pt-4">
               <button
                 onClick={() => {
-                  const subject = encodeURIComponent("[Résiliation Pro] Demande de désabonnement");
-                  const body = encodeURIComponent(`Bonjour,\n\nJe souhaite résilier mon abonnement Pro.\n\nMon email de compte : ${user?.email || ""}\nNombre de patients actifs : ${stats?.activePatients || 0}\n\nMerci de traiter ma demande.\n\nCordialement`);
-                  window.open(`mailto:contact@parlermoinsvite.fr?subject=${subject}&body=${body}`, "_blank");
+                  const subject = encodeURIComponent("[Pro Cancellation] Subscription cancellation request");
+                  const body = encodeURIComponent(`Hello,\n\nI would like to cancel my Pro subscription.\n\nMy account email: ${user?.email || ""}\nNumber of active patients: ${stats?.activePatients || 0}\n\nPlease process my request.\n\nBest regards`);
+                  window.open(`mailto:support@clutterpro.com?subject=${subject}&body=${body}`, "_blank");
                 }}
                 className="text-sm text-muted-foreground hover:text-foreground/70 underline-offset-4 hover:underline transition-colors"
               >
-                Envoyer un email pour résilier
+                Send an email to cancel
               </button>
             </div>
           </div>
 
           {/* Fine print */}
           <p className="text-xs text-center text-muted-foreground">
-            En cas de résiliation, votre accès reste actif jusqu'à la fin de votre période de facturation. 
-            Vos données sont conservées 30 jours.
+            If you cancel, your access remains active until the end of your billing period. 
+            Your data is retained for 30 days.
           </p>
         </motion.div>
       </main>

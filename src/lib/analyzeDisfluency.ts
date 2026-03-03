@@ -176,11 +176,11 @@ export function analyzeDisfluency(words: WordTimestamp[]): DisfluencyAnalysis {
 export function getDisfluencyLabel(type: DisfluencyType): string {
   switch (type) {
     case 'repetition':
-      return 'Répétition';
+      return 'Repetition';
     case 'prolongation':
-      return 'Allongement';
+      return 'Prolongation';
     case 'block':
-      return 'Pause longue';
+      return 'Block';
     default:
       return type;
   }
@@ -213,17 +213,17 @@ export function getDisfluencyStyles(type: DisfluencyType): {
     case 'repetition':
       return {
         className: 'underline decoration-yellow-400 decoration-2 underline-offset-4 bg-yellow-50',
-        description: 'Mot répété rapidement'
+        description: 'Word repeated rapidly'
       };
     case 'prolongation':
       return {
         className: 'bg-purple-100 text-purple-900 rounded px-1',
-        description: 'Durée anormalement longue'
+        description: 'Abnormally long duration'
       };
     case 'block':
       return {
         className: 'border-l-4 border-orange-400 pl-2 ml-1',
-        description: 'Silence > 2s entre deux mots'
+        description: 'Silence > 2s between words'
       };
     default:
       return {

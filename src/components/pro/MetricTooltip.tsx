@@ -36,10 +36,10 @@ export const MetricTooltip = ({ children, content, className = "" }: MetricToolt
 
 // Pre-defined tooltips for common metrics
 export const METRIC_TOOLTIPS = {
-  SPS: "Syllabes par seconde — Calculé par paquets de 5 syllabes sur le temps de parole réel (silences exclus). Cible thérapeutique : 3.5-5.5 SPS",
-  AVG_SPS: "Vitesse moyenne de la session en Syllabes Par Seconde, calculée par paquets de 5 syllabes. ≤5.0 = optimal, 5-6 = rapide, >6.5 = tachylalie",
-  MAX_SPS: "Vitesse maximale atteinte pendant la session. Un écart important avec la moyenne peut indiquer des accélérations involontaires",
-  FLUENCY_RATIO: "Pourcentage du temps passé à parler vs en silence. > 80% = excellent, 60-80% = normal, < 60% = à surveiller",
-  FILLERS: "Disfluences : 'euh', 'du coup', 'en fait' (mots parasites) détectés automatiquement pendant la session",
-  SYLLABLES: "Nombre total de syllabes prononcées, calculé avec un algorithme optimisé pour le français (gestion des 'e' muets)",
+  SPS: "Syllables per second — Calculated in 5-syllable chunks over actual speaking time (silences excluded). Therapeutic target: 3.5-5.5 SPS",
+  AVG_SPS: "Average session speed in Syllables Per Second, calculated in 5-syllable chunks. ≤5.0 = optimal, 5-6 = fast, >6.5 = cluttering range",
+  MAX_SPS: "Peak speed reached during the session. A large gap from the average may indicate involuntary acceleration",
+  FLUENCY_RATIO: "Percentage of time spent speaking vs. in silence. > 80% = excellent, 60-80% = normal, < 60% = watch closely",
+  FILLERS: "Disfluencies: 'um', 'uh', 'like', 'you know' (filler words) automatically detected during the session",
+  SYLLABLES: "Total syllables spoken, calculated with an algorithm optimized for English (silent 'e' handling, suffix rules)",
 } as const;

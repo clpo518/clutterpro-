@@ -35,12 +35,12 @@ serve(async (req) => {
           therapistName: fullName || email.split("@")[0],
           therapistCode: therapistCode,
           referralCode: referralCode,
-          dashboardUrl: "https://www.parlermoinsvite.fr/patient/list",
+          dashboardUrl: "https://www.clutterpro.com/patient/list",
         }
       : {
           patientName: fullName || email.split("@")[0],
           therapistName: isSolo ? undefined : undefined, // Will be filled when linked
-          appUrl: "https://www.parlermoinsvite.fr/practice",
+          appUrl: "https://www.clutterpro.com/practice",
           isSolo: isSolo || false,
           referralCode: referralCode,
         };

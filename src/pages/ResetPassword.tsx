@@ -20,7 +20,7 @@ const ResetPassword = () => {
     e.preventDefault();
 
     if (password.length < 6) {
-      toast.error("Le mot de passe doit contenir au moins 6 caractères.");
+      toast.error("Password must be at least 6 characters.");
       return;
     }
 
@@ -34,7 +34,7 @@ const ResetPassword = () => {
       const { error } = await supabase.auth.updateUser({ password });
       if (error) throw error;
 
-      toast.success("Mot de passe mis à jour avec succès !");
+      toast.success("Password updated successfully!");
       navigate("/dashboard");
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Une erreur est survenue";
@@ -86,7 +86,7 @@ const ResetPassword = () => {
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
-                <p className="text-xs text-muted-foreground">Minimum 6 caractères</p>
+                <p className="text-xs text-muted-foreground">Minimum 6 characters</p>
               </div>
 
               <div className="space-y-2">
@@ -104,11 +104,11 @@ const ResetPassword = () => {
               </div>
 
               <Button type="submit" className="w-full h-12 rounded-xl text-base" disabled={loading}>
-                {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Mettre à jour le mot de passe"}
+                {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Update password"}
               </Button>
 
               <p className="text-xs text-center text-muted-foreground mt-3">
-                🔒 Données de santé sécurisées & confidentielles
+                🔒 Health data secured & confidential
               </p>
             </form>
           </CardContent>

@@ -13,11 +13,11 @@ import DailyExerciseCard from "@/components/dashboard/DailyExerciseCard";
 type FilterTab = "all" | "reading" | "oral" | "motor" | "special";
 
 const FILTER_TABS: { id: FilterTab; label: string; emoji: string }[] = [
-  { id: "all", label: "Tous", emoji: "📚" },
-  { id: "reading", label: "Lecture", emoji: "📖" },
-  { id: "oral", label: "Oral libre", emoji: "🎤" },
-  { id: "motor", label: "Moteur", emoji: "⚡" },
-  { id: "special", label: "Spécial", emoji: "✨" },
+  { id: "all", label: "All", emoji: "📚" },
+  { id: "reading", label: "Reading", emoji: "📖" },
+  { id: "oral", label: "Free speech", emoji: "🎤" },
+  { id: "motor", label: "Motor", emoji: "⚡" },
+  { id: "special", label: "Special", emoji: "✨" },
 ];
 
 const getFilterGroup = (cat: ExerciseCategory): FilterTab => {
@@ -68,13 +68,13 @@ const Library = () => {
 
   // Get a short type label for the card
   const getTypeLabel = (cat: ExerciseCategory) => {
-    if (cat.isClinical) return { text: "Clinique", class: "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400" };
-    if (cat.type === "improvisation") return { text: "Oral libre", class: "bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-400" };
-    if (cat.type === "repetition") return { text: "Moteur", class: "bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-400" };
-    if (cat.type === "warmup") return { text: "Échauffement", class: "bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400" };
+    if (cat.isClinical) return { text: "Clinical", class: "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400" };
+    if (cat.type === "improvisation") return { text: "Free speech", class: "bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-400" };
+    if (cat.type === "repetition") return { text: "Motor", class: "bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-400" };
+    if (cat.type === "warmup") return { text: "Warm-up", class: "bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400" };
     if (cat.type === "proprioception") return { text: "Proprioception", class: "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400" };
-    if (cat.type === "rebus") return { text: "Enfant", class: "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400" };
-    if (cat.type === "retelling") return { text: "Récit Résumé", class: "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400" };
+    if (cat.type === "rebus") return { text: "Child", class: "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400" };
+    if (cat.type === "retelling") return { text: "Story Retelling", class: "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400" };
     return null;
   };
 
@@ -85,11 +85,11 @@ const Library = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/dashboard" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="w-5 h-5" />
-            <span>Retour</span>
+            <span>Back</span>
           </Link>
           <div className="flex items-center gap-2">
             <BookOpen className="w-5 h-5 text-primary" />
-            <span className="font-display font-bold">Bibliothèque</span>
+            <span className="font-display font-bold">Library</span>
           </div>
           <div className="w-20" />
         </div>
@@ -101,9 +101,9 @@ const Library = () => {
             <div className="flex items-start gap-3 p-3 mb-6 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 text-sm">
               <FlaskConical className="w-5 h-5 text-blue-500 mt-0.5 shrink-0" />
               <div>
-                <p className="font-medium text-blue-700 dark:text-blue-300">Mode Découverte</p>
+                <p className="font-medium text-blue-700 dark:text-blue-300">Discovery Mode</p>
                 <p className="text-blue-600/80 dark:text-blue-400/80 text-xs mt-0.5">
-                  Vous explorez en tant qu'orthophoniste. Les sessions lancées ici ne seront pas rattachées à un patient.
+                  You are exploring as an SLP. Sessions started here will not be linked to a patient.
                 </p>
               </div>
             </div>
@@ -117,13 +117,13 @@ const Library = () => {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-4">
               <Sparkles className="w-4 h-4" />
-              <span className="text-sm font-medium">Choisissez votre exercice</span>
+              <span className="text-sm font-medium">Choose your exercise</span>
             </div>
             <h1 className="text-3xl md:text-4xl font-display font-bold mb-3">
-              Vos exercices
+              Your exercises
             </h1>
             <p className="text-muted-foreground max-w-xl mx-auto text-sm">
-              {exerciseCategories.length} catégories · {exerciseCategories.reduce((sum, c) => sum + c.exercises.length, 0)} exercices à votre rythme
+              {exerciseCategories.length} categories · {exerciseCategories.reduce((sum, c) => sum + c.exercises.length, 0)} exercises at your own pace
             </p>
           </div>
 
@@ -174,16 +174,16 @@ const Library = () => {
                   <div className="text-3xl sm:text-4xl shrink-0">💬</div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
-                      <CardTitle className="text-base sm:text-lg leading-tight">Mode Dialogue</CardTitle>
+                      <CardTitle className="text-base sm:text-lg leading-tight">Dialogue Mode</CardTitle>
                       <span className="inline-flex text-[11px] font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">
-                        ⭐ Recommandé
+                        ⭐ Recommended
                       </span>
                       <span className="inline-flex text-[11px] font-medium px-2 py-0.5 rounded-full bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-400">
-                        Oral libre
+                        Free speech
                       </span>
                     </div>
                     <p className="text-sm text-muted-foreground line-clamp-2">
-                      Parlez librement avec un retour visuel en temps réel. L'exercice clé pour appliquer vos acquis au quotidien.
+                      Speak freely with real-time visual feedback. The key exercise for applying your skills in daily life.
                     </p>
                   </div>
                   <Button
@@ -193,7 +193,7 @@ const Library = () => {
                     onClick={(e) => { e.stopPropagation(); navigate("/dialogue"); }}
                   >
                     <MessageCircle className="w-4 h-4" />
-                    <span className="hidden sm:inline">Commencer</span>
+                    <span className="hidden sm:inline">Start</span>
                   </Button>
                 </div>
               </Card>
@@ -236,7 +236,7 @@ const Library = () => {
                             {category.description}
                           </p>
                           <p className="text-xs text-muted-foreground/70 mt-1">
-                            {category.exercises.length} exercices
+                            {category.exercises.length} exercises
                           </p>
                         </div>
 
@@ -250,7 +250,7 @@ const Library = () => {
                               onClick={(e) => handleAssignClick(e, category.id, category.title)}
                             >
                               <Send className="w-3.5 h-3.5" />
-                              Prescrire
+                              Prescribe
                             </Button>
                           )}
                           <Button
@@ -259,7 +259,7 @@ const Library = () => {
                             className="gap-1 text-muted-foreground group-hover:text-primary transition-colors"
                           >
                             <Activity className="w-4 h-4" />
-                            <span className="hidden sm:inline">Commencer</span>
+                            <span className="hidden sm:inline">Start</span>
                           </Button>
                         </div>
                       </div>

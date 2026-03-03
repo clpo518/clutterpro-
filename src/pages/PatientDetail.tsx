@@ -73,7 +73,7 @@ const PatientDetail = () => {
         if (patientError) throw patientError;
 
         if (!patientData || patientData.linked_therapist_id !== user.id) {
-          toast.error("Patient non trouvé");
+          toast.error("Patient not found");
           navigate("/dashboard");
           return;
         }
@@ -114,7 +114,7 @@ const PatientDetail = () => {
         }
       } catch (error) {
         console.error("Error fetching patient:", error);
-        toast.error("Erreur lors du chargement");
+        toast.error("Error loading patient data");
       } finally {
         setLoading(false);
       }
@@ -142,10 +142,10 @@ const PatientDetail = () => {
 
       setNotes([data, ...notes]);
       setNewNote("");
-      toast.success("Note ajoutée");
+      toast.success("Note added");
     } catch (error) {
       console.error("Error adding note:", error);
-      toast.error("Erreur lors de l'ajout");
+      toast.error("Error adding note");
     } finally {
       setSavingNote(false);
     }
@@ -161,10 +161,10 @@ const PatientDetail = () => {
       if (error) throw error;
 
       setNotes(notes.filter(n => n.id !== noteId));
-      toast.success("Note supprimée");
+      toast.success("Note deleted");
     } catch (error) {
       console.error("Error deleting note:", error);
-      toast.error("Erreur lors de la suppression");
+      toast.error("Error deleting note");
     }
   };
 
@@ -175,7 +175,7 @@ const PatientDetail = () => {
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("fr-FR", {
+    return new Date(dateString).toLocaleDateString("en-US", {
       day: "numeric",
       month: "short",
       hour: "2-digit",
@@ -184,7 +184,7 @@ const PatientDetail = () => {
   };
 
   const formatNoteDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("fr-FR", {
+    return new Date(dateString).toLocaleDateString("en-US", {
       day: "numeric",
       month: "long",
       year: "numeric",
@@ -193,10 +193,10 @@ const PatientDetail = () => {
 
   // Get sentiment icon based on patient_sentiment column
   const getSentimentIcon = (sentiment: string | null) => {
-    if (!sentiment) return { icon: "—", label: "Non renseigné" };
-    if (sentiment === "too_fast") return { icon: "🐇", label: "Trop rapide" };
-    if (sentiment === "comfortable") return { icon: "✅", label: "Confortable" };
-    if (sentiment === "too_slow") return { icon: "🐢", label: "Trop lent" };
+    if (!sentiment) return { icon: "—", label: "Not specified" };
+    if (sentiment === "too_fast") return { icon: "🐇", label: "Too fast" };
+    if (sentiment === "comfortable") return { icon: "✅", label: "Comfortable" };
+    if (sentiment === "too_slow") return { icon: "🐢", label: "Too slow" };
     return { icon: "—", label: "" };
   };
 
@@ -212,7 +212,7 @@ const PatientDetail = () => {
     session: i + 1,
     avg: wpmToSps(s.avg_wpm),
     max: wpmToSps(s.max_wpm),
-    date: new Date(s.created_at).toLocaleDateString("fr-FR", { day: "numeric", month: "short" }),
+    date: new Date(s.created_at).toLocaleDateString("en-US", { day: "numeric", month: "short" }),
   }));
 
   // Find best and worst sessions
@@ -225,13 +225,13 @@ const PatientDetail = () => {
 
   // Calculate follow-up duration
   const followUpSince = patient?.created_at 
-    ? new Date(patient.created_at).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })
+    ? new Date(patient.created_at).toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })
     : null;
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="animate-pulse text-muted-foreground">Chargement...</div>
+        <div className="animate-pulse text-muted-foreground">Loading...</div>
       </div>
     );
   }
@@ -250,11 +250,11 @@ const PatientDetail = () => {
             className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            <span>Retour aux patients</span>
+            <span>Back to patients</span>
           </Link>
           <div className="flex items-center gap-2">
             <Activity className="w-5 h-5 text-primary" />
-            <span className="font-display font-bold">Dossier Patient</span>
+            <span className="font-display font-bold">Patient File</span>
           </div>
           <div className="w-20" />
         </div>
@@ -277,8 +277,8 @@ const PatientDetail = () => {
                   {patient.full_name || "Patient"}
                 </h1>
                 <p className="text-muted-foreground">
-                  {totalSessions} session{totalSessions > 1 ? "s" : ""} • {totalMinutes} min d'entraînement
-                  {followUpSince && <span> • Suivi depuis le {followUpSince}</span>}
+                  {totalSessions} session{totalSessions > 1 ? "s" : ""} • {totalMinutes} min of training
+                  {followUpSince && <span> • Follow-up since {followUpSince}</span>}
                 </p>
               </div>
             </div>
@@ -290,8 +290,8 @@ const PatientDetail = () => {
                 onClick={() => navigate(`/session-live?patient=${id}`)}
               >
                 <Gauge className="w-4 h-4" />
-                <span className="hidden sm:inline">Mesurer le débit</span>
-                <span className="sm:hidden">Mesurer</span>
+                <span className="hidden sm:inline">Measure rate</span>
+                <span className="sm:hidden">Measure</span>
               </Button>
               <Button 
                 variant="outline" 
@@ -299,7 +299,7 @@ const PatientDetail = () => {
                 onClick={() => setAssignModalOpen(true)}
               >
                 <Send className="w-4 h-4" />
-                Prescrire
+                Prescribe
               </Button>
               <GenerateReportButton
                 sessions={sessions}
@@ -329,7 +329,7 @@ const PatientDetail = () => {
                   <CardHeader className="pb-2">
                     <CardDescription className="flex items-center gap-2">
                       <Clock className="w-4 h-4" />
-                      Temps total
+                      Total time
                     </CardDescription>
                     <CardTitle className="text-2xl">{totalMinutes} min</CardTitle>
                   </CardHeader>
@@ -340,7 +340,7 @@ const PatientDetail = () => {
                     <CardDescription className="flex items-center gap-2">
                       <MetricTooltip content={METRIC_TOOLTIPS.AVG_SPS}>
                         <Activity className="w-4 h-4" />
-                        <span>Moy. SPS</span>
+                        <span>Avg. SPS</span>
                       </MetricTooltip>
                     </CardDescription>
                     {(() => {
@@ -357,9 +357,9 @@ const PatientDetail = () => {
                 <Card>
                   <CardHeader className="pb-2">
                     <CardDescription className="flex items-center gap-2">
-                      <MetricTooltip content="Meilleur score SPS (le plus bas = meilleur contrôle du débit)">
+                      <MetricTooltip content="Best SPS score (lower = better rate control)">
                         <Award className="w-4 h-4" />
-                        <span>Meilleur</span>
+                        <span>Best</span>
                       </MetricTooltip>
                     </CardDescription>
                     <CardTitle className="text-2xl text-green-600">
@@ -379,7 +379,7 @@ const PatientDetail = () => {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-semibold text-foreground">Cible clinique personnalisée</h3>
+                          <h3 className="font-semibold text-foreground">Personalized clinical target</h3>
                           <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-400">
                             Van Zaalen
                           </span>
@@ -390,7 +390,7 @@ const PatientDetail = () => {
                           return (
                             <>
                               <p className="text-sm text-muted-foreground mb-2">
-                                {ageGroup.emoji} <strong>{ageGroup.label}</strong> ({age} ans) — {ageGroup.description}
+                                {ageGroup.emoji} <strong>{ageGroup.label}</strong> ({age} years old) — {ageGroup.description}
                               </p>
                               <div className="flex items-center gap-4">
                                 <div className="flex items-center gap-2">
@@ -400,7 +400,7 @@ const PatientDetail = () => {
                                 <div className="h-8 w-px bg-border" />
                                 <p className="text-xs text-muted-foreground flex items-center gap-1">
                                   <Info className="w-3 h-3" />
-                                  Zone confort : {(ageGroup.normSPS - 0.5).toFixed(1)} – {(ageGroup.normSPS + 0.5).toFixed(1)} syll/s
+                                  Comfort zone : {(ageGroup.normSPS - 0.5).toFixed(1)} – {(ageGroup.normSPS + 0.5).toFixed(1)} syll/s
                                 </p>
                               </div>
                             </>
@@ -418,7 +418,7 @@ const PatientDetail = () => {
                     <div className="flex items-center gap-3 text-muted-foreground">
                       <Info className="w-5 h-5" />
                       <p className="text-sm">
-                        L'année de naissance n'est pas renseignée. La cible clinique personnalisée n'est pas disponible.
+                        Birth year is not set. The personalized clinical target is not available.
                       </p>
                     </div>
                   </CardContent>
@@ -437,7 +437,7 @@ const PatientDetail = () => {
                         <div className="flex items-center gap-3">
                           <TrendingDown className="w-8 h-8 text-green-600" />
                           <div>
-                            <p className="font-medium text-green-700">Meilleure session</p>
+                            <p className="font-medium text-green-700">Best session</p>
                             <p className="text-sm text-muted-foreground">
                               {formatDate(bestSession.created_at)} • {wpmToSps(bestSession.avg_wpm)} syll/s
                             </p>
@@ -457,7 +457,7 @@ const PatientDetail = () => {
                         <div className="flex items-center gap-3">
                           <TrendingUp className="w-8 h-8 text-red-600" />
                           <div>
-                            <p className="font-medium text-red-700">Session à revoir</p>
+                            <p className="font-medium text-red-700">Session to review</p>
                             <p className="text-sm text-muted-foreground">
                               {formatDate(worstSession.created_at)} • {wpmToSps(worstSession.avg_wpm)} syll/s
                             </p>
@@ -474,9 +474,9 @@ const PatientDetail = () => {
               {chartData.length > 1 && (
                 <Card>
                   <CardHeader>
-                    <CardTitle>Évolution sur les dernières sessions</CardTitle>
+                    <CardTitle>Progress over recent sessions</CardTitle>
                     <CardDescription>
-                      Vitesse moyenne (syll/sec) au fil du temps
+                      Average rate (syll/sec) over time
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -503,21 +503,21 @@ const PatientDetail = () => {
                             }}
                             formatter={(value: number, name: string) => [
                               `${value.toFixed(1)} syll/s`,
-                              name === "avg" ? "Moyenne" : "Maximum"
+                              name === "avg" ? "Average" : "Maximum"
                             ]}
                           />
                           <ReferenceLine 
                             y={4.5} 
                             stroke="#10b981" 
                             strokeDasharray="5 5"
-                            label={{ value: "Zone confort", position: "right", fontSize: 10, fill: "#10b981" }}
+                            label={{ value: "Comfort zone", position: "right", fontSize: 10, fill: "#10b981" }}
                           />
                           <Line 
                             type="monotone" 
                             dataKey="avg" 
                             stroke="hsl(var(--primary))"
                             strokeWidth={2}
-                            name="Moyenne"
+                            name="Average"
                             dot={{ fill: "hsl(var(--primary))", r: 4 }}
                           />
                           <Line 
@@ -539,9 +539,9 @@ const PatientDetail = () => {
               {/* Sessions List */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Historique des sessions</CardTitle>
+                  <CardTitle>Session history</CardTitle>
                   <CardDescription>
-                    Cliquez sur une session pour voir les détails et l'écouter
+                    Click on a session to view details and listen to it
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -598,7 +598,7 @@ const PatientDetail = () => {
                   ) : (
                     <div className="text-center py-8 text-muted-foreground">
                       <Clock className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                      <p>Ce patient n'a pas encore de session</p>
+                      <p>This patient has no sessions yet</p>
                     </div>
                   )}
                 </CardContent>
@@ -611,18 +611,18 @@ const PatientDetail = () => {
                 <CardHeader className="pb-3">
                   <CardTitle className="flex items-center gap-2 text-lg">
                     <FileText className="w-5 h-5 text-amber-600" />
-                    Notes de Suivi
+                    Follow-up Notes
                     <Lock className="w-4 h-4 text-amber-600" />
                   </CardTitle>
                   <CardDescription>
-                    Notes privées - Le patient n'y a pas accès
+                    Private notes — the patient cannot access these
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {/* Add Note Form */}
                   <div className="space-y-3">
                     <Textarea
-                      placeholder="Ajouter une observation clinique..."
+                      placeholder="Add a clinical observation..."
                       value={newNote}
                       onChange={(e) => setNewNote(e.target.value)}
                       className="min-h-[100px] resize-none bg-background"
@@ -637,7 +637,7 @@ const PatientDetail = () => {
                       ) : (
                         <Plus className="w-4 h-4" />
                       )}
-                      Ajouter une note
+                      Add note
                     </Button>
                   </div>
 
@@ -668,9 +668,9 @@ const PatientDetail = () => {
                     ) : (
                       <div className="text-center py-6 text-muted-foreground">
                         <FileText className="w-10 h-10 mx-auto mb-3 opacity-30" />
-                        <p className="text-sm">Aucune note pour ce patient</p>
+                        <p className="text-sm">No notes for this patient</p>
                         <p className="text-xs mt-1">
-                          Ajoutez vos observations cliniques ici
+                          Add your clinical observations here
                         </p>
                       </div>
                     )}
@@ -683,10 +683,10 @@ const PatientDetail = () => {
                 <div className="flex items-start gap-3">
                   <Lock className="w-5 h-5 text-muted-foreground shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium">Confidentialité</p>
+                    <p className="text-sm font-medium">Confidentiality</p>
                     <p className="text-xs text-muted-foreground mt-1">
-                      Ces notes sont strictement privées et protégées par des règles de sécurité. 
-                      Seul vous pouvez les lire et les modifier. Le patient n'y a jamais accès.
+                      These notes are strictly private and protected by security rules.
+                      Only you can read and modify them. The patient never has access.
                     </p>
                   </div>
                 </div>

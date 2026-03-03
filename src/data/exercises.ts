@@ -32,387 +32,402 @@ export interface ExerciseCategory {
   type?: ExerciseType; // Category-wide type
 }
 
+const IMPROVISATION_THEMES = [
+  "Describe your home or apartment",
+  "Talk about your last vacation",
+  "Explain your morning routine",
+  "Describe your favorite meal",
+  "Talk about your job or studies",
+  "Describe a movie you recently watched",
+  "Explain how to make your favorite recipe",
+  "Talk about a hobby you enjoy",
+  "Describe your ideal weekend",
+  "Talk about a person who has influenced you",
+  "Explain what cluttering means to you",
+  "Describe how your speech has changed recently",
+];
+
 export const exerciseCategories: ExerciseCategory[] = [
   {
     id: "slow-reading",
     level: 1,
-    title: "Ralentissement",
-    description: "Textes progressifs avec un accent sur les pauses et la respiration. Idéal pour apprendre à contrôler son débit.",
+    title: "Rate Reduction",
+    description: "Reading exercises focused on slowing below 4.5 SPS. The cornerstone of cluttering therapy — train your brain to slow before your mouth does.",
     icon: "🌱",
     color: "from-green-500/20 to-green-600/10",
     exercises: [
       {
         id: "slow-1",
-        title: "La Respiration Consciente",
-        text: "Je prends le temps de respirer. Chaque inspiration remplit mes poumons d'air frais. Chaque expiration libère les tensions. Mon corps se détend progressivement. Mes épaules s'abaissent naturellement. Ma mâchoire se relâche. Je ne suis pas pressé. Le temps s'écoule à mon rythme. Je savoure cet instant de calme. Les pensées agitées s'apaisent peu à peu. Je suis présent, ici et maintenant. Ma voix trouve son tempo naturel. Les mots viennent à moi sans effort. Je les prononce avec clarté. Chaque syllabe a sa place. Les pauses donnent du sens à mes phrases. Le silence entre les mots n'est pas un vide. Il est une respiration, un repos nécessaire. Je m'autorise à prendre mon temps. Personne ne me presse. Cette liberté est précieuse. Je la cultive avec patience. Chaque jour, je progresse un peu plus. Mon calme devient ma force. Ma parole devient plus claire. Les autres m'écoutent avec attention. Je communique avec assurance. La respiration reste mon ancre. Je reviens toujours à elle quand le rythme s'accélère.",
-        tip: "Respirez profondément entre chaque phrase. Comptez mentalement deux secondes avant de reprendre la parole."
+        title: "Mindful Breathing",
+        text: "I take the time to breathe. Each inhale fills my lungs with fresh air. Each exhale releases the tension. My body relaxes gradually. My shoulders drop naturally. My jaw loosens. I am not in a hurry. Time flows at my own pace. I savor this moment of calm. Restless thoughts settle little by little. I am present, here and now. My voice finds its natural tempo. Words come to me without effort. I pronounce them with clarity. Every syllable has its place. Pauses give meaning to my sentences. The silence between words is not emptiness. It is a breath, a necessary rest. I allow myself to take my time. No one is rushing me. This freedom is precious. I nurture it with patience. Every day, I improve a little more. My calm becomes my strength. My speech becomes clearer. Others listen to me with attention. I communicate with confidence. Breathing remains my anchor. I always return to it when the pace quickens.",
+        tip: "Breathe deeply between each sentence. Mentally count two seconds before speaking again."
       },
       {
         id: "slow-2",
-        title: "Une Promenade dans la Nature",
-        text: "Le sentier serpente à travers la forêt. Les arbres centenaires tendent leurs branches vers le ciel. Leurs feuilles filtrent la lumière du soleil. Des rayons dorés dansent sur le sol couvert de mousse. L'air est frais et parfumé. Je respire profondément cette odeur de terre humide. Un ruisseau coule quelque part, j'entends son murmure apaisant. Les oiseaux chantent dans les hauteurs. Chacun a sa mélodie unique. Je m'arrête pour les écouter. Le temps semble suspendu dans cet endroit préservé. Un écureuil traverse le chemin devant moi. Il s'arrête, me regarde, puis disparaît dans les feuillages. Je souris de cette rencontre furtive. Mes pas foulent doucement les feuilles mortes. Elles craquent sous mes pieds avec un bruit rassurant. Le chemin monte légèrement vers une clairière. Là-haut, le ciel s'ouvre en grand. Les nuages blancs dérivent lentement. Je m'assieds sur un rocher plat. La chaleur du soleil réchauffe mon visage. Je ferme les yeux un instant. Tous mes sens sont en éveil. La nature m'offre ce moment de paix. Je lui suis reconnaissant.",
-        tip: "Visualisez chaque scène mentalement avant de la décrire. Laissez les images guider votre rythme de lecture."
+        title: "A Walk in Nature",
+        text: "The trail winds through the forest. Ancient trees stretch their branches toward the sky. Their leaves filter the sunlight. Golden rays dance on the moss-covered ground. The air is cool and fragrant. I breathe deeply, taking in the scent of damp earth. A stream flows somewhere nearby; I can hear its soothing murmur. Birds sing high above. Each one has its own unique melody. I stop to listen. Time seems to stand still in this sheltered place. A squirrel darts across the path in front of me. It pauses, looks at me, then vanishes into the foliage. I smile at this fleeting encounter. My steps fall softly on the fallen leaves. They crunch beneath my feet with a reassuring sound. The path climbs gently toward a clearing. Up there, the sky opens wide. White clouds drift slowly. I sit down on a flat rock. The warmth of the sun heats my face. I close my eyes for a moment. All of my senses are alive. Nature offers me this moment of peace. I am grateful for it.",
+        tip: "Visualize each scene in your mind before describing it. Let the images guide your reading pace."
       },
       {
         id: "slow-3",
-        title: "Le Réveil en Douceur",
-        text: "Le jour se lève tranquillement. Les premiers rayons du soleil traversent les rideaux. La chambre s'éclaire progressivement d'une lumière dorée. Je reste quelques instants dans la chaleur des draps. Mon corps s'éveille lentement, membre après membre. J'étire mes bras au-dessus de ma tête. Je sens mes muscles se réveiller. Un bâillement profond m'échappe. C'est le signe que la nuit a été réparatrice. Je tourne la tête vers la fenêtre. Le ciel est d'un bleu pâle, promesse d'une belle journée. Les oiseaux ont commencé leur concert matinal. Leurs chants joyeux me donnent envie de me lever. Je repousse doucement la couverture. Mes pieds touchent le sol frais. Cette sensation me réveille complètement. Je me dirige vers la cuisine d'un pas tranquille. L'odeur du café commence à embaumer la maison. Une tasse chaude entre les mains, je m'installe près de la fenêtre. Je contemple le jardin qui s'éveille lui aussi. La rosée brille sur les pétales des fleurs. Un chat traverse la pelouse avec élégance. La journée peut commencer. Je suis prêt à l'accueillir avec sérénité.",
-        tip: "Articulez chaque syllabe distinctement. Le matin est un moment de transition, votre lecture doit refléter cette douceur."
+        title: "A Gentle Wake-Up",
+        text: "The day dawns quietly. The first rays of sunlight slip through the curtains. The room gradually brightens with a golden glow. I linger for a few moments in the warmth of the sheets. My body wakes slowly, limb by limb. I stretch my arms above my head. I feel my muscles coming alive. A deep yawn escapes me. It is a sign that the night was restful. I turn my head toward the window. The sky is a pale blue, promising a beautiful day. The birds have begun their morning concert. Their cheerful songs make me want to get up. I gently push back the covers. My feet touch the cool floor. That sensation wakes me completely. I walk to the kitchen at a calm pace. The smell of coffee is beginning to fill the house. With a warm cup in my hands, I settle near the window. I gaze at the garden as it awakens too. Dew glistens on the petals of the flowers. A cat crosses the lawn with elegance. The day can begin. I am ready to welcome it with serenity.",
+        tip: "Articulate every syllable clearly. Morning is a time of transition, and your reading should reflect that gentleness."
       },
       {
         id: "slow-4",
-        title: "Le Rythme de la Marche",
-        text: "Un pas, puis un autre. Le chemin s'étend devant moi. Je ne connais pas sa fin, mais cela n'a pas d'importance. Ce qui compte, c'est le voyage, pas la destination. Mes pieds trouvent leur rythme naturel. Ni trop vite, ni trop lent. Juste le tempo qui convient à mon corps. Je ressens le contact du sol sous mes semelles. Chaque surface a sa texture particulière. Le béton dur de la ville, le gravier qui crisse, l'herbe souple du parc. J'adapte ma marche à chaque terrain. Mon souffle accompagne mes pas. Inspiration sur deux pas, expiration sur deux pas. Ce rythme régulier calme mon esprit. Les pensées parasites s'éloignent. Je suis pleinement présent dans mon corps en mouvement. Le paysage défile autour de moi. Je remarque des détails que je n'avais jamais vus. Une fleur au bord du trottoir, un graffiti coloré sur un mur, le sourire d'un passant. La marche ouvre mes sens au monde. Elle me reconnecte à l'essentiel. Chaque promenade est une méditation en mouvement. Je reviens toujours apaisé, l'esprit clarifié.",
-        tip: "Synchronisez votre respiration avec le rythme de la lecture. Imaginez que vos mots sont des pas réguliers."
+        title: "The Rhythm of Walking",
+        text: "One step, then another. The path stretches out before me. I do not know where it ends, but that does not matter. What matters is the journey, not the destination. My feet find their natural rhythm. Not too fast, not too slow. Just the tempo that suits my body. I feel the ground beneath my soles. Every surface has its own texture. The hard concrete of the city, the crunching gravel, the soft grass of the park. I adjust my stride to each terrain. My breath accompanies my steps. Inhale for two steps, exhale for two steps. This steady rhythm calms my mind. Intrusive thoughts drift away. I am fully present in my body as it moves. The scenery shifts around me. I notice details I had never seen before. A flower at the edge of the sidewalk, a colorful piece of graffiti on a wall, the smile of a stranger. Walking opens my senses to the world. It reconnects me to what truly matters. Every walk is a meditation in motion. I always return feeling calm, my mind clear.",
+        tip: "Synchronize your breathing with your reading pace. Imagine your words are steady, even footsteps."
       },
       {
         id: "slow-5",
-        title: "L'Art de l'Écoute",
-        text: "Écouter vraiment, c'est un art qui se cultive. Cela demande de faire taire notre voix intérieure. De suspendre nos jugements et nos interprétations. D'accueillir les mots de l'autre avec ouverture. Je m'entraîne chaque jour à mieux écouter. Je regarde la personne qui me parle. Je remarque ses expressions, ses gestes, ses silences. Tout cela fait partie du message. Les mots ne représentent qu'une partie de la communication. Le ton de la voix en dit parfois plus long. Une hésitation peut révéler une émotion cachée. Un sourire peut contredire des paroles négatives. Je prête attention à ces signaux subtils. Quand quelqu'un me parle, je résiste à l'envie de l'interrompre. Je lui laisse le temps de formuler sa pensée. Parfois, les meilleures idées viennent après une pause. Je pose des questions pour mieux comprendre. Des questions ouvertes qui invitent à approfondir. Je reformule parfois ce que j'ai entendu. Cela montre que j'ai vraiment écouté. Cette qualité d'écoute transforme mes relations. Les autres se sentent respectés et valorisés. En retour, ils m'écoutent aussi avec plus d'attention.",
-        tip: "Lisez ce texte comme si vous parliez à quelqu'un. Les pauses naturelles donnent du poids à vos mots."
+        title: "The Art of Listening",
+        text: "Truly listening is an art that must be cultivated. It requires silencing our inner voice. Suspending our judgments and interpretations. Welcoming the words of others with openness. I practice every day to become a better listener. I look at the person speaking to me. I notice their expressions, their gestures, their silences. All of this is part of the message. Words represent only a fraction of communication. The tone of voice sometimes says far more. A hesitation can reveal a hidden emotion. A smile can contradict negative words. I pay attention to these subtle signals. When someone speaks to me, I resist the urge to interrupt. I give them time to form their thoughts. Sometimes the best ideas come after a pause. I ask questions to understand better. Open-ended questions that invite deeper reflection. I sometimes rephrase what I have heard. This shows that I have truly listened. This quality of listening transforms my relationships. Others feel respected and valued. In return, they listen to me with greater attention as well.",
+        tip: "Read this text as though you were speaking to someone. Natural pauses give weight to your words."
       },
       {
         id: "slow-6",
-        title: "La Patience au Quotidien",
-        text: "La patience n'est pas l'attente passive. C'est une force active qui demande de la pratique. Dans notre monde qui valorise la vitesse, elle devient un acte de résistance. Je cultive cette qualité précieuse au quotidien. Dans la file d'attente au supermarché, je respire calmement. Ce temps n'est pas perdu, il m'appartient. Je peux observer les gens autour de moi. Chacun a son histoire, ses préoccupations. Dans les embouteillages, je choisis de ne pas m'énerver. La colère ne fera pas avancer les voitures. Autant profiter de ce moment pour écouter de la musique. Ou pour réfléchir tranquillement à mes projets. Avec mes proches, la patience prend une autre forme. J'accepte que chacun ait son propre rythme. Mes enfants apprennent à leur vitesse. Mon conjoint a sa manière de fonctionner. Je ne peux pas les forcer à changer. Mais je peux les accompagner avec bienveillance. La patience que je développe envers les autres, je l'applique aussi à moi-même. Je ne me juge pas trop sévèrement quand je fais des erreurs. J'accepte que le progrès prenne du temps. Chaque petit pas compte dans ce long chemin.",
-        tip: "La patience s'applique aussi à la lecture. Prenez le temps nécessaire pour chaque phrase sans vous presser."
+        title: "Everyday Patience",
+        text: "Patience is not passive waiting. It is an active strength that requires practice. In a world that prizes speed, patience becomes an act of resistance. I nurture this precious quality every day. In the checkout line at the grocery store, I breathe calmly. This time is not wasted; it belongs to me. I can observe the people around me. Each one has a story, their own concerns. In traffic, I choose not to get frustrated. Anger will not make the cars move faster. I might as well enjoy this moment listening to music. Or quietly reflecting on my plans. With my loved ones, patience takes another form. I accept that everyone has their own pace. My children learn at their own speed. My partner has their own way of doing things. I cannot force them to change. But I can support them with kindness. The patience I develop toward others, I also apply to myself. I do not judge myself too harshly when I make mistakes. I accept that progress takes time. Every small step counts on this long path.",
+        tip: "Patience applies to reading too. Take all the time you need for each sentence without rushing."
       },
       {
         id: "slow-7",
-        title: "Le Jardin Secret",
-        text: "Au fond du jardin, derrière les rosiers, il y a un petit coin que personne ne connaît. C'est mon refuge, mon espace de tranquillité. Un vieux banc de pierre y attend depuis des décennies. La mousse a recouvert les pieds, lui donnant un charme intemporel. Je m'y installe souvent pour lire ou simplement rêver. Le lierre grimpe le long du mur, créant un écran de verdure. Les bruits de la rue disparaissent ici. Seuls parviennent le chant des oiseaux et le bourdonnement des abeilles. Au printemps, les iris mauves fleurissent au pied du mur. Leur parfum délicat emplit l'air. En été, le jasmin prend le relais avec ses fleurs blanches étoilées. L'automne apporte les feuilles dorées qui tapissent le sol. L'hiver, le jardin se repose sous une fine couche de givre. Chaque saison a sa beauté particulière dans ce petit coin de paradis. Je viens ici quand j'ai besoin de me ressourcer. Le temps s'arrête entre ces murs couverts de verdure. Mes pensées se clarifient, mes soucis s'allègent. Ce jardin secret est mon allié dans la quête du calme intérieur.",
-        tip: "Laissez les descriptions créer des images dans votre esprit. La visualisation aide naturellement à ralentir."
+        title: "The Secret Garden",
+        text: "At the far end of the garden, behind the rose bushes, there is a small corner that no one knows about. It is my refuge, my space of tranquility. An old stone bench has been waiting there for decades. Moss has covered its legs, giving it a timeless charm. I often sit here to read or simply daydream. Ivy climbs along the wall, creating a screen of greenery. The sounds of the street disappear here. Only birdsong and the hum of bees reach this place. In spring, purple irises bloom at the foot of the wall. Their delicate fragrance fills the air. In summer, jasmine takes over with its white star-shaped flowers. Autumn brings golden leaves that carpet the ground. In winter, the garden rests beneath a thin layer of frost. Each season has its own beauty in this little corner of paradise. I come here when I need to recharge. Time stops between these walls covered in green. My thoughts become clear and my worries grow lighter. This secret garden is my ally in the search for inner calm.",
+        tip: "Let the descriptions create images in your mind. Visualization naturally helps you slow down."
       },
       {
         id: "slow-8",
-        title: "L'Horloge Ancienne",
-        text: "Dans le salon de mes grands-parents trônait une vieille horloge comtoise. Son balancier oscillait régulièrement, marquant le passage du temps avec dignité. Chaque heure, elle sonnait de sa voix grave et profonde. Ce son résonnait dans toute la maison, rappelant à chacun que le temps avançait. Enfant, je restais fasciné par ce mécanisme complexe. Les engrenages dorés tournaient avec une précision millimétrique. Les aiguilles progressaient imperceptiblement sur le cadran d'émail. Mon grand-père remontait l'horloge chaque dimanche matin. C'était un rituel immuable, un geste transmis de père en fils. Il manipulait la clé de laiton avec respect et attention. Jamais il ne brusquait le mécanisme centenaire. Cette horloge lui avait appris la valeur du temps, disait-il. Non pas pour le compter anxieusement, mais pour l'apprécier pleinement. Chaque tic-tac était une invitation à vivre l'instant présent. Aujourd'hui, cette horloge est chez moi. Elle continue de rythmer mes journées de son battement régulier. Quand je l'entends, je pense à mon grand-père. Je me souviens de ses paroles sages sur la patience et le temps.",
-        tip: "Le rythme de l'horloge peut guider votre lecture. Imaginez le balancier qui oscille lentement."
+        title: "The Old Clock",
+        text: "In my grandparents' living room stood an old grandfather clock. Its pendulum swung steadily, marking the passage of time with dignity. Every hour, it chimed with a deep, resonant voice. The sound echoed through the entire house, reminding everyone that time was moving forward. As a child, I was fascinated by its intricate mechanism. The golden gears turned with pinpoint precision. The hands crept imperceptibly across the enamel face. My grandfather wound the clock every Sunday morning. It was an unchanging ritual, a gesture passed down from father to son. He handled the brass key with respect and care. He never forced the century-old mechanism. This clock had taught him the value of time, he would say. Not to count it anxiously, but to appreciate it fully. Each tick-tock was an invitation to live in the present moment. Today, that clock is in my home. It continues to set the rhythm of my days with its steady beat. When I hear it, I think of my grandfather. I remember his wise words about patience and the gift of time.",
+        tip: "Let the rhythm of the clock guide your reading. Imagine the pendulum swinging slowly."
       },
       {
         id: "slow-9",
-        title: "La Cuisine du Dimanche",
-        text: "Le dimanche, la cuisine devient le cœur de la maison. Dès le matin, les préparatifs commencent sans hâte. Je sors les ingrédients un à un, les dispose sur le plan de travail. Chaque geste est mesuré, chaque étape a son importance. L'eau commence à frémir dans la grande casserole. Les légumes attendent sagement d'être épluchés. Je prends le couteau et commence mon travail avec application. Les carottes sont coupées en rondelles régulières. Les oignons émincés finement libèrent leur parfum piquant. Les herbes du jardin apportent leur touche de fraîcheur. Le thym, le romarin, le laurier embaument déjà la pièce. Le bouillon mijote doucement sur le feu. Je surveille sans intervenir, laissant le temps faire son œuvre. La patience est l'ingrédient secret des bons plats. Les saveurs se développent lentement, les textures s'harmonisent. À midi, la famille se réunit autour de la table. Les conversations sont joyeuses, les assiettes se remplissent. Ce repas est le fruit de plusieurs heures de préparation tranquille. Mais le résultat en vaut largement la peine.",
-        tip: "Comme en cuisine, la précipitation n'apporte rien de bon. Savourez chaque mot comme un bon ingrédient."
+        title: "Sunday Cooking",
+        text: "On Sundays, the kitchen becomes the heart of the home. From early morning, preparations begin without haste. I take out the ingredients one by one and arrange them on the counter. Every motion is measured; every step matters. Water begins to simmer in the large pot. The vegetables wait patiently to be peeled. I pick up the knife and begin my work with care. The carrots are sliced into even rounds. The finely diced onions release their sharp aroma. Fresh herbs from the garden add their touch of brightness. Thyme, rosemary, and bay leaf already fill the room with fragrance. The broth simmers gently on the stove. I watch without interfering, letting time do its work. Patience is the secret ingredient of good cooking. Flavors develop slowly; textures come together. At noon, the family gathers around the table. Conversation is lively and plates are filled. This meal is the result of several hours of unhurried preparation. But the result is more than worth the effort.",
+        tip: "As in cooking, rushing never helps. Savor each word like a fine ingredient."
       },
       {
         id: "slow-10",
-        title: "Le Voyage en Train",
-        text: "Le train quitte lentement la gare. Les derniers quais défilent derrière la vitre. Peu à peu, le paysage urbain cède la place à la campagne. Les immeubles se transforment en maisons, puis en champs à perte de vue. Je m'installe confortablement dans mon siège. Le rythme régulier des roues sur les rails m'apaise. Ce bruit caractéristique est une berceuse pour adultes. Je regarde le monde défiler sans me presser. Les vaches paissent tranquillement dans les prés. Un tracteur trace des sillons dans un champ labouré. Un village apparaît au loin avec son clocher pointu. Puis il disparaît aussi vite qu'il était apparu. Le temps de voyage est un temps suspendu. Pas de téléphone qui sonne, pas de réunion qui presse. Je peux enfin lire ce livre qui m'attendait depuis des mois. Ou simplement contempler le paysage en laissant vagabonder mes pensées. Le contrôleur passe vérifier les billets. Son sourire est accueillant, son pas mesuré. Lui aussi semble avoir adopté le rythme du train. La destination approche, mais je ne suis pas pressé d'arriver. Le voyage lui-même est déjà un cadeau.",
-        tip: "Adoptez le rythme du train : régulier, paisible, sans à-coups. Les virgules sont vos arrêts en gare."
+        title: "The Train Journey",
+        text: "The train slowly pulls out of the station. The last platforms slide past the window. Gradually, the urban landscape gives way to countryside. Buildings turn into houses, then into fields stretching as far as the eye can see. I settle comfortably in my seat. The steady rhythm of wheels on rails soothes me. That distinctive sound is a lullaby for adults. I watch the world go by without rushing. Cows graze peacefully in the meadows. A tractor carves furrows in a plowed field. A village appears in the distance with its pointed steeple. Then it vanishes as quickly as it appeared. Travel time is suspended time. No phone ringing, no meeting to hurry to. I can finally read the book that has been waiting for months. Or simply gaze at the scenery while letting my thoughts wander. The conductor comes by to check tickets. His smile is welcoming, his pace measured. He too seems to have adopted the rhythm of the train. The destination is approaching, but I am in no rush to arrive. The journey itself is already a gift.",
+        tip: "Match the rhythm of the train: steady, peaceful, without sudden jolts. Commas are your station stops."
       }
     ]
   },
   {
     id: "daily-life",
     level: 2,
-    title: "Vie quotidienne",
-    description: "Emails, conversations et situations courantes. Entraînez-vous sur des textes réalistes du quotidien.",
+    title: "Functional Communication",
+    description: "Phone calls, workplace scenarios, and daily communication. Practice maintaining your target rate when it matters most.",
     icon: "📧",
     color: "from-blue-500/20 to-blue-600/10",
     exercises: [
       {
         id: "daily-1",
-        title: "L'Email Professionnel",
-        text: "Bonjour Monsieur Dupont, je vous remercie sincèrement pour votre message du quinze janvier dernier. J'ai pris le temps de lire attentivement votre proposition commerciale, et je dois dire qu'elle a retenu toute mon attention. Les conditions que vous proposez correspondent globalement à nos attentes. Cependant, j'aimerais clarifier certains points avant de nous engager. Premièrement, concernant les délais de livraison, vous mentionnez un délai de trois semaines, mais serait-il possible de le réduire à deux semaines pour les commandes urgentes ? Deuxièmement, je souhaiterais en savoir plus sur les conditions de garantie. Vous indiquez une garantie de deux ans, mais couvre-t-elle également les pièces d'usure ? Troisièmement, nous aimerions discuter des modalités de paiement. Un échelonnement sur trois mois nous conviendrait mieux qu'un paiement comptant. Je suis disponible mardi prochain, le vingt-trois janvier, pour en discuter de vive voix lors d'un rendez-vous téléphonique. Merci de me confirmer votre disponibilité. N'hésitez pas à me contacter si vous avez des questions ou des remarques concernant ces points. Je reste à votre entière disposition pour tout complément d'information. Dans l'attente de votre retour, je vous prie d'agréer, Monsieur, l'expression de mes salutations distinguées. Bien cordialement, Marie Martin, Responsable des Achats.",
-        tip: "Les emails professionnels méritent un débit posé et clair. Marquez bien les transitions entre les différents points."
+        title: "The Professional Email",
+        text: "Dear Mr. Thompson, thank you sincerely for your message of January fifteenth. I took the time to carefully review your business proposal, and I must say it has captured my full attention. The terms you are offering generally align with our expectations. However, I would like to clarify a few points before we commit. First, regarding delivery timelines, you mention a three-week lead time, but would it be possible to reduce this to two weeks for urgent orders? Second, I would like to learn more about the warranty conditions. You indicate a two-year warranty, but does it also cover wear-and-tear parts? Third, we would like to discuss payment terms. An installment plan over three months would suit us better than a lump-sum payment. I am available next Tuesday, January twenty-third, to discuss this over a phone call. Please confirm your availability. Do not hesitate to contact me if you have any questions or comments regarding these points. I remain at your full disposal for any additional information. Looking forward to hearing from you. Best regards, Marie Martin, Procurement Manager.",
+        tip: "Professional emails deserve a calm, clear rate. Mark the transitions between different points clearly."
       },
       {
         id: "daily-2",
-        title: "La Commande au Restaurant",
-        text: "Bonsoir, nous avons réservé une table pour quatre personnes au nom de Leblanc pour vingt heures. Parfait, merci de nous installer près de la fenêtre si possible. Nous aimerions commencer par consulter la carte des vins. Pourriez-vous nous recommander un vin rouge qui accompagnerait bien un plat de viande rouge ? Excellent, nous allons prendre une bouteille de ce Côtes-du-Rhône que vous recommandez. Pour les entrées, je vais prendre le foie gras maison avec son chutney de figues. Mon épouse prendra la salade de chèvre chaud aux noix. Pour les enfants, nous allons commander deux soupes du jour. Pour les plats principaux, je choisirai l'entrecôte grillée, cuisson à point, avec des frites maison et une sauce au poivre. Ma femme souhaite le filet de bar poêlé avec sa purée de céleri. Pour les enfants, deux steaks hachés avec des haricots verts, s'il vous plaît. Ah, j'oubliais, mon fils est allergique aux noix, pourriez-vous le signaler en cuisine ? Merci beaucoup. Nous verrons pour le dessert plus tard. Pourrions-nous également avoir une carafe d'eau plate et une bouteille d'eau gazeuse ? Et si c'est possible, un peu plus de pain, celui-ci est délicieux. Merci infiniment pour votre patience et votre professionnalisme.",
-        tip: "Dans un commerce, parlez assez lentement pour être compris du premier coup. Les commandes détaillées nécessitent clarté et pauses."
+        title: "Ordering at a Restaurant",
+        text: "Good evening, we have a reservation for four under the name Whitfield for eight o'clock. Perfect, thank you. Could you seat us near the window if possible? We would like to start by looking at the wine list. Could you recommend a red wine that would pair well with a beef dish? Excellent, we will have a bottle of that Cabernet you recommend. For starters, I will have the house pate with fig chutney. My wife will have the warm goat cheese salad with walnuts. For the children, we will order two bowls of the soup of the day. For the main courses, I will choose the grilled ribeye, medium, with hand-cut fries and a peppercorn sauce. My wife would like the pan-seared sea bass with celery root puree. For the children, two burgers with green beans, please. Oh, I almost forgot, my son has a nut allergy. Could you let the kitchen know? Thank you so much. We will decide on dessert later. Could we also have a pitcher of still water and a bottle of sparkling water? And if possible, a bit more bread; it is delicious. Thank you so much for your patience and professionalism.",
+        tip: "When ordering, speak slowly enough to be understood the first time. Detailed orders require clarity and pauses."
       },
       {
         id: "daily-3",
-        title: "La Réunion d'Équipe",
-        text: "Merci à tous d'être présents pour cette réunion hebdomadaire. Je sais que vous avez des emplois du temps chargés, donc j'essaierai d'être aussi concis que possible. Aujourd'hui, nous allons aborder cinq points essentiels qui concernent directement notre équipe et nos objectifs du trimestre. Premièrement, faisons le bilan du mois de janvier. Les résultats sont encourageants : nous avons atteint cent quinze pour cent de notre objectif de ventes. C'est un excellent travail d'équipe, et je tenais à vous féliciter. Deuxièmement, parlons des objectifs pour février. Nous devons maintenir cette dynamique tout en préparant le lancement du nouveau produit prévu pour le quinze mars. Troisièmement, j'aimerais discuter de la réorganisation du planning. Suite aux retours que vous m'avez faits, nous allons décaler les réunions du lundi matin au mardi après-midi. Cela devrait convenir à tout le monde. Quatrièmement, concernant les formations, nous avons obtenu le budget pour trois sessions de formation au nouveau logiciel. Les inscriptions seront ouvertes dès demain. Cinquièmement et dernièrement, les questions ouvertes. Y a-t-il des sujets que vous souhaitez aborder ? Des préoccupations ? Des suggestions ? N'hésitez pas à prendre la parole. Votre avis compte énormément pour la réussite de nos projets communs. Avant de conclure, je vous rappelle que les entretiens individuels auront lieu la semaine prochaine.",
-        tip: "Numérotez vos points à voix haute en marquant des pauses. En réunion, un débit calme facilite la prise de notes."
+        title: "The Team Meeting",
+        text: "Thank you all for being here for this weekly meeting. I know your schedules are busy, so I will try to be as concise as possible. Today, we are going to cover five key points that directly concern our team and our quarterly goals. First, let us review January. The results are encouraging: we reached one hundred and fifteen percent of our sales target. That is excellent teamwork, and I want to congratulate you. Second, let us talk about our goals for February. We need to maintain this momentum while preparing for the new product launch scheduled for March fifteenth. Third, I would like to discuss rescheduling our meetings. Based on your feedback, we are moving the Monday morning meetings to Tuesday afternoons. That should work for everyone. Fourth, regarding training, we have secured the budget for three sessions on the new software. Registration opens tomorrow. Fifth and finally, open questions. Are there any topics you would like to bring up? Concerns? Suggestions? Please feel free to speak up. Your input matters greatly to the success of our shared projects. Before we wrap up, I want to remind you that one-on-one reviews will take place next week.",
+        tip: "Number your points out loud and pause between them. In a meeting, a calm rate makes it easier for others to take notes."
       },
       {
         id: "daily-4",
-        title: "Les Directions Détaillées",
-        text: "Bien sûr, je vais vous expliquer comment aller à la gare depuis ici. C'est assez simple, mais écoutez bien car il y a quelques tournants. Sortez de ce bâtiment par la porte principale. Une fois dehors, tournez à droite et continuez tout droit pendant environ deux cents mètres. Vous allez passer devant une boulangerie sur votre gauche, puis une pharmacie sur votre droite. Au premier feu rouge, celui qui se trouve juste après le café du Commerce, tournez à gauche. Vous serez alors sur l'avenue Victor Hugo. Suivez cette avenue pendant environ quatre cents mètres. Vous passerez devant le parc municipal sur votre droite, c'est un bon repère. Continuez tout droit jusqu'au grand carrefour avec le rond-point. Prenez la deuxième sortie du rond-point, direction centre-ville. La rue s'appelle rue de la République. Marchez encore cent cinquante mètres environ. La gare sera sur votre droite, juste après le bureau de poste. Vous ne pouvez pas la manquer, il y a un grand panneau bleu avec le logo de la SNCF. En tout, comptez environ dix à quinze minutes de marche à un rythme normal. Si vous êtes pressé, vous pouvez aussi prendre le bus numéro sept qui passe toutes les dix minutes devant ce bâtiment et qui s'arrête directement devant la gare. Bon courage et bonne route !",
-        tip: "Donnez les instructions par étapes distinctes. Chaque direction mérite une pause pour permettre l'assimilation."
+        title: "Giving Detailed Directions",
+        text: "Of course, I will explain how to get to the train station from here. It is fairly simple, but listen carefully because there are a few turns. Leave this building through the main entrance. Once outside, turn right and continue straight for about two hundred meters. You will pass a bakery on your left, then a pharmacy on your right. At the first traffic light, the one just past the coffee shop, turn left. You will then be on Main Avenue. Follow this avenue for about four hundred meters. You will pass the city park on your right; that is a good landmark. Continue straight until you reach the large intersection with the roundabout. Take the second exit off the roundabout, toward downtown. The street is called Republic Street. Walk another one hundred and fifty meters or so. The station will be on your right, just past the post office. You cannot miss it; there is a large blue sign with the station logo. In total, it is about a ten- to fifteen-minute walk at a normal pace. If you are in a hurry, you can also take bus number seven, which comes every ten minutes in front of this building and stops right at the station. Good luck and safe travels!",
+        tip: "Give instructions in distinct steps. Each direction deserves a pause to allow the listener to absorb it."
       },
       {
         id: "daily-5",
-        title: "L'Appel au Service Client",
-        text: "Allô, bonjour, je vous appelle concernant un problème avec ma commande passée sur votre site internet. Mon numéro de commande est le quatre-vingt-seize deux cent trente-quatre cinq cent soixante-dix-huit. J'ai passé cette commande le dix janvier et je devais la recevoir sous cinq jours ouvrés. Nous sommes aujourd'hui le vingt-deux janvier et je n'ai toujours rien reçu. J'ai vérifié le suivi de colis avec le numéro que vous m'avez envoyé par email, mais le statut indique que le colis est bloqué à l'entrepôt depuis le quatorze janvier. J'ai essayé de contacter le transporteur, mais ils m'ont renvoyé vers vous en disant que le problème venait de l'expéditeur. C'est assez frustrant car j'avais besoin de cet article pour un événement ce week-end. Pourriez-vous vérifier ce qui se passe avec ma commande ? Est-il possible de la faire livrer en express ? Ou si ce n'est pas possible, je souhaiterais être remboursé pour pouvoir acheter l'article ailleurs. Je comprends que les retards peuvent arriver, mais deux semaines sans nouvelles, c'est vraiment long. Pouvez-vous me donner une solution aujourd'hui ? Je vous remercie par avance pour votre aide et votre compréhension. Mon numéro de téléphone est le zéro six douze trente-quatre cinquante-six soixante-dix-huit si vous avez besoin de me recontacter.",
-        tip: "Au téléphone, articulez davantage car l'autre ne voit pas vos lèvres. Énoncez clairement les numéros."
+        title: "Calling Customer Service",
+        text: "Hello, good morning, I am calling about a problem with an order I placed on your website. My order number is nine six two three four five seven eight. I placed this order on January tenth and I was supposed to receive it within five business days. Today is January twenty-second and I still have not received anything. I checked the tracking with the number you sent me by email, but the status shows the package has been stuck at the warehouse since January fourteenth. I tried contacting the carrier, but they redirected me to you, saying the issue was on the sender's end. This is quite frustrating because I needed the item for an event this weekend. Could you check what is happening with my order? Is it possible to have it shipped express? Or if that is not possible, I would like a refund so I can purchase the item elsewhere. I understand that delays can happen, but two weeks without any updates is really too long. Can you give me a solution today? Thank you in advance for your help and understanding. My phone number is zero six one two three four five six seven eight if you need to reach me again.",
+        tip: "On the phone, articulate more clearly since the other person cannot see your lips. State numbers distinctly."
       },
       {
         id: "daily-6",
-        title: "La Présentation Professionnelle",
-        text: "Bonjour à tous et bienvenue à cette présentation. Je m'appelle Thomas Martin et je suis le responsable du projet Innovation au sein de notre département. Aujourd'hui, je vais vous présenter les résultats de notre étude de marché et nos recommandations pour le lancement du nouveau produit. Cette présentation durera environ trente minutes, suivies d'une session de questions-réponses. Si vous avez des questions pendant la présentation, n'hésitez pas à m'interrompre. Commençons par le contexte. Comme vous le savez, le marché a beaucoup évolué ces deux dernières années. Nos concurrents ont lancé des produits innovants et nos parts de marché ont légèrement diminué. Face à ce constat, nous avons mené une étude approfondie auprès de cinq cents clients potentiels. Les résultats sont très instructifs. Soixante-dix pour cent des personnes interrogées se disent prêtes à essayer un nouveau produit si celui-ci répond à trois critères principaux : la qualité, le prix et la durabilité. Notre nouveau produit répond parfaitement à ces attentes. Passons maintenant aux chiffres prévisionnels. Nous estimons pouvoir conquérir huit pour cent de parts de marché la première année, et douze pour cent la deuxième année. Pour atteindre ces objectifs, nous recommandons un investissement marketing de deux cent mille euros répartis sur dix-huit mois. Je vais maintenant vous montrer les maquettes du produit et les retours des groupes de discussion.",
-        tip: "En présentation, parlez vingt pour cent plus lentement que d'habitude. Utilisez les pauses pour laisser le temps à l'audience d'absorber l'information."
+        title: "The Business Presentation",
+        text: "Good morning, everyone, and welcome to this presentation. My name is Thomas Martin and I am the Innovation Project Manager in our department. Today, I will present the results of our market research and our recommendations for the new product launch. This presentation will last approximately thirty minutes, followed by a question-and-answer session. If you have questions during the presentation, feel free to interrupt. Let us begin with the context. As you know, the market has changed significantly over the past two years. Our competitors have launched innovative products and our market share has declined slightly. In response, we conducted an in-depth study with five hundred potential customers. The results are very informative. Seventy percent of respondents say they are willing to try a new product if it meets three key criteria: quality, price, and durability. Our new product meets these expectations perfectly. Let us now turn to the projected figures. We estimate we can capture eight percent market share in the first year and twelve percent in the second year. To reach these goals, we recommend a marketing investment of two hundred thousand dollars spread over eighteen months. I will now show you the product mockups and the focus group feedback.",
+        tip: "During a presentation, speak twenty percent more slowly than usual. Use pauses to give the audience time to absorb the information."
       },
       {
         id: "daily-7",
-        title: "La Consultation Médicale",
-        text: "Docteur, je viens vous voir car je ressens une douleur persistante au niveau du bas du dos depuis environ trois semaines maintenant. C'est une douleur qui a commencé progressivement, sans événement déclencheur particulier que je puisse identifier. Elle est surtout présente le matin au réveil et quand je reste assis trop longtemps à mon bureau. La douleur diminue généralement quand je bouge et quand je marche. J'ai essayé de faire des étirements que j'ai trouvés sur internet, mais ça ne suffit pas à la soulager durablement. J'ai aussi pris du paracétamol pendant quelques jours, ce qui atténue un peu la douleur, mais elle revient dès que l'effet du médicament se dissipe. Sur une échelle de un à dix, je dirais que la douleur est autour de cinq ou six. Ce n'est pas insupportable, mais c'est vraiment gênant au quotidien, surtout dans mon travail où je dois rester assis de longues heures. J'ai remarqué que la douleur irradie parfois vers ma jambe droite, surtout le soir. Je n'ai pas de fièvre, pas de perte de poids, et je n'ai pas eu d'accident récent. Par contre, je dois vous dire que je fais très peu de sport depuis plusieurs mois et que mon fauteuil de bureau n'est pas très ergonomique. Qu'en pensez-vous, docteur ? Est-ce que je devrais faire des examens complémentaires ?",
-        tip: "Décrivez vos symptômes calmement et méthodiquement. Un discours posé aide le médecin à bien comprendre votre situation."
+        title: "The Doctor's Appointment",
+        text: "Doctor, I am here because I have been experiencing a persistent pain in my lower back for about three weeks now. The pain started gradually, with no particular triggering event that I can identify. It is mostly present in the morning when I wake up and when I sit at my desk for too long. The pain usually decreases when I move around and walk. I have tried doing some stretches I found online, but they are not enough to provide lasting relief. I also took acetaminophen for a few days, which helped a little, but the pain returns as soon as the medication wears off. On a scale of one to ten, I would say the pain is around a five or six. It is not unbearable, but it is really bothersome on a daily basis, especially in my job where I have to sit for long hours. I have noticed that the pain sometimes radiates down to my right leg, especially in the evening. I do not have a fever, no weight loss, and I have not had any recent injuries. However, I should mention that I have been doing very little exercise for several months and my office chair is not very ergonomic. What do you think, doctor? Should I have some additional tests done?",
+        tip: "Describe your symptoms calmly and methodically. A steady rate helps the doctor fully understand your situation."
       },
       {
         id: "daily-8",
-        title: "La Négociation Commerciale",
-        text: "Je comprends parfaitement votre position, et je l'entends sincèrement. Vous avez des contraintes budgétaires, et nous avons nos coûts de production à couvrir. C'est une situation classique dans toute négociation commerciale. Cependant, je suis convaincu que nous pouvons trouver un terrain d'entente qui satisfasse les deux parties. Permettez-moi de vous faire une proposition alternative. Au lieu du tarif standard de cinquante euros par unité, je peux vous proposer quarante-cinq euros, soit une réduction de dix pour cent. En contrepartie, je vous demanderais un engagement sur une commande minimale de cinq cents unités au lieu des trois cents initialement prévues. De plus, nous pourrions envisager un partenariat sur le long terme avec des tarifs dégressifs selon les volumes commandés. Pour les commandes dépassant mille unités, le prix pourrait descendre à quarante-deux euros. Qu'en pensez-vous ? Cette proposition vous permettrait de réduire vos coûts tout en nous garantissant un volume suffisant pour maintenir notre qualité de service. Je suis également ouvert à discuter des délais de paiement. Si un règlement à soixante jours vous convient mieux qu'à trente jours, nous pouvons nous adapter. L'important pour nous est de construire une relation de confiance durable. Prenez le temps d'y réfléchir et revenez vers moi avec vos commentaires. Je reste flexible et ouvert à la discussion.",
-        tip: "Dans une négociation, les pauses stratégiques montrent votre assurance. Parlez lentement pour donner du poids à chaque proposition."
+        title: "The Business Negotiation",
+        text: "I completely understand your position, and I hear you sincerely. You have budget constraints, and we have production costs to cover. This is a classic situation in any business negotiation. However, I am confident we can find common ground that satisfies both parties. Allow me to make an alternative proposal. Instead of the standard rate of fifty dollars per unit, I can offer you forty-five dollars, which is a ten percent discount. In return, I would ask for a commitment to a minimum order of five hundred units instead of the originally planned three hundred. Additionally, we could consider a long-term partnership with volume-based pricing. For orders exceeding one thousand units, the price could drop to forty-two dollars. What do you think? This proposal would allow you to reduce your costs while guaranteeing us sufficient volume to maintain our quality of service. I am also open to discussing payment terms. If net sixty days works better for you than net thirty, we can accommodate that. What matters most to us is building a lasting relationship of trust. Take the time to think it over and get back to me with your thoughts. I remain flexible and open to discussion.",
+        tip: "In a negotiation, strategic pauses show confidence. Speak slowly to give weight to each proposal."
       }
     ]
   },
   {
     id: "articulation",
     level: 3,
-    title: "Défis d'articulation",
-    description: "Virelangues et mots complexes. Le niveau expert pour perfectionner votre diction et votre contrôle.",
+    title: "Over-Articulation",
+    description: "Deliberately exaggerate consonants and vowels for clarity. A core technique in cluttering therapy — slow down and make every phoneme count.",
     icon: "🎯",
     color: "from-red-500/20 to-red-600/10",
     exercises: [
       {
         id: "artic-1",
-        title: "Les Chaussettes",
-        text: "Les chaussettes de l'archiduchesse sont-elles sèches, archi-sèches ? Si elles sont sèches, c'est qu'elles ont été bien séchées. L'archiduchesse cherche ses chaussettes sèches dans le séchoir. Mais ces chaussettes sont-elles assez sèches pour l'archiduchesse ?",
-        tip: "Articulez chaque syllabe en exagérant les mouvements de la bouche."
+        title: "She Sells Seashells",
+        text: "She sells seashells by the seashore. The shells she sells are seashells, I'm sure. So if she sells seashells on the seashore, then I'm sure she sells seashore shells.",
+        tip: "Articulate every syllable by exaggerating your mouth movements."
       },
       {
         id: "artic-2",
-        title: "Le Chasseur",
-        text: "Un chasseur sachant chasser doit savoir chasser sans son chien. Car un bon chasseur qui chasse sans son chien chasse mieux qu'avec. Sachant cela, le chasseur sachant chasser prend son chien qui sait chercher ce que le chasseur chasse.",
-        tip: "Concentrez-vous sur le son 'ch' sans le transformer en 's'."
+        title: "Peter Piper",
+        text: "Peter Piper picked a peck of pickled peppers. A peck of pickled peppers Peter Piper picked. If Peter Piper picked a peck of pickled peppers, where's the peck of pickled peppers Peter Piper picked?",
+        tip: "Focus on the 'p' sound without letting it blur into 'b'."
       },
       {
         id: "artic-3",
-        title: "Les Scies",
-        text: "Si six scies scient six cyprès, six cents scies scient six cents cyprès. Et si six mille scies scient, combien de cyprès sont sciés ? Six mille six cent six cyprès sciés, c'est sûr !",
-        tip: "Ralentissez considérablement sur les sons 's' et 'c'."
+        title: "Sixth Sick Sheik",
+        text: "The sixth sick sheik's sixth sheep's sick. Six sleek swans swam swiftly southwards. Six sharp smart sharks. The sixth sick sheik's sheep certainly seems to be sick.",
+        tip: "Slow down considerably on the 's' and 'sh' sounds."
       },
       {
         id: "artic-4",
-        title: "Tonton",
-        text: "Tonton, ton thé t'a-t-il ôté ta toux ? Si ton thé t'a ôté ta toux, alors ton thé était un bon thé. Tonton tousse toujours, ton thé ne t'a donc pas tout ôté ta toux tenace.",
-        tip: "Faites bien la différence entre les sons 't' et 'th'."
+        title: "Toy Boat",
+        text: "Toy boat, toy boat, toy boat. Try saying toy boat ten times fast. A tricky toy boat trip takes tremendous tongue talent. Two tiny toy boats teetered toward the tall tower.",
+        tip: "Clearly differentiate between the 't' and 'b' sounds."
       },
       {
         id: "artic-5",
-        title: "Didon",
-        text: "Didon dîna, dit-on, du dos d'un dodu dindon. Don d'un don divin, Didon dîna donc du dindon. Didon dit de dédaigner les dindons dodus, mais donna tout de même du dindon à ses dames.",
-        tip: "Pratiquez d'abord lentement, puis accélérez progressivement."
+        title: "Woodchuck",
+        text: "How much wood would a woodchuck chuck if a woodchuck could chuck wood? He would chuck, he would, as much as he could, and chuck as much wood as a woodchuck would if a woodchuck could chuck wood.",
+        tip: "Practice slowly at first, then gradually pick up speed."
       },
       {
         id: "artic-6",
-        title: "Les Fruits",
-        text: "Fruits frais, fruits frits, fruits cuits, fruits crus. Un fruit frit n'est plus un fruit frais, mais un fruit cuit peut rester cru au centre. Fréquemment, Frédéric frit des fruits frais pour son frère François.",
-        tip: "Les allitérations en 'fr' demandent une articulation précise."
+        title: "Fresh French Fried",
+        text: "Fresh French fried fish. Freshly fried fresh flesh. Fred fed Ted bread, and Ted fed Fred bread. Friendly Frank flips fine flapjacks fast.",
+        tip: "The 'fr' and 'fl' blends require precise articulation."
       },
       {
         id: "artic-7",
-        title: "Le son KS",
-        text: "Le fisc fixe exprès chaque taxe fixe excessive exclusivement au luxe et à l'exquis. Cette taxe fixe excessive est fixée exprès par le fisc. Six fiscalistes fixent six taxes fixes sur six exercices.",
-        tip: "Le son 'x' est le plus difficile - décomposez-le en 'ks'."
+        title: "The KS Sound",
+        text: "Six thick thistle sticks. Six thick thistles stick. The ex-executor exercises his excessive excise taxes expertly. Expect extra excuses from the exhausted executive.",
+        tip: "The 'x' sound is the trickiest -- break it down into 'ks'."
       },
       {
         id: "artic-8",
-        title: "Le Pêcheur",
-        text: "Pauvre petit pêcheur, prend patience pour pouvoir prendre plusieurs petits poissons. Les petits poissons ne pressent pas le pêcheur patient. Près du port, Pierre le pêcheur pêche peu de poissons par peur des pirates.",
-        tip: "Exagérez le 'p' en projetant légèrement de l'air."
+        title: "The Fisherman",
+        text: "Poor patient Peter the fisherman perseveres, preparing to pick up plenty of plump perch. Plump perch please patient Peter perfectly. Past the pier, Peter patiently pulls plentiful perch past the pylons.",
+        tip: "Exaggerate the 'p' by projecting a slight puff of air."
       },
       {
         id: "artic-9",
-        title: "Piano Panier",
-        text: "Piano, panier, piano, panier. Je dis piano panier, puis panier piano. Un piano dans un panier, un panier sur un piano. Qui porte le panier au piano ? Le pianiste porte son panier près du piano.",
-        tip: "Alternez rapidement entre les sons 'pi' et 'pa'."
+        title: "Red Lorry Yellow Lorry",
+        text: "Red lorry, yellow lorry, red lorry, yellow lorry. I say red lorry, then yellow lorry. A red lorry on a yellow road, a yellow lorry on a red road. Red leather, yellow leather, red leather, yellow leather.",
+        tip: "Alternate quickly between the 'r' and 'l' sounds."
       },
       {
         id: "artic-10",
-        title: "Le Rat",
-        text: "Rat vit rôt, rôt tenta rat. Rat mit patte à rôt, rôt brûla patte à rat. Rat secoua sa patte et rata le rôt. Rat rageur regretta vraiment d'avoir raté ce rôti royal.",
-        tip: "Roulez légèrement les 'r' pour plus de clarté."
+        title: "The Rat",
+        text: "A rat ran rapidly round the rugged rock. The rugged rock resisted the rat's rapid run. Raging, the rat retreated, regretting its reckless race round the remarkably rugged rock.",
+        tip: "Keep your 'r' sounds crisp and clear."
       },
       {
         id: "artic-11",
-        title: "Trois Tortues",
-        text: "Trois très gros, gras, grands rats gris grattent trois très gros, gras, grands rats gris. Trois tortues trottaient sur un trottoir très étroit. Trop de tortues trottent, le trottoir tremble.",
-        tip: "Les groupes consonantiques 'gr' et 'tr' demandent de l'attention."
+        title: "Three Turtles",
+        text: "Three gray geese in a green field grazing. Gray were the geese and green was the grazing. Three free-throw throwers threw three free throws. Three turtles trotted on a terribly tight trail.",
+        tip: "The consonant clusters 'gr' and 'thr' require careful attention."
       },
       {
         id: "artic-12",
-        title: "Saucissons Secs",
-        text: "Je veux et j'exige d'exquises excuses. Ces six saucissons-ci sont si secs qu'on ne sait si c'en sont. Combien ces six saucissons-ci ? Six sous ces six saucissons-ci, c'est suffisant.",
-        tip: "Articulez les sifflantes 's' avec précision."
+        title: "Sally's Sibilants",
+        text: "I want and I insist on exquisite excuses. Six Swiss ships shifted swiftly. Sixty-six sick chicks sat on six slim slick slender sticks. Sally swiftly sorted sixty-six thin thistle sticks.",
+        tip: "Articulate the sibilant 's' sounds with precision."
       },
       {
         id: "artic-13",
-        title: "La Roue",
-        text: "La roue sur la rue roule, la rue sous la roue reste. Trois gros rats roux rongent trois gros croûtons ronds. Roger regarde la roue rouler sur la route royale.",
-        tip: "Travaillez la fluidité des enchaînements de 'r'."
+        title: "The Wheel",
+        text: "Round and round the rugged rocks the ragged rascal ran. Whether the weather is warm, whether the weather is hot, we have to put up with the weather whether we like it or not.",
+        tip: "Work on the fluidity of 'r' and 'w' transitions."
       },
       {
         id: "artic-14",
-        title: "Les Poulets",
-        text: "Poule pond, poule pond pas. Pourquoi la poule pond ? Parce que le papa poule propose. Pas de poule, pas de poulet. Pas de poulet, pas de poulette. Cinq poules pondent cinq œufs par jour.",
-        tip: "Enchaînez les 'p' explosifs avec précision."
+        title: "The Pecking Hens",
+        text: "A proper copper coffee pot. Pick up a proper copper coffee pot properly. Picky people pick Peter Pan peanut butter. Pretty Patty picked plump purple plums promptly.",
+        tip: "Chain the explosive 'p' sounds with precision."
       },
       {
         id: "artic-15",
-        title: "Les Coquillages",
-        text: "Elle cueille ces coquillages sur les côtes du Cotentin. Ces coquillages sont des coquilles de coques. Combien de coquillages Catherine cueille-t-elle ? Quinze coques, cinq coquilles, quatre coquillages.",
-        tip: "Distinguez bien les sons 'k' et 'g' dans les enchaînements."
+        title: "The Seashells",
+        text: "Can you can a can as a canner can can a can? Unique New York. You know you need unique New York. A quick-witted cricket critic. Cooks cook cupcakes quickly.",
+        tip: "Clearly distinguish the 'k' and 'g' sounds in transitions."
       },
       {
         id: "artic-16",
-        title: "Le Blé",
-        text: "Beau blé blond bien blanchi blanchit bien. Le blé blond blanchit sous le soleil de Brest. Bruno broie le blé blond pour en faire du bon pain blanc bien beau.",
-        tip: "Les groupes 'bl' et 'br' demandent une articulation soignée."
+        title: "Black and Blue",
+        text: "The big black bug bled blue-black blood. A big black bear sat on a big black rug. Blake's black bike brake block broke. The blue bluebird blinks back boldly.",
+        tip: "The 'bl' and 'br' blends require careful articulation."
       },
       {
         id: "artic-17",
-        title: "Le Nid",
-        text: "Nid de pie, pie dans le nid. Nid de pie sans pie, ça n'a ni queue ni tête. Neuf nids nichent dans le noyer. Les petites pies piaillent dans leurs petits nids.",
-        tip: "Le son 'ni' doit rester net et distinct."
+        title: "The Nest",
+        text: "Nine nice night nurses nursing nicely. No need to light a night-light on a light night like tonight. Ned Nott was not shot and Sam Shott was shot. Is Nott shot and Shott not?",
+        tip: "The 'n' sound must remain clean and distinct."
       },
       {
         id: "artic-18",
-        title: "Les Grenouilles",
-        text: "Grosse grenouille grasse grimpe dans la grande grotte grise. La grenouille grogne car le grillon grince. Gaston le gros grillon grignote des grains de grenade avec la grenouille grise.",
-        tip: "Maintenez la régularité sur les groupes 'gr' répétés."
+        title: "The Frogs",
+        text: "Green glass globes glow greenly. Great green grasshoppers grasp and grip the grass. Grizzly grizzly bears growl and grumble greatly. Greek grapes grow in great Greek grape groves.",
+        tip: "Maintain a steady pace on the repeated 'gr' blends."
       },
       {
         id: "artic-19",
-        title: "Le Crabe",
-        text: "Crabe craque, croque et crépite sur la crêpe croustillante. Le cuisinier craintif craint que le crabe ne crée une crise. Quatre crabes croquent quatre crevettes crues.",
-        tip: "Les groupes 'cr' et 'qu' exigent une langue bien positionnée."
+        title: "The Crab",
+        text: "Crisp crusts crackle and crunch. A crunchy crab crisply cracked a crispy cracker. Quick-thinking cooks crack quite a few crisp crackers quickly. Crazy crabs crawl across craggy creek crossings.",
+        tip: "The 'cr' blends require a well-positioned tongue."
       },
       {
         id: "artic-20",
-        title: "L'Âne et le Bœuf",
-        text: "L'âne et le bœuf boivent au bord du ru. Le bœuf boit beaucoup, l'âne boit un peu. Bientôt le bœuf sera bedonnant, l'âne restera bancal. Mais qui des deux bavarde le plus ?",
-        tip: "Faites bien la liaison entre les voyelles et les consonnes."
+        title: "Betty Botter",
+        text: "Betty Botter bought some butter, but she said the butter's bitter. If I put it in my batter, it will make my batter bitter. But a bit of better butter will make my batter better.",
+        tip: "Focus on smooth transitions between vowels and consonants."
       }
     ]
   },
   {
     id: "clinical-texts",
     level: 2,
-    title: "Textes Cliniques (Diagnostic)",
-    description: "Textes utilisés par les orthophonistes pour évaluer le débit de parole. Validés scientifiquement.",
+    title: "Reading Aloud",
+    description: "Evidence-based reading passages for controlled oral reading. Consistent with the Van Zaalen (2009) articulation rate method.",
     icon: "🩺",
     color: "from-purple-500/20 to-purple-600/10",
     isClinical: true,
     exercises: [
       {
         id: "clinical-1",
-        title: "Lecture Normée (Maupassant)",
-        text: "Les deux femmes habitaient une petite maison à volets verts, le long d'une route en Normandie, au centre du pays de Caux. Comme elles possédaient, devant l'habitation, un étroit jardin, elles cultivaient quelques légumes. Or, une nuit, on lui vola une douzaine d'oignons. La vieille mère courut chez le garde champêtre. Il prit note de la plainte et s'en retourna. Elle pleura. Toutes les ressources de ces malheureuses venaient de ce petit jardin qu'elles cultivaient avec soin. La mère bêchait, tandis que la fille arrosait les plantes. Elles vivaient péniblement, mais tranquillement, dans cette maison isolée. Un jour, elles reçurent la visite d'un homme qui leur proposa d'acheter leur terrain. Elles refusèrent avec dignité. Quelques semaines plus tard, un incendie ravagea une partie de leur jardin. Les voisins accoururent pour les aider. On ne retrouva jamais le coupable. Les deux femmes reconstruisirent patiemment ce qui avait été détruit. Le printemps suivant, leur jardin était plus beau que jamais. Les légumes poussaient en abondance. Les oignons avaient été replantés en double quantité. La vieille mère disait souvent que l'adversité forge le caractère et que rien ne peut arrêter ceux qui ont la volonté de persévérer.",
-        tip: "Ce texte est utilisé par les professionnels pour mesurer votre débit naturel. Lisez comme vous le feriez normalement, sans forcer.",
+        title: "Standard Reading Passage (Narrative)",
+        text: "The two women lived in a small house with green shutters, along a road in the countryside at the heart of a farming region. Since they had a narrow garden in front of the house, they grew a few vegetables. But one night, someone stole a dozen onions from them. The old mother rushed to the local constable. He noted the complaint and went on his way. She wept. All the livelihood of these unfortunate women came from that little garden they tended with care. The mother dug, while the daughter watered the plants. They lived modestly, but peacefully, in that isolated house. One day, a man visited and offered to buy their land. They refused with dignity. A few weeks later, a fire ravaged part of their garden. The neighbors ran to help them. The culprit was never found. The two women patiently rebuilt what had been destroyed. The following spring, their garden was more beautiful than ever. The vegetables grew in abundance. The onions had been replanted in double quantity. The old mother often said that adversity builds character and that nothing can stop those with the will to persevere.",
+        tip: "This text is used by professionals to measure your natural speech rate. Read as you normally would, without forcing.",
         isClinical: true
       },
       {
         id: "clinical-2",
-        title: "Extrait Littéraire (Soie)",
-        text: "Bien que son père eût imaginé pour lui un brillant avenir dans l'armée, Hervé Joncour avait fini par gagner sa vie grâce à une profession insolite, à laquelle n'étaient pas étrangers, par une singulière ironie, des traits à ce point aimables qu'ils trahissaient une vague inflexion féminine. Pour vivre, Hervé Joncour achetait et vendait des vers à soie. C'était en mil huit cent soixante et un. Flaubert écrivait Salammbô, l'éclairage électrique n'était encore qu'une hypothèse et Abraham Lincoln, de l'autre côté de l'océan, livrait une guerre dont il ne verrait pas la fin. Hervé Joncour avait trente-deux ans, et l'achat et la vente des vers à soie lui permettaient de mener une existence confortable. Il habitait Lavilledieu, un petit village du sud de la France, dans une grande maison au sommet d'une colline. De là, il voyait les toits du village en contrebas et la vallée qui s'étendait au loin. Chaque année, au début du printemps, il partait pour un long voyage. Il traversait l'Europe en train, puis l'Asie en bateau et à cheval. Il restait plusieurs semaines absent, parfois des mois entiers. Quand il rentrait, ses malles étaient pleines de ces précieux œufs minuscules que l'on transformerait en soie.",
-        tip: "Texte complexe avec des structures grammaticales élaborées. Idéal pour tester votre fluidité sur des phrases longues et des subordonnées.",
+        title: "Literary Excerpt (Complex Prose)",
+        text: "Although his father had imagined a brilliant future for him in the army, Henry Joncour had ended up earning his living through an unusual profession, one connected, by a singular irony, to features so amiable they betrayed a vague feminine grace. For a living, Henry Joncour bought and sold silkworms. It was eighteen sixty-one. Flaubert was writing his great novel, electric lighting was still just a hypothesis, and Abraham Lincoln, on the other side of the ocean, was fighting a war he would not see the end of. Henry Joncour was thirty-two years old, and the buying and selling of silkworms allowed him to lead a comfortable life. He lived in a small village in the south of France, in a large house at the top of a hill. From there, he could see the rooftops of the village below and the valley stretching into the distance. Each year, at the start of spring, he set out on a long journey. He crossed Europe by train, then Asia by ship and on horseback. He stayed away for several weeks, sometimes entire months. When he returned, his trunks were full of those precious tiny eggs that would be transformed into silk.",
+        tip: "Complex text with elaborate sentence structures. Ideal for testing your fluency on long sentences and subordinate clauses.",
         isClinical: true
       },
       {
         id: "clinical-3",
-        title: "Le Corbeau et le Renard (La Fontaine)",
-        text: "Maître Corbeau, sur un arbre perché, tenait en son bec un fromage. Maître Renard, par l'odeur alléché, lui tint à peu près ce langage : Hé ! bonjour, Monsieur du Corbeau. Que vous êtes joli ! que vous me semblez beau ! Sans mentir, si votre ramage se rapporte à votre plumage, vous êtes le Phénix des hôtes de ces bois. À ces mots le Corbeau ne se sent pas de joie. Et pour montrer sa belle voix, il ouvre un large bec, laisse tomber sa proie. Le Renard s'en saisit, et dit : Mon bon Monsieur, apprenez que tout flatteur vit aux dépens de celui qui l'écoute. Cette leçon vaut bien un fromage, sans doute. Le Corbeau, honteux et confus, jura, mais un peu tard, qu'on ne l'y prendrait plus. Cette fable de Jean de La Fontaine nous enseigne qu'il faut se méfier des flatteurs. Les compliments excessifs cachent souvent des intentions malveillantes. Le corbeau, aveuglé par la vanité, perd son bien le plus précieux. La morale est claire : gardons notre esprit critique face aux louanges.",
-        tip: "Fable classique utilisée pour évaluer l'intonation et le rythme. Attention aux dialogues et aux changements de ton entre le narrateur et les personnages.",
+        title: "The Fox and the Crow (Aesop)",
+        text: "A crow, perched upon a tree, held a piece of cheese in its beak. A fox, drawn by the smell, spoke to the crow in roughly these words: Good day, Sir Crow! How handsome you look! How fine your feathers are! If your voice is as beautiful as your appearance, you must be the finest bird in all the forest. At these words, the crow was overcome with pride. Eager to show off his beautiful voice, he opened his beak wide and let the cheese fall. The fox snatched it up at once and said: My dear fellow, learn that every flatterer lives at the expense of the one who listens. This lesson is surely worth a piece of cheese. The crow, ashamed and humbled, swore, a little too late, that he would never be fooled again. This fable teaches us to beware of flatterers. Excessive compliments often hide ill intentions. The crow, blinded by vanity, loses his most prized possession. The moral is clear: we must keep our critical thinking when faced with praise.",
+        tip: "Classic fable used to evaluate intonation and rhythm. Pay attention to dialogue and shifts in tone between the narrator and characters.",
         isClinical: true
       },
       {
         id: "clinical-4",
-        title: "Texte Scientifique",
-        text: "La photosynthèse est un processus bioénergétique fondamental qui permet aux plantes, aux algues et à certaines bactéries de synthétiser de la matière organique en utilisant la lumière du soleil comme source d'énergie. Cette réaction chimique essentielle à la vie sur Terre se déroule principalement dans les chloroplastes des cellules végétales. Le processus se divise en deux phases distinctes. La première phase, appelée phase lumineuse, se produit dans les membranes des thylakoïdes. L'énergie lumineuse est captée par les molécules de chlorophylle, qui absorbent principalement les longueurs d'onde rouges et bleues du spectre visible. Cette énergie sert à scinder les molécules d'eau en oxygène, protons et électrons. L'oxygène est libéré dans l'atmosphère comme sous-produit. La seconde phase, appelée cycle de Calvin ou phase sombre, se déroule dans le stroma du chloroplaste. Elle utilise l'énergie stockée lors de la phase lumineuse pour fixer le dioxyde de carbone atmosphérique et le transformer en glucose. Ce sucre constitue la base de l'alimentation de la plante et, indirectement, de la quasi-totalité des êtres vivants. Sans la photosynthèse, la vie telle que nous la connaissons n'existerait pas sur notre planète.",
-        tip: "Texte technique pour évaluer votre capacité à maintenir un débit constant sur du vocabulaire scientifique complexe. Articulez bien les termes spécialisés.",
+        title: "Scientific Text",
+        text: "Photosynthesis is a fundamental bioenergetic process that allows plants, algae, and certain bacteria to synthesize organic matter using sunlight as an energy source. This chemical reaction, essential to life on Earth, takes place mainly in the chloroplasts of plant cells. The process is divided into two distinct phases. The first phase, called the light-dependent phase, occurs in the thylakoid membranes. Light energy is captured by chlorophyll molecules, which primarily absorb the red and blue wavelengths of the visible spectrum. This energy is used to split water molecules into oxygen, protons, and electrons. Oxygen is released into the atmosphere as a byproduct. The second phase, called the Calvin cycle or light-independent phase, takes place in the stroma of the chloroplast. It uses the energy stored during the light-dependent phase to fix atmospheric carbon dioxide and convert it into glucose. This sugar forms the basis of the plant's nutrition and, indirectly, of nearly all living organisms. Without photosynthesis, life as we know it would not exist on our planet.",
+        tip: "Technical text to evaluate your ability to maintain a steady rate with complex scientific vocabulary. Articulate specialized terms carefully.",
         isClinical: true
       },
       {
         id: "clinical-5",
-        title: "Recette de Cuisine Détaillée",
-        text: "Pour réaliser un délicieux gâteau au chocolat moelleux pour huit personnes, commencez par préchauffer votre four à cent quatre-vingts degrés. Pendant ce temps, faites fondre deux cents grammes de chocolat noir pâtissier avec cent grammes de beurre au bain-marie ou au micro-ondes. Remuez régulièrement pour obtenir un mélange lisse et homogène. Dans un grand saladier, mélangez cent cinquante grammes de sucre en poudre avec quatre œufs entiers. Battez énergiquement pendant trois à quatre minutes jusqu'à ce que le mélange blanchisse et double de volume. Incorporez délicatement le mélange chocolat-beurre tiédi, en remuant de bas en haut pour ne pas faire retomber la préparation. Ajoutez ensuite cinquante grammes de farine tamisée et une pincée de sel. Mélangez jusqu'à obtenir une pâte homogène sans grumeaux. Beurrez et farinez un moule à manqué de vingt-deux centimètres de diamètre. Versez la préparation et enfournez pendant vingt-cinq à trente minutes. Le gâteau est cuit lorsqu'un couteau planté en son centre ressort légèrement humide. Laissez refroidir dix minutes avant de démouler. Servez tiède avec une boule de glace vanille ou un peu de crème fraîche. Ce gâteau se conserve trois jours dans une boîte hermétique à température ambiante.",
-        tip: "Les instructions de recette testent votre capacité à faire des pauses logiques entre les étapes. Chaque nouvelle action mérite une respiration."
+        title: "Detailed Cooking Recipe",
+        text: "To make a delicious moist chocolate cake for eight people, begin by preheating your oven to three hundred and fifty degrees Fahrenheit. Meanwhile, melt seven ounces of dark baking chocolate with half a cup of butter in a double boiler or in the microwave. Stir regularly until the mixture is smooth and even. In a large bowl, mix three-quarters of a cup of powdered sugar with four whole eggs. Beat vigorously for three to four minutes until the mixture lightens in color and doubles in volume. Gently fold in the lukewarm chocolate and butter mixture, stirring from bottom to top to avoid deflating the batter. Next, add one-third of a cup of sifted flour and a pinch of salt. Mix until you have a smooth batter with no lumps. Grease and flour a nine-inch round cake pan. Pour the batter in and bake for twenty-five to thirty minutes. The cake is done when a knife inserted in the center comes out slightly moist. Let it cool for ten minutes before removing from the pan. Serve warm with a scoop of vanilla ice cream or a dollop of whipped cream. This cake keeps for three days in an airtight container at room temperature.",
+        tip: "Recipe instructions test your ability to pause logically between steps. Each new action deserves a breath."
       }
     ]
   },
   {
     id: "warmup",
     level: 1,
-    title: "Gymnastique Articulatoire",
-    description: "Échauffement vocal avec des mots et phrases complexes. Parfait pour préparer votre appareil phonatoire. Items distincts des épreuves de bilan standardisé.",
+    title: "Breathing & Preparation",
+    description: "Diaphragmatic breathing and pre-speech warm-up. Proper breath support reduces rate and builds control before any practice session.",
     icon: "🏋️",
     color: "from-orange-500/20 to-amber-600/10",
     type: "warmup",
     exercises: [
       {
         id: "warmup-1",
-        title: "Chronologie bouleversante",
-        text: "Une chronologie bouleversante et imprévisible",
-        tip: "Articulez bien les groupes /kr/ dans 'chronologie' et /pr/ dans 'imprévisible'.",
+        title: "Overwhelming Chronology",
+        text: "An overwhelming and unpredictable chronology",
+        tip: "Articulate the /kr/ cluster in 'chronology' and /pr/ in 'unpredictable' clearly.",
         type: "warmup"
       },
       {
         id: "warmup-2",
-        title: "Réglementation exceptionnelle",
-        text: "La réglementation exceptionnelle du laboratoire",
-        tip: "Attention au /ks/ de 'exceptionnelle' et au /gl/ de 'réglementation'. Projetez bien chaque consonne.",
+        title: "Exceptional Regulation",
+        text: "The exceptional regulation of the laboratory",
+        tip: "Watch the /ks/ in 'exceptional' and the /gl/ in 'regulation'. Project every consonant clearly.",
         type: "warmup"
       },
       {
         id: "warmup-3",
-        title: "Infrastructure stratégique",
-        text: "Infrastructure stratégique et développement",
-        tip: "Les groupes /str/ et /fr/ demandent une langue bien placée. Ralentissez sur 'stratégique'.",
+        title: "Strategic Infrastructure",
+        text: "Strategic infrastructure and development",
+        tip: "The /str/ and /fr/ clusters require a well-positioned tongue. Slow down on 'infrastructure'.",
         type: "warmup"
       },
       {
         id: "warmup-4",
-        title: "Multiplicateur spectaculaire",
-        text: "Un multiplicateur spectaculaire et invraisemblable",
-        tip: "Enchaînez les mots longs sans précipiter. Le /vr/ de 'invraisemblable' est un bon défi.",
+        title: "Spectacular Multiplier",
+        text: "A spectacular and inconceivable multiplier",
+        tip: "Chain long words without rushing. The /nk/ in 'inconceivable' is a good challenge.",
         type: "warmup"
       },
       {
         id: "warmup-5",
-        title: "Perpétuellement introuvable",
-        text: "Perpétuellement introuvable et indéchiffrable",
-        tip: "Les /rp/ et /fr/ sont exigeants. Exagérez l'articulation de chaque syllabe.",
+        title: "Perpetually Indecipherable",
+        text: "Perpetually undiscoverable and indecipherable",
+        tip: "The /rp/ and /fr/ clusters are demanding. Exaggerate the articulation of every syllable.",
         type: "warmup"
       },
       {
         id: "warmup-6",
-        title: "Le prestidigitateur",
-        text: "Le prestidigitateur manipulait extraordinairement vite",
-        tip: "Décomposez 'prestidigitateur' en syllabes : pres-ti-di-gi-ta-teur. Ne sautez aucune !",
+        title: "The Prestidigitator",
+        text: "The prestidigitator manipulated extraordinarily fast",
+        tip: "Break down 'prestidigitator' into syllables: pres-ti-dig-i-ta-tor. Do not skip any!",
         type: "warmup"
       },
       {
         id: "warmup-7",
-        title: "Transformation progressive",
-        text: "La transformation progressive de l'architecture",
-        tip: "Les groupes /tr/, /sf/ et /kt/ se succèdent. Maintenez un débit constant.",
+        title: "Progressive Transformation",
+        text: "The progressive transformation of the architecture",
+        tip: "The clusters /tr/, /sf/, and /kt/ follow each other. Maintain a steady rate.",
         type: "warmup"
       },
       {
         id: "warmup-8",
-        title: "Électrocardiogramme",
-        text: "Un électrocardiogramme particulièrement complexe",
-        tip: "Mot très long ! Découpez : é-lec-tro-car-dio-gramme. Chaque syllabe compte.",
+        title: "Electrocardiogram",
+        text: "A particularly complex electrocardiogram",
+        tip: "Very long word! Break it down: e-lec-tro-car-di-o-gram. Every syllable counts.",
         type: "warmup"
       },
       {
         id: "warmup-9",
-        title: "Vraisemblablement",
-        text: "Vraisemblablement incompréhensible et contradictoire",
-        tip: "Le /vr/ initial est rare en français. Préparez bien la position de vos lèvres avant de démarrer.",
+        title: "Incomprehensible",
+        text: "Presumably incomprehensible and contradictory",
+        tip: "The /pr/ cluster at the start requires good lip positioning before you begin.",
         type: "warmup"
       },
       {
         id: "warmup-10",
-        title: "Anthropologie structurale",
-        text: "L'anthropologie structurale contemporaine",
-        tip: "Les clusters /tr/, /str/ et /kt/ sont le cœur du défi. Articulez sans accélérer.",
+        title: "Structural Anthropology",
+        text: "Contemporary structural anthropology",
+        tip: "The clusters /tr/, /str/, and /kt/ are the core challenge. Articulate without speeding up.",
         type: "warmup"
       }
     ]
@@ -420,249 +435,249 @@ export const exerciseCategories: ExerciseCategory[] = [
   {
     id: "improvisation",
     level: 2,
-    title: "Improvisation Guidée",
-    description: "Parlez librement sur un thème donné. Le vrai test du bredouillement : organiser sa pensée en temps réel.",
+    title: "Conversational Practice",
+    description: "Role-play and free-speech scenarios for real-life transfer. Speak on a topic while monitoring your SPS — the hardest and most rewarding skill.",
     icon: "🎤",
     color: "from-pink-500/20 to-rose-600/10",
     type: "improvisation",
     exercises: [
       {
         id: "impro-1",
-        title: "Le dernier film",
-        text: "Racontez le dernier film que vous avez vu.",
-        tip: "Structurez votre récit : contexte, intrigue, avis personnel. Faites des pauses.",
+        title: "The Last Movie",
+        text: "Describe the last movie you watched.",
+        tip: "Structure your story: setting, plot, personal opinion. Pause between sections.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-2",
-        title: "Vos dernières vacances",
-        text: "Décrivez vos dernières vacances.",
-        tip: "Utilisez des connecteurs : d'abord, ensuite, puis, finalement.",
+        title: "Your Last Vacation",
+        text: "Describe your last vacation.",
+        tip: "Use connectors: first, then, next, finally.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-3",
-        title: "Expliquer son métier",
-        text: "Expliquez votre métier à un enfant de 5 ans.",
-        tip: "Simplifiez votre vocabulaire. Les phrases courtes sont vos alliées.",
+        title: "Explain Your Job",
+        text: "Explain your job to a five-year-old.",
+        tip: "Simplify your vocabulary. Short sentences are your best friends.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-4",
-        title: "Votre plat préféré",
-        text: "Quel est votre plat préféré et comment le cuisine-t-on ?",
-        tip: "Énumérez les étapes calmement, comme si vous lisiez une recette.",
+        title: "Your Favorite Dish",
+        text: "What is your favorite dish and how do you make it?",
+        tip: "List the steps calmly, as if you were reading a recipe.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-5",
-        title: "Un souvenir d'enfance",
-        text: "Racontez un souvenir marquant de votre enfance.",
-        tip: "Les émotions peuvent accélérer le débit. Restez vigilant.",
+        title: "A Childhood Memory",
+        text: "Tell a memorable story from your childhood.",
+        tip: "Emotions can speed up your rate. Stay aware.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-6",
-        title: "Votre journée idéale",
-        text: "Décrivez votre journée idéale du réveil au coucher.",
-        tip: "Chronologie = structure. Utilisez-la pour rester organisé.",
+        title: "Your Ideal Day",
+        text: "Describe your ideal day from morning to night.",
+        tip: "Chronology equals structure. Use it to stay organized.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-7",
-        title: "Un lieu que vous aimez",
-        text: "Décrivez un lieu qui vous est cher et expliquez pourquoi.",
-        tip: "Décrivez d'abord le visuel, puis les sensations, puis les émotions.",
+        title: "A Place You Love",
+        text: "Describe a place that is dear to you and explain why.",
+        tip: "Describe the visuals first, then the sensations, then the emotions.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-8",
-        title: "Convaincre un ami",
-        text: "Convainquez un ami de lire votre livre préféré.",
-        tip: "L'argumentation demande des pauses pour que l'autre 'réfléchisse'.",
+        title: "Convince a Friend",
+        text: "Convince a friend to read your favorite book.",
+        tip: "Persuasion requires pauses so the listener can 'think it over'.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-9",
-        title: "La pièce autour de vous",
-        text: "Décrivez la pièce dans laquelle vous vous trouvez.",
-        tip: "Commencez par le général (forme, taille) puis allez vers les détails.",
+        title: "The Room Around You",
+        text: "Describe the room you are in right now.",
+        tip: "Start with the big picture (shape, size) then move to details.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-10",
-        title: "Super-pouvoir",
-        text: "Si vous aviez un super-pouvoir, lequel choisiriez-vous et pourquoi ?",
-        tip: "Justifiez votre choix avec des exemples concrets de son utilisation.",
+        title: "Superpower",
+        text: "If you had a superpower, which one would you choose and why?",
+        tip: "Justify your choice with concrete examples of how you would use it.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-11",
-        title: "Votre meilleur ami",
-        text: "Décrivez votre meilleur ami : son caractère, vos moments partagés.",
-        tip: "Les anecdotes personnelles activent les émotions. Ralentissez.",
+        title: "Your Best Friend",
+        text: "Describe your best friend: their personality, your shared moments.",
+        tip: "Personal stories trigger emotions. Slow down.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-12",
-        title: "Matin vs Soir",
-        text: "Êtes-vous plutôt du matin ou du soir ? Expliquez pourquoi.",
-        tip: "Comparez les deux situations pour structurer votre propos.",
+        title: "Morning vs Evening",
+        text: "Are you a morning person or a night owl? Explain why.",
+        tip: "Compare the two to structure your thoughts.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-13",
-        title: "Votre animal préféré",
-        text: "Quel est votre animal préféré et pourquoi vous fascine-t-il ?",
-        tip: "Décrivez l'animal avant d'expliquer votre attachement.",
+        title: "Your Favorite Animal",
+        text: "What is your favorite animal and why does it fascinate you?",
+        tip: "Describe the animal before explaining your attachment.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-14",
-        title: "Un objet important",
-        text: "Décrivez un objet qui a une valeur sentimentale pour vous.",
-        tip: "Racontez l'histoire derrière l'objet, pas juste sa description physique.",
+        title: "A Meaningful Object",
+        text: "Describe an object that has sentimental value for you.",
+        tip: "Tell the story behind the object, not just its physical description.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-15",
-        title: "Votre saison préférée",
-        text: "Quelle est votre saison préférée et qu'aimez-vous y faire ?",
-        tip: "Utilisez les 5 sens : ce que vous voyez, entendez, sentez...",
+        title: "Your Favorite Season",
+        text: "What is your favorite season and what do you like to do during it?",
+        tip: "Use all five senses: what you see, hear, smell...",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-16",
-        title: "Un talent caché",
-        text: "Avez-vous un talent ou une passion que peu de gens connaissent ?",
-        tip: "Expliquez comment vous l'avez découvert et développé.",
+        title: "A Hidden Talent",
+        text: "Do you have a talent or passion that few people know about?",
+        tip: "Explain how you discovered and developed it.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-17",
-        title: "Conseil à votre moi du passé",
-        text: "Quel conseil donneriez-vous à vous-même il y a 10 ans ?",
-        tip: "Structurez : le contexte passé, le conseil, pourquoi il est important.",
+        title: "Advice to Your Past Self",
+        text: "What advice would you give yourself ten years ago?",
+        tip: "Structure it: the past context, the advice, why it matters.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-18",
-        title: "Une invention utile",
-        text: "Quelle invention du quotidien vous semble indispensable ?",
-        tip: "Décrivez l'objet, puis expliquez son impact sur votre vie.",
+        title: "A Useful Invention",
+        text: "What everyday invention do you consider indispensable?",
+        tip: "Describe the object, then explain its impact on your life.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-19",
-        title: "Votre week-end idéal",
-        text: "Comment passerez-vous un week-end parfait ?",
-        tip: "Déroulez chronologiquement : samedi matin, après-midi, soir, dimanche...",
+        title: "Your Ideal Weekend",
+        text: "How would you spend a perfect weekend?",
+        tip: "Unfold it chronologically: Saturday morning, afternoon, evening, Sunday...",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-20",
-        title: "Un rêve récurrent",
-        text: "Avez-vous un rêve ou une aspiration qui vous tient à cœur ?",
-        tip: "Parlez de vos motivations profondes. Prenez votre temps.",
+        title: "A Recurring Dream",
+        text: "Do you have a dream or aspiration that is close to your heart?",
+        tip: "Talk about your deep motivations. Take your time.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-21",
-        title: "À la boulangerie",
-        text: "Vous entrez dans une boulangerie bondée. Commandez plusieurs viennoiseries et un gâteau pour un anniversaire, en précisant vos choix et quantités.",
-        tip: "Énumérez calmement. Le stress de la file d'attente pousse à accélérer — résistez.",
+        title: "At the Bakery",
+        text: "You walk into a crowded bakery. Order several pastries and a cake for a birthday, specifying your choices and quantities.",
+        tip: "List items calmly. The pressure of the line tempts you to speed up -- resist.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-22",
-        title: "Appel téléphonique urgent",
-        text: "Vous appelez votre médecin pour obtenir un rendez-vous en urgence. Expliquez vos symptômes clairement et répondez aux questions de la secrétaire.",
-        tip: "L'urgence pousse à parler vite. Forcez-vous à articuler chaque information.",
+        title: "Urgent Phone Call",
+        text: "You call your doctor to get an urgent appointment. Explain your symptoms clearly and answer the receptionist's questions.",
+        tip: "Urgency pushes you to speak fast. Force yourself to articulate every piece of information.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-23",
-        title: "Réclamation en magasin",
-        text: "Vous retournez un article défectueux dans un magasin. Expliquez le problème, ce que vous attendez, et restez poli malgré la frustration.",
-        tip: "La colère accélère le débit. Respirez entre chaque argument.",
+        title: "Store Complaint",
+        text: "You are returning a defective item to a store. Explain the problem, what you expect, and stay polite despite your frustration.",
+        tip: "Anger speeds up your rate. Breathe between each argument.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-24",
-        title: "Se présenter à un inconnu",
-        text: "Vous êtes à une soirée et quelqu'un vous demande ce que vous faites dans la vie. Présentez-vous de manière claire et engageante.",
-        tip: "Le regard de l'autre peut intimider. Concentrez-vous sur votre souffle.",
+        title: "Introducing Yourself",
+        text: "You are at a party and someone asks what you do for a living. Introduce yourself in a clear and engaging way.",
+        tip: "The other person's gaze can be intimidating. Focus on your breathing.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-25",
-        title: "Donner son chemin",
-        text: "Un touriste vous demande comment aller de la gare à la mairie. Expliquez l'itinéraire étape par étape avec des repères visuels.",
-        tip: "Les directions demandent de la précision. Marquez une pause entre chaque étape.",
+        title: "Giving Directions",
+        text: "A tourist asks you how to get from the train station to city hall. Explain the route step by step with visual landmarks.",
+        tip: "Directions require precision. Pause between each step.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-26",
-        title: "Entretien d'embauche",
-        text: "On vous demande en entretien : 'Parlez-moi de vous et de votre parcours.' Répondez de manière structurée et convaincante.",
-        tip: "Situation à fort enjeu. Structurez : formation, expérience, motivation. Respirez.",
+        title: "Job Interview",
+        text: "In an interview, you are asked: 'Tell me about yourself and your background.' Answer in a structured and convincing way.",
+        tip: "High-stakes situation. Structure it: education, experience, motivation. Breathe.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-27",
-        title: "Réunion parents-profs",
-        text: "Vous êtes en réunion parents-professeurs. Posez des questions sur les résultats de votre enfant et discutez des pistes d'amélioration.",
-        tip: "Les émotions parentales accélèrent la parole. Restez factuel et posé.",
+        title: "Parent-Teacher Conference",
+        text: "You are in a parent-teacher conference. Ask about your child's results and discuss areas for improvement.",
+        tip: "Parental emotions speed up speech. Stay factual and composed.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-28",
-        title: "Commander au drive",
-        text: "Vous êtes au drive d'un fast-food. Commandez pour toute la famille en détaillant chaque menu, les boissons et les suppléments.",
-        tip: "Le micro du drive crée une pression de temps. Articulez, on ne vous voit pas.",
+        title: "Drive-Through Order",
+        text: "You are at a fast-food drive-through. Order for the whole family, detailing each meal, the drinks, and the extras.",
+        tip: "The drive-through mic creates time pressure. Articulate clearly -- they cannot see you.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-29",
-        title: "Appeler les pompiers",
-        text: "Vous êtes témoin d'un petit accident de la route. Appelez les secours et décrivez la situation : lieu, nombre de personnes, ce que vous voyez.",
-        tip: "En situation d'urgence, la clarté sauve des vies. Parlez lentement et distinctement.",
+        title: "Calling Emergency Services",
+        text: "You witness a minor traffic accident. Call for help and describe the situation: location, number of people, what you see.",
+        tip: "In an emergency, clarity saves lives. Speak slowly and distinctly.",
         type: "improvisation",
         duration: 120
       },
       {
         id: "impro-30",
-        title: "Négocier un prix",
-        text: "Vous êtes dans un marché aux puces et vous voulez négocier le prix d'un meuble ancien. Argumentez poliment pour obtenir une réduction.",
-        tip: "La négociation demande de l'assurance. Les silences sont vos meilleurs alliés.",
+        title: "Negotiating a Price",
+        text: "You are at a flea market and want to negotiate the price of an antique piece of furniture. Argue politely to get a discount.",
+        tip: "Negotiation requires confidence. Silences are your best allies.",
         type: "improvisation",
         duration: 120
       }
@@ -671,8 +686,8 @@ export const exerciseCategories: ExerciseCategory[] = [
   {
     id: "motor-challenges",
     level: 3,
-    title: "Défis Moteurs (Diadococinésie)",
-    description: "Exercices de coordination motrice utilisés en orthophonie. Répétez des syllabes le plus régulièrement possible.",
+    title: "Motor Challenges (Diadochokinesis)",
+    description: "Rapid alternating movement (DDK) exercises used in SLP evaluations. Builds articulatory coordination and precision — referenced in ASHA cluttering assessments.",
     icon: "⚡",
     color: "from-cyan-500/20 to-teal-600/10",
     type: "repetition",
@@ -682,7 +697,7 @@ export const exerciseCategories: ExerciseCategory[] = [
         id: "motor-1",
         title: "PA - PA - PA",
         text: "PA - PA - PA - PA - PA - PA - PA - PA - PA - PA",
-        tip: "Gardez un rythme régulier. Chaque 'PA' doit avoir la même durée.",
+        tip: "Keep a steady rhythm. Each 'PA' should last the same duration.",
         type: "repetition",
         repetitions: 10
       },
@@ -690,7 +705,7 @@ export const exerciseCategories: ExerciseCategory[] = [
         id: "motor-2",
         title: "TA - TA - TA",
         text: "TA - TA - TA - TA - TA - TA - TA - TA - TA - TA",
-        tip: "La langue touche le palais au même endroit à chaque fois.",
+        tip: "Your tongue should touch the palate in the same spot every time.",
         type: "repetition",
         repetitions: 10
       },
@@ -698,15 +713,15 @@ export const exerciseCategories: ExerciseCategory[] = [
         id: "motor-3",
         title: "KA - KA - KA",
         text: "KA - KA - KA - KA - KA - KA - KA - KA - KA - KA",
-        tip: "Le 'K' vient du fond de la gorge. Projetez le son vers l'avant.",
+        tip: "The 'K' comes from the back of the throat. Project the sound forward.",
         type: "repetition",
         repetitions: 10
       },
       {
         id: "motor-4",
-        title: "TA - KA alternés",
+        title: "TA - KA Alternating",
         text: "TA - KA - TA - KA - TA - KA - TA - KA - TA - KA",
-        tip: "Alternez entre l'avant (TA) et l'arrière (KA) de la bouche.",
+        tip: "Alternate between the front (TA) and back (KA) of the mouth.",
         type: "repetition",
         repetitions: 10
       },
@@ -714,15 +729,15 @@ export const exerciseCategories: ExerciseCategory[] = [
         id: "motor-5",
         title: "PA - TA - KA",
         text: "PA - TA - KA - PA - TA - KA - PA - TA - KA",
-        tip: "La séquence classique ! Trois positions différentes : lèvres, langue avant, langue arrière.",
+        tip: "The classic sequence! Three different positions: lips, front tongue, back tongue.",
         type: "repetition",
         repetitions: 9
       },
       {
         id: "motor-6",
-        title: "PA - TA - KA rapide",
+        title: "PA - TA - KA Fast",
         text: "PATAKA - PATAKA - PATAKA - PATAKA - PATAKA",
-        tip: "Enchaînez sans pause entre les syllabes, mais restez régulier.",
+        tip: "Chain syllables without pausing, but stay steady.",
         type: "repetition",
         repetitions: 5
       },
@@ -730,7 +745,7 @@ export const exerciseCategories: ExerciseCategory[] = [
         id: "motor-7",
         title: "BA - DA - GA",
         text: "BA - DA - GA - BA - DA - GA - BA - DA - GA",
-        tip: "Version sonore de PA-TA-KA. Les cordes vocales vibrent.",
+        tip: "Voiced version of PA-TA-KA. Your vocal cords should vibrate.",
         type: "repetition",
         repetitions: 9
       },
@@ -738,7 +753,7 @@ export const exerciseCategories: ExerciseCategory[] = [
         id: "motor-8",
         title: "Buttercup Challenge",
         text: "BUT - TER - CUP - BUT - TER - CUP - BUT - TER - CUP",
-        tip: "Test anglo-saxon populaire. Le 'R' peut être roulé ou non.",
+        tip: "Popular English-language test. The 'R' can be rolled or not.",
         type: "repetition",
         repetitions: 9
       },
@@ -746,7 +761,7 @@ export const exerciseCategories: ExerciseCategory[] = [
         id: "motor-9",
         title: "LA - LA - LA",
         text: "LA - LA - LA - LA - LA - LA - LA - LA - LA - LA",
-        tip: "La langue touche les alvéoles supérieures. Son latéral.",
+        tip: "The tongue touches the upper alveolar ridge. Lateral sound.",
         type: "repetition",
         repetitions: 10
       },
@@ -754,7 +769,7 @@ export const exerciseCategories: ExerciseCategory[] = [
         id: "motor-10",
         title: "MA - NA - LA",
         text: "MA - NA - LA - MA - NA - LA - MA - NA - LA",
-        tip: "Trois consonnes nasales et latérales. Laissez l'air passer par le nez pour M et N.",
+        tip: "Three nasal and lateral consonants. Let air pass through your nose for M and N.",
         type: "repetition",
         repetitions: 9
       },
@@ -762,7 +777,7 @@ export const exerciseCategories: ExerciseCategory[] = [
         id: "motor-11",
         title: "FA - SA - CHA",
         text: "FA - SA - CHA - FA - SA - CHA - FA - SA - CHA",
-        tip: "Trois fricatives différentes. Maintenez le souffle continu.",
+        tip: "Three different fricatives. Maintain continuous airflow.",
         type: "repetition",
         repetitions: 9
       },
@@ -770,7 +785,7 @@ export const exerciseCategories: ExerciseCategory[] = [
         id: "motor-12",
         title: "RA - RA - RA",
         text: "RA - RA - RA - RA - RA - RA - RA - RA - RA - RA",
-        tip: "Le R français est guttural. Sentez la vibration au fond de la gorge.",
+        tip: "Feel the vibration in the back of your throat. Keep each repetition even.",
         type: "repetition",
         repetitions: 10
       },
@@ -778,7 +793,7 @@ export const exerciseCategories: ExerciseCategory[] = [
         id: "motor-13",
         title: "TRA - TRA - TRA",
         text: "TRA - TRA - TRA - TRA - TRA - TRA - TRA - TRA - TRA - TRA",
-        tip: "Groupe consonantique complexe. Ne séparez pas le T du R.",
+        tip: "Complex consonant cluster. Do not separate the T from the R.",
         type: "repetition",
         repetitions: 10
       },
@@ -786,7 +801,7 @@ export const exerciseCategories: ExerciseCategory[] = [
         id: "motor-14",
         title: "PLA - BLA - FLA",
         text: "PLA - BLA - FLA - PLA - BLA - FLA - PLA - BLA - FLA",
-        tip: "Groupes avec L. La langue doit être rapide et précise.",
+        tip: "Clusters with L. The tongue must be quick and precise.",
         type: "repetition",
         repetitions: 9
       },
@@ -794,7 +809,7 @@ export const exerciseCategories: ExerciseCategory[] = [
         id: "motor-15",
         title: "GLO - GRO - BRO",
         text: "GLO - GRO - BRO - GLO - GRO - BRO - GLO - GRO - BRO",
-        tip: "Voyelle arrondie O. Gardez les lèvres en position.",
+        tip: "Rounded vowel O. Keep your lips in position.",
         type: "repetition",
         repetitions: 9
       }
@@ -803,232 +818,232 @@ export const exerciseCategories: ExerciseCategory[] = [
   {
     id: "breath-control",
     level: 2,
-    title: "Gestion du Souffle",
-    description: "Textes longs pour apprendre à gérer votre respiration et maintenir un débit constant sur la durée.",
+    title: "Phrasing & Pausing",
+    description: "Short phrase technique and strategic pausing. Teach yourself to speak in breath groups — the most effective phrasing strategy for cluttering.",
     icon: "🌬️",
     color: "from-sky-500/20 to-blue-600/10",
     exercises: [
       {
         id: "breath-1",
-        title: "La Plongée",
-        text: "Prenez une grande inspiration maintenant. Imaginez que vous plongez sous l'eau, lentement, sans panique. Observez les poissons, les coraux, le calme absolu. Remontez doucement vers la surface, en expirant tout l'air de vos poumons. Les bulles s'élèvent autour de vous. La lumière du soleil traverse l'eau claire. Vous approchez de la surface, sentant la chaleur revenir.",
-        tip: "Lisez ce texte en une seule respiration si possible. Sinon, repérez les pauses naturelles aux virgules."
+        title: "The Dive",
+        text: "Take a deep breath right now. Imagine you are diving underwater, slowly, without panic. Observe the fish, the coral, the absolute stillness. Rise gently toward the surface, exhaling all the air from your lungs. Bubbles float up around you. Sunlight streams through the clear water. You approach the surface, feeling the warmth return.",
+        tip: "Try to read this text in one breath if possible. Otherwise, find the natural pauses at the commas."
       },
       {
         id: "breath-2",
-        title: "L'Alexandrin (Hugo)",
-        text: "Demain, dès l'aube, à l'heure où blanchit la campagne, Je partirai. Vois-tu, je sais que tu m'attends. J'irai par la forêt, j'irai par la montagne. Je ne puis demeurer loin de toi plus longtemps. Je marcherai les yeux fixés sur mes pensées, Sans rien voir au dehors, sans entendre aucun bruit, Seul, inconnu, le dos courbé, les mains croisées, Triste, et le jour pour moi sera comme la nuit.",
-        tip: "La poésie a un rythme naturel. Respectez les virgules et les points comme des respirations."
+        title: "Classic Poetry (Frost)",
+        text: "Whose woods these are I think I know. His house is in the village though. He will not see me stopping here to watch his woods fill up with snow. My little horse must think it queer to stop without a farmhouse near between the woods and frozen lake the darkest evening of the year. The woods are lovely, dark and deep, but I have promises to keep, and miles to go before I sleep, and miles to go before I sleep.",
+        tip: "Poetry has a natural rhythm. Treat commas and periods as breathing points."
       },
       {
         id: "breath-3",
-        title: "Le Marathon Vocal",
-        text: "Ceci est un test d'endurance pour votre voix. Le but n'est pas d'aller vite, mais de tenir la distance sans vous essouffler. Contrôlez votre débit, faites des pauses à chaque virgule, et assurez-vous de bien finir chaque mot avant de commencer le suivant. La régularité prime sur la vitesse. Imaginez que vous courez sur une longue distance. Votre respiration doit rester stable du début à la fin. Chaque phrase est une foulée régulière vers l'arrivée.",
-        tip: "Imaginez que vous courez un marathon. Économisez votre souffle."
+        title: "The Vocal Marathon",
+        text: "This is an endurance test for your voice. The goal is not to go fast, but to go the distance without running out of breath. Control your rate, pause at every comma, and make sure to finish each word before starting the next. Consistency beats speed. Imagine you are running a long-distance race. Your breathing must remain stable from start to finish. Each sentence is a steady stride toward the finish line.",
+        tip: "Imagine you are running a marathon. Conserve your breath."
       },
       {
         id: "breath-4",
-        title: "La Description Longue",
-        text: "La maison se dressait au bout du chemin, entourée de grands arbres centenaires dont les branches formaient une voûte naturelle au-dessus de l'allée de gravier. Les volets verts, légèrement écaillés par le temps, contrastaient avec les murs de pierre blonde. Une glycine grimpait le long de la façade, offrant ses grappes mauves au soleil de juin. Le jardin s'étendait à perte de vue, parsemé de rosiers anciens et de lavandes odorantes. Au fond, une vieille fontaine murmurait sa chanson éternelle.",
-        tip: "Les descriptions longues testent votre capacité à maintenir l'attention du lecteur."
+        title: "The Long Description",
+        text: "The house stood at the end of the lane, surrounded by tall ancient trees whose branches formed a natural canopy above the gravel path. The green shutters, slightly peeled by time, contrasted with the honey-colored stone walls. Wisteria climbed along the facade, offering its purple clusters to the June sun. The garden stretched as far as the eye could see, dotted with old rose bushes and fragrant lavender. At the far end, an old fountain murmured its eternal song.",
+        tip: "Long descriptions test your ability to maintain the listener's attention."
       },
       {
         id: "breath-5",
-        title: "L'Exposé Scientifique",
-        text: "Le cycle de l'eau comprend plusieurs étapes essentielles. L'évaporation transforme l'eau liquide en vapeur. Cette vapeur s'élève dans l'atmosphère où elle se refroidit et se condense en nuages. Les précipitations ramènent ensuite l'eau vers la surface terrestre, où elle s'infiltre dans les sols ou ruisselle vers les rivières. Les rivières rejoignent les fleuves, les fleuves se jettent dans les océans. Le soleil réchauffe les océans, et le cycle recommence infiniment.",
-        tip: "Les textes informatifs demandent clarté et régularité. Chaque phrase apporte une information."
+        title: "The Science Report",
+        text: "The water cycle consists of several essential stages. Evaporation transforms liquid water into vapor. This vapor rises into the atmosphere, where it cools and condenses into clouds. Precipitation then brings the water back to the earth's surface, where it seeps into the soil or flows into rivers. Rivers join larger waterways, which empty into the oceans. The sun warms the oceans, and the cycle begins again endlessly.",
+        tip: "Informative texts require clarity and consistency. Each sentence delivers one piece of information."
       },
       {
         id: "breath-6",
-        title: "Le Vent d'Automne",
-        text: "Le vent d'automne souffle dans les arbres. Les feuilles dorées se détachent une à une, voltigent dans l'air frais et viennent se poser délicatement sur le sol. Certaines tournoient longtemps avant de trouver leur place. D'autres tombent directement, comme fatiguées de leur voyage. Le vent continue sa course à travers le parc. Il fait danser les branches, siffle entre les troncs et emporte avec lui les dernières chaleurs de l'été. L'automne s'installe doucement, avec ses couleurs chaudes et sa mélancolie apaisante.",
-        tip: "Laissez votre voix suivre le mouvement du vent : parfois forte, parfois douce."
+        title: "The Autumn Wind",
+        text: "The autumn wind blows through the trees. Golden leaves break free one by one, flutter in the cool air, and settle gently on the ground. Some spin a long time before finding their place. Others fall straight down, as if weary from the journey. The wind continues its race through the park. It makes the branches dance, whistles between the trunks, and carries away the last warmth of summer. Autumn settles in quietly, with its warm colors and its soothing melancholy.",
+        tip: "Let your voice follow the movement of the wind: sometimes strong, sometimes soft."
       },
       {
         id: "breath-7",
-        title: "La Lettre d'Amour",
-        text: "Mon cœur déborde de mots que je ne sais pas toujours exprimer. Chaque jour passé loin de toi me semble une éternité. Je pense à ton sourire le matin au réveil. Je pense à ta voix qui me rassure dans les moments de doute. Tu es ma lumière quand tout semble sombre. Tu es mon calme quand la tempête gronde. Je voudrais pouvoir te dire tout cela en face, mais les mots se bousculent et ma voix tremble. Alors je t'écris, lettre après lettre, pour que tu saches à quel point tu comptes pour moi. Chaque phrase est un battement de mon cœur.",
-        tip: "Les émotions peuvent accélérer le débit. Gardez le contrôle pour que chaque mot porte."
+        title: "The Love Letter",
+        text: "My heart overflows with words I do not always know how to express. Every day spent away from you feels like an eternity. I think of your smile when I wake in the morning. I think of your voice that reassures me in moments of doubt. You are my light when everything seems dark. You are my calm when the storm rages. I wish I could say all of this to your face, but the words rush together and my voice trembles. So I write to you, letter after letter, so that you know how much you mean to me. Every sentence is a beat of my heart.",
+        tip: "Emotions can speed up your rate. Stay in control so each word carries weight."
       },
       {
         id: "breath-8",
-        title: "Le Discours de Fin d'Année",
-        text: "Chers collègues, chers amis, nous voici réunis pour célébrer une année exceptionnelle. Ensemble, nous avons surmonté des défis que nous pensions insurmontables. Ensemble, nous avons atteint des objectifs ambitieux. Je tiens à remercier chacun d'entre vous pour votre engagement, votre créativité et votre persévérance. Les mois à venir nous réservent de nouveaux challenges, mais je sais que nous les affronterons avec la même énergie. Notre force réside dans notre capacité à travailler ensemble, à nous soutenir mutuellement. Je suis fier de faire partie de cette équipe. Portons un toast à notre réussite passée et à nos succès futurs.",
-        tip: "Un discours demande de l'endurance. Gérez votre souffle pour tenir jusqu'à la fin."
+        title: "The Year-End Speech",
+        text: "Dear colleagues, dear friends, here we are gathered to celebrate an exceptional year. Together, we have overcome challenges we once thought insurmountable. Together, we have reached ambitious goals. I want to thank each and every one of you for your commitment, your creativity, and your perseverance. The months ahead hold new challenges, but I know we will face them with the same energy. Our strength lies in our ability to work together, to support one another. I am proud to be part of this team. Let us raise a toast to our past accomplishments and our future successes.",
+        tip: "A speech requires endurance. Manage your breath to last until the very end."
       },
       {
         id: "breath-9",
-        title: "Le Conte pour Enfants",
-        text: "Il était une fois, dans un royaume lointain, une petite princesse qui n'aimait pas dormir. Chaque soir, elle trouvait une excuse pour rester éveillée. Elle demandait un verre d'eau, puis une histoire, puis une chanson. Ses parents, le roi et la reine, ne savaient plus quoi faire. Un jour, une fée bienveillante vint leur rendre visite. Elle offrit à la princesse un rêve magique, si beau qu'elle avait hâte de dormir pour le retrouver. Depuis ce jour, la petite princesse s'endort paisiblement chaque soir, avec le sourire aux lèvres.",
-        tip: "Les contes se lisent avec douceur et régularité. La voix doit bercer l'enfant."
+        title: "The Children's Story",
+        text: "Once upon a time, in a faraway kingdom, there lived a little princess who did not like to sleep. Every evening, she found an excuse to stay awake. She would ask for a glass of water, then a story, then a song. Her parents, the king and queen, did not know what to do. One day, a kind fairy came to visit them. She gave the princess a magical dream, so beautiful that she could not wait to fall asleep to find it again. From that day on, the little princess falls peacefully asleep each night, with a smile on her face.",
+        tip: "Stories should be read with gentleness and consistency. Your voice should lull the child."
       },
       {
         id: "breath-10",
-        title: "La Récitation Classique",
-        text: "Heureux qui comme Ulysse a fait un beau voyage, ou comme celui-là qui conquit la Toison, et puis est retourné plein d'usage et raison, vivre entre ses parents le reste de son âge. Quand reverrai-je, hélas, de mon petit village, fumer la cheminée, et en quelle saison, reverrai-je le clos de ma pauvre maison, qui m'est une province et beaucoup davantage. Plus me plaît le séjour qu'ont bâti mes aïeux, que des palais romains le front audacieux.",
-        tip: "La poésie classique demande un rythme soutenu. Respirez aux césures naturelles."
+        title: "Classic Recitation",
+        text: "To be, or not to be, that is the question: whether it is nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles, and by opposing end them. To die, to sleep, no more; and by a sleep to say we end the heartache and the thousand natural shocks that flesh is heir to. It is a consummation devoutly to be wished. To die, to sleep; to sleep, perchance to dream.",
+        tip: "Classic verse demands a sustained rhythm. Breathe at the natural pauses."
       }
     ]
   },
   {
     id: "cognitive-traps",
     level: 3,
-    title: "Pièges Cognitifs",
-    description: "Textes conçus pour piéger les lecteurs rapides. Changements de rythme, chiffres et mots-pièges.",
+    title: "Cognitive Traps",
+    description: "Texts designed to trip up fast readers. Rhythm changes, numbers, and tricky words.",
     icon: "🧠",
     color: "from-amber-500/20 to-yellow-600/10",
     exercises: [
       {
         id: "trap-1",
-        title: "Le Piège à Vitesse",
-        text: "Attention, cette phrase va changer de vitesse. Parfois elle est lente. Et soudainement elle accélère pour voir si vous suivez ! Mais vous devez garder, absolument, le contrôle, du, rythme. Toujours. Même quand le texte tente de vous faire courir. Restez maître de votre lecture.",
-        tip: "Ne vous laissez pas emporter par le texte. VOUS contrôlez le tempo, pas lui."
+        title: "The Speed Trap",
+        text: "Warning, this sentence is about to change speed. Sometimes it is slow. And suddenly it speeds up to see if you can keep up! But you must keep, absolutely, control, of, the, rhythm. Always. Even when the text tries to make you rush. Stay in charge of your reading.",
+        tip: "Do not let the text carry you away. YOU control the tempo, not it."
       },
       {
         id: "trap-2",
-        title: "Les Chiffres",
-        text: "Compter demande de la précision. 1984, 2023, 3310, 555. Les chiffres cassent le rythme naturel de la lecture. Dites: mille neuf cent quatre-vingt-quatre, deux mille vingt-trois, trois mille trois cent dix, cinq cent cinquante-cinq. Soyez vigilants sur les liaisons.",
-        tip: "Prononcez chaque chiffre en toutes lettres, lentement et distinctement."
+        title: "The Numbers",
+        text: "Counting requires precision. 1984, 2023, 3310, 555. Numbers break the natural rhythm of reading. Say: nineteen eighty-four, two thousand twenty-three, three thousand three hundred ten, five hundred fifty-five. Be careful with the transitions.",
+        tip: "Pronounce every number in full words, slowly and distinctly."
       },
       {
         id: "trap-3",
-        title: "L'Entretien d'Embauche",
-        text: "Bonjour, je me présente pour le poste de chef de projet. Je suis quelqu'un de dynamique, organisé et très motivé. J'ai géré des équipes de dix personnes pendant cinq ans. Mon point fort ? L'écoute. Mon point faible ? Je suis parfois trop perfectionniste. En résumé, je pense être le candidat idéal pour ce poste passionnant.",
-        tip: "En situation de stress, on accélère. Pratiquez pour rester calme le jour J."
+        title: "The Job Interview",
+        text: "Hello, I am here to apply for the project manager position. I am a dynamic, organized, and highly motivated person. I have managed teams of ten people for five years. My greatest strength? Listening. My biggest weakness? I can be too much of a perfectionist. In summary, I believe I am the ideal candidate for this exciting role.",
+        tip: "Under stress, you tend to speed up. Practice to stay calm on the big day."
       },
       {
         id: "trap-4",
-        title: "Le Texte Inversé",
-        text: "Lisez ce texte normalement. Maintenant plus lentement. Encore plus lentement. Puis accélérez légèrement. Revenez à la normale. Le but est de varier consciemment votre vitesse sans perdre la clarté. Vous êtes le chef d'orchestre de votre propre voix.",
-        tip: "Cet exercice vous apprend à moduler votre débit à volonté."
+        title: "The Speed Shift",
+        text: "Read this text at a normal pace. Now read more slowly. Even more slowly. Then speed up slightly. Return to normal. The goal is to consciously vary your speed without losing clarity. You are the conductor of your own voice.",
+        tip: "This exercise teaches you to modulate your rate at will."
       },
       {
         id: "trap-5",
-        title: "Les Homophones",
-        text: "Le ver vert va vers le verre vert. Ces sept sots sans sous sont si saouls. Ton thon t'a-t-il tâté ? La mère du maire va à la mer. Le seau d'eau de la sotte saute. Le comte conte un conte au comte.",
-        tip: "Les homophones piègent le cerveau. Articulez pour différencier les sons."
+        title: "Homophones",
+        text: "Their friends went there to pick up their things over there. To write the right rite is a writer's right. I knew the new gnu knew a new knot. The bare bear could not bear the blare. The knight knew a new knight at night. The flour flower flowered in the flower flour.",
+        tip: "Homophones trick the brain. Articulate clearly to differentiate the sounds."
       },
       {
         id: "trap-6",
-        title: "Questions-Réponses Rapides",
-        text: "Comment vous appelez-vous ? Je m'appelle Jean Dupont. Quelle est votre adresse ? J'habite au 15 rue de la Paix à Lyon. Votre numéro de téléphone ? C'est le 06 12 34 56 78. Votre date de naissance ? Le 3 mars 1985. Votre nationalité ? Française. Votre situation familiale ? Marié, deux enfants.",
-        tip: "Les informations personnelles partent souvent trop vite. Ralentissez sur les données."
+        title: "Rapid-Fire Q and A",
+        text: "What is your name? My name is John Smith. What is your address? I live at 15 Oak Street in Portland. Your phone number? It is 503-555-1234. Your date of birth? March 3rd, 1985. Your nationality? American. Your family status? Married, two children.",
+        tip: "Personal information often comes out too fast. Slow down on the details."
       },
       {
         id: "trap-7",
-        title: "Les Négations",
-        text: "Je ne dis pas que je ne veux pas. Ce n'est pas que ce n'est pas bien. Il n'est pas impossible qu'il ne vienne pas. Elle n'a pas dit qu'elle ne savait pas. Nous ne pensons pas ne pas pouvoir. Les doubles négations trompent l'oreille et l'esprit.",
-        tip: "Les négations multiples sont des pièges classiques. Lisez chaque mot."
+        title: "Double Negatives",
+        text: "I am not saying I do not want to. It is not that it is not good. It is not impossible that he will not come. She did not say she did not know. We do not think we cannot do it. Double negatives deceive both the ear and the mind.",
+        tip: "Multiple negatives are classic traps. Read every single word."
       },
       {
         id: "trap-8",
-        title: "Les Sigles",
-        text: "La SNCF collabore avec la RATP et le TGV. L'ONU travaille avec l'OMS et l'UNESCO. Le PDG de cette PME a obtenu son MBA à HEC. La TVA sur le PIB affecte le SMIC. Chaque sigle doit être épelé clairement.",
-        tip: "Épelez chaque lettre distinctement sans accélérer entre les sigles."
+        title: "Acronyms",
+        text: "NASA works alongside the FBI and the CIA. The CEO of this SMB earned his MBA at MIT. The GDP affects the GNP and the CPI. ASAP, the HR team needs the KPIs for the Q3 ROI report. Every acronym must be spelled out clearly.",
+        tip: "Spell each letter distinctly without speeding up between acronyms."
       },
       {
         id: "trap-9",
-        title: "Le Formulaire Administratif",
-        text: "Nom : Dupont. Prénom : Marie. Née le : 15 janvier 1990. À : Paris, 75015. Adresse actuelle : 42 avenue des Champs-Élysées, 75008 Paris. Numéro de sécurité sociale : 2 90 01 75 115 042 35. Référence du dossier : AB-2024-00567.",
-        tip: "Les données administratives exigent une diction parfaite. Chaque chiffre compte."
+        title: "The Official Form",
+        text: "Last name: Smith. First name: Marie. Date of birth: January 15, 1990. Place of birth: Portland, Oregon. Current address: 42 Elm Street, Apartment 3B, New York, NY 10001. Social Security Number: redacted. File reference: AB-2024-00567.",
+        tip: "Administrative data requires perfect diction. Every number counts."
       },
       {
         id: "trap-10",
-        title: "Les Mots Proches",
-        text: "Poison et poisson. Dessert et désert. Conversation et conservation. Attitude et altitude. Éminent et imminent. Ces mots se ressemblent mais leurs sens diffèrent grandement. La confusion vient de la vitesse. Ralentissez pour bien les prononcer.",
-        tip: "Les paronymes (mots qui se ressemblent) piègent les locuteurs pressés."
+        title: "Look-Alike Words",
+        text: "Affect and effect. Accept and except. Dessert and desert. Compliment and complement. Eminent and imminent. These words look alike but their meanings differ greatly. The confusion comes from speed. Slow down to pronounce them correctly.",
+        tip: "Near-homophones (words that look or sound alike) trip up rushed speakers."
       },
       {
         id: "trap-11",
-        title: "L'Énumération Longue",
-        text: "J'ai besoin de : pommes, poires, bananes, oranges, citrons, mandarines, kiwis, mangues, ananas, fraises, framboises, myrtilles, cassis, groseilles, cerises, abricots, pêches, nectarines, prunes, et melons. Vingt fruits à ne pas oublier.",
-        tip: "Les listes longues poussent à accélérer. Gardez le même rythme du premier au dernier mot."
+        title: "The Long List",
+        text: "I need: apples, pears, bananas, oranges, lemons, tangerines, kiwis, mangoes, pineapples, strawberries, raspberries, blueberries, blackcurrants, gooseberries, cherries, apricots, peaches, nectarines, plums, and melons. Twenty fruits not to forget.",
+        tip: "Long lists push you to speed up. Keep the same pace from the first word to the last."
       },
       {
         id: "trap-12",
-        title: "Les Liaisons Obligatoires",
-        text: "Les amis arrivent. Un ancien ami. Nous avons attendu. Ils ont eu. C'est un homme aimable. Les arbres immenses. Ces enfants adorables. Vous êtes invités. Les éléphants énormes. Un grand honneur.",
-        tip: "Les liaisons entre voyelles sont obligatoires. Prononcez-les sans les avaler."
+        title: "Linking Sounds",
+        text: "An apple a day. An old oak tree. I am always aware. It is an honor. The elephants entered eagerly. She ate an orange. We are all arriving early. These animals are absolutely adorable. An enormous elephant. An interesting idea.",
+        tip: "Smooth linking between vowels is essential. Pronounce each connection without swallowing sounds."
       }
     ]
   },
   {
     id: "auto-controle",
     level: 2,
-    title: "Auto-Contrôle",
-    description: "Parlez sans regarder l'écran et découvrez votre résultat à la fin. Apprenez à ressentir votre rythme.",
+    title: "Self-Monitoring",
+    description: "Practice without real-time feedback. Develop your internal ear for rate — the clinician's ultimate goal for carryover into daily speech.",
     icon: "🎧",
     color: "from-indigo-500/20 to-violet-600/10",
     type: "proprioception",
     exercises: [
       {
         id: "proprio-1",
-        title: "Décrivez votre logement",
-        text: "Décrivez l'endroit où vous habitez : les pièces, la décoration, ce que vous aimez.",
-        tip: "Fermez les yeux et concentrez-vous sur les sensations de votre appareil phonatoire.",
+        title: "Describe Your Home",
+        text: "Describe the place where you live: the rooms, the decor, what you like about it.",
+        tip: "Close your eyes and focus on the sensations of your speech muscles.",
         type: "proprioception"
       },
       {
         id: "proprio-2",
-        title: "Vos dernières vacances",
-        text: "Racontez vos dernières vacances : où, avec qui, vos meilleurs souvenirs.",
-        tip: "Écoutez votre voix intérieure pour maintenir le rythme souhaité.",
+        title: "Your Last Vacation",
+        text: "Talk about your last vacation: where, with whom, your best memories.",
+        tip: "Listen to your inner voice to maintain your target pace.",
         type: "proprioception"
       },
       {
         id: "proprio-3",
-        title: "Votre journée d'hier",
-        text: "Décrivez en détail ce que vous avez fait hier, du réveil au coucher.",
-        tip: "La chronologie vous aide à structurer sans accélérer.",
+        title: "Your Day Yesterday",
+        text: "Describe in detail what you did yesterday, from waking up to going to bed.",
+        tip: "Chronology helps you structure your speech without speeding up.",
         type: "proprioception"
       },
       {
         id: "proprio-4",
-        title: "Votre repas préféré",
-        text: "Quel est votre plat préféré ? Décrivez-le et expliquez comment le préparer.",
-        tip: "Les étapes de recette imposent un rythme naturel.",
+        title: "Your Favorite Meal",
+        text: "What is your favorite dish? Describe it and explain how to prepare it.",
+        tip: "Recipe steps impose a natural rhythm.",
         type: "proprioception"
       },
       {
         id: "proprio-5",
-        title: "Votre travail ou études",
-        text: "Expliquez ce que vous faites dans votre travail ou vos études au quotidien.",
-        tip: "Simplifiez comme si vous parliez à quelqu'un qui ne connaît pas votre domaine.",
+        title: "Your Work or Studies",
+        text: "Explain what you do in your work or studies on a daily basis.",
+        tip: "Simplify as if you were speaking to someone unfamiliar with your field.",
         type: "proprioception"
       },
       {
         id: "proprio-6",
-        title: "Votre week-end idéal",
-        text: "Décrivez votre week-end parfait : activités, lieux, personnes.",
-        tip: "L'imagination peut accélérer le débit. Restez ancré dans vos sensations.",
+        title: "Your Ideal Weekend",
+        text: "Describe your perfect weekend: activities, places, people.",
+        tip: "Imagination can speed up your rate. Stay grounded in your sensations.",
         type: "proprioception"
       },
       {
         id: "proprio-7",
-        title: "Un objet qui vous est cher",
-        text: "Décrivez un objet auquel vous tenez et racontez son histoire.",
-        tip: "Les émotions peuvent accélérer. Utilisez-les comme signal d'alerte.",
+        title: "A Treasured Object",
+        text: "Describe an object you cherish and tell its story.",
+        tip: "Emotions can speed you up. Use them as a warning signal.",
         type: "proprioception"
       },
       {
         id: "proprio-8",
-        title: "Le trajet jusqu'ici",
-        text: "Décrivez comment vous êtes arrivé(e) ici aujourd'hui, étape par étape.",
-        tip: "Le récit chronologique structure naturellement la parole.",
+        title: "The Trip Here",
+        text: "Describe how you got here today, step by step.",
+        tip: "A chronological account naturally structures your speech.",
         type: "proprioception"
       },
       {
         id: "proprio-9",
-        title: "Votre série ou film préféré",
-        text: "Parlez de votre série ou film préféré : l'histoire, pourquoi vous l'aimez.",
-        tip: "L'enthousiasme accélère souvent. Surveillez votre rythme interne.",
+        title: "Your Favorite Show or Movie",
+        text: "Talk about your favorite show or movie: the story, why you love it.",
+        tip: "Enthusiasm often speeds things up. Monitor your internal rhythm.",
         type: "proprioception"
       },
       {
         id: "proprio-10",
-        title: "Un projet que vous avez",
-        text: "Décrivez un projet personnel ou professionnel sur lequel vous travaillez.",
-        tip: "Expliquer un projet demande de l'organisation. Prenez votre temps.",
+        title: "A Project You Have",
+        text: "Describe a personal or professional project you are working on.",
+        tip: "Explaining a project requires organization. Take your time.",
         type: "proprioception"
       }
     ]
@@ -1036,494 +1051,494 @@ export const exerciseCategories: ExerciseCategory[] = [
   {
     id: "rebus-enfant",
     level: 0,
-    title: "Mode Rébus 🧒",
-    description: "Exercices en images pour les non-lecteurs. L'enfant suit les emojis et les barres de souffle pour apprendre le rythme.",
+    title: "Kids Mode (Picture Stories) 🧒",
+    description: "Emoji-based exercises for non-readers ages 4-7. Fun, visual, and effective.",
     icon: "🖼️",
     color: "from-yellow-400/20 to-orange-400/10",
     type: "rebus" as ExerciseType,
     exercises: [
-      // --- Animaux rigolos ---
+      // --- Funny Animals ---
       {
         id: "rebus-1",
-        title: "La vache gourmande",
-        text: "La vache mange une glace.",
-        tip: "Fais une grande pause à chaque barre orange ! Inspire bien.",
+        title: "The Hungry Cow",
+        text: "The cow eats an ice cream.",
+        tip: "Take a big pause at every orange bar! Breathe in deeply.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "La vache", emoji: "🐄", pause_after: true },
-          { segment: "mange", emoji: "😋", pause_after: true },
-          { segment: "une glace", emoji: "🍦", pause_after: false }
+          { segment: "The cow", emoji: "🐄", pause_after: true },
+          { segment: "eats", emoji: "😋", pause_after: true },
+          { segment: "an ice cream", emoji: "🍦", pause_after: false }
         ]
       },
       {
         id: "rebus-2",
-        title: "Le robot fatigué",
-        text: "Le robot dort dans le garage.",
-        tip: "Parle lentement comme un robot qui s'endort. Pause aux barres !",
+        title: "The Tired Robot",
+        text: "The robot sleeps in the garage.",
+        tip: "Speak slowly like a robot falling asleep. Pause at the bars!",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Le robot", emoji: "🤖", pause_after: true },
-          { segment: "dort", emoji: "😴", pause_after: true },
-          { segment: "dans le garage", emoji: "🏠", pause_after: false }
+          { segment: "The robot", emoji: "🤖", pause_after: true },
+          { segment: "sleeps", emoji: "😴", pause_after: true },
+          { segment: "in the garage", emoji: "🏠", pause_after: false }
         ]
       },
       {
         id: "rebus-3",
-        title: "La bougie magique",
-        text: "Je souffle très fort sur la bougie.",
-        tip: "Quand tu vois la bougie, souffle vraiment ! C'est un exercice de respiration.",
+        title: "The Magic Candle",
+        text: "I blow very hard on the candle.",
+        tip: "When you see the candle, really blow! It is a breathing exercise.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Je souffle", emoji: "💨", pause_after: true },
-          { segment: "très fort", emoji: "💪", pause_after: true },
-          { segment: "sur la bougie", emoji: "🕯️", pause_after: false }
+          { segment: "I blow", emoji: "💨", pause_after: true },
+          { segment: "very hard", emoji: "💪", pause_after: true },
+          { segment: "on the candle", emoji: "🕯️", pause_after: false }
         ]
       },
       {
         id: "rebus-4",
-        title: "Le chat musicien",
-        text: "Le chat joue de la guitare sous la lune.",
-        tip: "Imagine un chat qui gratte sa guitare ! Pause entre chaque image.",
+        title: "The Musical Cat",
+        text: "The cat plays the guitar under the moon.",
+        tip: "Imagine a cat strumming its guitar! Pause between each picture.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Le chat", emoji: "🐱", pause_after: true },
-          { segment: "joue de la guitare", emoji: "🎸", pause_after: true },
-          { segment: "sous la lune", emoji: "🌙", pause_after: false }
+          { segment: "The cat", emoji: "🐱", pause_after: true },
+          { segment: "plays the guitar", emoji: "🎸", pause_after: true },
+          { segment: "under the moon", emoji: "🌙", pause_after: false }
         ]
       },
       {
         id: "rebus-5",
-        title: "Le chien au parc",
-        text: "Le chien court après le ballon dans le parc.",
-        tip: "Dis chaque morceau bien fort, puis respire aux barres !",
+        title: "The Dog at the Park",
+        text: "The dog runs after the ball in the park.",
+        tip: "Say each part nice and loud, then breathe at the bars!",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Le chien", emoji: "🐕", pause_after: true },
-          { segment: "court après", emoji: "🏃", pause_after: true },
-          { segment: "le ballon", emoji: "⚽", pause_after: true },
-          { segment: "dans le parc", emoji: "🌳", pause_after: false }
+          { segment: "The dog", emoji: "🐕", pause_after: true },
+          { segment: "runs after", emoji: "🏃", pause_after: true },
+          { segment: "the ball", emoji: "⚽", pause_after: true },
+          { segment: "in the park", emoji: "🌳", pause_after: false }
         ]
       },
       {
         id: "rebus-6",
-        title: "Le poisson volant",
-        text: "Le poisson saute hors de l'eau et vole dans le ciel.",
-        tip: "Un poisson qui vole, c'est drôle ! Respire bien entre les images.",
+        title: "The Flying Fish",
+        text: "The fish jumps out of the water and flies in the sky.",
+        tip: "A fish that flies -- how funny! Breathe well between pictures.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Le poisson", emoji: "🐟", pause_after: true },
-          { segment: "saute hors de l'eau", emoji: "💦", pause_after: true },
-          { segment: "et vole", emoji: "🦅", pause_after: true },
-          { segment: "dans le ciel", emoji: "☁️", pause_after: false }
+          { segment: "The fish", emoji: "🐟", pause_after: true },
+          { segment: "jumps out of the water", emoji: "💦", pause_after: true },
+          { segment: "and flies", emoji: "🦅", pause_after: true },
+          { segment: "in the sky", emoji: "☁️", pause_after: false }
         ]
       },
       {
         id: "rebus-7",
-        title: "L'ours gourmand",
-        text: "L'ours mange du miel avec une cuillère.",
-        tip: "Mmmh du miel ! Parle doucement et respire aux barres.",
+        title: "The Hungry Bear",
+        text: "The bear eats honey with a spoon.",
+        tip: "Mmm honey! Speak softly and breathe at the bars.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "L'ours", emoji: "🐻", pause_after: true },
-          { segment: "mange du miel", emoji: "🍯", pause_after: true },
-          { segment: "avec une cuillère", emoji: "🥄", pause_after: false }
+          { segment: "The bear", emoji: "🐻", pause_after: true },
+          { segment: "eats honey", emoji: "🍯", pause_after: true },
+          { segment: "with a spoon", emoji: "🥄", pause_after: false }
         ]
       },
-      // --- Vie quotidienne ---
+      // --- Daily Life ---
       {
         id: "rebus-8",
-        title: "Le matin à l'école",
-        text: "À huit heures le garçon va à l'école.",
-        tip: "Raconte ta matinée image par image. Pause aux barres !",
+        title: "Morning at School",
+        text: "At eight o'clock the boy goes to school.",
+        tip: "Tell your morning picture by picture. Pause at the bars!",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "À huit heures", emoji: "🕗", pause_after: true },
-          { segment: "le garçon va", emoji: "🚶", pause_after: true },
-          { segment: "à l'école", emoji: "🏫", pause_after: false }
+          { segment: "At eight o'clock", emoji: "🕗", pause_after: true },
+          { segment: "the boy goes", emoji: "🚶", pause_after: true },
+          { segment: "to school", emoji: "🏫", pause_after: false }
         ]
       },
       {
         id: "rebus-9",
-        title: "Le petit déjeuner",
-        text: "Je bois du lait et je mange un croissant.",
-        tip: "Miam ! Dis chaque partie lentement. Respire bien.",
+        title: "Breakfast",
+        text: "I drink milk and I eat a muffin.",
+        tip: "Yum! Say each part slowly. Breathe well.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Je bois", emoji: "🥛", pause_after: true },
-          { segment: "du lait", emoji: "🥛", pause_after: true },
-          { segment: "et je mange", emoji: "😋", pause_after: true },
-          { segment: "un croissant", emoji: "🥐", pause_after: false }
+          { segment: "I drink", emoji: "🥛", pause_after: true },
+          { segment: "some milk", emoji: "🥛", pause_after: true },
+          { segment: "and I eat", emoji: "😋", pause_after: true },
+          { segment: "a muffin", emoji: "🥐", pause_after: false }
         ]
       },
       {
         id: "rebus-10",
-        title: "La douche du matin",
-        text: "Je prends ma douche et je mets mes habits.",
-        tip: "Chaque geste du matin, un par un. Respire entre les images !",
+        title: "Morning Shower",
+        text: "I take my shower and I put on my clothes.",
+        tip: "Each morning step, one by one. Breathe between pictures!",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Je prends", emoji: "🚿", pause_after: true },
-          { segment: "ma douche", emoji: "🧼", pause_after: true },
-          { segment: "et je mets", emoji: "👕", pause_after: true },
-          { segment: "mes habits", emoji: "👖", pause_after: false }
+          { segment: "I take", emoji: "🚿", pause_after: true },
+          { segment: "my shower", emoji: "🧼", pause_after: true },
+          { segment: "and I put on", emoji: "👕", pause_after: true },
+          { segment: "my clothes", emoji: "👖", pause_after: false }
         ]
       },
       {
         id: "rebus-11",
-        title: "Le dodo",
-        text: "Le soir je mets mon pyjama et je dors dans mon lit.",
-        tip: "Chuchoter comme au moment du coucher. Pause douce aux barres.",
+        title: "Bedtime",
+        text: "At night I put on my pajamas and I sleep in my bed.",
+        tip: "Whisper like it is bedtime. Soft pauses at the bars.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Le soir", emoji: "🌙", pause_after: true },
-          { segment: "je mets mon pyjama", emoji: "👕", pause_after: true },
-          { segment: "et je dors", emoji: "😴", pause_after: true },
-          { segment: "dans mon lit", emoji: "🛏️", pause_after: false }
+          { segment: "At night", emoji: "🌙", pause_after: true },
+          { segment: "I put on my pajamas", emoji: "👕", pause_after: true },
+          { segment: "and I sleep", emoji: "😴", pause_after: true },
+          { segment: "in my bed", emoji: "🛏️", pause_after: false }
         ]
       },
-      // --- Histoires drôles ---
+      // --- Funny Stories ---
       {
         id: "rebus-12",
-        title: "Le dinosaure en ville",
-        text: "Le dinosaure marche dans la rue et mange une pizza.",
-        tip: "Un dinosaure qui mange une pizza ! C'est trop drôle. Respire bien.",
+        title: "The Dinosaur in the City",
+        text: "The dinosaur walks down the street and eats a pizza.",
+        tip: "A dinosaur eating pizza! So funny. Breathe well.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Le dinosaure", emoji: "🦕", pause_after: true },
-          { segment: "marche dans la rue", emoji: "🏙️", pause_after: true },
-          { segment: "et mange", emoji: "😋", pause_after: true },
-          { segment: "une pizza", emoji: "🍕", pause_after: false }
+          { segment: "The dinosaur", emoji: "🦕", pause_after: true },
+          { segment: "walks down the street", emoji: "🏙️", pause_after: true },
+          { segment: "and eats", emoji: "😋", pause_after: true },
+          { segment: "a pizza", emoji: "🍕", pause_after: false }
         ]
       },
       {
         id: "rebus-13",
-        title: "La princesse astronaute",
-        text: "La princesse monte dans la fusée et va sur la lune.",
-        tip: "Trois, deux, un, décollage ! Dis chaque partie clairement.",
+        title: "The Astronaut Princess",
+        text: "The princess gets in the rocket and goes to the moon.",
+        tip: "Three, two, one, blast off! Say each part clearly.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "La princesse", emoji: "👸", pause_after: true },
-          { segment: "monte dans la fusée", emoji: "🚀", pause_after: true },
-          { segment: "et va", emoji: "✨", pause_after: true },
-          { segment: "sur la lune", emoji: "🌕", pause_after: false }
+          { segment: "The princess", emoji: "👸", pause_after: true },
+          { segment: "gets in the rocket", emoji: "🚀", pause_after: true },
+          { segment: "and goes", emoji: "✨", pause_after: true },
+          { segment: "to the moon", emoji: "🌕", pause_after: false }
         ]
       },
       {
         id: "rebus-14",
-        title: "Le pirate et le trésor",
-        text: "Le pirate navigue sur la mer et trouve un trésor.",
-        tip: "Arrr ! Parle comme un pirate, mais lentement. Respire aux barres !",
+        title: "The Pirate and the Treasure",
+        text: "The pirate sails across the sea and finds a treasure.",
+        tip: "Arrr! Talk like a pirate, but slowly. Breathe at the bars!",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Le pirate", emoji: "🏴‍☠️", pause_after: true },
-          { segment: "navigue sur la mer", emoji: "⛵", pause_after: true },
-          { segment: "et trouve", emoji: "🔍", pause_after: true },
-          { segment: "un trésor", emoji: "💎", pause_after: false }
+          { segment: "The pirate", emoji: "🏴‍☠️", pause_after: true },
+          { segment: "sails across the sea", emoji: "⛵", pause_after: true },
+          { segment: "and finds", emoji: "🔍", pause_after: true },
+          { segment: "a treasure", emoji: "💎", pause_after: false }
         ]
       },
       {
         id: "rebus-15",
-        title: "Le monstre gentil",
-        text: "Le monstre fait un câlin au lapin et lui donne un gâteau.",
-        tip: "Un monstre gentil ! Parle doucement comme lui.",
+        title: "The Friendly Monster",
+        text: "The monster gives the bunny a hug and a cake.",
+        tip: "A friendly monster! Speak softly like him.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Le monstre", emoji: "👾", pause_after: true },
-          { segment: "fait un câlin", emoji: "🤗", pause_after: true },
-          { segment: "au lapin", emoji: "🐰", pause_after: true },
-          { segment: "et lui donne un gâteau", emoji: "🎂", pause_after: false }
+          { segment: "The monster", emoji: "👾", pause_after: true },
+          { segment: "gives a hug", emoji: "🤗", pause_after: true },
+          { segment: "to the bunny", emoji: "🐰", pause_after: true },
+          { segment: "and gives a cake", emoji: "🎂", pause_after: false }
         ]
       },
-      // --- Météo et nature ---
+      // --- Weather and Nature ---
       {
         id: "rebus-16",
-        title: "Il pleut !",
-        text: "Il pleut dehors et je prends mon parapluie.",
-        tip: "Plic ploc ! Respire entre chaque image comme entre les gouttes.",
+        title: "It Is Raining!",
+        text: "It is raining outside and I grab my umbrella.",
+        tip: "Drip drop! Breathe between each picture like between raindrops.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Il pleut", emoji: "🌧️", pause_after: true },
-          { segment: "dehors", emoji: "🏡", pause_after: true },
-          { segment: "et je prends", emoji: "✋", pause_after: true },
-          { segment: "mon parapluie", emoji: "☂️", pause_after: false }
+          { segment: "It is raining", emoji: "🌧️", pause_after: true },
+          { segment: "outside", emoji: "🏡", pause_after: true },
+          { segment: "and I grab", emoji: "✋", pause_after: true },
+          { segment: "my umbrella", emoji: "☂️", pause_after: false }
         ]
       },
       {
         id: "rebus-17",
-        title: "Le soleil brille",
-        text: "Le soleil brille et les fleurs poussent dans le jardin.",
-        tip: "Pense au beau soleil chaud. Prends ton temps à chaque image.",
+        title: "The Sun Shines",
+        text: "The sun shines and the flowers grow in the garden.",
+        tip: "Think about the warm bright sun. Take your time at each picture.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Le soleil brille", emoji: "☀️", pause_after: true },
-          { segment: "et les fleurs", emoji: "🌸", pause_after: true },
-          { segment: "poussent", emoji: "🌱", pause_after: true },
-          { segment: "dans le jardin", emoji: "🏡", pause_after: false }
+          { segment: "The sun shines", emoji: "☀️", pause_after: true },
+          { segment: "and the flowers", emoji: "🌸", pause_after: true },
+          { segment: "grow", emoji: "🌱", pause_after: true },
+          { segment: "in the garden", emoji: "🏡", pause_after: false }
         ]
       },
       {
         id: "rebus-18",
-        title: "La neige tombe",
-        text: "La neige tombe et je fais un bonhomme de neige.",
-        tip: "Brrr ! Parle doucement comme les flocons qui tombent.",
+        title: "The Snow Falls",
+        text: "The snow falls and I make a snowman.",
+        tip: "Brrr! Speak softly like the snowflakes falling.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "La neige tombe", emoji: "❄️", pause_after: true },
-          { segment: "et je fais", emoji: "⛏️", pause_after: true },
-          { segment: "un bonhomme de neige", emoji: "⛄", pause_after: false }
+          { segment: "The snow falls", emoji: "❄️", pause_after: true },
+          { segment: "and I make", emoji: "⛏️", pause_after: true },
+          { segment: "a snowman", emoji: "⛄", pause_after: false }
         ]
       },
       {
         id: "rebus-19",
-        title: "L'arc-en-ciel",
-        text: "Après la pluie il y a un arc-en-ciel dans le ciel.",
-        tip: "Les couleurs de l'arc-en-ciel ! Respire entre chaque image.",
+        title: "The Rainbow",
+        text: "After the rain there is a rainbow in the sky.",
+        tip: "The colors of the rainbow! Breathe between each picture.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Après la pluie", emoji: "🌧️", pause_after: true },
-          { segment: "il y a un arc-en-ciel", emoji: "🌈", pause_after: true },
-          { segment: "dans le ciel", emoji: "☁️", pause_after: false }
+          { segment: "After the rain", emoji: "🌧️", pause_after: true },
+          { segment: "there is a rainbow", emoji: "🌈", pause_after: true },
+          { segment: "in the sky", emoji: "☁️", pause_after: false }
         ]
       },
-      // --- Transports ---
+      // --- Transportation ---
       {
         id: "rebus-20",
-        title: "Le train rapide",
-        text: "Le train roule vite sur les rails et arrive à la gare.",
-        tip: "Tchou tchou ! Mais attention, toi tu parles len-te-ment.",
+        title: "The Fast Train",
+        text: "The train goes fast on the tracks and arrives at the station.",
+        tip: "Choo choo! But remember, YOU speak slo-o-owly.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Le train", emoji: "🚂", pause_after: true },
-          { segment: "roule vite", emoji: "💨", pause_after: true },
-          { segment: "sur les rails", emoji: "🛤️", pause_after: true },
-          { segment: "et arrive à la gare", emoji: "🏛️", pause_after: false }
+          { segment: "The train", emoji: "🚂", pause_after: true },
+          { segment: "goes fast", emoji: "💨", pause_after: true },
+          { segment: "on the tracks", emoji: "🛤️", pause_after: true },
+          { segment: "and arrives at the station", emoji: "🏛️", pause_after: false }
         ]
       },
       {
         id: "rebus-21",
-        title: "L'avion dans les nuages",
-        text: "L'avion décolle et vole au-dessus des nuages.",
-        tip: "On décolle ! Dis chaque morceau calmement.",
+        title: "The Plane in the Clouds",
+        text: "The plane takes off and flies above the clouds.",
+        tip: "We are taking off! Say each part calmly.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "L'avion", emoji: "✈️", pause_after: true },
-          { segment: "décolle", emoji: "🛫", pause_after: true },
-          { segment: "et vole au-dessus", emoji: "🦅", pause_after: true },
-          { segment: "des nuages", emoji: "☁️", pause_after: false }
+          { segment: "The plane", emoji: "✈️", pause_after: true },
+          { segment: "takes off", emoji: "🛫", pause_after: true },
+          { segment: "and flies above", emoji: "🦅", pause_after: true },
+          { segment: "the clouds", emoji: "☁️", pause_after: false }
         ]
       },
       {
         id: "rebus-22",
-        title: "Le vélo de papa",
-        text: "Papa fait du vélo dans le parc avec moi.",
-        tip: "Pédale doucement dans ta tête ! Pause aux barres.",
+        title: "Dad's Bicycle",
+        text: "Dad rides his bicycle in the park with me.",
+        tip: "Pedal slowly in your head! Pause at the bars.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Papa", emoji: "👨", pause_after: true },
-          { segment: "fait du vélo", emoji: "🚲", pause_after: true },
-          { segment: "dans le parc", emoji: "🌳", pause_after: true },
-          { segment: "avec moi", emoji: "👦", pause_after: false }
+          { segment: "Dad", emoji: "👨", pause_after: true },
+          { segment: "rides his bicycle", emoji: "🚲", pause_after: true },
+          { segment: "in the park", emoji: "🌳", pause_after: true },
+          { segment: "with me", emoji: "👦", pause_after: false }
         ]
       },
-      // --- Émotions ---
+      // --- Emotions ---
       {
         id: "rebus-23",
-        title: "Je suis content",
-        text: "Je suis content parce que c'est mon anniversaire.",
-        tip: "Souris en parlant ! Respire bien entre les images.",
+        title: "I Am Happy",
+        text: "I am happy because it is my birthday.",
+        tip: "Smile while you speak! Breathe well between pictures.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Je suis content", emoji: "😊", pause_after: true },
-          { segment: "parce que", emoji: "💭", pause_after: true },
-          { segment: "c'est mon anniversaire", emoji: "🎂", pause_after: false }
+          { segment: "I am happy", emoji: "😊", pause_after: true },
+          { segment: "because", emoji: "💭", pause_after: true },
+          { segment: "it is my birthday", emoji: "🎂", pause_after: false }
         ]
       },
       {
         id: "rebus-24",
-        title: "J'ai un peu peur",
-        text: "J'ai un peu peur du noir mais ma lampe me rassure.",
-        tip: "C'est normal d'avoir peur. Parle doucement, ça rassure.",
+        title: "I Am a Little Scared",
+        text: "I am a little scared of the dark but my lamp helps me.",
+        tip: "It is okay to be scared. Speak softly, it helps.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "J'ai un peu peur", emoji: "😨", pause_after: true },
-          { segment: "du noir", emoji: "🌑", pause_after: true },
-          { segment: "mais ma lampe", emoji: "💡", pause_after: true },
-          { segment: "me rassure", emoji: "😌", pause_after: false }
+          { segment: "I am a little scared", emoji: "😨", pause_after: true },
+          { segment: "of the dark", emoji: "🌑", pause_after: true },
+          { segment: "but my lamp", emoji: "💡", pause_after: true },
+          { segment: "helps me", emoji: "😌", pause_after: false }
         ]
       },
       {
         id: "rebus-25",
-        title: "Je suis en colère",
-        text: "Je suis en colère mais je respire et je me calme.",
-        tip: "Inspire profondément à chaque barre. Ça aide vraiment !",
+        title: "I Am Angry",
+        text: "I am angry but I breathe and I calm down.",
+        tip: "Breathe in deeply at each bar. It really helps!",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Je suis en colère", emoji: "😠", pause_after: true },
-          { segment: "mais je respire", emoji: "🌬️", pause_after: true },
-          { segment: "et je me calme", emoji: "😌", pause_after: false }
+          { segment: "I am angry", emoji: "😠", pause_after: true },
+          { segment: "but I breathe", emoji: "🌬️", pause_after: true },
+          { segment: "and I calm down", emoji: "😌", pause_after: false }
         ]
       },
-      // --- Nourriture ---
+      // --- Food ---
       {
         id: "rebus-26",
-        title: "La salade de fruits",
-        text: "Je coupe une pomme une banane et une orange pour la salade.",
-        tip: "Miam ! Nomme chaque fruit lentement.",
+        title: "The Fruit Salad",
+        text: "I cut an apple a banana and an orange for the salad.",
+        tip: "Yum! Name each fruit slowly.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Je coupe", emoji: "🔪", pause_after: true },
-          { segment: "une pomme", emoji: "🍎", pause_after: true },
-          { segment: "une banane", emoji: "🍌", pause_after: true },
-          { segment: "et une orange", emoji: "🍊", pause_after: true },
-          { segment: "pour la salade", emoji: "🥗", pause_after: false }
+          { segment: "I cut", emoji: "🔪", pause_after: true },
+          { segment: "an apple", emoji: "🍎", pause_after: true },
+          { segment: "a banana", emoji: "🍌", pause_after: true },
+          { segment: "and an orange", emoji: "🍊", pause_after: true },
+          { segment: "for the salad", emoji: "🥗", pause_after: false }
         ]
       },
       {
         id: "rebus-27",
-        title: "Le gâteau au chocolat",
-        text: "Maman prépare un gâteau au chocolat dans la cuisine.",
-        tip: "Mmmmh le bon gâteau ! Parle lentement pour bien sentir le chocolat.",
+        title: "The Chocolate Cake",
+        text: "Mom makes a chocolate cake in the kitchen.",
+        tip: "Mmm the yummy cake! Speak slowly to really taste the chocolate.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Maman", emoji: "👩", pause_after: true },
-          { segment: "prépare un gâteau", emoji: "🎂", pause_after: true },
-          { segment: "au chocolat", emoji: "🍫", pause_after: true },
-          { segment: "dans la cuisine", emoji: "🍳", pause_after: false }
+          { segment: "Mom", emoji: "👩", pause_after: true },
+          { segment: "makes a cake", emoji: "🎂", pause_after: true },
+          { segment: "with chocolate", emoji: "🍫", pause_after: true },
+          { segment: "in the kitchen", emoji: "🍳", pause_after: false }
         ]
       },
-      // --- Souffle et respiration ---
+      // --- Breathing and Blowing ---
       {
         id: "rebus-28",
-        title: "Les bulles de savon",
-        text: "Je souffle doucement et je fais de grosses bulles.",
-        tip: "Souffle vraiment quand tu vois les bulles ! Exercice de souffle.",
+        title: "Soap Bubbles",
+        text: "I blow gently and I make big bubbles.",
+        tip: "Really blow when you see the bubbles! Breathing exercise.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Je souffle", emoji: "💨", pause_after: true },
-          { segment: "doucement", emoji: "🐢", pause_after: true },
-          { segment: "et je fais", emoji: "✨", pause_after: true },
-          { segment: "de grosses bulles", emoji: "🫧", pause_after: false }
+          { segment: "I blow", emoji: "💨", pause_after: true },
+          { segment: "gently", emoji: "🐢", pause_after: true },
+          { segment: "and I make", emoji: "✨", pause_after: true },
+          { segment: "big bubbles", emoji: "🫧", pause_after: false }
         ]
       },
       {
         id: "rebus-29",
-        title: "Le ballon gonflable",
-        text: "Je gonfle un gros ballon rouge et il s'envole.",
-        tip: "Gonfle tes joues à chaque barre ! Puis parle.",
+        title: "The Balloon",
+        text: "I blow up a big red balloon and it flies away.",
+        tip: "Puff up your cheeks at each bar! Then speak.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Je gonfle", emoji: "💨", pause_after: true },
-          { segment: "un gros ballon", emoji: "🎈", pause_after: true },
-          { segment: "rouge", emoji: "🔴", pause_after: true },
-          { segment: "et il s'envole", emoji: "🕊️", pause_after: false }
+          { segment: "I blow up", emoji: "💨", pause_after: true },
+          { segment: "a big balloon", emoji: "🎈", pause_after: true },
+          { segment: "that is red", emoji: "🔴", pause_after: true },
+          { segment: "and it flies away", emoji: "🕊️", pause_after: false }
         ]
       },
       {
         id: "rebus-30",
-        title: "Le vent dans les arbres",
-        text: "Le vent souffle dans les arbres et les feuilles volent.",
-        tip: "Fais le bruit du vent à chaque pause ! Chuuut...",
+        title: "Wind in the Trees",
+        text: "The wind blows through the trees and the leaves fly.",
+        tip: "Make the wind sound at each pause! Shhhh...",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Le vent souffle", emoji: "🌬️", pause_after: true },
-          { segment: "dans les arbres", emoji: "🌳", pause_after: true },
-          { segment: "et les feuilles", emoji: "🍂", pause_after: true },
-          { segment: "volent", emoji: "🍃", pause_after: false }
+          { segment: "The wind blows", emoji: "🌬️", pause_after: true },
+          { segment: "through the trees", emoji: "🌳", pause_after: true },
+          { segment: "and the leaves", emoji: "🍂", pause_after: true },
+          { segment: "fly away", emoji: "🍃", pause_after: false }
         ]
       },
       {
         id: "rebus-31",
-        title: "Je suis content",
-        text: "Je suis content parce que c'est mon anniversaire.",
-        tip: "Montre ton plus beau sourire à chaque pause !",
+        title: "I Am Happy",
+        text: "I am happy because it is my birthday.",
+        tip: "Show your biggest smile at each pause!",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Je suis content", emoji: "😊", pause_after: true },
-          { segment: "parce que", emoji: "🎉", pause_after: true },
-          { segment: "c'est mon anniversaire", emoji: "🎂", pause_after: false }
+          { segment: "I am happy", emoji: "😊", pause_after: true },
+          { segment: "because", emoji: "🎉", pause_after: true },
+          { segment: "it is my birthday", emoji: "🎂", pause_after: false }
         ]
       },
       {
         id: "rebus-32",
-        title: "Le docteur gentil",
-        text: "Le docteur écoute mon cœur avec son appareil.",
-        tip: "Pose ta main sur ton cœur et parle doucement.",
+        title: "The Kind Doctor",
+        text: "The doctor listens to my heart with a stethoscope.",
+        tip: "Put your hand on your heart and speak softly.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Le docteur", emoji: "👨‍⚕️", pause_after: true },
-          { segment: "écoute mon cœur", emoji: "❤️", pause_after: true },
-          { segment: "avec son appareil", emoji: "🩺", pause_after: false }
+          { segment: "The doctor", emoji: "👨‍⚕️", pause_after: true },
+          { segment: "listens to my heart", emoji: "❤️", pause_after: true },
+          { segment: "with a stethoscope", emoji: "🩺", pause_after: false }
         ]
       },
       {
         id: "rebus-33",
-        title: "La colère du lion",
-        text: "Le lion est en colère et il rugit très fort.",
-        tip: "Fais le lion qui rugit, mais pas trop vite !",
+        title: "The Angry Lion",
+        text: "The lion is angry and he roars very loud.",
+        tip: "Roar like a lion, but not too fast!",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Le lion est en colère", emoji: "🦁", pause_after: true },
-          { segment: "et il rugit", emoji: "😡", pause_after: true },
-          { segment: "très fort", emoji: "🔊", pause_after: false }
+          { segment: "The lion is angry", emoji: "🦁", pause_after: true },
+          { segment: "and he roars", emoji: "😡", pause_after: true },
+          { segment: "very loud", emoji: "🔊", pause_after: false }
         ]
       },
       {
         id: "rebus-34",
-        title: "Le bébé qui pleure",
-        text: "Le bébé pleure et maman lui fait un câlin.",
-        tip: "Parle tout doucement, comme pour consoler le bébé.",
+        title: "The Crying Baby",
+        text: "The baby cries and mom gives a big hug.",
+        tip: "Speak very softly, like you are comforting the baby.",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Le bébé pleure", emoji: "👶", pause_after: true },
-          { segment: "et maman", emoji: "😢", pause_after: true },
-          { segment: "lui fait un câlin", emoji: "🤗", pause_after: false }
+          { segment: "The baby cries", emoji: "👶", pause_after: true },
+          { segment: "and mom", emoji: "😢", pause_after: true },
+          { segment: "gives a big hug", emoji: "🤗", pause_after: false }
         ]
       },
       {
         id: "rebus-35",
-        title: "La danse joyeuse",
-        text: "Je mets de la musique et je danse dans le salon.",
-        tip: "Balance-toi doucement en parlant, comme si tu dansais !",
+        title: "The Happy Dance",
+        text: "I turn on the music and I dance in the living room.",
+        tip: "Sway gently as you speak, like you are dancing!",
         type: "rebus" as ExerciseType,
         content_type: "rebus" as const,
         rebusContent: [
-          { segment: "Je mets de la musique", emoji: "🎵", pause_after: true },
-          { segment: "et je danse", emoji: "💃", pause_after: true },
-          { segment: "dans le salon", emoji: "🛋️", pause_after: false }
+          { segment: "I turn on the music", emoji: "🎵", pause_after: true },
+          { segment: "and I dance", emoji: "💃", pause_after: true },
+          { segment: "in the living room", emoji: "🛋️", pause_after: false }
         ]
       }
     ]
@@ -1531,220 +1546,220 @@ export const exerciseCategories: ExerciseCategory[] = [
   {
     id: "teen-life",
     level: 2,
-    title: "Situations Ado",
-    description: "Scénarios de parole libre adaptés aux 12-18 ans. Pas de texte à lire : des situations concrètes où vous devez parler.",
+    title: "Teen Scenarios",
+    description: "Free-speech scenarios for ages 12-18. No script to read: real-life situations where you simply talk.",
     icon: "⚡",
     color: "from-orange-500/20 to-orange-600/10",
     type: "improvisation" as ExerciseType,
     exercises: [
       {
         id: "teen-1",
-        title: "Le Match Décisif",
-        text: "Vous venez de vivre un moment sportif incroyable : une finale, un match serré, un retournement de situation. Racontez ce qui s'est passé comme si vous le reviviez. Décrivez le terrain, l'ambiance, vos émotions. Faites monter la tension jusqu'au dénouement.",
-        tip: "Faites monter la tension progressivement. Accélérez dans l'action, ralentissez sur l'émotion.",
+        title: "The Big Game",
+        text: "You just witnessed an incredible sports moment: a final, a nail-biter, a dramatic comeback. Retell what happened as if you were reliving it. Describe the field, the atmosphere, your emotions. Build the tension all the way to the final play.",
+        tip: "Build tension gradually. Speed up during the action, slow down on the emotion.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-2",
-        title: "Premier Jour au Lycée",
-        text: "C'est la rentrée dans un nouvel établissement. Vous ne connaissez personne. Racontez votre journée : le trajet, l'arrivée, la recherche de votre salle, votre première interaction avec quelqu'un. Comment vous vous êtes senti et comment ça s'est terminé.",
-        tip: "Racontez comme si vous parliez à un ami le soir même. Naturel et détendu.",
+        title: "First Day at a New School",
+        text: "It's the first day at a brand-new school. You don't know anyone. Describe your day: the commute, arriving at the building, finding your classroom, your first interaction with someone. How you felt and how the day ended.",
+        tip: "Tell it as if you were talking to a friend that same evening. Natural and relaxed.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-3",
-        title: "Le Camping Sauvage",
-        text: "Vous racontez une soirée camping entre amis. Décrivez les préparatifs, le trajet, l'installation du camp, le feu, les discussions sous les étoiles. Faites vivre l'ambiance et les émotions du moment.",
-        tip: "Alternez entre les passages d'action et les moments calmes. Le contraste crée l'atmosphère.",
+        title: "The Camping Trip",
+        text: "You're telling someone about a camping night with friends. Describe the preparations, the drive, setting up camp, the campfire, the conversations under the stars. Bring the atmosphere and emotions to life.",
+        tip: "Alternate between action passages and calm moments. The contrast creates atmosphere.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-4",
-        title: "Le Concert",
-        text: "Vous revenez d'un concert ou d'un spectacle qui vous a marqué. Racontez tout : l'attente, l'entrée dans la salle, le moment où la musique commence, l'ambiance, vos moments préférés. Faites ressentir l'énergie.",
-        tip: "Faites vivre l'ambiance dans votre voix. Les passages calmes contrastent avec les moments intenses.",
+        title: "The Concert",
+        text: "You just got back from a concert or show that really hit you. Tell the whole story: the wait, walking into the venue, the moment the music started, the vibe, your favorite moments. Make the listener feel the energy.",
+        tip: "Let the atmosphere come through in your voice. Quiet passages contrast with intense moments.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-5",
-        title: "Le Débat en Classe",
-        text: "Votre prof lance un débat sur un sujet de société qui vous tient à cœur. Choisissez votre camp et défendez votre point de vue avec des arguments structurés. Essayez aussi de répondre à une objection que quelqu'un pourrait vous faire.",
-        tip: "Chaque nouvelle idée mérite une pause avant d'être développée. Structure : argument, exemple, conclusion.",
+        title: "The Class Debate",
+        text: "Your teacher launches a debate on a social issue you care about. Pick a side and defend your point of view with structured arguments. Also try to respond to an objection someone might raise.",
+        tip: "Each new idea deserves a pause before you develop it. Structure: argument, example, conclusion.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-6",
-        title: "La Recette du Dimanche",
-        text: "Vous expliquez à un ami comment préparer votre plat ou votre gâteau préféré. Détaillez les ingrédients, les quantités, et chaque étape de la préparation. Soyez précis pour qu'il puisse suivre vos instructions.",
-        tip: "Énoncez les quantités clairement. Chaque étape est une phrase à part.",
+        title: "Sunday Recipe",
+        text: "You're explaining to a friend how to make your favorite dish or dessert. List the ingredients, the quantities, and every step of the preparation. Be precise enough that they can follow your instructions.",
+        tip: "State quantities clearly. Each step is its own sentence.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-7",
-        title: "Le Road Trip",
-        text: "Vous racontez un voyage en voiture ou en train avec des amis ou votre famille. Décrivez le départ, les arrêts, les paysages qui défilent, les moments drôles ou imprévus. Où alliez-vous et comment ça s'est passé ?",
-        tip: "Les énumérations donnent du rythme, les descriptions demandent de ralentir.",
+        title: "The Road Trip",
+        text: "You're telling someone about a road trip or train ride with friends or family. Describe the departure, the stops, the passing scenery, the funny or unexpected moments. Where were you going and how did it turn out?",
+        tip: "Lists give rhythm; descriptions require slowing down.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-8",
-        title: "L'Oral du Brevet",
-        text: "Vous passez un oral devant un jury. Présentez un sujet qui vous passionne en trois parties : ce que c'est, pourquoi ça vous intéresse, et ce que vous avez fait ou appris dans ce domaine. Concluez et proposez de répondre aux questions.",
-        tip: "Structurez votre exposé avec des pauses nettes entre chaque partie. Parlez au public, pas à vos notes.",
+        title: "The Oral Presentation",
+        text: "You're giving a presentation in front of a panel. Present a topic you're passionate about in three parts: what it is, why it interests you, and what you've done or learned in that field. Wrap up and offer to take questions.",
+        tip: "Structure your presentation with clear pauses between each part. Talk to the audience, not your notes.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-9",
-        title: "Le Podcast",
-        text: "Vous enregistrez un épisode de podcast sur un sujet qui vous concerne : la pression scolaire, l'amitié, le sport, ou autre chose. Donnez votre avis, citez des exemples autour de vous, et posez une question ouverte à vos auditeurs.",
-        tip: "Adoptez un ton de conversation, comme si vous parliez dans un micro. Les questions sont des pauses naturelles.",
+        title: "The Podcast",
+        text: "You're recording a podcast episode about something that matters to you: school pressure, friendship, sports, or anything else. Share your opinion, give examples from your life, and ask an open-ended question to your listeners.",
+        tip: "Use a conversational tone, as if you were speaking into a mic. Questions are natural pauses.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-10",
-        title: "Le Défi Sportif",
-        text: "Vous vous êtes lancé un défi sportif : une course, un entraînement, un objectif à atteindre. Racontez votre préparation, l'effort, les moments où vous avez voulu abandonner, et comment vous avez tenu bon. Qu'avez-vous ressenti à la fin ?",
-        tip: "Faites ressentir l'effort dans votre voix : ralentissez sur les passages difficiles, reprenez de l'élan quand vous vous remotivez.",
+        title: "The Sports Challenge",
+        text: "You set yourself a sports challenge: a race, a training program, a goal to reach. Tell about your preparation, the effort, the moments you wanted to quit, and how you pushed through. How did you feel at the end?",
+        tip: "Let the effort come through in your voice: slow down on the hard parts, pick up momentum when you find new motivation.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-impro-1",
-        title: "Commander au fast-food",
-        text: "Vous êtes au comptoir d'un fast-food bondé. Derrière vous, la file s'allonge et les gens commencent à s'impatienter. Vous devez commander pour vous et vos trois amis, en détaillant chaque menu, les suppléments, et les boissons. Parlez clairement pour que le serveur comprenne du premier coup.",
-        tip: "Organisez votre commande mentalement avant de parler. Détaillez chaque élément calmement, sans vous laisser presser par la file.",
+        title: "Ordering at a Fast-Food Counter",
+        text: "You're at the counter of a packed fast-food restaurant. Behind you, the line is growing and people are getting impatient. You need to order for yourself and three friends, detailing each meal, the extras, and the drinks. Speak clearly so the cashier gets it right the first time.",
+        tip: "Organize your order mentally before speaking. Detail each item calmly, without letting the line rush you.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-impro-2",
-        title: "Expliquer un retard au prof",
-        text: "Vous arrivez en cours avec quinze minutes de retard. Le prof vous regarde et attend une explication. Vous devez inventer une excuse crédible et la raconter de manière convaincante, avec des détails précis. Attention, le prof pose des questions pour vérifier votre histoire.",
-        tip: "Gardez un ton calme et assuré. Les détails rendent l'histoire crédible, mais n'en faites pas trop.",
+        title: "Explaining Why You're Late to Class",
+        text: "You walk into class fifteen minutes late. The teacher looks at you and waits for an explanation. You need to come up with a believable excuse and tell it convincingly, with specific details. Watch out -- the teacher asks follow-up questions to check your story.",
+        tip: "Keep a calm, confident tone. Details make the story credible, but don't overdo it.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-impro-3",
-        title: "Convaincre ses parents",
-        text: "Vous voulez aller à une soirée chez un ami ce week-end, mais vos parents hésitent. Vous devez les convaincre en trouvant les bons arguments : qui sera là, comment vous rentrez, pourquoi c'est important pour vous. Anticipez leurs objections et répondez-y.",
-        tip: "Commencez par montrer que vous comprenez leurs inquiétudes avant de présenter vos arguments. L'empathie, c'est la clé de la persuasion.",
+        title: "Convincing Your Parents",
+        text: "You want to go to a party at a friend's house this weekend, but your parents are hesitant. You need to convince them with the right arguments: who will be there, how you'll get home, why it matters to you. Anticipate their objections and address them.",
+        tip: "Start by showing you understand their concerns before presenting your arguments. Empathy is the key to persuasion.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-impro-4",
-        title: "Se présenter à un nouveau groupe",
-        text: "C'est la rentrée dans un nouveau lycée, ou vous rejoignez un club de sport. Vous ne connaissez personne. Un groupe d'élèves discute, et l'un d'eux vous demande de vous présenter. Dites qui vous êtes, d'où vous venez, ce que vous aimez, et posez des questions aux autres pour créer du lien.",
-        tip: "Soyez naturel, souriez, et montrez de la curiosité pour les autres. La présentation parfaite n'existe pas, l'important c'est d'être authentique.",
+        title: "Introducing Yourself to a New Group",
+        text: "It's the first day at a new school, or you're joining a sports club. You don't know anyone. A group of students is chatting, and one of them asks you to introduce yourself. Say who you are, where you're from, what you're into, and ask them questions to start connecting.",
+        tip: "Be natural, smile, and show curiosity about others. The perfect introduction doesn't exist -- what matters is being authentic.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-impro-5",
-        title: "Raconter son week-end",
-        text: "C'est lundi matin, un ami vous demande ce que vous avez fait ce week-end. Racontez votre fin de semaine en détail : les activités, les rencontres, les moments drôles ou inattendus. Faites vivre votre récit avec des descriptions et des dialogues.",
-        tip: "Structurez votre récit chronologiquement. Les petits détails et les dialogues rapportés rendent l'histoire vivante.",
+        title: "Telling About Your Weekend",
+        text: "It's Monday morning and a friend asks what you did over the weekend. Describe your weekend in detail: the activities, the people you saw, the funny or unexpected moments. Bring the story to life with descriptions and bits of dialogue.",
+        tip: "Structure your story chronologically. Small details and reported dialogue make the story come alive.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-11",
-        title: "Appeler pour un job d'été",
-        text: "Vous appelez un commerce ou un restaurant pour demander s'ils cherchent quelqu'un pour l'été. Présentez-vous, expliquez votre disponibilité, vos motivations, et posez des questions sur le poste. Soyez poli et professionnel.",
-        tip: "Préparez mentalement vos phrases clés avant de « décrocher ». Un ton posé inspire confiance.",
+        title: "Calling About a Summer Job",
+        text: "You're calling a shop or restaurant to ask if they're hiring for the summer. Introduce yourself, explain your availability, your motivation, and ask questions about the position. Be polite and professional.",
+        tip: "Mentally prepare your key sentences before 'picking up the phone.' A calm tone inspires confidence.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-12",
-        title: "Expliquer les règles d'un jeu",
-        text: "Vous devez expliquer les règles d'un jeu de société ou d'un jeu de cartes à quelqu'un qui n'y a jamais joué. Soyez clair, logique, et donnez des exemples pour que l'autre comprenne sans avoir à relire la notice.",
-        tip: "Allez du plus simple au plus complexe. Vérifiez que chaque étape est comprise avant de passer à la suivante.",
+        title: "Explaining Game Rules",
+        text: "You need to explain the rules of a board game or card game to someone who has never played. Be clear, logical, and give examples so the other person understands without having to read the rulebook.",
+        tip: "Go from simplest to most complex. Make sure each step is understood before moving to the next.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-13",
-        title: "Décrire un film à quelqu'un",
-        text: "Vous venez de voir un film ou une série qui vous a marqué. Racontez l'histoire sans trop spoiler, expliquez ce qui vous a plu ou déplu, et dites pourquoi vous le recommanderiez ou non.",
-        tip: "Organisez-vous : le pitch en deux phrases, puis votre avis. Évitez de tout résumer scène par scène.",
+        title: "Describing a Movie",
+        text: "You just watched a movie or show that really stuck with you. Tell the story without too many spoilers, explain what you liked or didn't, and say whether you'd recommend it or not.",
+        tip: "Organize your thoughts: the pitch in two sentences, then your opinion. Avoid summarizing scene by scene.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-14",
-        title: "Demander un service à un voisin",
-        text: "Vous sonnez chez un voisin que vous connaissez peu pour lui demander un service : emprunter un outil, récupérer un colis, garder un animal pendant un week-end. Expliquez votre situation et formulez votre demande poliment.",
-        tip: "Commencez par vous présenter et expliquer le contexte. La politesse et la clarté facilitent tout.",
+        title: "Asking a Neighbor for a Favor",
+        text: "You ring the doorbell of a neighbor you barely know to ask for a favor: borrow a tool, pick up a package, watch a pet for the weekend. Explain your situation and make your request politely.",
+        tip: "Start by introducing yourself and explaining the context. Politeness and clarity go a long way.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-15",
-        title: "Raconter un souvenir d'enfance",
-        text: "Choisissez un souvenir d'enfance qui vous tient à cœur : des vacances, un anniversaire, un moment avec vos grands-parents. Racontez-le avec des détails sensoriels : les odeurs, les sons, les couleurs. Faites revivre ce moment.",
-        tip: "Les détails sensoriels rendent le récit vivant. Prenez votre temps sur les images qui comptent.",
+        title: "A Childhood Memory",
+        text: "Choose a childhood memory that's close to your heart: a vacation, a birthday, a moment with your grandparents. Tell it with sensory details: the smells, the sounds, the colors. Bring that moment back to life.",
+        tip: "Sensory details make the story vivid. Take your time on the images that matter.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-16",
-        title: "Guider quelqu'un dans la rue",
-        text: "Un passant vous demande comment aller à la gare, à la mairie, ou à un endroit que vous connaissez bien. Donnez-lui des indications précises : les rues, les repères visuels, les distances approximatives.",
-        tip: "Utilisez des repères concrets (le feu rouge, la boulangerie) plutôt que des directions abstraites.",
+        title: "Giving Street Directions",
+        text: "A passerby asks you how to get to the train station, city hall, or somewhere you know well. Give them precise directions: the street names, visual landmarks, and approximate distances.",
+        tip: "Use concrete landmarks (the traffic light, the bakery) rather than abstract directions.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-17",
-        title: "Présenter son animal",
-        text: "Vous présentez votre animal de compagnie (réel ou imaginaire) à quelqu'un : son nom, sa race, son caractère, ses habitudes, une anecdote drôle ou attendrissante. Si vous n'en avez pas, décrivez celui que vous aimeriez avoir et pourquoi.",
-        tip: "Les anecdotes concrètes rendent la description vivante. Évitez la liste de caractéristiques sèches.",
+        title: "Introducing Your Pet",
+        text: "You are introducing your pet (real or imaginary) to someone: its name, breed, personality, habits, and a funny or heartwarming story about it. If you do not have one, describe the pet you would love to have and why.",
+        tip: "Concrete anecdotes bring the description to life. Avoid dry lists of characteristics.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-18",
-        title: "Régler un malentendu",
-        text: "Un ami pense que vous avez dit quelque chose de méchant sur lui, mais c'est un malentendu. Expliquez calmement ce qui s'est réellement passé, montrez que vous comprenez pourquoi il a pu mal interpréter, et proposez de régler la situation.",
-        tip: "Restez calme et factuel. Reconnaissez les émotions de l'autre avant de donner votre version.",
+        title: "Clearing Up a Misunderstanding",
+        text: "A friend thinks you said something mean about them, but it was a misunderstanding. Calmly explain what actually happened, show that you understand why they might have misread the situation, and offer to sort things out.",
+        tip: "Stay calm and stick to the facts. Acknowledge the other person's feelings before sharing your side of the story.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-19",
-        title: "Choisir une destination de vacances",
-        text: "Votre famille vous demande de choisir la destination des prochaines vacances et de justifier votre choix. Proposez un endroit, expliquez ce qu'on pourrait y faire, pourquoi ça plairait à tout le monde, et comment organiser le séjour.",
-        tip: "Structurez votre proposition : la destination, les activités, les arguments pour chaque membre de la famille.",
+        title: "Choosing a Vacation Destination",
+        text: "Your family asks you to pick the destination for the next family vacation and justify your choice. Suggest a place, explain what you could do there, why it would appeal to everyone, and how you would organize the trip.",
+        tip: "Structure your pitch: the destination, the activities, and the reasons it works for every family member.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-20",
-        title: "Raconter une galère de transport",
-        text: "Vous avez vécu un trajet compliqué : bus en retard, correspondance ratée, panne de vélo, GPS qui vous envoie dans la mauvaise direction. Racontez l'enchaînement des événements et comment vous vous en êtes sorti.",
-        tip: "Le comique vient de l'accumulation. Enchaînez les péripéties avec un bon rythme.",
+        title: "A Travel Disaster Story",
+        text: "You lived through a chaotic commute: a late bus, a missed connection, a flat tire, a GPS sending you the wrong way. Recount the chain of events and how you eventually got it sorted out.",
+        tip: "The humor comes from the build-up. String the mishaps together with good timing and rhythm.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-21",
-        title: "Expliquer une passion",
-        text: "Quelqu'un vous demande pourquoi vous passez autant de temps sur votre passion (musique, dessin, sport, lecture, bricolage…). Expliquez ce que vous y trouvez, comment vous avez commencé, et ce que ça vous apporte au quotidien.",
-        tip: "Parlez avec sincérité. Ce qui intéresse les gens, c'est votre enthousiasme, pas la technique.",
+        title: "Explaining a Passion",
+        text: "Someone asks why you spend so much time on your passion — music, drawing, sports, reading, building things. Explain what you get out of it, how you got started, and what it brings to your daily life.",
+        tip: "Speak from the heart. What people find interesting is your enthusiasm, not the technical details.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-22",
-        title: "Prendre un rendez-vous médical",
-        text: "Vous appelez le cabinet du médecin ou du dentiste pour prendre rendez-vous. Expliquez la raison de votre visite, proposez vos disponibilités, et notez les informations qu'on vous donne (date, heure, documents à apporter).",
-        tip: "Préparez les informations essentielles avant d'appeler. Parlez distinctement et n'hésitez pas à faire répéter.",
+        title: "Scheduling a Medical Appointment",
+        text: "You are calling a doctor's or dentist's office to make an appointment. Explain the reason for your visit, offer your availability, and write down the information you are given — the date, time, and anything you need to bring.",
+        tip: "Prepare the key details before you call. Speak clearly and do not hesitate to ask them to repeat something.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-23",
-        title: "Défendre un choix d'orientation",
-        text: "Vos parents ou un prof vous demandent pourquoi vous voulez faire telle filière ou tel métier. Expliquez ce qui vous attire, ce que vous savez du parcours, et pourquoi vous pensez que c'est fait pour vous. Anticipez les doutes qu'on pourrait avoir.",
-        tip: "Montrez que vous vous êtes renseigné. Un choix argumenté est toujours plus convaincant qu'un simple « j'aime bien ».",
+        title: "Defending a Career Choice",
+        text: "Your parents or a teacher ask why you want to pursue a certain program or profession. Explain what draws you to it, what you know about the path ahead, and why you think it is right for you. Anticipate the doubts they might raise.",
+        tip: "Show that you have done your research. A well-argued choice is always more convincing than a simple 'I just like it.'",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-24",
-        title: "Organiser un anniversaire",
-        text: "Vous organisez l'anniversaire surprise d'un ami. Expliquez votre plan à un complice : le lieu, les invités, le gâteau, les activités, comment garder le secret. Détaillez chaque étape de l'organisation.",
-        tip: "Soyez méthodique : qui fait quoi, quand, où. Les bons organisateurs sont ceux qui anticipent les imprévus.",
+        title: "Planning a Birthday Party",
+        text: "You are organizing a surprise birthday party for a friend. Explain your plan to a co-conspirator: the venue, the guests, the cake, the activities, and how to keep the secret. Walk through every step of the planning.",
+        tip: "Be methodical: who does what, when, and where. Good organizers are the ones who plan for the unexpected.",
         type: "improvisation" as ExerciseType
       },
       {
         id: "teen-25",
-        title: "Faire une réclamation polie",
-        text: "Vous avez acheté quelque chose en ligne et le produit ne correspond pas à la description. Vous appelez le service client pour expliquer le problème, demander un échange ou un remboursement, tout en restant courtois.",
-        tip: "Décrivez le problème factuellement, sans accuser. Les formulations polies obtiennent de meilleurs résultats.",
+        title: "Filing a Polite Complaint",
+        text: "You bought something online and the product does not match the description. You call customer service to explain the problem and request an exchange or refund, all while staying polite.",
+        tip: "Describe the problem factually, without pointing fingers. Polite language gets better results.",
         type: "improvisation" as ExerciseType
       }
     ]
@@ -1752,290 +1767,290 @@ export const exerciseCategories: ExerciseCategory[] = [
   {
     id: "retelling",
     level: 4,
-    title: "Récit Résumé",
-    description: "Écoutez une histoire courte, puis restituez-la de mémoire. Un algorithme évalue si vous avez mentionné les points clés avec concision.",
+    title: "Story Recap",
+    description: "Listen to a short story, then retell it from memory. An algorithm evaluates whether you covered the key points concisely.",
     icon: "📖",
     color: "from-emerald-500/20 to-teal-600/10",
     type: "retelling" as ExerciseType,
     exercises: [
       {
         id: "retelling-1",
-        title: "Le Porte-Monnaie",
-        text: "Hier matin, un homme marchait dans la rue quand il a remarqué un porte-monnaie par terre, près d'un banc. Il l'a ramassé et a trouvé dedans une carte d'identité, quelques billets et une photo de famille. Plutôt que de le garder, il est allé directement au commissariat du quartier. Le policier a noté les informations et a contacté le propriétaire. Une heure plus tard, le propriétaire est venu récupérer son porte-monnaie. Il a voulu donner une récompense, mais l'homme a refusé en disant que c'était tout à fait normal.",
-        tip: "Concentrez-vous sur les actions principales : trouver, rapporter, rendre. Ne vous attardez pas sur les détails du contenu du porte-monnaie.",
+        title: "The Lost Wallet",
+        text: "Yesterday morning, a man was walking down the street when he noticed a wallet on the ground near a bench. He picked it up and found inside an ID card, some cash, and a family photo. Rather than keeping it, he went straight to the neighborhood police station. The officer recorded the information and contacted the owner. An hour later, the owner came to pick up his wallet. He wanted to give a reward, but the man declined, saying it was simply the right thing to do.",
+        tip: "Focus on the main actions: finding, reporting, returning. Do not linger on the details of what was inside the wallet.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Un homme trouve un porte-monnaie dans la rue",
-          "Il le rapporte au commissariat",
-          "Le propriétaire est contacté et vient le récupérer",
-          "Le propriétaire propose une récompense",
-          "L'homme refuse la récompense"
+          "A man finds a wallet on the street",
+          "He brings it to the police station",
+          "The owner is contacted and comes to pick it up",
+          "The owner offers a reward",
+          "The man declines the reward"
         ]
       },
       {
         id: "retelling-2",
-        title: "Le Rendez-vous chez le Médecin",
-        text: "Madame Dupont avait rendez-vous chez le médecin à quatorze heures. En partant de chez elle, elle s'est rendu compte que sa voiture ne démarrait pas. Elle a appelé un taxi, mais avec les embouteillages, elle est arrivée avec vingt minutes de retard. Heureusement, le médecin avait aussi du retard dans ses consultations. Elle a pu être reçue normalement. En sortant, elle a appelé un garagiste pour sa voiture.",
-        tip: "L'histoire suit un enchaînement problème-solution. Restituez cette logique sans ajouter de détails.",
+        title: "The Doctor's Appointment",
+        text: "Mrs. Johnson had a doctor appointment at two in the afternoon. As she was leaving home, she realized her car would not start. She called a taxi, but with traffic, she arrived twenty minutes late. Luckily, the doctor was running behind too. She was seen without any problem. On the way out, she called a mechanic about her car.",
+        tip: "The story follows a problem-solution sequence. Retell that logic without adding extra details.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Madame Dupont a un rendez-vous chez le médecin",
-          "Sa voiture ne démarre pas",
-          "Elle prend un taxi et arrive en retard",
-          "Le médecin a aussi du retard donc elle est reçue normalement",
-          "Elle appelle un garagiste pour sa voiture"
+          "Mrs. Johnson has a doctor appointment",
+          "Her car won't start",
+          "She takes a taxi and arrives late",
+          "The doctor is also running late so she is seen as usual",
+          "She calls a mechanic about her car"
         ]
       },
       {
         id: "retelling-3",
-        title: "Le Colis du Voisin",
-        text: "Mardi dernier, le facteur a sonné chez Paul pour lui laisser un colis. Mais le colis n'était pas pour lui : il était adressé à sa voisine du troisième étage. Paul a gardé le colis et a glissé un mot sous la porte de sa voisine. Le soir, la voisine est venue frapper chez Paul pour récupérer son paquet. C'était un cadeau d'anniversaire envoyé par sa sœur. Elle a remercié Paul et lui a offert une part du gâteau qu'elle avait préparé.",
-        tip: "Qui reçoit quoi, pour qui, et comment ça se résout ? Voilà l'essentiel.",
+        title: "The Neighbor's Package",
+        text: "Last Tuesday, the mail carrier rang Paul's doorbell to drop off a package. But the package was not for him — it was addressed to his neighbor on the third floor. Paul kept the package and slipped a note under her door. That evening, the neighbor came and knocked on Paul's door to pick up her parcel. It was a birthday gift sent by her sister. She thanked Paul and brought him a slice of the cake she had made.",
+        tip: "Who receives what, for whom, and how is it resolved? That is the heart of the story.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Le facteur dépose un colis chez Paul",
-          "Le colis est destiné à sa voisine",
-          "Paul prévient la voisine avec un mot",
-          "La voisine vient récupérer son colis",
-          "Elle remercie Paul"
+          "The mail carrier leaves a package with Paul",
+          "The package belongs to his neighbor",
+          "Paul leaves her a note",
+          "The neighbor comes to pick up her package",
+          "She thanks Paul"
         ]
       },
       {
         id: "retelling-4",
-        title: "La Sortie au Marché",
-        text: "Samedi matin, Sophie est allée au marché avec sa liste de courses. Elle a acheté des légumes, du fromage et du pain. En payant le fromager, elle s'est aperçue qu'elle avait oublié son portefeuille à la maison. Le fromager, qui la connaissait bien, lui a dit de payer la prochaine fois. Sophie est revenue l'après-midi pour régler sa dette et en a profité pour acheter un bouquet de fleurs pour le remercier.",
-        tip: "Restituez le déroulement : courses, oubli, solution du fromager, retour de Sophie.",
+        title: "A Trip to the Market",
+        text: "On Saturday morning, Sophie went to the market with her shopping list. She bought vegetables, cheese, and bread. While paying the cheese vendor, she realized she had left her wallet at home. The vendor, who knew her well, told her to pay next time. Sophie came back in the afternoon to settle her tab and took the opportunity to bring him a bunch of flowers as a thank-you.",
+        tip: "Retell the sequence: shopping, the forgotten wallet, the vendor's solution, Sophie's return.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Sophie va au marché faire ses courses",
-          "Elle oublie son portefeuille en payant",
-          "Le fromager lui fait confiance et la laisse partir",
-          "Sophie revient payer l'après-midi",
-          "Elle offre des fleurs au fromager pour le remercier"
+          "Sophie goes to the market to do her shopping",
+          "She realizes she forgot her wallet when paying",
+          "The cheese vendor trusts her and lets her leave",
+          "Sophie comes back in the afternoon to pay",
+          "She brings the vendor flowers to thank him"
         ]
       },
       {
         id: "retelling-5",
-        title: "Le Train Manqué",
-        text: "Lucas devait prendre le train de huit heures pour aller à un entretien d'embauche. Son réveil n'a pas sonné et il s'est réveillé en retard. Il a couru jusqu'à la gare mais le train était déjà parti. Il a pris le train suivant, une heure plus tard, et a appelé l'entreprise pour prévenir de son retard. La responsable a accepté de décaler l'entretien. Finalement, l'entretien s'est bien passé et Lucas a été rappelé la semaine suivante.",
-        tip: "Problème, conséquence, adaptation, résultat : voilà la structure à restituer.",
+        title: "The Missed Train",
+        text: "Lucas needed to take the eight o'clock train to get to a job interview. His alarm did not go off and he woke up late. He ran to the station, but the train had already left. He took the next train an hour later and called the company to let them know he would be late. The hiring manager agreed to push the interview back. In the end, the interview went well and Lucas got a call back the following week.",
+        tip: "Problem, consequence, adaptation, result: that is the structure to retell.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Lucas doit prendre le train pour un entretien",
-          "Son réveil ne sonne pas et il rate le train",
-          "Il prend le train suivant et prévient l'entreprise",
-          "L'entretien est décalé",
-          "L'entretien se passe bien"
+          "Lucas needs to take a train to a job interview",
+          "His alarm does not go off and he misses the train",
+          "He takes the next train and calls the company",
+          "The interview is rescheduled",
+          "The interview goes well"
         ]
       },
       {
         id: "retelling-6",
-        title: "Le Chien Perdu",
-        text: "Un garçon promenait son chien dans le parc quand celui-ci s'est échappé en courant après un chat. Le garçon l'a cherché pendant une heure, sans succès. En rentrant, il a fabriqué des affiches avec une photo du chien et les a collées dans le quartier. Trois jours plus tard, une voisine l'a appelé : le chien était dans son jardin. Le garçon, soulagé, est allé le récupérer immédiatement.",
-        tip: "Restituez les étapes principales sans vous perdre dans les descriptions.",
+        title: "The Lost Dog",
+        text: "A boy was walking his dog in the park when the dog ran off chasing a cat. The boy searched for an hour with no luck. When he got home, he made flyers with a photo of the dog and posted them around the neighborhood. Three days later, a neighbor called: the dog was in her backyard. Relieved, the boy went to get him right away.",
+        tip: "Retell the main steps without getting lost in descriptions.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Le chien s'échappe dans le parc",
-          "Le garçon le cherche sans succès",
-          "Il met des affiches dans le quartier",
-          "Une voisine retrouve le chien",
-          "Le garçon récupère son chien"
+          "The dog runs away in the park",
+          "The boy searches but cannot find him",
+          "He puts up flyers around the neighborhood",
+          "A neighbor finds the dog",
+          "The boy picks up his dog"
         ]
       },
       {
         id: "retelling-7",
-        title: "La Fuite d'Eau",
-        text: "En rentrant du travail, Claire a découvert une flaque d'eau dans sa cuisine. Un tuyau sous l'évier fuyait. Elle a coupé l'arrivée d'eau et a épongé le sol avec des serviettes. Elle a ensuite appelé un plombier qui est venu le lendemain matin. La réparation a pris une demi-heure. Le plombier lui a conseillé de faire vérifier toute la tuyauterie car les joints étaient anciens.",
-        tip: "Découverte du problème, actions immédiates, intervention du professionnel : trois temps à respecter.",
+        title: "The Water Leak",
+        text: "When Claire got home from work, she found a puddle of water on her kitchen floor. A pipe under the sink was leaking. She shut off the water supply and mopped up the floor with towels. She then called a plumber who came the next morning. The repair took half an hour. The plumber advised her to have the entire plumbing system checked because the seals were old.",
+        tip: "Discovery of the problem, immediate actions, professional intervention: three stages to keep in order.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Claire découvre une fuite d'eau dans sa cuisine",
-          "Elle coupe l'eau et éponge",
-          "Elle appelle un plombier",
-          "Le plombier répare le tuyau",
-          "Il conseille de vérifier toute la tuyauterie"
+          "Claire discovers a water leak in her kitchen",
+          "She shuts off the water and mops up",
+          "She calls a plumber",
+          "The plumber repairs the pipe",
+          "He advises her to have all the plumbing checked"
         ]
       },
       {
         id: "retelling-8",
-        title: "Le Livre Emprunté",
-        text: "Antoine a emprunté un livre à la bibliothèque pour préparer un exposé. Le jour où il devait le rendre, il s'est aperçu qu'il l'avait oublié chez un ami. Il a appelé son ami qui l'a retrouvé sur le canapé du salon. L'ami a déposé le livre à la bibliothèque en passant devant. Antoine a remercié son ami et n'a pas eu de pénalité de retard.",
-        tip: "Suivez le parcours du livre : bibliothèque, ami, retour. C'est le fil rouge.",
+        title: "The Borrowed Book",
+        text: "Antoine borrowed a book from the library to prepare a class presentation. The day he was supposed to return it, he realized he had left it at a friend's place. He called his friend, who found it on the living room couch. The friend dropped the book off at the library on his way by. Antoine thanked his friend and did not get a late fee.",
+        tip: "Follow the journey of the book: library, friend's place, back to the library. That is the through-line.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Antoine emprunte un livre à la bibliothèque",
-          "Il oublie le livre chez un ami",
-          "L'ami retrouve le livre",
-          "L'ami rapporte le livre à la bibliothèque",
-          "Antoine n'a pas de pénalité"
+          "Antoine borrows a book from the library",
+          "He forgets the book at a friend's place",
+          "The friend finds the book",
+          "The friend returns the book to the library",
+          "Antoine does not get a late fee"
         ]
       },
       {
         id: "retelling-9",
-        title: "La Panne de Voiture",
-        text: "Un couple partait en vacances en voiture quand le moteur a commencé à faire un bruit étrange sur l'autoroute. Ils se sont arrêtés sur la bande d'arrêt d'urgence et ont appelé une dépanneuse. Le mécanicien est arrivé au bout d'une heure et a trouvé un problème de courroie. La réparation a pris trente minutes. Le couple a pu repartir et a décidé de s'arrêter dans la prochaine ville pour se reposer un peu.",
-        tip: "L'important est la séquence des événements, pas les détails techniques.",
+        title: "The Breakdown",
+        text: "A couple was driving on vacation when the engine started making a strange noise on the highway. They pulled over on the shoulder and called a tow truck. The mechanic arrived after an hour and found a problem with the belt. The repair took thirty minutes. The couple was able to get back on the road and decided to stop in the next town to rest for a bit.",
+        tip: "What matters is the sequence of events, not the technical details.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Un couple tombe en panne sur l'autoroute",
-          "Ils appellent une dépanneuse",
-          "Le mécanicien diagnostique le problème",
-          "La voiture est réparée",
-          "Ils repartent et font une pause"
+          "A couple breaks down on the highway",
+          "They call a tow truck",
+          "The mechanic diagnoses the problem",
+          "The car is repaired",
+          "They drive on and take a break"
         ]
       },
       {
         id: "retelling-10",
-        title: "Le Gâteau d'Anniversaire",
-        text: "Marie voulait préparer un gâteau pour l'anniversaire de sa fille. Elle a suivi une recette mais s'est trompée et a mis du sel à la place du sucre. Le gâteau était immangeable. Comme elle n'avait plus le temps d'en refaire un, elle est allée à la boulangerie du coin et a acheté un beau gâteau au chocolat. Sa fille était ravie et n'a rien remarqué.",
-        tip: "Soyez bref et clair : erreur, conséquence, solution, résultat.",
+        title: "The Birthday Cake",
+        text: "Marie wanted to bake a cake for her daughter's birthday. She followed a recipe but made a mistake and added salt instead of sugar. The cake was inedible. Since she did not have time to make another one, she went to the neighborhood bakery and bought a beautiful chocolate cake. Her daughter was delighted and never noticed a thing.",
+        tip: "Be brief and clear: mistake, consequence, solution, result.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Marie prépare un gâteau d'anniversaire",
-          "Elle confond le sel et le sucre",
-          "Le gâteau est raté et il n'y a plus le temps",
-          "Elle achète un gâteau à la boulangerie",
-          "Sa fille est contente"
+          "Marie bakes a birthday cake",
+          "She confuses salt and sugar",
+          "The cake is ruined and there is no time to redo it",
+          "She buys a cake from the bakery",
+          "Her daughter is happy"
         ]
       },
       {
         id: "retelling-11",
-        title: "Les Clés Oubliées",
-        text: "Thomas est sorti de chez lui en claquant la porte derrière lui. Il a immédiatement réalisé qu'il avait laissé ses clés à l'intérieur. Il a essayé d'appeler un serrurier, mais c'était dimanche et les tarifs étaient très élevés. Il s'est souvenu que sa mère avait un double de ses clés. Il l'a appelée, elle est venue une heure plus tard et il a pu rentrer chez lui. Depuis, il cache un double chez un voisin de confiance.",
-        tip: "Problème, tentatives de solution, résolution : c'est le schéma à restituer.",
+        title: "The Forgotten Keys",
+        text: "Thomas stepped out of his apartment and let the door slam behind him. He immediately realized he had left his keys inside. He tried calling a locksmith, but it was Sunday and the rates were very high. He remembered that his mother had a spare key. He called her, she came over an hour later, and he was able to get back in. Since then, he keeps a spare key with a trusted neighbor.",
+        tip: "Problem, attempted solutions, resolution: that is the pattern to retell.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Thomas s'enferme dehors en oubliant ses clés",
-          "Le serrurier est trop cher le dimanche",
-          "Sa mère a un double des clés",
-          "Elle vient lui ouvrir",
-          "Il décide de laisser un double chez un voisin"
+          "Thomas locks himself out by forgetting his keys",
+          "The locksmith is too expensive on a Sunday",
+          "His mother has a spare key",
+          "She comes to let him in",
+          "He decides to leave a spare key with a neighbor"
         ]
       },
       {
         id: "retelling-12",
-        title: "La Lettre Mystérieuse",
-        text: "Julie a trouvé une enveloppe sans timbre dans sa boîte aux lettres. À l'intérieur, il y avait une carte avec un dessin d'étoile et un message : rendez-vous au café de la place à dix-sept heures. Intriguée, elle y est allée et a découvert que ses amis avaient organisé une fête surprise pour ses trente ans. Ils avaient décoré le café et préparé un repas. Julie a été très émue et a passé une soirée inoubliable.",
-        tip: "Restituez la découverte, le mystère, puis la révélation. C'est l'arc narratif.",
+        title: "The Mysterious Letter",
+        text: "Julie found an unstamped envelope in her mailbox. Inside was a card with a drawing of a star and a message: meet at the corner cafe at five o'clock. Intrigued, she went — and discovered that her friends had organized a surprise party for her thirtieth birthday. They had decorated the cafe and prepared a meal. Julie was deeply moved and had an unforgettable evening.",
+        tip: "Retell the discovery, the mystery, then the reveal. That is the narrative arc.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Julie trouve une enveloppe mystérieuse dans sa boîte aux lettres",
-          "Le message lui donne rendez-vous au café",
-          "Elle découvre une fête surprise pour ses trente ans",
-          "Ses amis ont tout organisé",
-          "Elle passe une très bonne soirée"
+          "Julie finds a mysterious envelope in her mailbox",
+          "The message tells her to meet at the cafe",
+          "She discovers a surprise party for her thirtieth birthday",
+          "Her friends organized everything",
+          "She has a wonderful evening"
         ]
       },
       {
         id: "retelling-13",
-        title: "Le Parapluie Échangé",
-        text: "En sortant du restaurant, Marc a pris un parapluie noir dans le porte-parapluies, pensant que c'était le sien. En l'ouvrant sous la pluie, il a trouvé une étiquette avec un nom et un numéro de téléphone. Il a appelé le numéro et a expliqué la confusion. Le propriétaire du parapluie avait aussi pris celui de Marc par erreur. Ils se sont retrouvés le lendemain pour échanger leurs parapluies en riant de la situation.",
-        tip: "L'erreur, la découverte, le contact, l'échange : quatre étapes simples.",
+        title: "The Switched Umbrellas",
+        text: "When leaving a restaurant, Marc grabbed a black umbrella from the stand, thinking it was his. When he opened it in the rain, he found a tag with a name and phone number. He called the number and explained the mix-up. The umbrella's owner had also accidentally taken Marc's by mistake. They met up the next day to swap their umbrellas, laughing about the whole situation.",
+        tip: "The mistake, the discovery, the contact, the swap: four simple steps.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Marc prend le mauvais parapluie au restaurant",
-          "Il découvre une étiquette avec un numéro",
-          "Il appelle le propriétaire",
-          "L'autre personne a aussi pris le mauvais parapluie",
-          "Ils échangent leurs parapluies"
+          "Marc takes the wrong umbrella at the restaurant",
+          "He finds a tag with a phone number",
+          "He calls the owner",
+          "The other person also took the wrong umbrella",
+          "They swap their umbrellas"
         ]
       },
       {
         id: "retelling-14",
-        title: "Le Jardin du Voisin",
-        text: "Pendant les vacances de ses voisins, Hélène a proposé d'arroser leur jardin. La première semaine, tout s'est bien passé. Mais la deuxième semaine, elle a oublié d'arroser pendant trois jours à cause d'un déplacement professionnel. À leur retour, les voisins ont remarqué que certaines plantes avaient souffert. Hélène s'est excusée et a offert de nouvelles plantes pour remplacer celles qui étaient abîmées. Les voisins l'ont remerciée pour le reste du jardin qui était en parfait état.",
-        tip: "L'engagement, le problème, les conséquences et la résolution : restez sur cette trame.",
+        title: "The Neighbor's Garden",
+        text: "While her neighbors were on vacation, Helene offered to water their garden. The first week went smoothly. But during the second week, she forgot to water for three days because of a work trip. When her neighbors returned, they noticed that some plants had suffered. Helene apologized and offered to replace the damaged plants with new ones. The neighbors thanked her for the rest of the garden, which was in perfect condition.",
+        tip: "The commitment, the problem, the consequences, and the resolution: stay on that track.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Hélène s'engage à arroser le jardin de ses voisins",
-          "Elle oublie d'arroser pendant trois jours",
-          "Certaines plantes sont abîmées",
-          "Elle offre de nouvelles plantes",
-          "Les voisins la remercient quand même"
+          "Helene agrees to water her neighbors' garden",
+          "She forgets to water for three days",
+          "Some plants are damaged",
+          "She offers to replace the plants",
+          "The neighbors thank her anyway"
         ]
       },
       {
         id: "retelling-15",
-        title: "Le Portefeuille au Cinéma",
-        text: "Après une séance de cinéma, Léa a réalisé qu'elle avait perdu son portefeuille. Elle est retournée dans la salle, mais l'équipe de nettoyage n'avait rien trouvé. Elle a laissé son numéro à l'accueil au cas où. Le lendemain, le cinéma l'a appelée : un spectateur avait trouvé le portefeuille coincé entre deux sièges et l'avait rapporté. Léa est allée le récupérer et tout était à l'intérieur.",
-        tip: "Perte, recherche, attente, restitution : une structure linéaire simple.",
+        title: "The Wallet at the Movies",
+        text: "After a movie, Lea realized she had lost her wallet. She went back to the theater, but the cleaning crew had not found anything. She left her phone number at the front desk just in case. The next day, the theater called: a moviegoer had found the wallet wedged between two seats and turned it in. Lea went to pick it up and everything was still inside.",
+        tip: "Loss, search, waiting, return: a simple linear structure.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Léa perd son portefeuille au cinéma",
-          "Elle retourne chercher mais ne le trouve pas",
-          "Elle laisse son numéro à l'accueil",
-          "Un spectateur l'a trouvé et rapporté",
-          "Elle récupère son portefeuille intact"
+          "Lea loses her wallet at the movie theater",
+          "She goes back to look but does not find it",
+          "She leaves her number at the front desk",
+          "A moviegoer found and returned it",
+          "She picks up her wallet with everything inside"
         ]
       },
       {
         id: "retelling-16",
-        title: "La Recette Improvisée",
-        text: "Pierre voulait faire une quiche pour le dîner, mais en ouvrant le frigo, il a vu qu'il n'avait plus d'œufs. Les magasins étaient fermés. Il a demandé à sa voisine qui lui a prêté quatre œufs. En échange, Pierre lui a apporté une part de quiche une fois qu'elle était prête. La voisine a tellement aimé la recette qu'elle lui a demandé de la lui écrire.",
-        tip: "Besoin, problème, entraide, échange : c'est le cœur de l'histoire.",
+        title: "The Improvised Recipe",
+        text: "Pierre wanted to make a quiche for dinner, but when he opened the fridge he realized he was out of eggs. The stores were closed. He asked his neighbor, who lent him four eggs. In return, Pierre brought her a slice of the finished quiche. His neighbor liked it so much she asked him to write down the recipe.",
+        tip: "Need, problem, helping each other out, exchange: that is the heart of the story.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Pierre veut faire une quiche mais n'a plus d'œufs",
-          "Les magasins sont fermés",
-          "Sa voisine lui prête des œufs",
-          "Il lui offre une part de quiche",
-          "La voisine demande la recette"
+          "Pierre wants to make a quiche but has no eggs",
+          "The stores are closed",
+          "His neighbor lends him eggs",
+          "He brings her a slice of quiche",
+          "The neighbor asks for the recipe"
         ]
       },
       {
         id: "retelling-17",
-        title: "Le Bus Raté",
-        text: "Emma attendait le bus pour aller au travail comme chaque matin. Le bus est passé sans s'arrêter car l'arrêt était en travaux et elle ne l'avait pas remarqué. L'arrêt provisoire était deux cents mètres plus loin. Un passant lui a indiqué le bon endroit. Elle a couru et a réussi à attraper le bus suivant juste à temps. Depuis, elle vérifie toujours les panneaux d'information aux arrêts.",
-        tip: "Situation habituelle perturbée, aide extérieure, adaptation : trois temps clairs.",
+        title: "The Missed Bus",
+        text: "Emma was waiting for the bus to go to work like every morning. The bus drove past without stopping because the stop was under construction and she had not noticed. The temporary stop was two hundred yards further down. A passerby pointed her in the right direction. She ran and just barely caught the next bus. Since then, she always checks the information signs at bus stops.",
+        tip: "A routine situation disrupted, outside help, and adaptation: three clear stages.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Emma attend le bus mais il ne s'arrête pas",
-          "L'arrêt est déplacé à cause de travaux",
-          "Un passant lui indique le nouvel arrêt",
-          "Elle attrape le bus suivant",
-          "Elle fait plus attention aux panneaux depuis"
+          "Emma waits for the bus but it does not stop",
+          "The stop has been moved due to construction",
+          "A passerby tells her where the new stop is",
+          "She catches the next bus",
+          "She pays more attention to signs from then on"
         ]
       },
       {
         id: "retelling-18",
-        title: "Le Cadeau Surprise",
-        text: "Pour la fête des mères, Théo et sa sœur ont décidé de préparer le petit-déjeuner au lit pour leur maman. Théo a fait les tartines pendant que sa sœur pressait les oranges. En apportant le plateau, Théo a trébuché et a renversé le jus d'orange sur le tapis. Ils ont vite nettoyé et refait du jus. Leur mère a adoré la surprise et a dit que c'était le plus beau cadeau qu'elle ait jamais reçu.",
-        tip: "L'intention, la préparation, l'incident, la réparation et la réaction : cinq moments.",
+        title: "The Surprise Gift",
+        text: "For Mother's Day, Theo and his sister decided to make breakfast in bed for their mom. Theo made the toast while his sister squeezed oranges. While carrying the tray, Theo tripped and spilled the orange juice on the rug. They quickly cleaned it up and made more juice. Their mother loved the surprise and said it was the most beautiful gift she had ever received.",
+        tip: "The intention, the preparation, the incident, the fix, and the reaction: five moments.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Théo et sa sœur préparent le petit-déjeuner pour la fête des mères",
-          "Ils se répartissent les tâches",
-          "Théo renverse le jus d'orange",
-          "Ils nettoient et recommencent",
-          "Leur mère est très touchée"
+          "Theo and his sister prepare breakfast for Mother's Day",
+          "They split the tasks",
+          "Theo spills the orange juice",
+          "They clean up and start over",
+          "Their mother is very touched"
         ]
       },
       {
         id: "retelling-19",
-        title: "Le Chat sur le Toit",
-        text: "Le chat de la famille Martin est monté sur le toit et ne savait plus descendre. Il miaulait depuis deux heures. Monsieur Martin a essayé avec une échelle mais le toit était trop haut. Il a appelé les pompiers. Ils sont arrivés avec une grande échelle et ont récupéré le chat en quelques minutes. Les enfants étaient soulagés et ont promis de mieux surveiller le chat.",
-        tip: "Le problème, les tentatives, l'intervention et le résultat : gardez cette structure.",
+        title: "The Cat on the Roof",
+        text: "The Martin family's cat climbed up onto the roof and could not get down. It had been meowing for two hours. Mr. Martin tried with a ladder but the roof was too high. He called the fire department. They arrived with a tall ladder and retrieved the cat in a matter of minutes. The children were relieved and promised to keep a closer eye on the cat.",
+        tip: "The problem, the attempts, the intervention, and the result: keep that structure.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Le chat est bloqué sur le toit",
-          "Monsieur Martin essaie avec une échelle mais c'est trop haut",
-          "Il appelle les pompiers",
-          "Les pompiers récupèrent le chat",
-          "Les enfants promettent de mieux le surveiller"
+          "The cat is stuck on the roof",
+          "Mr. Martin tries a ladder but it is too short",
+          "He calls the fire department",
+          "The firefighters retrieve the cat",
+          "The children promise to watch the cat more carefully"
         ]
       },
       {
         id: "retelling-20",
-        title: "La Valise Échangée",
-        text: "À l'aéroport, Nadia a récupéré une valise noire sur le tapis à bagages. En arrivant à l'hôtel, elle a ouvert la valise et a découvert des vêtements qui n'étaient pas les siens. Elle a appelé la compagnie aérienne qui a retrouvé le passager qui avait sa valise. Le lendemain, un coursier a livré la bonne valise à l'hôtel et a repris l'autre. Nadia a vérifié que rien ne manquait.",
-        tip: "Erreur, découverte, démarche, échange : une séquence logique à restituer.",
+        title: "The Switched Suitcase",
+        text: "At the airport, Nadia grabbed a black suitcase off the baggage carousel. When she arrived at the hotel, she opened it and found clothes that were not hers. She called the airline, which tracked down the passenger who had her suitcase. The next day, a courier delivered the right suitcase to the hotel and picked up the other one. Nadia checked that nothing was missing.",
+        tip: "Mistake, discovery, action taken, exchange: a logical sequence to retell.",
         type: "retelling" as ExerciseType,
         keyPoints: [
-          "Nadia prend la mauvaise valise à l'aéroport",
-          "Elle découvre l'erreur à l'hôtel",
-          "Elle contacte la compagnie aérienne",
-          "Un coursier échange les valises le lendemain",
-          "Tout est en ordre"
+          "Nadia picks up the wrong suitcase at the airport",
+          "She discovers the mistake at the hotel",
+          "She contacts the airline",
+          "A courier swaps the suitcases the next day",
+          "Everything is in order"
         ]
       }
     ]

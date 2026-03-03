@@ -12,43 +12,43 @@ interface SubscriptionCanceledEmailProps {
 }
 
 export function SubscriptionCanceledEmail(props: SubscriptionCanceledEmailProps) {
-  const { userName = 'Cher utilisateur', resubscribeUrl } = props
+  const { userName = 'Dear user', resubscribeUrl } = props
   return (
-    <BaseLayout preview="Votre abonnement a été suspendu. Vos données sont préservées.">
-      <Heading style={heading}>Votre abonnement est suspendu</Heading>
+    <BaseLayout preview="Your subscription has been paused. Your data is preserved.">
+      <Heading style={heading}>Your subscription is paused</Heading>
 
-      <Text style={paragraph}>Bonjour {userName},</Text>
+      <Text style={paragraph}>Hi {userName},</Text>
 
       <Text style={paragraph}>
-        Nous vous confirmons que votre abonnement Parler Moins Vite a bien été annulé. Nous respectons votre décision et vous remercions d'avoir fait partie de notre communauté.
+        We confirm that your ClutterPro subscription has been canceled. We respect your decision and thank you for being part of our community.
       </Text>
 
       <Text style={dataBox}>
-        💾 Bonne nouvelle : Vos données de progression restent sauvegardées pendant 6 mois. Vous pouvez reprendre exactement là où vous en étiez si vous changez d'avis.
+        💾 Good news: Your progress data remains saved for 6 months. You can pick up right where you left off if you change your mind.
       </Text>
 
       <Text style={paragraph}>
-        Si vous souhaitez vous réabonner un jour, votre compte vous attendra avec tout votre historique intact.
+        If you'd like to resubscribe someday, your account will be waiting with your full history intact.
       </Text>
 
       <Button style={button} href={resubscribeUrl}>
-        Me réabonner
+        Resubscribe
       </Button>
 
       <Text style={surveyBox}>
-        📝 Une dernière chose : pour nous aider à nous améliorer, pourriez-vous nous dire en une phrase ce qui vous a manqué ?
+        📝 One last thing: To help us improve, could you tell us in one sentence what you felt was missing?
       </Text>
 
       <Text style={paragraph}>
-        Votre retour nous aide énormément. Écrivez-nous à contact@parlermoinsvite.fr
+        Your feedback means a lot. Email us at support@clutterpro.com
       </Text>
 
       <Text style={paragraph}>
-        Merci pour le temps passé avec nous, et bonne continuation dans votre parcours.
+        Thank you for the time you spent with us, and best of luck on your journey.
       </Text>
 
-      <Text style={signatureText}>Avec gratitude,</Text>
-      <Text style={signatureName}>L'équipe Parler Moins Vite</Text>
+      <Text style={signatureText}>With gratitude,</Text>
+      <Text style={signatureName}>The ClutterPro Team</Text>
     </BaseLayout>
   )
 }

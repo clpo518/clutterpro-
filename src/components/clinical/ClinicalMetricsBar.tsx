@@ -49,10 +49,10 @@ const ClinicalMetricsBar = ({
   const getTargetPerformance = () => {
     if (!targetSps) return null;
     const diff = avgSps - targetSps;
-    if (diff <= -0.3) return { label: "Sous la cible", color: "text-green-400", status: "good" };
-    if (diff <= 0.3) return { label: "Dans la cible", color: "text-blue-400", status: "target" };
-    if (diff <= 1) return { label: "Au-dessus", color: "text-yellow-400", status: "elevated" };
-    return { label: "Trop rapide", color: "text-red-400", status: "high" };
+    if (diff <= -0.3) return { label: "Below target", color: "text-green-400", status: "good" };
+    if (diff <= 0.3) return { label: "On target", color: "text-blue-400", status: "target" };
+    if (diff <= 1) return { label: "Above target", color: "text-yellow-400", status: "elevated" };
+    return { label: "Too fast", color: "text-red-400", status: "high" };
   };
   
   const targetPerformance = getTargetPerformance();
@@ -123,7 +123,7 @@ const ClinicalMetricsBar = ({
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      {/* Vitesse moyenne */}
+      {/* Average Speed */}
       <Card className="bg-card border-border shadow-sm">
         <CardContent className="p-4">
           <div className="flex items-start justify-between mb-2">
@@ -131,7 +131,7 @@ const ClinicalMetricsBar = ({
               <div className="p-2 rounded-lg bg-blue-500/20">
                 <Activity className="w-4 h-4 text-blue-600" />
               </div>
-              <span className="text-xs text-muted-foreground uppercase tracking-wide">Débit</span>
+              <span className="text-xs text-muted-foreground uppercase tracking-wide">Rate</span>
             </div>
             {trend === "improving" && <TrendingDown className="w-4 h-4 text-green-600" />}
             {trend === "accelerating" && <TrendingUp className="w-4 h-4 text-red-600" />}
@@ -148,7 +148,7 @@ const ClinicalMetricsBar = ({
             )}
           </div>
           <div className="text-xs text-muted-foreground mt-1">
-            syllabes par seconde {targetSps ? "(réel / cible)" : ""}
+            syllables per second {targetSps ? "(actual / target)" : ""}
           </div>
           <div className="mt-2 text-xs">
             {targetSps && targetPerformance ? (
@@ -166,15 +166,15 @@ const ClinicalMetricsBar = ({
                 spsStatus === "elevated" ? "bg-yellow-100 text-yellow-700" :
                 "bg-red-100 text-red-700"
               }`}>
-                {spsStatus === "optimal" ? "Rythme adapté" :
-                 spsStatus === "elevated" ? "Un peu rapide" : "Trop rapide"}
+                {spsStatus === "optimal" ? "Good pace" :
+                 spsStatus === "elevated" ? "A bit fast" : "Too fast"}
               </span>
             )}
           </div>
         </CardContent>
       </Card>
 
-      {/* Pauses respiratoires */}
+      {/* Breathing Pauses */}
       <Card className="bg-card border-border shadow-sm">
         <CardContent className="p-4">
           <div className="flex items-center gap-2 mb-2">
@@ -189,7 +189,7 @@ const ClinicalMetricsBar = ({
             {pausesPerMinute}
           </div>
           <div className="text-xs text-muted-foreground mt-1">
-            pauses / minute
+            pauses / min
           </div>
           <div className="mt-2 text-xs">
             <span className={`px-2 py-0.5 rounded-full ${
@@ -197,26 +197,26 @@ const ClinicalMetricsBar = ({
               pausesPerMinute >= 1.5 ? "bg-yellow-100 text-yellow-700" :
               "bg-red-100 text-red-700"
             }`}>
-              {pausesPerMinute >= 3 ? "Suffisant" :
-               pausesPerMinute >= 1.5 ? "Limite" : "Insuffisant"}
+              {pausesPerMinute >= 3 ? "Sufficient" :
+               pausesPerMinute >= 1.5 ? "Borderline" : "Insufficient"}
             </span>
           </div>
           <div className="text-[10px] text-muted-foreground mt-2">
             {!wordTimestamps || wordTimestamps.length < 2
-              ? "Estimation (silences non détectés)"
-              : `${pauseCount} silence(s) ≥ 0.5s détecté(s)`}
+              ? "Estimate (silences not detected)"
+              : `${pauseCount} silence(s) ≥ 0.5s detected`}
           </div>
         </CardContent>
       </Card>
 
-      {/* Régularité */}
+      {/* Regularity */}
       <Card className="bg-card border-border shadow-sm">
         <CardContent className="p-4">
           <div className="flex items-center gap-2 mb-2">
             <div className="p-2 rounded-lg bg-cyan-500/20">
               <BarChart3 className="w-4 h-4 text-cyan-600" />
             </div>
-            <span className="text-xs text-muted-foreground uppercase tracking-wide">Régularité</span>
+            <span className="text-xs text-muted-foreground uppercase tracking-wide">Regularity</span>
           </div>
           <div className={`text-3xl font-mono font-bold ${
             regularity >= 70 ? "text-green-600" : regularity >= 50 ? "text-yellow-600" : "text-red-600"
@@ -224,7 +224,7 @@ const ClinicalMetricsBar = ({
             {regularity}%
           </div>
           <div className="text-xs text-muted-foreground mt-1">
-            constance du rythme
+            rhythm consistency
           </div>
           <div className="mt-2">
             <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -238,19 +238,19 @@ const ClinicalMetricsBar = ({
             </div>
           </div>
           <div className="text-[10px] text-muted-foreground mt-2">
-            {regularity >= 70 ? "Débit régulier" : regularity >= 50 ? "Quelques variations" : "Rythme en dents de scie"}
+            {regularity >= 70 ? "Steady rate" : regularity >= 50 ? "Some variations" : "Uneven rhythm"}
           </div>
         </CardContent>
       </Card>
 
-      {/* Intelligibilité */}
+      {/* Intelligibility */}
       <Card className="bg-card border-border shadow-sm">
         <CardContent className="p-4">
           <div className="flex items-center gap-2 mb-2">
             <div className="p-2 rounded-lg bg-amber-500/20">
               <Ear className="w-4 h-4 text-amber-600" />
             </div>
-            <span className="text-xs text-muted-foreground uppercase tracking-wide">Clarté</span>
+            <span className="text-xs text-muted-foreground uppercase tracking-wide">Clarity</span>
           </div>
           <div className={`text-3xl font-mono font-bold ${
             intelligibility >= 7 ? "text-green-600" :
@@ -259,7 +259,7 @@ const ClinicalMetricsBar = ({
             {intelligibility}/10
           </div>
           <div className="text-xs text-muted-foreground mt-1 mb-2">
-            {isTherapist ? "Votre évaluation" : "Noté par l'orthophoniste"}
+            {isTherapist ? "Your rating" : "Rated by the SLP"}
           </div>
           {isTherapist ? (
             <Slider
@@ -282,7 +282,7 @@ const ClinicalMetricsBar = ({
             </div>
           )}
           <div className="text-[10px] text-muted-foreground mt-2">
-            {isTherapist ? "Glissez pour noter" : ""}
+            {isTherapist ? "Slide to rate" : ""}
           </div>
         </CardContent>
       </Card>

@@ -24,7 +24,7 @@ const SeatCounter = ({ activePatients, seatsLimit }: SeatCounterProps) => {
         <div className="flex-1">
           <div className="flex items-center justify-between mb-1">
             <span className="text-sm font-medium flex items-center gap-1.5">
-              Patients Actifs
+              Active Patients
               <HelpCircle className="w-3.5 h-3.5 text-muted-foreground" />
             </span>
             <span className={`text-sm font-bold ${isAtLimit ? "text-red-500" : ""}`}>
@@ -62,11 +62,11 @@ const SeatCounter = ({ activePatients, seatsLimit }: SeatCounterProps) => {
               <div className="p-3 rounded-lg bg-muted/50 space-y-2">
                 <h4 className="text-sm font-medium flex items-center gap-2">
                   <Users className="w-4 h-4 text-primary" />
-                  Qu'est-ce qu'un "siège" ?
+                  What is a "seat"?
                 </h4>
                 <p className="text-xs text-muted-foreground">
-                  Chaque <strong>siège</strong> représente un patient actif que vous suivez. 
-                  Votre offre actuelle vous permet de suivre jusqu'à <strong>{seatsLimit} patients</strong> simultanément.
+                  Each <strong>seat</strong> represents an active patient you are monitoring.
+                  Your current plan allows you to monitor up to <strong>{seatsLimit} patients</strong> simultaneously.
                 </p>
               </div>
 
@@ -74,12 +74,12 @@ const SeatCounter = ({ activePatients, seatsLimit }: SeatCounterProps) => {
               <div className="p-3 rounded-lg bg-muted/50 space-y-2">
                 <h4 className="text-sm font-medium flex items-center gap-2">
                   <Archive className="w-4 h-4 text-orange-500" />
-                  Comment libérer un siège ?
+                  How to free a seat?
                 </h4>
                 <p className="text-xs text-muted-foreground">
-                  Quand un patient termine sa rééducation, vous pouvez l'<strong>archiver</strong> 
-                  (bouton <Archive className="w-3 h-3 inline" /> dans le tableau). Cela libère un siège 
-                  tout en conservant son historique. Vous pourrez le restaurer à tout moment.
+                  When a patient finishes therapy, you can <strong>archive</strong> them
+                  (<Archive className="w-3 h-3 inline" /> button in the table). This frees a seat
+                  while preserving their history. You can restore them at any time.
                 </p>
               </div>
 
@@ -88,20 +88,20 @@ const SeatCounter = ({ activePatients, seatsLimit }: SeatCounterProps) => {
                 <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 space-y-2">
                   <h4 className="text-sm font-medium flex items-center gap-2 text-red-600 dark:text-red-400">
                     <AlertTriangle className="w-4 h-4" />
-                    Limite atteinte
+                    Limit reached
                   </h4>
                   <p className="text-xs text-muted-foreground">
-                    Vous utilisez tous vos sièges. Pour accueillir de nouveaux patients :
+                    You are using all your seats. To accommodate new patients:
                   </p>
                   <ul className="text-xs text-muted-foreground space-y-1 ml-4">
-                    <li>• <strong>Archivez</strong> un patient inactif pour libérer un siège</li>
-                    <li>• Ou <strong>passez à l'offre 5 patients</strong> pour plus de capacité</li>
+                    <li>- <strong>Archive</strong> an inactive patient to free a seat</li>
+                    <li>- Or <strong>upgrade to the 5-patient plan</strong> for more capacity</li>
                   </ul>
                 </div>
               ) : (
                 <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/20">
                   <p className="text-xs text-green-700 dark:text-green-400">
-                    ✓ <strong>{remainingSeats} siège{remainingSeats > 1 ? "s" : ""} disponible{remainingSeats > 1 ? "s" : ""}</strong> — Vous pouvez inviter {remainingSeats > 1 ? "de nouveaux patients" : "un nouveau patient"}.
+                    <strong>{remainingSeats} seat{remainingSeats > 1 ? "s" : ""} available</strong> — You can invite {remainingSeats > 1 ? "new patients" : "a new patient"}.
                   </p>
                 </div>
               )}
@@ -112,8 +112,8 @@ const SeatCounter = ({ activePatients, seatsLimit }: SeatCounterProps) => {
                   <ArrowUpCircle className="w-5 h-5 text-primary flex-shrink-0" />
                   <div>
                     <p className="text-xs text-muted-foreground">
-                      <strong className="text-foreground">Besoin de plus de patients ?</strong> L'offre 5 patients 
-                      vous donne plus de flexibilité pour accompagner votre patientèle.
+                      <strong className="text-foreground">Need more patients?</strong> The 5-patient plan
+                      gives you more flexibility to support your caseload.
                     </p>
                   </div>
                 </div>

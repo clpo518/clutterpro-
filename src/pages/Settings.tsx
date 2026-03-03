@@ -69,7 +69,7 @@ const Settings = () => {
         .maybeSingle();
 
       if (error) {
-        toast.error("Erreur lors du chargement du profil");
+        toast.error("Error loading profile");
       } else if (data) {
         setProfile(data);
         if (data.birth_year) {
@@ -112,7 +112,7 @@ const Settings = () => {
       if (findError) throw findError;
 
       if (!therapist) {
-        toast.error("Code orthophoniste invalide");
+        toast.error("Invalid SLP code");
         setLinkingTherapist(false);
         return;
       }
@@ -128,7 +128,7 @@ const Settings = () => {
       setProfile(prev => ({ ...prev, linked_therapist_id: therapist.id }));
       setLinkedTherapist({ full_name: therapist.full_name, therapist_code: therapist.therapist_code });
       setTherapistCode("");
-      toast.success(`Vous êtes maintenant suivi par ${therapist.full_name || "votre orthophoniste"}`);
+      toast.success(`You are now linked to ${therapist.full_name || "your SLP"}`);
 
       // Notify therapist that a new patient joined (fire and forget)
       supabase.functions.invoke('notify-patient-joined', {
@@ -147,7 +147,7 @@ const Settings = () => {
       });
     } catch (error) {
       console.error("Error linking therapist:", error);
-      toast.error("Erreur lors de la liaison");
+      toast.error("Error linking SLP");
     } finally {
       setLinkingTherapist(false);
     }
@@ -166,9 +166,9 @@ const Settings = () => {
 
       setProfile(prev => ({ ...prev, linked_therapist_id: null }));
       setLinkedTherapist(null);
-      toast.success("Lien avec l'orthophoniste supprimé");
+      toast.success("Link with SLP removed");
     } catch (error) {
-      toast.error("Erreur lors de la suppression");
+      toast.error("Error removing link");
     }
   };
 
@@ -213,9 +213,9 @@ const Settings = () => {
       if (error) throw error;
 
       setProfile(prev => ({ ...prev, birth_year: birthYearToSave }));
-      toast.success("Profil mis à jour");
+      toast.success("Profile updated");
     } catch (error) {
-      toast.error("Erreur lors de la sauvegarde");
+      toast.error("Error saving changes");
     } finally {
       setSaving(false);
     }
@@ -241,11 +241,11 @@ const Settings = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/dashboard" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="w-5 h-5" />
-            <span>Retour</span>
+            <span>Back</span>
           </Link>
           <div className="flex items-center gap-2">
             <Activity className="w-5 h-5 text-primary" />
-            <span className="font-display font-bold">Paramètres</span>
+            <span className="font-display font-bold">Settings</span>
           </div>
           <div className="w-20" />
         </div>
@@ -258,22 +258,22 @@ const Settings = () => {
           transition={{ duration: 0.5 }}
           className="space-y-6"
         >
-          <h1 className="text-3xl font-display font-bold">Paramètres du compte</h1>
+          <h1 className="text-3xl font-display font-bold">Account Settings</h1>
 
           {/* Profile Card */}
           <Card>
             <CardHeader>
-              <CardTitle>Profil</CardTitle>
-              <CardDescription>Vos informations personnelles</CardDescription>
+              <CardTitle>Profile</CardTitle>
+              <CardDescription>Your personal information</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Nom complet</Label>
+                <Label htmlFor="name">Full name</Label>
                 <Input
                   id="name"
                   value={profile.full_name || ""}
                   onChange={(e) => setProfile({ ...profile, full_name: e.target.value })}
-                  placeholder="Votre nom"
+                  placeholder="Your name"
                 />
               </div>
 
@@ -292,7 +292,7 @@ const Settings = () => {
                 <div className="space-y-2">
                   <Label htmlFor="birth-year" className="flex items-center gap-2">
                     <Dna className="w-4 h-4 text-primary" />
-                    Année de naissance
+                    Birth year
                   </Label>
                   <div className="flex gap-3 items-start">
                     <Input
@@ -307,7 +307,7 @@ const Settings = () => {
                     />
                     {profile.birth_year && (
                       <div className="flex-1 p-2 rounded-lg bg-primary/10 border border-primary/20">
-                        <p className="text-xs text-muted-foreground">Norme recommandée</p>
+                        <p className="text-xs text-muted-foreground">Recommended norm</p>
                         <p className="font-semibold text-primary">
                           {getNormSPS(profile.birth_year)} syll/sec 
                           <span className="text-xs font-normal text-muted-foreground ml-2">
@@ -319,7 +319,7 @@ const Settings = () => {
                   </div>
                   <p className="text-xs text-muted-foreground flex items-start gap-1.5">
                     <Info className="w-3 h-3 mt-0.5 shrink-0" />
-                    Utilisé pour calibrer vos objectifs de débit selon les normes cliniques (Van Zaalen).
+                    Used to calibrate your speech rate goals based on clinical norms (Van Zaalen).
                   </p>
                 </div>
               )}
@@ -327,7 +327,7 @@ const Settings = () => {
               {/* Speed Target - Only for patients */}
               {!profile.is_therapist && (
                 <div className="space-y-2">
-                  <Label>Objectif de vitesse</Label>
+                  <Label>Speed target</Label>
                   <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                     {SPS_TARGET_LEVELS.map((level) => {
                       const levelWpm = spsToWpm(level.sps);
@@ -353,7 +353,7 @@ const Settings = () => {
                           </div>
                           {isUserNorm && (
                             <span className="inline-block mt-1 text-[9px] bg-primary/20 text-primary px-1.5 py-0.5 rounded-full">
-                              Votre norme
+                              Your norm
                             </span>
                           )}
                         </button>
@@ -361,7 +361,7 @@ const Settings = () => {
                     })}
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    Cet objectif sera utilisé pour le feedback en temps réel pendant vos exercices
+                    This target will be used for real-time feedback during your exercises
                   </p>
                 </div>
               )}
@@ -374,10 +374,10 @@ const Settings = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <UserPlus className="w-5 h-5" />
-                  Mon Orthophoniste
+                  My SLP
                 </CardTitle>
                 <CardDescription>
-                  Liez votre compte à votre orthophoniste pour qu'il puisse suivre vos progrès
+                  Link your account to your SLP so they can track your progress
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -385,13 +385,13 @@ const Settings = () => {
                   <div className="p-4 rounded-xl bg-green-500/10 border border-green-500/20">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm text-muted-foreground mb-1">Suivi par :</p>
+                        <p className="text-sm text-muted-foreground mb-1">Followed by:</p>
                         <p className="text-lg font-semibold text-green-700 dark:text-green-400">
-                          {linkedTherapist?.full_name || "Votre orthophoniste"}
+                          {linkedTherapist?.full_name || "Your SLP"}
                         </p>
                         {!!linkedTherapist?.therapist_code && (
                           <p className="text-xs text-muted-foreground mt-1">
-                            Code : {linkedTherapist.therapist_code}
+                            Code: {linkedTherapist.therapist_code}
                           </p>
                         )}
                       </div>
@@ -402,7 +402,7 @@ const Settings = () => {
                         className="text-red-600 hover:text-red-700 hover:bg-red-100"
                       >
                         <X className="w-4 h-4 mr-1" />
-                        Dissocier
+                        Unlink
                       </Button>
                     </div>
                   </div>
@@ -410,7 +410,7 @@ const Settings = () => {
                   <div className="space-y-4">
                     <div className="p-4 rounded-xl bg-muted/50 border border-border">
                       <p className="text-sm text-muted-foreground mb-3">
-                        Entrez le code fourni par votre orthophoniste :
+                        Enter the code provided by your SLP:
                       </p>
                       <div className="flex gap-2">
                         <Input
@@ -443,10 +443,10 @@ const Settings = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-primary">
                   <span className="text-2xl">🔑</span>
-                  Votre Code Praticien
+                  Your Pro Code
                 </CardTitle>
                 <CardDescription>
-                  Transmettez ce code à vos patients pour qu'ils l'ajoutent dans leur espace
+                  Share this code with your patients so they can add it to their account
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -462,20 +462,20 @@ const Settings = () => {
                       if (profile.therapist_code) {
                         const success = await copyToClipboard(profile.therapist_code);
                         if (success) {
-                          toast.success("Code copié !");
+                          toast.success("Code copied!");
                         } else {
-                          toast.error("Erreur lors de la copie");
+                          toast.error("Failed to copy");
                         }
                       }
                     }}
                   >
                     <Check className="w-4 h-4" />
-                    Copier
+                    Copy
                   </Button>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  👉 Vos patients doivent entrer ce code à l'inscription lors de la création de leur compte.
-                  Vous verrez ensuite leurs résultats dans votre tableau de bord.
+                  👉 Your patients must enter this code when creating their account.
+                  You will then see their results in your dashboard.
                 </p>
               </CardContent>
             </Card>
@@ -487,10 +487,10 @@ const Settings = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <UserPlus className="w-5 h-5" />
-                  Inviter vos patients
+                  Invite your patients
                 </CardTitle>
                 <CardDescription>
-                  Envoyez un email pré-rédigé expliquant la plateforme et votre Code Pro
+                  Send a pre-written email explaining the platform and your Pro Code
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -499,71 +499,71 @@ const Settings = () => {
                     variant="default"
                     className="gap-2"
                     onClick={() => {
-                      const subject = encodeURIComponent("Votre outil d'entraînement à la maison 🗣️");
-                      const body = encodeURIComponent(`Bonjour,
+                      const subject = encodeURIComponent("Your at-home practice tool");
+                      const body = encodeURIComponent(`Hello,
 
-Pour compléter nos séances et accélérer vos progrès, je vous invite à utiliser l'application ParlerMoinsVite.
+To complement our sessions and accelerate your progress, I'd like you to use the ClutterPro app.
 
-C'est un outil interactif conçu pour vous aider au quotidien :
+It's an interactive tool designed to help you practice daily:
 
-🎯 Mode Guidé : Un surligneur vous guide mot par mot au rythme idéal.
-🌊 Analyse audio : Visualisez vos pauses et accélérations après chaque exercice.
-📖 Exercices guidés : Accédez à une bibliothèque de textes directement sur votre téléphone.
-🤝 Suivi à distance : En liant votre compte au mien, je pourrai suivre vos exercices.
+- Guided Mode: A highlighter guides you word by word at the ideal pace.
+- Audio Analysis: Visualize your pauses and accelerations after each exercise.
+- Guided Exercises: Access a library of texts directly on your phone.
+- Remote Tracking: By linking your account to mine, I can monitor your exercises.
 
-Pour commencer :
+To get started:
 
-1. Allez sur https://www.parlermoinsvite.fr
-2. Créez votre compte gratuit avec mon Code Pro : ${profile.therapist_code}
+1. Go to https://www.clutterpro.com
+2. Create your free account with my Pro Code: ${profile.therapist_code}
 
-À très bientôt !`);
+See you soon!`);
                       window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
-                      toast.success("Client email ouvert !");
+                      toast.success("Email client opened!");
                     }}
                   >
                     <ExternalLink className="w-4 h-4" />
-                    Ouvrir Mail
+                    Open Mail
                   </Button>
                   <Button
                     variant="outline"
                     className="gap-2"
                     onClick={async () => {
-                      const emailTemplate = `Objet : Invitation : Votre outil d'entraînement à la maison 🗣️
+                      const emailTemplate = `Subject: Your at-home practice tool
 
-Bonjour,
+Hello,
 
-Pour compléter nos séances et accélérer vos progrès, je vous invite à utiliser l'application ParlerMoinsVite.
+To complement our sessions and accelerate your progress, I'd like you to use the ClutterPro app.
 
-C'est un outil interactif conçu pour vous aider au quotidien :
+It's an interactive tool designed to help you practice daily:
 
-🎯 Mode Guidé : Un surligneur vous guide mot par mot au rythme idéal pour ancrer de bonnes habitudes.
+- Guided Mode: A highlighter guides you word by word at the ideal pace to build good habits.
 
-🌊 Analyse de la forme d'onde : Après chaque exercice, visualisez vos pauses et accélérations pour comprendre votre débit.
+- Waveform Analysis: After each exercise, visualize your pauses and accelerations to understand your speech rate.
 
-📖 Exercices guidés : Accédez à une bibliothèque de textes (lecture lente, articulation) directement sur votre téléphone.
+- Guided Exercises: Access a library of texts (slow reading, articulation) directly on your phone.
 
-🤝 Suivi à distance : En liant votre compte au mien, je pourrai écouter vos exercices et vous conseiller entre deux rendez-vous.
+- Remote Tracking: By linking your account to mine, I can listen to your exercises and coach you between appointments.
 
-Pour commencer, c'est très simple :
+Getting started is simple:
 
-1. Allez sur https://www.parlermoinsvite.fr
-2. Créez votre compte gratuit avec mon Code Pro : ${profile.therapist_code}
+1. Go to https://www.clutterpro.com
+2. Create your free account with my Pro Code: ${profile.therapist_code}
 
-À très bientôt !`;
+See you soon!`;
                       const success = await copyToClipboard(emailTemplate);
                       if (success) {
-                        toast.success("Modèle d'email copié !");
+                        toast.success("Email template copied!");
                       } else {
-                        toast.error("Erreur lors de la copie");
+                        toast.error("Failed to copy");
                       }
                     }}
                   >
                     <Copy className="w-4 h-4" />
-                    Copier le modèle d'email
+                    Copy email template
                   </Button>
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  L'email contient votre Code Pro et guide le patient pas à pas pour créer son compte.
+                  The email contains your Pro Code and guides the patient step by step to create their account.
                 </p>
               </CardContent>
             </Card>
@@ -575,10 +575,10 @@ Pour commencer, c'est très simple :
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-purple-700 dark:text-purple-300">
                   <span className="text-xl">🩺</span>
-                  Compte Orthophoniste
+                  SLP Account
                 </CardTitle>
                 <CardDescription>
-                  Votre compte est configuré en tant que professionnel
+                  Your account is configured as a professional
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -611,10 +611,10 @@ Pour commencer, c'est très simple :
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-green-700 dark:text-green-300">
                       <CreditCard className="w-5 h-5" />
-                      Abonnement actif
+                      Active subscription
                     </CardTitle>
                     <CardDescription>
-                      Votre abonnement est actif. Merci pour votre confiance !
+                      Your subscription is active. Thank you for your trust!
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -623,7 +623,7 @@ Pour commencer, c'est très simple :
                       onClick={() => navigate("/pro/subscription/manage")}
                       className="w-full"
                     >
-                      Gérer mon abonnement
+                      Manage my subscription
                     </Button>
                   </CardContent>
                 </Card>
@@ -636,16 +636,16 @@ Pour commencer, c'est très simple :
                   <CardHeader className="pb-2">
                     <CardTitle className={`flex items-center gap-2 ${daysRemaining <= 7 ? 'text-amber-700 dark:text-amber-300' : 'text-blue-700 dark:text-blue-300'}`}>
                       <Clock className="w-5 h-5" />
-                      Période d'essai
+                      Trial period
                     </CardTitle>
                     <CardDescription className="flex items-center gap-2">
                       {daysRemaining <= 7 ? (
                         <span className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400 font-medium">
                           <AlertTriangle className="w-4 h-4" />
-                          Plus que {daysRemaining} jour{daysRemaining > 1 ? 's' : ''} d'essai
+                          Only {daysRemaining} day{daysRemaining > 1 ? 's' : ''} left in trial
                         </span>
                       ) : (
-                        <span>Il vous reste <strong className="text-foreground">{daysRemaining} jours</strong> d'essai gratuit</span>
+                        <span>You have <strong className="text-foreground">{daysRemaining} days</strong> left in your free trial</span>
                       )}
                     </CardDescription>
                   </CardHeader>
@@ -657,14 +657,14 @@ Pour commencer, c'est très simple :
                       />
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      À la fin de votre essai, vos patients perdront l'accès à leurs exercices et vous ne pourrez plus consulter leurs données.
+                      At the end of your trial, your patients will lose access to their exercises and you will no longer be able to view their data.
                     </p>
-                    <Button 
+                    <Button
                       onClick={() => navigate("/pro/subscribe")}
                       className="w-full gap-2"
                     >
                       <CreditCard className="w-4 h-4" />
-                      S'abonner maintenant
+                      Subscribe now
                     </Button>
                   </CardContent>
                 </Card>
@@ -677,22 +677,22 @@ Pour commencer, c'est très simple :
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-red-700 dark:text-red-300">
                       <AlertTriangle className="w-5 h-5" />
-                      Essai expiré
+                      Trial expired
                     </CardTitle>
                     <CardDescription className="text-red-600 dark:text-red-400">
-                      Votre période d'essai est terminée
+                      Your trial period has ended
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p className="text-sm text-muted-foreground">
-                      Vos patients n'ont plus accès à leurs exercices. Réactivez votre compte pour restaurer l'accès.
+                      Your patients no longer have access to their exercises. Reactivate your account to restore access.
                     </p>
-                    <Button 
+                    <Button
                       onClick={() => navigate("/pro/subscribe")}
                       className="w-full gap-2 bg-red-600 hover:bg-red-700"
                     >
                       <CreditCard className="w-4 h-4" />
-                      Réactiver mon compte
+                      Reactivate my account
                     </Button>
                   </CardContent>
                 </Card>
@@ -718,10 +718,10 @@ Pour commencer, c'est très simple :
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-green-700 dark:text-green-300">
                   <CreditCard className="w-5 h-5" />
-                  Abonnement Patient Autonome
+                  Solo Patient Subscription
                 </CardTitle>
                 <CardDescription>
-                  Votre abonnement est actif — 9€/mois
+                  Your subscription is active — $9/mo
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -730,7 +730,7 @@ Pour commencer, c'est très simple :
                   onClick={() => navigate("/subscription/manage")}
                   className="w-full"
                 >
-                  Gérer mon abonnement
+                  Manage my subscription
                 </Button>
               </CardContent>
             </Card>
@@ -744,27 +744,27 @@ Pour commencer, c'est très simple :
                 Support
               </CardTitle>
               <CardDescription>
-                Besoin d'aide ? Contactez notre équipe
+                Need help? Contact our team
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <p className="text-sm text-muted-foreground">
-                  Une question ? Notre équipe est là pour vous aider.
+                  Have a question? Our team is here to help.
                 </p>
                 <div className="flex items-center gap-2 p-3 bg-muted/50 rounded-lg">
                   <Mail className="w-4 h-4 text-muted-foreground shrink-0" />
-                  <code className="text-sm font-medium flex-1">contact@parlermoinsvite.fr</code>
+                  <code className="text-sm font-medium flex-1">support@clutterpro.com</code>
                   <Button 
                     variant="ghost" 
                     size="sm"
                     className="shrink-0"
                     onClick={async () => {
-                      const success = await copyToClipboard("contact@parlermoinsvite.fr");
+                      const success = await copyToClipboard("support@clutterpro.com");
                       if (success) {
-                        toast.success("Email copié !");
+                        toast.success("Email copied!");
                       } else {
-                        toast.error("Erreur lors de la copie");
+                        toast.error("Failed to copy");
                       }
                     }}
                   >
@@ -779,10 +779,10 @@ Pour commencer, c'est très simple :
           <div className="flex flex-col sm:flex-row gap-4">
             <Button onClick={handleSave} disabled={saving} className="flex-1 gap-2">
               {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
-              Enregistrer
+              Save
             </Button>
             <Button variant="outline" onClick={handleSignOut} className="flex-1">
-              Se déconnecter
+              Sign out
             </Button>
           </div>
         </motion.div>

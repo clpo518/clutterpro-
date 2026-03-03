@@ -14,39 +14,39 @@ interface InactivityReminderEmailProps {
 }
 
 export function InactivityReminderEmail(props: InactivityReminderEmailProps) {
-  const { userName = 'Cher utilisateur', daysSinceLastSession, currentStreak, practiceUrl } = props
+  const { userName = 'Dear user', daysSinceLastSession, currentStreak, practiceUrl } = props
   return (
-    <BaseLayout preview={`Cela fait ${daysSinceLastSession} jour${daysSinceLastSession > 1 ? 's' : ''} sans pratique — reprenez en 3 minutes.`}>
+    <BaseLayout preview={`It's been ${daysSinceLastSession} day${daysSinceLastSession > 1 ? 's' : ''} without practice — get back in 3 minutes.`}>
       <Heading style={heading}>
-        Cela fait {daysSinceLastSession} jour{daysSinceLastSession > 1 ? 's' : ''} sans pratique
+        It's been {daysSinceLastSession} day{daysSinceLastSession > 1 ? 's' : ''} without practice
       </Heading>
 
-      <Text style={paragraph}>Bonjour {userName},</Text>
+      <Text style={paragraph}>Hi {userName},</Text>
 
       <Text style={paragraph}>
-        Votre dernière session remonte à {daysSinceLastSession} jour{daysSinceLastSession > 1 ? 's' : ''}.
-        La recherche montre que 5 minutes quotidiennes sont plus efficaces qu'une longue session hebdomadaire — votre cerveau a besoin de répétition pour ancrer de nouvelles habitudes.
+        Your last session was {daysSinceLastSession} day{daysSinceLastSession > 1 ? 's' : ''} ago.
+        Research shows that 5 daily minutes are more effective than one long weekly session — your brain needs repetition to build new habits.
       </Text>
 
       {currentStreak > 0 && (
         <Text style={paragraph}>
-          Vous avez une série de {currentStreak} jour{currentStreak > 1 ? 's' : ''} à préserver — une micro-session de 3 minutes suffit pour la maintenir.
+          You have a {currentStreak}-day streak to protect — a 3-minute micro-session is all it takes to keep it going.
         </Text>
       )}
 
       <Text style={paragraph}>
-        Reprenez là où vous en étiez : lancez un exercice, lisez quelques phrases, et c'est fait.
+        Pick up right where you left off: launch an exercise, read a few sentences, and you're done.
       </Text>
 
       <Button style={button} href={practiceUrl}>
-        Reprendre l'entraînement
+        Resume practice
       </Button>
 
       <Text style={tip}>
-        💡 Astuce : associez votre pratique à une habitude existante — après le café, pendant une pause, avant de dormir.
+        💡 Tip: Pair your practice with an existing habit — after coffee, during a break, before bed.
       </Text>
 
-      <Text style={signatureName}>L'équipe Parler Moins Vite</Text>
+      <Text style={signatureName}>The ClutterPro Team</Text>
     </BaseLayout>
   )
 }

@@ -111,7 +111,7 @@ serve(async (req) => {
             userName: patient.full_name || authUser.user.email.split("@")[0],
             daysSinceLastSession,
             currentStreak: patient.current_streak || 0,
-            practiceUrl: "https://www.parlermoinsvite.fr/practice",
+            practiceUrl: "https://www.clutterpro.com/practice",
           });
 
           if (emailResult.success) {
@@ -207,15 +207,15 @@ serve(async (req) => {
 
             const emailResult = await sendEmail("weekly_report", authUser.user.email, {
               userName: profile.full_name || authUser.user.email.split("@")[0],
-              weekStartDate: weekStart.toLocaleDateString("fr-FR"),
-              weekEndDate: weekEnd.toLocaleDateString("fr-FR"),
+              weekStartDate: weekStart.toLocaleDateString("en-US"),
+              weekEndDate: weekEnd.toLocaleDateString("en-US"),
               totalSessions,
               totalMinutes,
               averageSps,
               targetSps,
               currentStreak: profile.current_streak || 0,
               improvement,
-              practiceUrl: "https://www.parlermoinsvite.fr/practice",
+              practiceUrl: "https://www.clutterpro.com/practice",
             });
 
             if (emailResult.success) {
@@ -303,8 +303,8 @@ serve(async (req) => {
           const { data: adminUser } = await supabaseAdmin.auth.admin.getUserById(adminId);
           if (adminUser?.user?.email) {
             const emailResult = await sendEmail("admin_weekly_digest", adminUser.user.email, {
-              weekStartDate: weekStart.toLocaleDateString("fr-FR"),
-              weekEndDate: weekEnd.toLocaleDateString("fr-FR"),
+              weekStartDate: weekStart.toLocaleDateString("en-US"),
+              weekEndDate: weekEnd.toLocaleDateString("en-US"),
               totalUsers,
               newTherapists,
               newPatients,
@@ -318,7 +318,7 @@ serve(async (req) => {
               deepgramCostWeek,
               deepgramCostMonth,
               deepgramCostTotal,
-              dashboardUrl: "https://www.parlermoinsvite.fr/admin",
+              dashboardUrl: "https://www.clutterpro.com/admin",
             });
 
             if (emailResult.success) {
@@ -374,7 +374,7 @@ serve(async (req) => {
               therapistName: therapist.full_name || authUser.user.email.split("@")[0],
               daysRemaining,
               patientsCount: patientsCount || 0,
-              subscribeUrl: "https://www.parlermoinsvite.fr/pro/subscription",
+              subscribeUrl: "https://www.clutterpro.com/pro/subscription",
               referralCode: therapist.referral_code || null,
             });
 
@@ -417,7 +417,7 @@ serve(async (req) => {
             const emailResult = await sendEmail("b2c_trial_expiring", authUser.user.email, {
               patientName: patient.full_name || authUser.user.email.split("@")[0],
               daysRemaining,
-              subscribeUrl: "https://www.parlermoinsvite.fr/dashboard",
+              subscribeUrl: "https://www.clutterpro.com/dashboard",
             });
 
             if (emailResult.success) {
@@ -473,7 +473,7 @@ serve(async (req) => {
               if (authUser?.user?.email) {
                 const emailResult = await sendEmail("therapist_expiring_patient", authUser.user.email, {
                   patientName: patient.full_name || authUser.user.email.split("@")[0],
-                  therapistName: therapist.full_name || "votre orthophoniste",
+                  therapistName: therapist.full_name || "your SLP",
                   daysRemaining,
                 });
 
@@ -536,8 +536,8 @@ serve(async (req) => {
           const emailResult = await sendEmail("therapist_no_patient", authUser.user.email, {
             therapistName: therapist.full_name || authUser.user.email.split("@")[0],
             therapistCode: therapist.therapist_code || null,
-            dashboardUrl: "https://www.parlermoinsvite.fr/dashboard/therapist",
-            sessionLiveUrl: "https://www.parlermoinsvite.fr/session-live",
+            dashboardUrl: "https://www.clutterpro.com/dashboard/therapist",
+            sessionLiveUrl: "https://www.clutterpro.com/session-live",
           });
 
           if (emailResult.success) {

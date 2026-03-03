@@ -4,13 +4,13 @@ import {
   DialogContent,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { 
-  Mic, 
-  Target, 
-  TrendingUp, 
+import {
+  Mic,
+  Target,
+  TrendingUp,
   Award,
   Stethoscope,
-  ChevronRight, 
+  ChevronRight,
   ChevronLeft,
   PartyPopper
 } from "lucide-react";
@@ -26,8 +26,8 @@ interface PatientWelcomeModalProps {
 const slides = [
   {
     icon: PartyPopper,
-    title: "Bienvenue sur ParlerMoinsVite !",
-    description: "Merci de nous faire confiance. Vous allez découvrir un outil conçu pour vous aider à maîtriser votre débit de parole, à votre rythme.",
+    title: "Welcome to ClutterPro!",
+    description: "Thank you for trusting us. You're about to discover a tool designed to help you manage your speech rate, at your own pace.",
     visual: "welcome",
     color: "from-primary to-emerald-500",
     iconBg: "bg-primary/10",
@@ -35,8 +35,8 @@ const slides = [
   },
   {
     icon: Target,
-    title: "Votre objectif personnalisé",
-    description: "En fonction de votre âge, l'application calcule automatiquement votre vitesse de parole cible. Pas de comparaison inutile !",
+    title: "Your personalized goal",
+    description: "Based on your age, the app automatically calculates your target speech rate. No pointless comparisons!",
     visual: "target",
     color: "from-primary to-primary/80",
     iconBg: "bg-primary/10",
@@ -44,8 +44,8 @@ const slides = [
   },
   {
     icon: Mic,
-    title: "Entraînez-vous chaque jour",
-    description: "5 à 10 minutes suffisent. Lisez à voix haute, l'application mesure votre débit en temps réel et vous guide.",
+    title: "Practice 5 min/day",
+    description: "5 to 10 minutes is all it takes. Read aloud, and the app measures your rate in real time and guides you.",
     visual: "practice",
     color: "from-blue-500 to-cyan-500",
     iconBg: "bg-blue-100 dark:bg-blue-900/30",
@@ -53,8 +53,8 @@ const slides = [
   },
   {
     icon: TrendingUp,
-    title: "Visualisez vos progrès",
-    description: "Courbes d'évolution, séries d'entraînement, scores... Tout est là pour vous motiver à continuer.",
+    title: "Track your progress",
+    description: "Progress charts, training streaks, scores... Everything is here to keep you motivated.",
     visual: "progress",
     color: "from-green-500 to-emerald-500",
     iconBg: "bg-green-100 dark:bg-green-900/30",
@@ -62,8 +62,8 @@ const slides = [
   },
   {
     icon: Stethoscope,
-    title: "Votre orthophoniste vous suit",
-    description: "Vos sessions sont partagées avec votre praticien(e). Il/elle peut vous envoyer des exercices ciblés et des encouragements.",
+    title: "Your SLP follows along",
+    description: "Your sessions are shared with your clinician. They can send you targeted exercises and encouragement.",
     visual: "therapist",
     color: "from-purple-500 to-violet-500",
     iconBg: "bg-purple-100 dark:bg-purple-900/30",
@@ -71,8 +71,8 @@ const slides = [
   },
   {
     icon: Award,
-    title: "Prêt(e) à commencer ?",
-    description: "La régularité est la clé. Même 5 minutes par jour font la différence. Lancez votre premier exercice !",
+    title: "Ready to get started?",
+    description: "Consistency is the key. Even 5 minutes a day makes a difference. Launch your first exercise!",
     visual: "ready",
     color: "from-amber-500 to-orange-500",
     iconBg: "bg-amber-100 dark:bg-amber-900/30",
@@ -130,13 +130,13 @@ const PatientWelcomeModal = ({ open, onClose, patientName }: PatientWelcomeModal
                 </motion.span>
               ))}
             </div>
-            <motion.p 
+            <motion.p
               className="text-sm text-muted-foreground"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
             >
-              {patientName ? `${patientName}, l'aventure commence !` : "Votre aventure commence maintenant !"}
+              {patientName ? `${patientName}, your journey begins!` : "Your journey begins now!"}
             </motion.p>
           </div>
         );
@@ -144,21 +144,21 @@ const PatientWelcomeModal = ({ open, onClose, patientName }: PatientWelcomeModal
         return (
           <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs text-muted-foreground">Votre objectif</span>
-              <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">Personnalisé</span>
+              <span className="text-xs text-muted-foreground">Your goal</span>
+              <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">Personalized</span>
             </div>
             <div className="flex items-baseline gap-2">
               <span className="text-3xl font-bold text-primary">4.2</span>
-              <span className="text-sm text-muted-foreground">syllabes/sec</span>
+              <span className="text-sm text-muted-foreground">syll./sec</span>
             </div>
-            <p className="text-xs text-muted-foreground mt-2">Adapté à votre tranche d'âge</p>
+            <p className="text-xs text-muted-foreground mt-2">Adapted to your age group</p>
           </div>
         );
       case "practice":
         return (
           <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
             <div className="flex items-center gap-4">
-              <motion.div 
+              <motion.div
                 className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center"
                 animate={{ scale: [1, 1.1, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
@@ -167,14 +167,14 @@ const PatientWelcomeModal = ({ open, onClose, patientName }: PatientWelcomeModal
               </motion.div>
               <div className="flex-1">
                 <div className="h-2 bg-muted rounded-full overflow-hidden">
-                  <motion.div 
+                  <motion.div
                     className="h-full bg-gradient-to-r from-green-500 to-primary"
                     initial={{ width: "0%" }}
                     animate={{ width: "65%" }}
                     transition={{ duration: 1.5, ease: "easeOut" }}
                   />
                 </div>
-                <p className="text-xs text-muted-foreground mt-2">Analyse en temps réel...</p>
+                <p className="text-xs text-muted-foreground mt-2">Real-time analysis...</p>
               </div>
             </div>
           </div>
@@ -183,7 +183,7 @@ const PatientWelcomeModal = ({ open, onClose, patientName }: PatientWelcomeModal
         return (
           <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs text-muted-foreground">Cette semaine</span>
+              <span className="text-xs text-muted-foreground">This week</span>
               <span className="text-xs text-green-600 font-medium">+15%</span>
             </div>
             <div className="flex items-end gap-1 h-16">
@@ -198,8 +198,8 @@ const PatientWelcomeModal = ({ open, onClose, patientName }: PatientWelcomeModal
               ))}
             </div>
             <div className="flex justify-between text-xs text-muted-foreground mt-2">
-              <span>Lun</span>
-              <span>Dim</span>
+              <span>Mon</span>
+              <span>Sun</span>
             </div>
           </div>
         );
@@ -211,9 +211,9 @@ const PatientWelcomeModal = ({ open, onClose, patientName }: PatientWelcomeModal
                 <Stethoscope className="w-5 h-5 text-purple-600 dark:text-purple-400" />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-medium">Nouveau message</p>
+                <p className="text-sm font-medium">New message</p>
                 <p className="text-xs text-muted-foreground mt-1">
-                  "Bravo pour ta régularité ! Continue comme ça 💪"
+                  "Great job staying consistent! Keep it up 💪"
                 </p>
               </div>
             </div>
@@ -236,7 +236,7 @@ const PatientWelcomeModal = ({ open, onClose, patientName }: PatientWelcomeModal
               ))}
             </div>
             <p className="text-sm text-muted-foreground">
-              Votre parcours commence maintenant
+              Your journey starts now
             </p>
           </div>
         );
@@ -249,11 +249,11 @@ const PatientWelcomeModal = ({ open, onClose, patientName }: PatientWelcomeModal
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-lg p-0 overflow-hidden">
         <div className={`h-2 bg-gradient-to-r ${slide.color}`} />
-        
+
         <div className="p-6 sm:p-8">
           <div className="text-center mb-2">
             <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-              Comment ça marche
+              How it works
             </span>
           </div>
 
@@ -292,8 +292,8 @@ const PatientWelcomeModal = ({ open, onClose, patientName }: PatientWelcomeModal
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 className={`h-2 rounded-full transition-all ${
-                  index === currentSlide 
-                    ? "w-6 bg-primary" 
+                  index === currentSlide
+                    ? "w-6 bg-primary"
                     : "w-2 bg-muted hover:bg-muted-foreground/50"
                 }`}
               />
@@ -303,37 +303,37 @@ const PatientWelcomeModal = ({ open, onClose, patientName }: PatientWelcomeModal
           {/* Navigation */}
           <div className="flex gap-3">
             {currentSlide > 0 && (
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 onClick={handlePrev}
                 className="gap-1"
               >
                 <ChevronLeft className="w-4 h-4" />
-                Retour
+                Back
               </Button>
             )}
-            <Button 
+            <Button
               onClick={handleNext}
               className={`flex-1 gap-1 bg-gradient-to-r ${slide.color} hover:opacity-90 text-white`}
             >
               {currentSlide < slides.length - 1 ? (
                 <>
-                  Suivant
+                  Next
                   <ChevronRight className="w-4 h-4" />
                 </>
               ) : (
-                "Commencer mon entraînement"
+                "Get started"
               )}
             </Button>
           </div>
 
           {/* Skip link */}
           {currentSlide < slides.length - 1 && (
-            <button 
+            <button
               onClick={onClose}
               className="w-full text-center text-sm text-muted-foreground hover:text-foreground mt-4 transition-colors"
             >
-              Passer l'introduction
+              Skip introduction
             </button>
           )}
         </div>

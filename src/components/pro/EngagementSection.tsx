@@ -58,15 +58,15 @@ const MockRetentionTable = () => {
   ];
 
   const statusConfig = {
-    active: { label: "Actif", color: "bg-emerald-500", textColor: "text-emerald-400" },
-    slipping: { label: "En baisse", color: "bg-amber-500", textColor: "text-amber-400" },
-    dropout: { label: "Abandon", color: "bg-red-500", textColor: "text-red-400" },
+    active: { label: "Active", color: "bg-emerald-500", textColor: "text-emerald-400" },
+    slipping: { label: "Declining", color: "bg-amber-500", textColor: "text-amber-400" },
+    dropout: { label: "Dropout", color: "bg-red-500", textColor: "text-red-400" },
   };
 
   return (
     <div className="bg-slate-800/80 rounded-lg border border-slate-700/50 overflow-hidden">
       <div className="px-3 py-2 bg-slate-700/50 border-b border-slate-600/50">
-        <span className="text-xs font-medium text-slate-300">Suivi Rétention</span>
+        <span className="text-xs font-medium text-slate-300">Retention Tracking</span>
       </div>
       <div className="divide-y divide-slate-700/50">
         {patients.map((patient, idx) => (
@@ -89,18 +89,18 @@ export const EngagementSection = () => {
   const features = [
     {
       icon: Flame,
-      title: "Série de jours consécutifs",
-      description: "Le patient voit son nombre de jours d'entraînement d'affilée. S'il rate un jour, la série repart à zéro — un levier psychologique puissant.",
+      title: "Consecutive day streak",
+      description: "The patient sees their training day streak. Miss one day and the streak resets — a powerful motivator for daily consistency.",
     },
     {
       icon: Target,
-      title: "Objectif quotidien personnalisable",
-      description: "Par défaut : 3 minutes/jour. Quand l'objectif est atteint, une animation de félicitations renforce la motivation.",
+      title: "Customizable daily goal",
+      description: "Default: 3 minutes/day. When the goal is reached, a congratulations animation reinforces the motivation.",
     },
     {
       icon: Bell,
-      title: "Alertes de décrochage automatiques",
-      description: "Voyez instantanément quels patients sont Actifs, En baisse ou en Abandon. Intervenez avant qu'il ne soit trop tard.",
+      title: "Automatic dropout alerts",
+      description: "See instantly which patients are Active, Declining, or Dropping out. Intervene before it's too late.",
     },
   ];
 
@@ -119,14 +119,14 @@ export const EngagementSection = () => {
               Nouveau
             </Badge>
             <Badge variant="outline" className="text-slate-400 border-slate-600">
-              Inspiré des apps de coaching
+              Inspired by coaching apps
             </Badge>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            L'application qui motive vos patients
+            The app that motivates your patients
           </h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Comment savoir si votre patient s'entraîne vraiment ? Notre système gamifié l'encourage à pratiquer tous les jours — et vous alerte s'il décroche.
+            How do you know if your patient is really practicing? Our gamified system encourages daily practice — and alerts you if they drop off.
           </p>
         </motion.div>
 
@@ -173,10 +173,10 @@ export const EngagementSection = () => {
               <Check className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
               <div>
                 <p className="text-sm text-emerald-400 font-medium">
-                  Résultat observé
+                  Observed outcome
                 </p>
                 <p className="text-sm text-slate-400 mt-1">
-                  Les patients avec un objectif quotidien s'entraînent <span className="text-white font-medium">3x plus régulièrement</span> que ceux sans suivi.
+                  Patients with a daily goal practice <span className="text-white font-medium">3x more regularly</span> than those without tracking.
                 </p>
               </div>
             </motion.div>
@@ -202,11 +202,11 @@ export const EngagementSection = () => {
                 <div className="flex items-center justify-center gap-8 py-4">
                   <div className="text-center">
                     <MockStreakBadge />
-                    <p className="text-xs text-slate-500 mt-2">Série en cours</p>
+                    <p className="text-xs text-slate-500 mt-2">Current streak</p>
                   </div>
                   <div className="text-center">
                     <MockDailyGoalRing progress={66} />
-                    <p className="text-xs text-slate-500 mt-2">Objectif du jour</p>
+                    <p className="text-xs text-slate-500 mt-2">Daily goal</p>
                   </div>
                 </div>
 
@@ -216,7 +216,7 @@ export const EngagementSection = () => {
                 {/* Therapist view header */}
                 <div className="flex items-center justify-between">
                   <span className="text-xs uppercase tracking-wider text-slate-500 font-medium">
-                    Vue Orthophoniste
+                    SLP View
                   </span>
                   <Users className="w-4 h-4 text-slate-500" />
                 </div>
@@ -228,7 +228,7 @@ export const EngagementSection = () => {
                 <div className="flex items-center gap-2 p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
                   <TrendingUp className="w-4 h-4 text-amber-500" />
                   <p className="text-xs text-amber-400">
-                    2 patients nécessitent une relance cette semaine
+                    2 patients need follow-up this week
                   </p>
                 </div>
               </CardContent>

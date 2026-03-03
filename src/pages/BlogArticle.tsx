@@ -113,9 +113,9 @@ export default function BlogArticle() {
   // Contextual CTAs for diagnostic article
   const isDiagnosticArticle = post.slug === 'test-vocal-debit-parole-gratuit';
   const inlineCTALink = isDiagnosticArticle ? '/diagnostic' : undefined;
-  const inlineCTALabel = isDiagnosticArticle ? 'Tester mon débit gratuitement' : undefined;
+  const inlineCTALabel = isDiagnosticArticle ? 'Test my speech rate for free' : undefined;
   const bottomCTALink = isDiagnosticArticle ? '/diagnostic' : '/auth?tab=signup';
-  const bottomCTALabel = isDiagnosticArticle ? 'Faire le test vocal gratuit' : 'Tester mon débit gratuitement';
+  const bottomCTALabel = isDiagnosticArticle ? 'Take the free voice test' : 'Test my speech rate for free';
 
   return (
     <div className="min-h-screen bg-background">
@@ -131,7 +131,7 @@ export default function BlogArticle() {
                 className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6"
               >
                 <ArrowLeft className="w-4 h-4" />
-                Retour au blog
+                Back to blog
               </Link>
 
               <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
@@ -150,10 +150,10 @@ export default function BlogArticle() {
                 <span className="text-muted-foreground/50">•</span>
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4" />
-                  <span>{post.readTime} de lecture</span>
+                  <span>{post.readTime} read</span>
                 </div>
                 <span className="text-muted-foreground/50">•</span>
-                <span>{new Date(post.date).toLocaleDateString('fr-FR', {
+                <span>{new Date(post.date).toLocaleDateString('en-US', {
                   day: 'numeric',
                   month: 'long',
                   year: 'numeric'
@@ -180,11 +180,11 @@ export default function BlogArticle() {
                       <Zap className="w-6 h-6 text-primary" />
                     </div>
                     <h3 className="text-xl font-bold text-foreground">
-                      Passez à l'action
+                      Take action
                     </h3>
                   </div>
                   <p className="text-muted-foreground mb-6">
-                    Ne restez pas dans la théorie. Testez votre débit de parole et commencez votre entraînement dès maintenant. C'est gratuit.
+                    Don't stay stuck in theory. Test your speech rate and start your practice right now. It's free.
                   </p>
                   <Button asChild size="lg">
                     <Link to={bottomCTALink}>
@@ -200,7 +200,7 @@ export default function BlogArticle() {
                 relatedPosts={relatedPosts} 
                 audience={post.audience} 
                 ctaLink={isDiagnosticArticle ? '/diagnostic' : undefined}
-                ctaLabel={isDiagnosticArticle ? 'Faire le test vocal (30s)' : undefined}
+                ctaLabel={isDiagnosticArticle ? 'Take the voice test (30s)' : undefined}
               />
             </div>
           </div>
@@ -210,14 +210,14 @@ export default function BlogArticle() {
         <section className="py-16 bg-gradient-to-r from-primary/10 via-teal-500/10 to-primary/10">
           <div className="container px-4 md:px-6 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              Passez de la théorie à la pratique
+              From theory to practice
             </h2>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-              Entraînez-vous avec notre outil de biofeedback visuel. Reprenez le contrôle de votre élocution.
+              Train with our visual biofeedback tool. Take control of your speech.
             </p>
             <Button asChild size="lg">
               <Link to="/auth?tab=signup">
-                Créer mon compte gratuit
+                Create my free account
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>

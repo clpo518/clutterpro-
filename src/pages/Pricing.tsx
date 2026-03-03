@@ -16,7 +16,7 @@ import { Footer } from "@/components/landing/Footer";
 const Pricing = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  
+
   // Determine which tab to show based on URL param or default to "pro"
   const audienceParam = searchParams.get("audience");
   const defaultTab = audienceParam === "patient" ? "patient" : "pro";
@@ -27,34 +27,34 @@ const Pricing = () => {
 
   const proPlans = [
     {
-      id: "essentiel",
-      name: "Offre 3 patients",
-      price: "14,90",
+      id: "starter",
+      name: "3 Patients",
+      price: "29",
       seats: 3,
-      tagline: "L'équivalent de 3 cafés par mois.",
+      tagline: "Less than a coffee a day.",
       features: [
-        "3 comptes patients actifs",
-        "Calcul syllabe/seconde en temps réel",
-        "Plus de 60 exercices variés",
-        "Bilan pré-rempli automatique",
-        "Prescriptions à distance",
-        "Analyse audio & waveforms",
+        "3 active patient accounts",
+        "Real-time syllables/second measurement",
+        "60+ varied exercises",
+        "Auto-filled clinical assessment",
+        "Remote exercise prescriptions",
+        "Audio analysis & waveforms",
       ],
       popular: false,
     },
     {
-      id: "expert",
-      name: "Offre 5 patients",
-      price: "19,90",
+      id: "pro",
+      name: "5 Patients",
+      price: "39",
       seats: 5,
-      tagline: "L'équivalent de 4 cafés par mois.",
+      tagline: "Most popular among SLPs.",
       features: [
-        "5 comptes patients actifs",
-        "Calcul syllabe/seconde en temps réel",
-        "Plus de 60 exercices variés",
-        "Bilan pré-rempli automatique",
-        "Prescriptions à distance",
-        "Analyse audio & waveforms",
+        "5 active patient accounts",
+        "Real-time syllables/second measurement",
+        "60+ varied exercises",
+        "Auto-filled clinical assessment",
+        "Remote exercise prescriptions",
+        "Audio analysis & waveforms",
       ],
       popular: true,
     },
@@ -75,10 +75,10 @@ const Pricing = () => {
               className="text-center mb-8"
             >
               <h1 className="text-3xl md:text-4xl font-semibold mb-4">
-                Nos tarifs
+                Pricing
               </h1>
               <p className="text-muted-foreground max-w-xl mx-auto mb-8">
-                Une tarification simple et transparente, adaptée à chaque profil.
+                Simple, transparent pricing for every practice. Designed for SLPs. Trusted by ASHA members.
               </p>
 
               {/* Audience Toggle Tabs */}
@@ -86,7 +86,7 @@ const Pricing = () => {
                 <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
                   <TabsTrigger value="pro" className="flex items-center gap-2">
                     <Stethoscope className="w-4 h-4" />
-                    Orthophonistes
+                    SLPs
                   </TabsTrigger>
                   <TabsTrigger value="patient" className="flex items-center gap-2">
                     <User className="w-4 h-4" />
@@ -125,11 +125,11 @@ interface PlanType {
   popular: boolean;
 }
 
-const ProPricingContent = ({ 
-  plans, 
-  navigate 
-}: { 
-  plans: PlanType[]; 
+const ProPricingContent = ({
+  plans,
+  navigate
+}: {
+  plans: PlanType[];
   navigate: ReturnType<typeof useNavigate>;
 }) => (
   <>
@@ -141,14 +141,14 @@ const ProPricingContent = ({
     >
       <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
         <Zap className="w-4 h-4" />
-        Essai gratuit 30 jours
+        30-day free trial
       </div>
       <h2 className="text-2xl md:text-3xl font-semibold mb-3">
-        Gagnez du temps clinique, gardez le lien.
+        Save clinical time. Stay connected with your patients.
       </h2>
       <p className="text-muted-foreground max-w-2xl mx-auto">
-        Suivez la progression de vos patients entre les séances avec des métriques objectives. 
-        <strong className="text-foreground"> Gratuit pour vos patients</strong>, c'est vous qui gérez l'abonnement.
+        Track your patients' progress between sessions with objective metrics.
+        <strong className="text-foreground"> Free for your patients</strong> — you manage the subscription.
       </p>
     </motion.div>
 
@@ -162,14 +162,14 @@ const ProPricingContent = ({
           transition={{ delay: index * 0.1 }}
         >
           <Card className={`relative h-full ${
-            plan.popular 
-              ? "border-2 border-primary shadow-lg shadow-primary/10" 
+            plan.popular
+              ? "border-2 border-primary shadow-lg shadow-primary/10"
               : "border-border"
           }`}>
             {plan.popular && (
               <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                 <span className="px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-medium">
-                  Populaire
+                  Most popular
                 </span>
               </div>
             )}
@@ -183,13 +183,13 @@ const ProPricingContent = ({
               {/* Price */}
               <div className="text-center">
                 <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-4xl font-bold">{plan.price}€</span>
-                  <span className="text-muted-foreground">/mois</span>
+                  <span className="text-4xl font-bold">${plan.price}</span>
+                  <span className="text-muted-foreground">/mo</span>
                 </div>
                 <div className="flex items-center justify-center gap-2 mt-2">
                   <Coffee className="w-4 h-4 text-muted-foreground" />
                   <span className="text-sm text-muted-foreground">
-                    {plan.id === "essentiel" ? "3 cafés" : "4 cafés"}
+                    {plan.id === "starter" ? "Less than $1/day" : "Best value"}
                   </span>
                 </div>
               </div>
@@ -198,7 +198,7 @@ const ProPricingContent = ({
               <div className="p-3 rounded-xl bg-primary/10 border border-primary/20 text-center">
                 <div className="flex items-center justify-center gap-2 text-primary font-bold">
                   <Users className="w-5 h-5" />
-                  {plan.seats} Comptes Patients Actifs
+                  {plan.seats} Active Patient Accounts
                 </div>
               </div>
 
@@ -220,7 +220,7 @@ const ProPricingContent = ({
                 size="lg"
                 onClick={() => navigate("/auth?tab=signup")}
               >
-                Essai gratuit 30 jours
+                Start free trial
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </CardContent>
@@ -233,16 +233,16 @@ const ProPricingContent = ({
     <div className="max-w-5xl mx-auto space-y-8 mt-16">
       <div className="text-center">
         <h2 className="text-2xl font-semibold mb-2">
-          Comment fonctionne le système de comptes patients ?
+          How do patient accounts work?
         </h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Gérez votre file active en toute flexibilité. Archivez les patients en pause, réactivez-les quand ils reviennent.
+          Manage your active caseload with full flexibility. Archive patients on pause and reactivate them when they return.
         </p>
       </div>
 
       {/* Visual explanation */}
       <div className="grid md:grid-cols-3 gap-6">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -255,9 +255,9 @@ const ProPricingContent = ({
           <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4 mt-2">
             <UserPlus className="w-6 h-6 text-green-600" />
           </div>
-          <h3 className="font-semibold mb-2 text-center">Patients actifs</h3>
+          <h3 className="font-semibold mb-2 text-center">Active patients</h3>
           <p className="text-sm text-muted-foreground text-center">
-            Vos patients en cours de suivi utilisent un compte actif. Ils s'entraînent, vous suivez leur progression.
+            Your current patients use an active account. They practice, you track their progress.
           </p>
           <div className="flex items-center justify-center gap-2 mt-4">
             <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
@@ -272,7 +272,7 @@ const ProPricingContent = ({
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -285,9 +285,9 @@ const ProPricingContent = ({
           <div className="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center mx-auto mb-4 mt-2">
             <Archive className="w-6 h-6 text-amber-600" />
           </div>
-          <h3 className="font-semibold mb-2 text-center">Archiver un patient</h3>
+          <h3 className="font-semibold mb-2 text-center">Archive a patient</h3>
           <p className="text-sm text-muted-foreground text-center">
-            Patient en pause ? Archivez-le en un clic. Ses données sont conservées, le compte est libéré.
+            Patient on pause? Archive them in one click. Their data is preserved, the slot is freed up.
           </p>
           <div className="flex items-center justify-center gap-2 mt-4 text-muted-foreground">
             <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center">
@@ -300,7 +300,7 @@ const ProPricingContent = ({
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -313,19 +313,19 @@ const ProPricingContent = ({
           <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-4 mt-2">
             <RefreshCw className="w-6 h-6 text-blue-600" />
           </div>
-          <h3 className="font-semibold mb-2 text-center">Rotation flexible</h3>
+          <h3 className="font-semibold mb-2 text-center">Flexible rotation</h3>
           <p className="text-sm text-muted-foreground text-center">
-            Réactivez un patient archivé à tout moment. Gérez des dizaines de patients avec seulement 3 ou 5 comptes actifs.
+            Reactivate an archived patient at any time. Manage dozens of patients with just 3 or 5 active slots.
           </p>
           <div className="flex items-center justify-center gap-2 mt-4 text-blue-600 text-sm">
             <RefreshCw className="w-4 h-4" />
-            <span>∞ patients au total</span>
+            <span>Unlimited patients total</span>
           </div>
         </motion.div>
       </div>
 
-      {/* En pratique banner */}
-      <motion.div 
+      {/* In practice banner */}
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -337,9 +337,9 @@ const ProPricingContent = ({
             <Zap className="w-5 h-5 text-amber-600" />
           </div>
           <div>
-            <h4 className="font-semibold mb-1">En pratique</h4>
+            <h4 className="font-semibold mb-1">In practice</h4>
             <p className="text-sm text-muted-foreground">
-              Avec <strong className="text-primary">3 comptes actifs</strong>, vous pouvez suivre 3 patients simultanément. Quand l'un termine sa rééducation, archivez-le et activez un nouveau patient. L'historique complet reste accessible pour les bilans.
+              With <strong className="text-primary">3 active accounts</strong>, you can follow 3 patients simultaneously. When one completes therapy, archive them and activate a new patient. Full history remains accessible for reports.
             </p>
           </div>
         </div>
@@ -350,58 +350,67 @@ const ProPricingContent = ({
     <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground mt-12">
       <div className="flex items-center gap-2">
         <Shield className="w-4 h-4" />
-        Paiement sécurisé
+        Secure payment
       </div>
       <div className="flex items-center gap-2">
         <RotateCcw className="w-4 h-4" />
-        Sans engagement
+        Cancel anytime
       </div>
       <div className="flex items-center gap-2">
         <Headphones className="w-4 h-4" />
-        Support réactif
+        Responsive support
       </div>
     </div>
 
     {/* FAQ Pro */}
     <div className="max-w-2xl mx-auto mt-16">
       <h3 className="text-xl font-semibold text-center mb-6">
-        Questions fréquentes
+        Frequently asked questions
       </h3>
-      
+
       <Accordion type="single" collapsible className="space-y-3">
         <AccordionItem value="trial" className="bg-card border border-border rounded-xl px-5">
           <AccordionTrigger className="text-left hover:no-underline py-4">
-            <span className="font-medium text-sm">Comment fonctionne l'essai gratuit ?</span>
+            <span className="font-medium text-sm">How does the free trial work?</span>
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground pb-4 text-sm">
-            Vous avez 30 jours pour tester toutes les fonctionnalités avec jusqu'à 3 patients. Aucune carte bancaire requise pendant l'essai. À la fin, choisissez l'offre qui vous convient.
+            You get 30 days to test all features with up to 3 patients. No credit card required during the trial. At the end, choose the plan that works for you.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="patients" className="bg-card border border-border rounded-xl px-5">
           <AccordionTrigger className="text-left hover:no-underline py-4">
-            <span className="font-medium text-sm">Mes patients doivent-ils payer ?</span>
+            <span className="font-medium text-sm">Do my patients need to pay?</span>
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground pb-4 text-sm">
-            Non, <strong className="text-foreground">c'est gratuit pour vos patients</strong>. Votre abonnement couvre leurs accès. Ils créent simplement leur compte avec votre Code Pro.
+            No, <strong className="text-foreground">it's free for your patients</strong>. Your subscription covers their access. They simply create their account using your Pro Code.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="cancel" className="bg-card border border-border rounded-xl px-5">
           <AccordionTrigger className="text-left hover:no-underline py-4">
-            <span className="font-medium text-sm">Puis-je annuler à tout moment ?</span>
+            <span className="font-medium text-sm">Can I cancel anytime?</span>
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground pb-4 text-sm">
-            Oui, sans engagement. Vous pouvez annuler depuis votre espace à tout moment. L'accès reste actif jusqu'à la fin de la période payée.
+            Yes, no commitment. You can cancel from your account at any time. Access remains active until the end of the paid period.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="data" className="bg-card border border-border rounded-xl px-5">
           <AccordionTrigger className="text-left hover:no-underline py-4">
-            <span className="font-medium text-sm">Les données sont-elles sécurisées ?</span>
+            <span className="font-medium text-sm">Is patient data secure?</span>
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground pb-4 text-sm">
-            Absolument. Hébergement européen, chiffrement, conformité RGPD. Seuls vous et votre patient avez accès aux données de progression.
+            Absolutely. All data is encrypted and stored securely with HIPAA-conscious practices. Only you and your patient have access to their progress data.
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="hipaa" className="bg-card border border-border rounded-xl px-5">
+          <AccordionTrigger className="text-left hover:no-underline py-4">
+            <span className="font-medium text-sm">Is ClutterPro HIPAA-compliant?</span>
+          </AccordionTrigger>
+          <AccordionContent className="text-muted-foreground pb-4 text-sm">
+            ClutterPro does not store Protected Health Information (PHI). Audio is processed in real time and not retained on our servers. Session data (rate scores, session counts) is stored without identifiable health records. Always consult your practice's compliance officer for full HIPAA guidance specific to your workflow.
           </AccordionContent>
         </AccordionItem>
       </Accordion>
@@ -410,9 +419,9 @@ const ProPricingContent = ({
 );
 
 // ============ PATIENT PRICING CONTENT ============
-const PatientPricingContent = ({ 
-  navigate 
-}: { 
+const PatientPricingContent = ({
+  navigate
+}: {
   navigate: ReturnType<typeof useNavigate>;
 }) => (
   <>
@@ -424,14 +433,14 @@ const PatientPricingContent = ({
     >
       <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 text-green-600 text-sm font-medium mb-4">
         <Gift className="w-4 h-4" />
-        Accès complet inclus
+        Full access included
       </div>
       <h2 className="text-2xl md:text-3xl font-semibold mb-3">
-        Gratuit pour vous.
+        Free for you.
       </h2>
       <p className="text-muted-foreground max-w-2xl mx-auto">
-        Votre orthophoniste prend en charge l'abonnement. 
-        Vous accédez à <strong className="text-foreground">toutes les fonctionnalités</strong> sans rien payer.
+        Your SLP covers the subscription.
+        You get access to <strong className="text-foreground">all features</strong> at no cost.
       </p>
     </motion.div>
 
@@ -445,28 +454,28 @@ const PatientPricingContent = ({
       <Card className="p-6 md:p-8 border-2 border-green-500/50 shadow-xl shadow-green-500/10 relative">
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-500 text-white text-sm font-semibold px-4 py-1 rounded-full flex items-center gap-1">
           <Sparkles className="w-4 h-4" />
-          Tout est inclus
+          Everything included
         </div>
 
         <div className="text-center mb-6 pt-2">
-          <h3 className="text-lg font-semibold mb-2">Accès Patient Complet</h3>
+          <h3 className="text-lg font-semibold mb-2">Full Patient Access</h3>
           <div className="flex items-baseline justify-center gap-1">
-            <span className="text-5xl font-bold text-green-500">0€</span>
-            <span className="text-muted-foreground">/mois</span>
+            <span className="text-5xl font-bold text-green-500">$0</span>
+            <span className="text-muted-foreground">/mo</span>
           </div>
           <p className="text-muted-foreground mt-2 text-sm">
-            Inclus dans l'abonnement de votre orthophoniste
+            Included in your SLP's subscription
           </p>
         </div>
 
         <div className="space-y-2.5 mb-6 max-w-sm mx-auto">
           {[
-            "Bibliothèque complète : +60 exercices",
-            "Mesure de vitesse en temps réel",
-            "Détection des disfluences",
-            "Objectifs personnalisés selon votre âge",
-            "Historique et courbes de progression",
-            "Partage audio avec votre orthophoniste",
+            "Full library: 60+ exercises",
+            "Real-time speech rate measurement",
+            "Disfluency detection",
+            "Age-based personalized goals",
+            "History and progress charts",
+            "Audio sharing with your SLP",
           ].map((feature, index) => (
             <div key={index} className="flex items-center gap-3">
               <Check className="w-4 h-4 text-green-500 flex-shrink-0" />
@@ -476,16 +485,16 @@ const PatientPricingContent = ({
         </div>
 
         <div className="text-center">
-          <Button 
+          <Button
             onClick={() => navigate("/auth?tab=signup")}
             className="shadow-lg shadow-primary/25 hover:shadow-xl transition-all"
             size="lg"
           >
-            Créer mon compte patient
+            Create my patient account
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
           <p className="text-xs text-muted-foreground mt-3">
-            Vous aurez besoin du code Pro de votre orthophoniste
+            You'll need your SLP's Pro Code
           </p>
         </div>
       </Card>
@@ -494,17 +503,17 @@ const PatientPricingContent = ({
     {/* How it Works Section */}
     <div className="max-w-3xl mx-auto mb-12">
       <h3 className="text-lg font-semibold text-center mb-6">
-        Comment ça fonctionne ?
+        How does it work?
       </h3>
-      
+
       <Card className="p-5 md:p-8 overflow-hidden">
         {/* Flow Steps */}
         <div className="grid sm:grid-cols-4 gap-4 sm:gap-2">
           {[
-            { icon: Stethoscope, step: 1, title: "Votre orthophoniste", desc: "S'abonne et vous donne son code unique" },
-            { icon: User, step: 2, title: "Vous vous inscrivez", desc: "Créez votre compte avec le code Pro" },
-            { icon: Mic, step: 3, title: "Vous vous entraînez", desc: "5 min/jour avec mesure en temps réel" },
-            { icon: BarChart3, step: 4, title: "Suivi à distance", desc: "Votre ortho suit vos progrès" },
+            { icon: Stethoscope, step: 1, title: "Your SLP", desc: "Subscribes and gives you a unique code" },
+            { icon: User, step: 2, title: "You sign up", desc: "Create your account with the Pro Code" },
+            { icon: Mic, step: 3, title: "You practice", desc: "5 min/day with real-time measurement" },
+            { icon: BarChart3, step: 4, title: "Remote follow-up", desc: "Your SLP tracks your progress" },
           ].map((item, i) => (
             <div key={i} className="text-center">
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-2">
@@ -526,10 +535,10 @@ const PatientPricingContent = ({
               <MessageSquare className="w-4 h-4 text-amber-600" />
             </div>
             <div>
-              <h4 className="font-semibold text-sm mb-1">Pourquoi un code orthophoniste ?</h4>
+              <h4 className="font-semibold text-sm mb-1">Why do I need an SLP code?</h4>
               <p className="text-xs text-muted-foreground">
-                Le bredouillement est un trouble clinique. L'application est <strong className="text-foreground">complémentaire à un suivi professionnel</strong>, 
-                pas un substitut. Le code garantit que vous êtes accompagné(e) par un spécialiste.
+                Cluttering is a clinical disorder. The app is <strong className="text-foreground">complementary to professional therapy</strong>,
+                not a substitute. The code ensures you are supported by a qualified specialist.
               </p>
             </div>
           </div>
@@ -540,51 +549,51 @@ const PatientPricingContent = ({
     {/* FAQ Patient */}
     <div className="max-w-2xl mx-auto mt-12">
       <h3 className="text-lg font-semibold text-center mb-6">
-        Questions fréquentes
+        Frequently asked questions
       </h3>
-      
+
       <Accordion type="single" collapsible className="space-y-3">
         <AccordionItem value="code" className="bg-card border border-border rounded-xl px-5">
           <AccordionTrigger className="text-left hover:no-underline py-4">
-            <span className="font-medium text-sm">Comment obtenir un code orthophoniste ?</span>
+            <span className="font-medium text-sm">How do I get an SLP code?</span>
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground pb-4 text-sm">
-            Demandez à votre orthophoniste s'il/elle utilise ParlerMoinsVite. Si oui, il/elle vous donnera son code Pro unique (format: PRO-XXXXXX). 
-            Si votre praticien ne connaît pas encore l'application, invitez-le à découvrir <Link to="/" className="text-primary hover:underline">l'espace Pro</Link>.
+            Ask your speech-language pathologist if they use ClutterPro. If so, they'll give you their unique Pro Code (format: PRO-XXXXXX).
+            If your clinician doesn't know about the app yet, invite them to discover <Link to="/" className="text-primary hover:underline">the Pro space</Link>.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="free" className="bg-card border border-border rounded-xl px-5">
           <AccordionTrigger className="text-left hover:no-underline py-4">
-            <span className="font-medium text-sm">Pourquoi c'est gratuit pour moi ?</span>
+            <span className="font-medium text-sm">Why is it free for me?</span>
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground pb-4 text-sm">
-            Votre orthophoniste paye un abonnement qui inclut un nombre de "sièges patients". 
-            En vous liant à son compte via le code Pro, vous bénéficiez automatiquement de <strong className="text-foreground">toutes les fonctionnalités</strong> sans frais supplémentaires.
+            Your SLP pays a subscription that includes a number of patient seats.
+            By linking to their account via the Pro Code, you automatically get access to <strong className="text-foreground">all features</strong> at no extra cost.
           </AccordionContent>
         </AccordionItem>
-        
+
         <AccordionItem value="no-therapist" className="bg-card border border-border rounded-xl px-5">
           <AccordionTrigger className="text-left hover:no-underline py-4">
-            <span className="font-medium text-sm">Je n'ai pas d'orthophoniste, que faire ?</span>
+            <span className="font-medium text-sm">I don't have an SLP. What should I do?</span>
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground pb-4 text-sm">
-            Bonne nouvelle : vous pouvez vous inscrire en{" "}
-            <a href="/auth" className="text-primary hover:underline font-semibold">Mode Autonomie</a>{" "}
-            et commencer à vous entraîner dès aujourd'hui, avec un essai gratuit de 7 jours. 
-            Nous recommandons tout de même de consulter un orthophoniste pour un diagnostic personnalisé. 
-            Et si vous trouvez un praticien plus tard, vous pourrez lier votre compte à tout moment pour bénéficier de son suivi.{" "}
-            <a href="/contact" className="text-primary hover:underline">Des questions ?</a>
+            Good news: you can sign up in{" "}
+            <a href="/auth" className="text-primary hover:underline font-semibold">Solo Mode</a>{" "}
+            and start practicing today with a free 7-day trial.
+            We still recommend seeing a speech-language pathologist for a personalized assessment.
+            And if you find a clinician later, you can link your account at any time to benefit from their follow-up.{" "}
+            <a href="/contact" className="text-primary hover:underline">Questions?</a>
           </AccordionContent>
         </AccordionItem>
-        
+
         <AccordionItem value="data" className="bg-card border border-border rounded-xl px-5">
           <AccordionTrigger className="text-left hover:no-underline py-4">
-            <span className="font-medium text-sm">Mes données sont-elles sécurisées ?</span>
+            <span className="font-medium text-sm">Is my data secure?</span>
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground pb-4 text-sm">
-            Absolument. Toutes les données sont hébergées en Europe, chiffrées, et conformes au RGPD. 
-            Seul vous et votre orthophoniste avez accès à vos enregistrements et données de progression.
+            Absolutely. All data is encrypted and stored securely with HIPAA-conscious practices.
+            Only you and your SLP have access to your recordings and progress data.
           </AccordionContent>
         </AccordionItem>
       </Accordion>
@@ -594,15 +603,15 @@ const PatientPricingContent = ({
     <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground mt-10">
       <div className="flex items-center gap-2">
         <Shield className="w-4 h-4" />
-        Données sécurisées RGPD
+        HIPAA-conscious security
       </div>
       <div className="flex items-center gap-2">
         <RotateCcw className="w-4 h-4" />
-        Accès instantané
+        Instant access
       </div>
       <div className="flex items-center gap-2">
         <Headphones className="w-4 h-4" />
-        Support réactif
+        Responsive support
       </div>
     </div>
   </>

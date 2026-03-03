@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 const methodCards = [
   {
     icon: AlertTriangle,
-    title: "Le Problème",
+    title: "The Problem",
     color: "text-red-500",
     bgColor: "bg-red-500/10",
     borderColor: "border-red-500/20",
@@ -14,19 +14,19 @@ const methodCards = [
   },
   {
     icon: CheckCircle2,
-    title: "Notre Solution",
+    title: "Our Solution",
     color: "text-emerald-500",
     bgColor: "bg-emerald-500/10",
     borderColor: "border-emerald-500/20",
-    description: "Nous calculons les Syllabes Par Seconde (SPS) en utilisant les timestamps précis de chaque mot. On exclut les silences et pauses."
+    description: "We compute Syllables Per Second (SPS) using the precise timestamp of each word. Silences are excluded from the calculation — measuring true articulation rate, not overall speaking time."
   },
   {
     icon: Target,
-    title: "Impact Clinique",
+    title: "Clinical Impact",
     color: "text-cyan-500",
     bgColor: "bg-cyan-500/10",
     borderColor: "border-cyan-500/20",
-    description: "Le patient qui fait une pause de 2 secondes n'est pas pénalisé : on mesure son débit RÉEL d'articulation, pas le temps d'hésitation."
+    description: "A patient who pauses for 2 seconds is not penalized: we measure their REAL articulation rate, not a rate slowed down by strategic pauses."
   }
 ];
 
@@ -68,11 +68,11 @@ const AnimatedComparison = () => {
   return (
     <div className="bg-slate-800/80 rounded-2xl p-6 border border-slate-700/50">
       <div className="text-center mb-6">
-        <p className="text-slate-300 mb-2">Patient prononce :</p>
+        <p className="text-slate-300 mb-2">Patient says:</p>
         <p className="text-xl font-medium text-white">
           "Bonjour..." <span className="text-slate-500">[pause 2s]</span> "...Marie."
         </p>
-        <p className="text-sm text-slate-400 mt-2">4 syllabes • Temps total : 3.5s • Temps de parole : 1.5s</p>
+        <p className="text-sm text-slate-400 mt-2">4 syllables • Total time: 3.5s • Speech time: 1.5s</p>
       </div>
 
       <div className="space-y-4">
@@ -81,13 +81,13 @@ const AnimatedComparison = () => {
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
               <span className="text-red-500 text-xl">❌</span>
-              <span className="text-slate-300 font-medium">Méthode classique</span>
+              <span className="text-slate-300 font-medium">Classic method</span>
             </div>
             <span className="font-mono font-bold text-red-400 text-xl">
               {wrongValue.toFixed(1)} SPS
             </span>
           </div>
-          <p className="text-sm text-slate-400 mb-2">4 syllabes ÷ 3.5s (temps total)</p>
+          <p className="text-sm text-slate-400 mb-2">4 syllables ÷ 3.5s (total time)</p>
           <Progress value={(wrongValue / 4) * 100} className="h-2 bg-slate-700" />
         </div>
 
@@ -96,13 +96,13 @@ const AnimatedComparison = () => {
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
               <span className="text-emerald-500 text-xl">✅</span>
-              <span className="text-slate-300 font-medium">Notre méthode (Van Zaalen)</span>
+              <span className="text-slate-300 font-medium">Our method (Van Zaalen)</span>
             </div>
             <span className="font-mono font-bold text-emerald-400 text-xl">
               {rightValue.toFixed(1)} SPS
             </span>
           </div>
-          <p className="text-sm text-slate-400 mb-2">4 syllabes ÷ 1.5s (temps de parole réel)</p>
+          <p className="text-sm text-slate-400 mb-2">4 syllables ÷ 1.5s (actual speech time)</p>
           <Progress value={(rightValue / 4) * 100} className="h-2 bg-slate-700 [&>div]:bg-emerald-500" />
         </div>
       </div>
@@ -122,13 +122,13 @@ export const MethodologySection = () => {
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-medium mb-4">
             <FlaskConical className="w-4 h-4" />
-            Notre Méthodologie Clinique
+            Our Clinical Methodology
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Une mesure qui compte : le <span className="text-cyan-400">Taux d'Articulation</span>
+            A measure that matters: the <span className="text-cyan-400">Articulation Rate</span>
           </h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Basé sur la définition de l'Articulatory Rate de <strong className="text-slate-300">Van Zaalen</strong>
+            Based on the Articulatory Rate definition by <strong className="text-slate-300">Van Zaalen</strong>
           </p>
         </motion.div>
 
@@ -173,15 +173,15 @@ export const MethodologySection = () => {
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-sm text-slate-300">
             <Timer className="w-4 h-4 text-cyan-400" />
-            Mesure instantanée (temps réel)
+            Instant measurement (real time)
           </span>
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-sm text-slate-300">
             <Sparkles className="w-4 h-4 text-cyan-400" />
-            Comptage syllabique français optimisé
+            Optimized English syllable counting
           </span>
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-sm text-slate-300">
             <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-            Conforme à l'Articulatory Rate
+            Compliant with the Articulatory Rate standard
           </span>
         </motion.div>
       </div>

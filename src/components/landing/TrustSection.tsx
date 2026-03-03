@@ -4,23 +4,23 @@ import { Activity, Shield, Eye, Stethoscope, Award } from "lucide-react";
 const trustBadges = [
   {
     icon: Activity,
-    label: "Calcul de Vitesse en Temps Réel",
+    label: "Real-Time Speech Rate",
   },
   {
     icon: Eye,
-    label: "Retour Visuel Motivant",
+    label: "Motivating Visual Feedback",
   },
   {
     icon: Stethoscope,
-    label: "Méthode Clinique Validée",
+    label: "Evidence-Based Method",
   },
   {
     icon: Shield,
-    label: "Données Sécurisées (RGPD)",
+    label: "HIPAA-Conscious Security",
   },
   {
     icon: Award,
-    label: "Recommandé par les Orthophonistes",
+    label: "Recommended by SLPs",
   },
 ];
 
@@ -36,8 +36,8 @@ export const TrustSection = () => {
           transition={{ duration: 0.5 }}
         >
           <p className="text-muted-foreground text-sm md:text-base">
-            Méthode basée sur les travaux de{" "}
-            <span className="font-semibold text-foreground">Van Zaalen & Reichel</span> et les protocoles de l'
+            Method based on the work of{" "}
+            <span className="font-semibold text-foreground">Van Zaalen & Reichel</span> and protocols from the{" "}
             <span className="font-semibold text-foreground">International Cluttering Association</span>.
           </p>
         </motion.div>
@@ -60,7 +60,7 @@ export const TrustSection = () => {
               <span className="text-sm font-medium">{badge.label}</span>
               {'isNew' in badge && badge.isNew && (
                 <span className="px-1.5 py-0.5 text-[10px] font-bold bg-orange-500 text-white rounded-full uppercase">
-                  Nouveau
+                  New
                 </span>
               )}
             </div>

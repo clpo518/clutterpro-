@@ -329,7 +329,7 @@ export default function DialogueLab() {
           <div className="flex items-center gap-2 mb-3">
             <div className={`w-2 h-2 rounded-full ${deepgram.isConnected ? "bg-emerald-500" : "bg-orange-500"} animate-pulse`} />
             <span className="text-xs text-muted-foreground">
-              {deepgram.isConnected ? "Connecté" : "Connexion…"} · {deepgram.syllableCount} syll. totales
+              {deepgram.isConnected ? "Connected" : "Connecting…"} · {deepgram.syllableCount} syll. totales
             </span>
           </div>
         )}

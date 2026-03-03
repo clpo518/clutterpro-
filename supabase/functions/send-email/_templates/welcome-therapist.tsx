@@ -16,102 +16,102 @@ interface WelcomeTherapistEmailProps {
 }
 
 export function WelcomeTherapistEmail(props: WelcomeTherapistEmailProps) {
-  const { therapistName = 'Cher orthophoniste', therapistCode, referralCode, dashboardUrl } = props
-  
-  const referralUrl = referralCode 
-    ? `https://parlermoinsvite.fr/pro?ref=${referralCode}` 
-    : 'https://parlermoinsvite.fr/pro';
-  
-  return (
-    <BaseLayout preview="Votre compte Pro est prêt — invitez votre premier patient.">
-      <Heading style={heading}>Bienvenue sur Parler Moins Vite Pro 🎯</Heading>
+  const { therapistName = 'Dear SLP', therapistCode, referralCode, dashboardUrl } = props
 
-      <Text style={paragraph}>Bonjour {therapistName},</Text>
+  const referralUrl = referralCode
+    ? `https://clutterpro.com/pro?ref=${referralCode}`
+    : 'https://clutterpro.com/pro';
+
+  return (
+    <BaseLayout preview="Your Pro account is ready — invite your first patient.">
+      <Heading style={heading}>Welcome to ClutterPro for SLPs 🎯</Heading>
+
+      <Text style={paragraph}>Hi {therapistName},</Text>
 
       <Text style={paragraph}>
-        Votre compte est actif. Voici l'essentiel pour démarrer :
+        Your account is active. Here's everything you need to get started:
       </Text>
 
       {therapistCode && (
         <Text style={codeBox}>
-          Votre Code Pro : {therapistCode}
+          Your Pro Code: {therapistCode}
         </Text>
       )}
 
       {therapistCode && (
         <Text style={codeInstruction}>
-          Partagez ce code avec vos patients pour qu'ils se connectent à votre compte. Ils bénéficieront d'un accès complet et gratuit.
+          Share this code with your patients to get started. They'll get full access at no cost.
         </Text>
       )}
 
       <Button style={button} href={dashboardUrl}>
-        Inviter mon premier patient
+        Invite my first patient
       </Button>
 
       <Text style={trialBox}>
-        🎁 30 jours d'essai gratuit — accès à toutes les fonctionnalités Pro.
+        🎁 30-day free trial — access to all Pro features.
       </Text>
 
       <Hr style={divider} />
 
-      <Text style={sectionTitle}>Ce que vous pouvez faire</Text>
+      <Text style={sectionTitle}>What you can do</Text>
 
       <Section style={featureCardHighlight}>
-        <Text style={featureCardTitle}>🔬 Débitmètre en séance</Text>
+        <Text style={featureCardTitle}>🔬 In-session rate meter</Text>
         <Text style={featureCardDesc}>
-          Mesurez le débit de votre patient en direct, pendant la consultation. Interface plein écran, zéro distraction. Un vrai instrument de mesure clinique.
+          Measure your patient's speech rate live during consultations. Full-screen interface, zero distractions. A true clinical measurement tool.
         </Text>
       </Section>
 
       <Section style={featureCard}>
-        <Text style={featureCardTitle}>📊 Retour visuel en temps réel</Text>
+        <Text style={featureCardTitle}>📊 Real-time visual feedback</Text>
         <Text style={featureCardDesc}>
-          Vos patients visualisent leur débit syllabique en direct, avec les normes Van Zaalen comme référence.
+          Your patients see their syllable rate in real time, with Van Zaalen norms as reference.
         </Text>
       </Section>
 
       <Section style={featureCard}>
-        <Text style={featureCardTitle}>🔥 Vos patients s'entraînent entre les séances</Text>
+        <Text style={featureCardTitle}>🔥 Patients practice between sessions</Text>
         <Text style={featureCardDesc}>
-          Séries, objectifs quotidiens, badges : la gamification motive vos patients à pratiquer régulièrement, même entre deux rendez-vous.
+          Streaks, daily goals, badges: gamification motivates your patients to practice regularly, even between appointments.
         </Text>
       </Section>
 
       <Section style={featureCard}>
-        <Text style={featureCardTitle}>📚 +115 exercices variés</Text>
+        <Text style={featureCardTitle}>📚 115+ varied exercises</Text>
         <Text style={featureCardDesc}>
-          Lecture, respiration, articulation, dialogue, récit résumé, rébus enfant… Une bibliothèque complète pour tous les profils.
+          Reading, breathing, articulation, dialogue, retelling, kid-friendly rebus puzzles... A complete library for every profile.
         </Text>
       </Section>
 
       <Section style={featureCard}>
-        <Text style={featureCardTitle}>📄 Bilans PDF en un clic</Text>
+        <Text style={featureCardTitle}>📄 One-click PDF reports</Text>
         <Text style={featureCardDesc}>
-          Générez des rapports cliniques détaillés avec l'évolution du débit, les courbes de progression et les notes de séance.
+          Generate detailed clinical reports with rate trends, progress curves, and session notes.
         </Text>
       </Section>
 
       <Hr style={divider} />
 
       <Text style={testimonialBox}>
-        💬 "Bien conçu et facile d'utilisation. C'est vraiment l'outil qu'il me manquait pour mesurer objectivement le débit de parole." — Orthophoniste
+        💬 "Well designed and easy to use. This is truly the tool I was missing to objectively measure speech rate." — SLP
       </Text>
 
       {referralCode && (
         <>
           <Hr style={divider} />
           <Text style={referralBox}>
-            👥 Parrainage : Partagez avec vos confrères et recevez 1 mois gratuit chacun ! Code : {referralCode} — {referralUrl}
+            👥 Referral: Share with your colleagues and each get 1 free month! Code: {referralCode} — {referralUrl}
           </Text>
         </>
       )}
 
       <Text style={paragraph}>
-        Des questions ? Écrivez-nous à contact@parlermoinsvite.fr
+        Questions? Email us at support@clutterpro.com
       </Text>
 
-      <Text style={signatureText}>À votre service,</Text>
-      <Text style={signatureName}>L'équipe Parler Moins Vite</Text>
+      <Text style={signatureText}>At your service,</Text>
+      <Text style={signatureName}>The ClutterPro Team</Text>
     </BaseLayout>
   )
 }

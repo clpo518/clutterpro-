@@ -30,22 +30,22 @@ const NotFound = () => {
         </div>
         
         <h1 className="text-4xl font-display font-bold mb-3">
-          Oups, on est allé trop vite.
+          Oops, we went too fast.
         </h1>
         
         <p className="text-lg text-muted-foreground mb-8">
-          Cette page n'existe pas. Revenons à un rythme plus calme.
+          This page doesn't exist. Let's get back to a calmer pace.
         </p>
         
         <Button asChild size="lg" className="gap-2">
           <Link to="/">
             <Home className="w-4 h-4" />
-            Retour à l'accueil
+            Back to home
           </Link>
         </Button>
 
         <p className="mt-8 text-sm text-muted-foreground">
-          Inspirez... Expirez... 🌿
+          Breathe in... Breathe out... 🌿
         </p>
       </motion.div>
     </div>

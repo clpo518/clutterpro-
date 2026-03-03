@@ -18,9 +18,9 @@ interface ChildResultModalProps {
 type ChildSentiment = "happy" | "ok" | "hard";
 
 const CHILD_SENTIMENTS: { value: ChildSentiment; emoji: string; label: string; dbValue: string }[] = [
-  { value: "happy", emoji: "😄", label: "Super !", dbValue: "comfortable" },
-  { value: "ok", emoji: "😊", label: "Ça va", dbValue: "comfortable" },
-  { value: "hard", emoji: "😅", label: "Difficile", dbValue: "too_fast" },
+  { value: "happy", emoji: "😄", label: "Great!", dbValue: "comfortable" },
+  { value: "ok", emoji: "😊", label: "OK", dbValue: "comfortable" },
+  { value: "hard", emoji: "😅", label: "Hard", dbValue: "too_fast" },
 ];
 
 const getStars = (duration: number): number => {
@@ -30,9 +30,9 @@ const getStars = (duration: number): number => {
 };
 
 const STAR_MESSAGES = [
-  "Tu as essayé, bravo ! 💪",
-  "Très bien travaillé ! 🎉",
-  "Champion(ne) ! Tu es incroyable ! 🏆",
+  "You tried, well done! 💪",
+  "Great work! 🎉",
+  "Champion! You're amazing! 🏆",
 ];
 
 const ChildResultModal = ({
@@ -103,10 +103,10 @@ const ChildResultModal = ({
           >
             <p className="text-xl font-bold">{STAR_MESSAGES[stars - 1]}</p>
             <p className="text-sm text-muted-foreground mt-1">
-              Tu as parlé pendant{" "}
+              You spoke for{" "}
               <span className="font-bold text-foreground">
                 {duration < 60
-                  ? `${duration} secondes`
+                  ? `${duration} seconds`
                   : `${Math.floor(duration / 60)} min ${duration % 60}s`}
               </span>
             </p>
@@ -119,7 +119,7 @@ const ChildResultModal = ({
             transition={{ delay: 1 }}
             className="space-y-2"
           >
-            <p className="text-sm text-muted-foreground">Comment tu te sens ?</p>
+            <p className="text-sm text-muted-foreground">How do you feel?</p>
             <div className="flex justify-center gap-3">
               {CHILD_SENTIMENTS.map(({ value, emoji, label }) => (
                 <button
@@ -147,10 +147,10 @@ const ChildResultModal = ({
           >
             <Button variant="outline" onClick={onRetry} className="flex-1 gap-2 rounded-xl h-12">
               <RotateCcw className="w-4 h-4" />
-              Encore !
+              Again!
             </Button>
             <Button onClick={onContinue} className="flex-1 gap-2 rounded-xl h-12">
-              Suivant
+              Next
               <ArrowRight className="w-4 h-4" />
             </Button>
           </motion.div>

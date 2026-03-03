@@ -18,13 +18,13 @@ export default function Blog() {
           <div className="container px-4 md:px-6 text-center">
             <Badge variant="outline" className="mb-4">
               <BookOpen className="w-3 h-3 mr-1" />
-              Ressources
+              Resources
             </Badge>
             <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-              Ressources & Outils
+              Resources & Tools
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Articles techniques et guides pour le débit et la fluidité.
+              Clinical articles and guides on speech rate and fluency.
             </p>
           </div>
         </section>
@@ -46,9 +46,9 @@ export default function Blog() {
                     </Badge>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
                       <Clock className="w-4 h-4" />
-                      <span>{post.readTime} de lecture</span>
+                      <span>{post.readTime} read</span>
                       <span className="text-muted-foreground/50">•</span>
-                      <span>{new Date(post.date).toLocaleDateString('fr-FR', { 
+                      <span>{new Date(post.date).toLocaleDateString('en-US', { 
                         day: 'numeric', 
                         month: 'long', 
                         year: 'numeric' 
@@ -68,7 +68,7 @@ export default function Blog() {
                   <CardFooter>
                     <Button asChild variant="ghost" className="group/btn p-0 h-auto">
                       <Link to={`/blog/${post.slug}`} className="flex items-center gap-2 text-primary font-medium">
-                        Lire la suite
+                        Read more
                         <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                       </Link>
                     </Button>
@@ -83,14 +83,14 @@ export default function Blog() {
         <section className="py-16 bg-muted/30">
           <div className="container px-4 md:px-6 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              Passez de la théorie à la pratique
+              From theory to practice
             </h2>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-              Commencez votre entraînement dès aujourd'hui avec le code de votre orthophoniste.
+              Start your training today with the code from your SLP.
             </p>
             <Button asChild size="lg">
               <Link to="/auth?tab=signup">
-                Créer mon compte patient
+                Create my patient account
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>

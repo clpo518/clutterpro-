@@ -70,7 +70,7 @@ const AssignExerciseModal = ({
 
       if (error) {
         console.error("Error fetching patients:", error);
-        toast.error("Erreur lors du chargement des patients");
+        toast.error("Error loading patients");
       } else {
         setPatients(data || []);
       }
@@ -87,12 +87,12 @@ const AssignExerciseModal = ({
     const category = exerciseCategory || selectedCategory;
     
     if (!patientId || !user) {
-      toast.error("Veuillez sélectionner un patient");
+      toast.error("Please select a patient");
       return;
     }
 
     if (!category) {
-      toast.error("Veuillez sélectionner une catégorie d'exercice");
+      toast.error("Please select an exercise category");
       return;
     }
 
@@ -109,9 +109,9 @@ const AssignExerciseModal = ({
 
     if (error) {
       console.error("Error creating assignment:", error);
-      toast.error("Erreur lors de l'assignation");
+      toast.error("Error creating assignment");
     } else {
-      toast.success("Prescription envoyée ! Un email a été envoyé au patient.");
+      toast.success("Prescription sent! An email has been sent to the patient.");
       
       // Send notification email to patient (fire-and-forget)
       const displayName = exerciseTitle || exerciseCategories.find(c => c.id === category)?.title || category;
@@ -145,12 +145,12 @@ const AssignExerciseModal = ({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Send className="w-5 h-5 text-primary" />
-            Prescrire un exercice
+            Prescribe an exercise
           </DialogTitle>
           <DialogDescription>
             {preselectedPatientId 
-              ? "Prescrivez un exercice à ce patient"
-              : "Prescrivez cet exercice à un de vos patients"
+              ? "Prescribe an exercise to this patient"
+              : "Prescribe this exercise to one of your patients"
             }
           </DialogDescription>
         </DialogHeader>
@@ -168,26 +168,26 @@ const AssignExerciseModal = ({
             <div className="space-y-2">
               <Label htmlFor="patient">Patient</Label>
               {loadingPatients ? (
-                <div className="text-sm text-muted-foreground">Chargement...</div>
+                <div className="text-sm text-muted-foreground">Loading...</div>
               ) : patients.length === 0 ? (
                 <div className="p-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
                   <div className="flex items-center gap-2 text-amber-800 dark:text-amber-200">
                     <Users className="w-4 h-4" />
-                    <p className="text-sm">Aucun patient lié</p>
+                    <p className="text-sm">No linked patients</p>
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Partagez votre Code Pro pour lier des patients.
+                    Share your Pro Code to link patients.
                   </p>
                 </div>
               ) : (
                 <Select value={selectedPatientId} onValueChange={setSelectedPatientId}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Sélectionner un patient" />
+                    <SelectValue placeholder="Select a patient" />
                   </SelectTrigger>
                   <SelectContent>
                     {patients.map((patient) => (
                       <SelectItem key={patient.id} value={patient.id}>
-                        {patient.full_name || "Patient sans nom"}
+                        {patient.full_name || "Unnamed patient"}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -199,10 +199,10 @@ const AssignExerciseModal = ({
           {/* Exercise category selector - only if no category provided */}
           {!exerciseCategory && (
             <div className="space-y-2">
-              <Label htmlFor="category">Catégorie d'exercice</Label>
+              <Label htmlFor="category">Exercise category</Label>
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Choisir une catégorie" />
+                  <SelectValue placeholder="Choose a category" />
                 </SelectTrigger>
                 <SelectContent>
                   {exerciseCategories.map((cat) => (
@@ -226,10 +226,10 @@ const AssignExerciseModal = ({
 
           {/* Message */}
           <div className="space-y-2">
-            <Label htmlFor="message">Note personnalisée (optionnel)</Label>
+            <Label htmlFor="message">Personalized note (optional)</Label>
             <Textarea
               id="message"
-              placeholder="Ex: Concentre-toi sur les pauses aux virgules..."
+              placeholder="Ex: Focus on pausing at commas..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               rows={2}
@@ -239,7 +239,7 @@ const AssignExerciseModal = ({
 
         <DialogFooter>
           <Button variant="outline" onClick={onClose}>
-            Annuler
+            Cancel
           </Button>
           <Button 
             onClick={handleAssign} 
@@ -247,7 +247,7 @@ const AssignExerciseModal = ({
             className="gap-2"
           >
             <Send className="w-4 h-4" />
-            {loading ? "Envoi..." : "Envoyer la prescription"}
+            {loading ? "Sending..." : "Send prescription"}
           </Button>
         </DialogFooter>
       </DialogContent>

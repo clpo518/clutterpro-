@@ -1,7 +1,7 @@
 /**
  * DAF (Delayed Auditory Feedback) Toggle Component
- * 
- * Renamed to "Mode Ralentisseur" for better UX understanding.
+ *
+ * Renamed to "Slowdown Mode" for better UX understanding.
  * Allows users to enable the therapeutic DAF effect
  * with clear explanation and headphone warning.
  */
@@ -48,8 +48,8 @@ export default function DAFToggle({
   const handleToggle = () => {
     // Show headphone warning when enabling
     if (!isEnabled) {
-      toast.warning("🎧 Casque ou écouteurs obligatoires !", {
-        description: "Sans eux, vous entendrez un sifflement désagréable (Larsen).",
+      toast.warning("🎧 Headphones or earbuds required!", {
+        description: "Without them, you'll hear unpleasant feedback (Larsen effect).",
         duration: 5000,
       });
     }
@@ -64,7 +64,7 @@ export default function DAFToggle({
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5">
               <Label htmlFor="daf-toggle" className="text-sm font-medium cursor-pointer">
-                Mode Ralentisseur
+                Slowdown Mode
               </Label>
               {isEnabled && (
                 <span className="text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded-full font-medium">
@@ -83,28 +83,28 @@ export default function DAFToggle({
                   <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">
                       <Zap className="w-5 h-5 text-primary" />
-                      Comment ça marche ?
+                      How does it work?
                     </DialogTitle>
                   </DialogHeader>
                   <div className="space-y-4 py-4">
                     <p className="text-sm text-muted-foreground">
-                      Ce mode renvoie votre voix dans vos oreilles avec un <strong>léger retard</strong> (100ms).
+                      This mode plays your voice back in your ears with a <strong>slight delay</strong> (100ms).
                     </p>
                     <div className="p-4 rounded-lg bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20">
                       <p className="text-sm font-medium text-foreground">
-                        🧠 Cet effet "écho" trompe votre cerveau et vous <strong>oblige mécaniquement</strong> à ralentir 
-                        et à mieux articuler pour rester confortable.
+                        🧠 This "echo" effect tricks your brain and <strong>mechanically forces</strong> you to slow down
+                        and articulate better to stay comfortable.
                       </p>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      C'est une <strong>technique clinique très puissante</strong> utilisée par les orthophonistes 
-                      pour traiter le bredouillement et la tachylalie.
+                      It's a <strong>very powerful clinical technique</strong> used by SLPs
+                      to treat cluttering and tachylalia.
                     </p>
                     <div className="flex items-center gap-2 p-3 rounded-lg bg-amber-100 dark:bg-amber-900/30 border border-amber-300 dark:border-amber-700">
                       <Headphones className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0" />
                       <p className="text-sm text-amber-800 dark:text-amber-200">
-                        <strong>Important :</strong> Utilisez un casque ou des écouteurs. 
-                        Sans eux, le son revient dans le micro et crée un sifflement (larsen).
+                        <strong>Important:</strong> Use headphones or earbuds.
+                        Without them, the sound feeds back into the mic and creates a squeal (Larsen effect).
                       </p>
                     </div>
                   </div>
@@ -112,7 +112,7 @@ export default function DAFToggle({
               </Dialog>
             </div>
             <span className="text-[10px] text-muted-foreground leading-tight">
-              Retour audio décalé pour forcer le ralentissement
+              Delayed audio feedback to enforce slowing down
             </span>
           </div>
         </div>
@@ -137,14 +137,14 @@ export default function DAFToggle({
             <div className="flex items-center gap-2 p-2.5 rounded-lg bg-amber-100 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700">
               <Headphones className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0" />
               <p className="text-xs font-medium text-amber-800 dark:text-amber-200">
-                🎧 Casque obligatoire pour éviter le sifflement !
+                🎧 Headphones required to avoid feedback squeal!
               </p>
             </div>
 
             {/* Delay slider */}
             <div className="space-y-1">
               <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span>Intensité du décalage</span>
+                <span>Delay intensity</span>
                 <span className="font-mono bg-muted px-1.5 py-0.5 rounded">{delayMs}ms</span>
               </div>
               <Slider
@@ -157,8 +157,8 @@ export default function DAFToggle({
                 className="w-full"
               />
               <div className="flex justify-between text-[10px] text-muted-foreground">
-                <span>50ms (subtil)</span>
-                <span>250ms (puissant)</span>
+                <span>50ms (subtle)</span>
+                <span>250ms (strong)</span>
               </div>
             </div>
           </motion.div>

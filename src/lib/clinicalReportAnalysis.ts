@@ -139,33 +139,33 @@ function calculateExerciseStats(sessions: SessionData[], exerciseType: string): 
  */
 function generateMainDiagnosis(avgSPS: number, readingStats: ExerciseStats, improvisationStats: ExerciseStats): string {
   if (avgSPS === 0) {
-    return "Données insuffisantes pour établir un diagnostic de débit.";
+    return "Insufficient data to establish a speech rate diagnosis.";
   }
-  
+
   const parts: string[] = [];
-  
+
   if (avgSPS < 3.5) {
-    parts.push("Débit articulatoire contrôlé, inférieur à la norme conversationnelle.");
+    parts.push("Controlled articulatory rate, below the conversational norm.");
   } else if (avgSPS <= 5.5) {
-    parts.push("Débit articulatoire normo-fluent, dans les limites de la norme conversationnelle française (3.5-5.5 syll/s).");
+    parts.push("Normal-fluent articulatory rate, within the conversational norm range (3.5–5.5 syll/s).");
   } else if (avgSPS <= 6.5) {
-    parts.push("Débit spontané rapide (> 5.5 syll/s), caractéristique d'une tendance à l'accélération.");
+    parts.push("Fast spontaneous rate (> 5.5 syll/s), characteristic of an acceleration tendency.");
   } else {
-    parts.push("Débit spontané caractéristique d'un bredouillement/tachylalie (> 6.5 syll/s).");
+    parts.push("Spontaneous rate characteristic of cluttering/tachylalia (> 6.5 syll/s).");
   }
-  
+
   // Add range information if available
   if (improvisationStats.count > 0) {
-    parts.push(`En parole spontanée : moyenne de ${improvisationStats.avg.toFixed(2)} syll/s, fluctuant entre ${improvisationStats.min.toFixed(2)} et ${improvisationStats.max.toFixed(2)}.`);
+    parts.push(`In spontaneous speech: average of ${improvisationStats.avg.toFixed(2)} syll/s, ranging from ${improvisationStats.min.toFixed(2)} to ${improvisationStats.max.toFixed(2)}.`);
   }
-  
+
   if (readingStats.count > 0 && improvisationStats.count > 0) {
     const diff = improvisationStats.avg - readingStats.avg;
     if (Math.abs(diff) > 0.5) {
       if (diff > 0) {
-        parts.push("Le débit en improvisation est significativement plus rapide qu'en lecture.");
+        parts.push("The speech rate during improvisation is significantly faster than during reading.");
       } else {
-        parts.push("Le débit est paradoxalement plus lent en improvisation qu'en lecture.");
+        parts.push("The speech rate is paradoxically slower during improvisation than during reading.");
       }
     }
   }
@@ -180,22 +180,22 @@ function generateFluencyInterpretation(fluencyRatio: number, avgSPS: number, var
   const parts: string[] = [];
   
   if (fluencyRatio >= 80) {
-    parts.push(`Excellent contrôle du débit : ${fluencyRatio}% des sessions dans la zone cible.`);
+    parts.push(`Excellent rate control: ${fluencyRatio}% of sessions within the target zone.`);
   } else if (fluencyRatio >= 50) {
-    parts.push(`Régularité en progression : ${fluencyRatio}% des sessions atteignent l'objectif.`);
+    parts.push(`Consistency improving: ${fluencyRatio}% of sessions reach the target.`);
   } else if (avgSPS > 5.0) {
-    parts.push(`Respiration insuffisante : seulement ${fluencyRatio}% des sessions dans la cible.`);
+    parts.push(`Insufficient breathing control: only ${fluencyRatio}% of sessions within target.`);
   } else {
-    parts.push(`Variabilité importante du débit : ${fluencyRatio}% de sessions conformes.`);
+    parts.push(`Significant rate variability: ${fluencyRatio}% of sessions within range.`);
   }
-  
+
   // Add variability interpretation
   if (variabilityScore > 1.0) {
-    parts.push(`Instabilité marquée du débit (écart-type = ${variabilityScore.toFixed(2)} syll/s).`);
+    parts.push(`Marked rate instability (standard deviation = ${variabilityScore.toFixed(2)} syll/s).`);
   } else if (variabilityScore > 0.5) {
-    parts.push(`Variabilité modérée du débit (écart-type = ${variabilityScore.toFixed(2)} syll/s).`);
+    parts.push(`Moderate rate variability (standard deviation = ${variabilityScore.toFixed(2)} syll/s).`);
   } else if (variabilityScore > 0) {
-    parts.push(`Bonne stabilité du débit (écart-type = ${variabilityScore.toFixed(2)} syll/s).`);
+    parts.push(`Good rate stability (standard deviation = ${variabilityScore.toFixed(2)} syll/s).`);
   }
   
   return parts.join(" ");
@@ -210,18 +210,18 @@ function generateTrendInterpretation(
   totalSessions: number
 ): string {
   if (totalSessions < 4) {
-    return "Nombre de sessions insuffisant pour établir une tendance significative.";
+    return "Insufficient number of sessions to establish a significant trend.";
   }
-  
+
   if (trendDirection === "improving") {
-    return `Progression encourageante avec une régularisation du débit articulatoire de ${Math.abs(trendPercentage).toFixed(0)}% sur la période analysée. Le patron de parole se stabilise progressivement.`;
+    return `Encouraging progress with a ${Math.abs(trendPercentage).toFixed(0)}% regularization of the articulatory rate over the analyzed period. The speech pattern is progressively stabilizing.`;
   }
-  
+
   if (trendDirection === "stable") {
-    return "Stabilité du débit articulatoire sur la période analysée. Patron de parole consolidé, maintien des acquis observé.";
+    return "Stable articulatory rate over the analyzed period. Consolidated speech pattern; maintenance of gains observed.";
   }
-  
-  return `Légère régression du débit (+${Math.abs(trendPercentage).toFixed(0)}%). Renforcement des techniques de ralentissement et révision des acquis recommandés.`;
+
+  return `Slight regression in speech rate (+${Math.abs(trendPercentage).toFixed(0)}%). Reinforcement of slowing techniques and review of prior gains recommended.`;
 }
 
 /**
@@ -231,35 +231,35 @@ function generateRecommendation(avgSPS: number, trendDirection: string, fluencyR
   const recommendations: string[] = [];
   
   if (avgSPS > 5.0) {
-    recommendations.push("Intensifier le travail sur les pauses respiratoires inter-phrastiques et le ralentissement volontaire");
+    recommendations.push("Intensify work on inter-sentence breathing pauses and voluntary slowing");
   }
-  
+
   if (avgSPS > 5.5) {
-    recommendations.push("Exercices de ralentissement avec retour auditif différé (DAF) recommandés");
+    recommendations.push("Slowing exercises with delayed auditory feedback (DAF) recommended");
   }
-  
+
   if (fluencyRatio < 50) {
-    recommendations.push("Augmenter la fréquence des exercices de lecture à voix haute avec métronome interne");
+    recommendations.push("Increase frequency of oral reading exercises with an internal metronome");
   }
-  
+
   if (trendDirection === "regressing") {
-    recommendations.push("Réviser les objectifs thérapeutiques et consolider les acquis avant nouvelle progression");
+    recommendations.push("Revise therapeutic goals and consolidate prior gains before advancing further");
   }
-  
+
   if (trendDirection === "improving" && fluencyRatio >= 70) {
-    recommendations.push("Passage progressif à des exercices d'improvisation et de parole spontanée");
+    recommendations.push("Gradual transition to improvisation and spontaneous speech exercises");
   }
-  
+
   // Specific recommendations based on exercise type differences
   if (readingStats.count > 0 && improvisationStats.count > 0) {
     const diff = improvisationStats.avg - readingStats.avg;
     if (diff > 1.0) {
-      recommendations.push("Travail spécifique sur le transfert des acquis de lecture vers la parole spontanée");
+      recommendations.push("Specific work on transferring reading gains to spontaneous speech");
     }
   }
-  
+
   if (recommendations.length === 0) {
-    recommendations.push("Poursuivre le protocole actuel avec maintien des acquis et généralisation progressive");
+    recommendations.push("Continue the current protocol while maintaining gains and progressively generalizing");
   }
   
   return recommendations.join(". ") + ".";
@@ -352,7 +352,7 @@ export function analyzePatientData(
   // Evolution data for chart (last 10 sessions)
   const recentSessions = sortedSessions.slice(-10);
   const evolutionData = recentSessions.map(s => ({
-    date: new Date(s.created_at).toLocaleDateString("fr-FR", { day: "numeric", month: "short" }),
+    date: new Date(s.created_at).toLocaleDateString("en-US", { day: "numeric", month: "short" }),
     sps: wpmToSps(s.avg_wpm),
     target: targetSPS,
   }));
@@ -371,7 +371,7 @@ export function analyzePatientData(
   return {
     patientName: profile.full_name || "Patient",
     patientAge,
-    followUpSince: new Date(profile.created_at).toLocaleDateString("fr-FR", {
+    followUpSince: new Date(profile.created_at).toLocaleDateString("en-US", {
       day: "numeric",
       month: "long",
       year: "numeric",
@@ -419,10 +419,10 @@ export function getSPSColor(sps: number): "green" | "orange" | "red" | "gray" {
  */
 export function getSPSInterpretation(sps: number): string {
   if (sps === 0) return "—";
-  if (sps < 3.5) return "Lent (contrôlé)";
-  if (sps <= 5.5) return "Normo-fluent";
-  if (sps <= 6.5) return "Rapide";
-  return "Tachylalie";
+  if (sps < 3.5) return "Slow (controlled)";
+  if (sps <= 5.5) return "Normal fluency";
+  if (sps <= 6.5) return "Fast";
+  return "Cluttering range";
 }
 
 /**
@@ -430,7 +430,7 @@ export function getSPSInterpretation(sps: number): string {
  */
 export function generateTextReport(analysis: ClinicalAnalysis, therapistName?: string): string {
   const lines: string[] = [];
-  const date = new Date().toLocaleDateString("fr-FR", {
+  const date = new Date().toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -442,71 +442,71 @@ export function generateTextReport(analysis: ClinicalAnalysis, therapistName?: s
   // Header
   lines.push(doubleDivider);
   lines.push("");
-  lines.push("    BILAN DE SUIVI ORTHOPHONIQUE");
-  lines.push("    Analyse instrumentale du débit articulatoire");
+  lines.push("    SLP FOLLOW-UP CLINICAL REPORT");
+  lines.push("    Instrumental analysis of articulatory rate");
   lines.push("");
   lines.push(doubleDivider);
   lines.push("");
-  lines.push(`  Date du bilan     ${date}`);
+  lines.push(`  Report date        ${date}`);
   if (therapistName) {
-    lines.push(`  Praticien          ${therapistName}`);
+    lines.push(`  Clinician          ${therapistName}`);
   }
   if (analysis.recipientDoctor) {
-    lines.push(`  Destinataire       Dr ${analysis.recipientDoctor}`);
+    lines.push(`  Recipient          Dr ${analysis.recipientDoctor}`);
   }
   lines.push("");
 
   // Section 1: Patient Info
   lines.push(divider);
-  lines.push("  1 · INFORMATIONS PATIENT");
+  lines.push("  1 · PATIENT INFORMATION");
   lines.push(divider);
   lines.push("");
   lines.push(`  Patient            ${analysis.patientName}`);
   if (analysis.patientAge) {
-    lines.push(`  Âge                ${analysis.patientAge} ans`);
+    lines.push(`  Age                ${analysis.patientAge} years`);
   }
-  lines.push(`  Suivi depuis       ${analysis.followUpSince}`);
+  lines.push(`  Follow-up since    ${analysis.followUpSince}`);
   lines.push("");
 
   // Section 2: Summary - Key metrics in a clean grid
   lines.push(divider);
-  lines.push("  2 · RÉSUMÉ DU SUIVI");
+  lines.push("  2 · FOLLOW-UP SUMMARY");
   lines.push(divider);
   lines.push("");
   lines.push(`  ┌────────────────────────┬────────────────────────┐`);
   lines.push(`  │  Sessions              │  ${String(analysis.totalSessions).padEnd(20)} │`);
-  lines.push(`  │  Minutes de pratique   │  ${String(analysis.totalPracticeMinutes).padEnd(20)} │`);
-  lines.push(`  │  Série en cours        │  ${String(analysis.currentStreak + " jours").padEnd(20)} │`);
-  lines.push(`  │  Sessions dans cible   │  ${String(analysis.fluencyRatio + "%").padEnd(20)} │`);
+  lines.push(`  │  Practice minutes      │  ${String(analysis.totalPracticeMinutes).padEnd(20)} │`);
+  lines.push(`  │  Current streak        │  ${String(analysis.currentStreak + " days").padEnd(20)} │`);
+  lines.push(`  │  Sessions on target    │  ${String(analysis.fluencyRatio + "%").padEnd(20)} │`);
   lines.push(`  └────────────────────────┴────────────────────────┘`);
   lines.push("");
 
   // Section 3: Articulation Rate Measurements
   lines.push(divider);
-  lines.push("  3 · MESURES DU DÉBIT ARTICULATOIRE");
+  lines.push("  3 · ARTICULATORY RATE MEASUREMENTS");
   lines.push(divider);
   lines.push("");
-  lines.push("  Situation                  Min      Moy      Max      Norme");
+  lines.push("  Context                    Min      Avg      Max      Norm");
   lines.push("  ·························  ·····    ·····    ·····    ·········");
 
   if (analysis.readingStats.count > 0) {
     const r = analysis.readingStats;
-    lines.push(`  Lecture (${String(r.count).padStart(2)} sessions)     ${r.min.toFixed(2).padStart(5)}    ${r.avg.toFixed(2).padStart(5)}    ${r.max.toFixed(2).padStart(5)}    3.5 – 5.5`);
+    lines.push(`  Reading (${String(r.count).padStart(2)} sessions)      ${r.min.toFixed(2).padStart(5)}    ${r.avg.toFixed(2).padStart(5)}    ${r.max.toFixed(2).padStart(5)}    3.5 – 5.5`);
   }
 
   if (analysis.improvisationStats.count > 0) {
     const i = analysis.improvisationStats;
-    lines.push(`  Parole spontanée (${String(i.count).padStart(2)})      ${i.min.toFixed(2).padStart(5)}    ${i.avg.toFixed(2).padStart(5)}    ${i.max.toFixed(2).padStart(5)}    4.0 – 6.0`);
+    lines.push(`  Spontaneous speech (${String(i.count).padStart(2)})    ${i.min.toFixed(2).padStart(5)}    ${i.avg.toFixed(2).padStart(5)}    ${i.max.toFixed(2).padStart(5)}    4.0 – 6.0`);
   }
 
   lines.push("");
-  lines.push(`  Vitesse d'articulation*    ${analysis.articulatoryRate.toFixed(2)} syll/s   (norme : 5.0 – 6.5)`);
-  lines.push("  * Estimée selon Van Zaalen (débit hors pauses)");
+  lines.push(`  Articulatory rate*         ${analysis.articulatoryRate.toFixed(2)} syll/s   (norm: 5.0 – 6.5)`);
+  lines.push("  * Estimated per Van Zaalen (rate excluding pauses)");
   lines.push("");
 
   // Section 4: Regularity Analysis
   lines.push(divider);
-  lines.push("  4 · ANALYSE DE LA RÉGULARITÉ");
+  lines.push("  4 · REGULARITY ANALYSIS");
   lines.push(divider);
   lines.push("");
   // Wrap long text with indentation
@@ -517,7 +517,7 @@ export function generateTextReport(analysis: ClinicalAnalysis, therapistName?: s
 
   // Section 5: Evolution
   lines.push(divider);
-  lines.push("  5 · ÉVOLUTION");
+  lines.push("  5 · PROGRESSION");
   lines.push(divider);
   lines.push("");
   wrapText(analysis.trendInterpretation, 48).forEach(l => lines.push(`  ${l}`));
@@ -527,7 +527,7 @@ export function generateTextReport(analysis: ClinicalAnalysis, therapistName?: s
   let nextSection = 6;
   if (analysis.therapistNotes) {
     lines.push(divider);
-    lines.push(`  ${nextSection} · OBSERVATIONS DU PRATICIEN`);
+    lines.push(`  ${nextSection} · CLINICIAN OBSERVATIONS`);
     lines.push(divider);
     lines.push("");
     wrapText(analysis.therapistNotes, 48).forEach(l => lines.push(`  ${l}`));
@@ -537,7 +537,7 @@ export function generateTextReport(analysis: ClinicalAnalysis, therapistName?: s
 
   // Recommendations
   lines.push(divider);
-  lines.push(`  ${nextSection} · PISTES DE TRAVAIL SUGGÉRÉES`);
+  lines.push(`  ${nextSection} · SUGGESTED THERAPEUTIC DIRECTIONS`);
   lines.push(divider);
   lines.push("");
   const recommendations = analysis.recommendation.split(". ");
@@ -554,11 +554,11 @@ export function generateTextReport(analysis: ClinicalAnalysis, therapistName?: s
   // Footer
   lines.push(doubleDivider);
   lines.push("");
-  lines.push("  Ce document constitue une aide instrumentale à");
-  lines.push("  la mesure du débit articulatoire. Il ne se");
-  lines.push("  substitue pas au diagnostic clinique.");
+  lines.push("  This document is an instrumental aid for");
+  lines.push("  measuring articulatory rate. It does not");
+  lines.push("  replace clinical diagnosis.");
   lines.push("");
-  lines.push("  Généré via ParlerMoinsVite.fr");
+  lines.push("  Generated via ClutterPro.com");
   lines.push("");
   lines.push(doubleDivider);
 

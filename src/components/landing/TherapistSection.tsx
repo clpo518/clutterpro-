@@ -15,23 +15,23 @@ import {
 const features = [
   {
     icon: BarChart3,
-    text: "Taux d'Articulation (SPS) : Mesure le débit réel en excluant les silences (méthode Van Zaalen)."
+    text: "Articulation Rate (SPS): Measures actual speech rate excluding silences (Van Zaalen method)."
   },
   {
     icon: Gauge,
-    text: "Débitmètre en séance : Mesurez le débit de votre patient en direct, sur votre tablette, pendant la consultation."
+    text: "In-Session Flow Meter: Measure your patient's rate live, on your tablet, during the appointment."
   },
   {
     icon: Headphones,
-    text: "Écoute différée : Recevez les enregistrements de vos patients entre les séances."
+    text: "Async review: Receive your patients' recordings between sessions."
   },
   {
     icon: Target,
-    text: "Ratio de Fluence : Visualisez le temps de parole vs temps de pause pour chaque session."
+    text: "Fluency Ratio: Visualize speech time vs pause time for each session."
   },
   {
     icon: FileText,
-    text: "Aide au bilan : Données objectives prêtes à intégrer dans vos comptes-rendus cliniques."
+    text: "Report support: Objective data ready to integrate into your clinical notes."
   }
 ];
 
@@ -49,18 +49,18 @@ export const TherapistSection = () => {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-sm font-medium mb-6">
               <Stethoscope className="w-4 h-4" />
-              Espace Orthophoniste
+              SLP Portal
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Un outil de télé-soin pensé pour votre pratique.
+              A remote care tool designed for your practice.
             </h2>
             
             <p className="text-lg text-muted-foreground mb-8">
-              « Le bredouillement nécessite un entraînement quotidien intensif » 
+              "Cluttering requires intensive daily practice"
               <span className="text-sm">(Van Zaalen)</span>. 
               <br />
-              <strong>Déléguez l'entraînement, gardez l'expertise.</strong>
+              <strong>Delegate the training, keep the expertise.</strong>
             </p>
 
             <div className="space-y-4 mb-8">
@@ -83,7 +83,7 @@ export const TherapistSection = () => {
 
             <Button asChild size="lg" className="gap-2 bg-blue-600 hover:bg-blue-700">
               <Link to="/pro">
-                Créer un compte Pro (Gratuit)
+                Create a Pro account (Free)
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>

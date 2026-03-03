@@ -8,40 +8,40 @@ import {
 
 const faqItems = [
   {
-    question: "Parlez-vous trop vite ? Comment le savoir ?",
-    answer: "Faites notre test vocal gratuit en 30 secondes sur la page Diagnostic. L'application mesure votre débit en Syllabes Par Seconde (SPS) et le compare aux normes cliniques de Van Zaalen adaptées à votre âge.",
+    question: "Do you speak too fast? How to find out?",
+    answer: "Take our free 30-second voice test on the Diagnostic page. The app measures your rate in Syllables Per Second (SPS) and compares it to Van Zaalen's clinical norms adapted to your age.",
   },
   {
-    question: "Comment mes patients accèdent-ils à l'application ?",
-    answer: "Vos patients créent un compte et entrent votre code Pro unique. Ils apparaissent ensuite dans votre tableau de bord et bénéficient de toutes les fonctionnalités gratuitement.",
+    question: "How do my patients access the app?",
+    answer: "Your patients create an account and enter your unique Pro Code. They then appear in your dashboard and get access to all features for free.",
   },
   {
-    question: "Comment fonctionne l'abonnement Pro ?",
-    answer: "Vous bénéficiez de 30 jours d'essai gratuit sans carte bancaire. Ensuite, l'abonnement inclut un nombre de comptes patients actifs (3 ou 5). Vos patients accèdent gratuitement à toutes les fonctionnalités via votre code Pro.",
+    question: "How does the Pro subscription work?",
+    answer: "You get a 30-day free trial with no credit card required. After that, the subscription includes a number of active patient seats (3 or 5). Your patients access all features for free via your Pro Code.",
   },
   {
-    question: "L'application est-elle gratuite pour les patients ?",
-    answer: "Oui, si votre orthophoniste utilise ParlerMoinsVite, vous accédez gratuitement à toutes les fonctionnalités. Vous pouvez aussi utiliser l'application en autonomie pour 9€/mois.",
+    question: "Is the app free for patients?",
+    answer: "Yes, if your SLP uses ClutterPro, you get free access to all features. You can also use the app on your own for $9/month.",
   },
   {
-    question: "Comment calculez-vous la vitesse de parole ?",
-    answer: "Nous utilisons le Taux d'Articulation (SPS) tel que défini par Van Zaalen. Les Syllabes Par Seconde sont calculées en excluant les pauses, ce qui correspond à l'indicateur clinique pertinent pour le bredouillement.",
+    question: "How do you calculate speech rate?",
+    answer: "We use the Articulation Rate (SPS) as defined by Van Zaalen. Syllables Per Second are calculated excluding pauses, which is the clinically relevant indicator for cluttering.",
   },
   {
-    question: "L'application aide-t-elle aussi pour le bégaiement ?",
-    answer: "Oui ! Les exercices de contrôle du débit, de gestion du souffle et de transfert en dialogue sont aussi bénéfiques pour les personnes qui bégaient. L'application complète le travail en séance d'orthophonie.",
+    question: "Does the app also help with stuttering?",
+    answer: "Yes! Rate control, breathing, and dialogue transfer exercises are also beneficial for people who stutter. The app complements in-session SLP work.",
   },
   {
-    question: "Les données sont-elles sécurisées ?",
-    answer: "Absolument. Toutes les données sont hébergées en Europe, chiffrées, et conformes au RGPD. Seul vous et votre orthophoniste (si lié) avez accès aux enregistrements.",
+    question: "Is the data secure?",
+    answer: "Absolutely. All data is hosted on secure US-based servers, encrypted, and follows HIPAA-conscious practices. Only you and your SLP (if linked) have access to recordings.",
   },
   {
-    question: "Faut-il installer quelque chose ?",
-    answer: "Aucune installation n'est nécessaire. ParlerMoinsVite fonctionne directement depuis un navigateur web, sur téléphone, tablette ou ordinateur.",
+    question: "Do I need to install anything?",
+    answer: "No installation is required. ClutterPro works directly from a web browser, on phone, tablet, or computer.",
   },
   {
-    question: "Puis-je avoir une démonstration personnalisée ?",
-    answer: "Bien sûr ! Envoyez-nous un mail à contact@parlermoinsvite.fr et nous prendrons le temps de vous présenter ParlerMoinsVite en détail.",
+    question: "Can I get a personalized demo?",
+    answer: "Of course! Email us at support@clutterpro.com and we'll take the time to show you ClutterPro in detail.",
   },
 ];
 
@@ -56,10 +56,10 @@ export const UnifiedFAQ = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Questions fréquentes
+            Frequently Asked Questions
           </h2>
           <p className="text-lg text-muted-foreground">
-            Tout ce que vous devez savoir sur ParlerMoinsVite
+            Everything you need to know about ClutterPro
           </p>
         </motion.div>
 

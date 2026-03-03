@@ -41,8 +41,8 @@ const getPerformanceLevel = (avgSps: number, targetSps: number): {
 } => {
   if (avgSps === 0) {
     return {
-      title: "Séance terminée",
-      subtitle: "Réessayez en parlant un peu plus fort",
+      title: "Session complete",
+      subtitle: "Try again speaking a bit louder",
       icon: <AlertTriangle className="w-10 h-10" />,
       color: "text-muted-foreground",
       bgColor: "bg-muted"
@@ -54,8 +54,8 @@ const getPerformanceLevel = (avgSps: number, targetSps: number): {
 
   if (diff >= -good && diff <= good) {
     return {
-      title: "Bravo ! 🎯",
-      subtitle: "Vous êtes pile dans votre objectif",
+      title: "Great job! 🎯",
+      subtitle: "You're right on target",
       icon: <CheckCircle2 className="w-10 h-10" />,
       color: "text-emerald-600",
       bgColor: "bg-emerald-100 dark:bg-emerald-900/30"
@@ -63,8 +63,8 @@ const getPerformanceLevel = (avgSps: number, targetSps: number): {
   }
   if (diff > good && diff <= bad) {
     return {
-      title: "Presque ! ⚡",
-      subtitle: "Juste un peu au-dessus — vous y êtes presque",
+      title: "Almost! ⚡",
+      subtitle: "Just a bit above — you're almost there",
       icon: <TrendingUp className="w-10 h-10" />,
       color: "text-orange-600",
       bgColor: "bg-orange-100 dark:bg-orange-900/30"
@@ -72,8 +72,8 @@ const getPerformanceLevel = (avgSps: number, targetSps: number): {
   }
   if (diff > bad) {
     return {
-      title: "On ralentit ensemble 🌬️",
-      subtitle: "Pensez à respirer entre les phrases",
+      title: "Let's slow down together 🌬️",
+      subtitle: "Remember to breathe between sentences",
       icon: <AlertTriangle className="w-10 h-10" />,
       color: "text-red-600",
       bgColor: "bg-red-100 dark:bg-red-900/30"
@@ -81,16 +81,16 @@ const getPerformanceLevel = (avgSps: number, targetSps: number): {
   }
   if (diff < -good && diff >= -bad) {
     return {
-      title: "Très bien ! ✨",
-      subtitle: "Beau contrôle, juste en dessous de la cible",
+      title: "Very good! ✨",
+      subtitle: "Great control, just below the target",
       icon: <CheckCircle2 className="w-10 h-10" />,
       color: "text-green-600",
       bgColor: "bg-green-100 dark:bg-green-900/30"
     };
   }
   return {
-    title: "Rythme très posé 🐢",
-    subtitle: "Vous avez bien le contrôle — accélérez quand vous vous sentez prêt",
+    title: "Very steady pace 🐢",
+    subtitle: "You have good control — speed up when you feel ready",
     icon: <TrendingUp className="w-10 h-10" />,
     color: "text-blue-600",
     bgColor: "bg-blue-100 dark:bg-blue-900/30"
@@ -108,7 +108,7 @@ const getEncouragementMessage = (
   goalJustCompleted: boolean,
   dailyGoal: number,
 ): string => {
-  if (avgSps === 0) return "Pas de souci — réessayez en parlant un peu plus fort, on est là pour ça 💪";
+  if (avgSps === 0) return "No worries — try again speaking a bit louder, that's what we're here for 💪";
 
   const diff = avgSps - targetSps;
   const { good } = getAdaptiveThresholds(targetSps);
@@ -116,36 +116,36 @@ const getEncouragementMessage = (
 
   // Streak milestones
   if (streakIncremented && currentStreak >= 7) {
-    return `🔥 ${currentStreak} jours consécutifs ! Votre régularité est impressionnante. Continuez, les progrès sont là !`;
+    return `🔥 ${currentStreak} consecutive days! Your consistency is impressive. Keep going, the progress is there!`;
   }
   if (streakIncremented && currentStreak >= 3) {
-    return `💪 ${currentStreak} jours de suite ! La constance est la clé du progrès.`;
+    return `💪 ${currentStreak} days in a row! Consistency is the key to progress.`;
   }
 
   // Goal completed
   if (goalJustCompleted) {
     if (diff > good) {
-      return "🎉 Vos " + dailyGoal + " minutes quotidiennes sont faites ! Essayez maintenant de ralentir le débit.";
+      return "🎉 Your " + dailyGoal + " daily minutes are done! Now try to slow down the rate.";
     }
-    return "🎉 Vos " + dailyGoal + " minutes quotidiennes sont faites ! Continuez comme ça.";
+    return "🎉 Your " + dailyGoal + " daily minutes are done! Keep it up.";
   }
 
   // Performance-based
   if (onTarget) {
-    return "Vous maîtrisez votre rythme, bravo ! Essayez de garder cette régularité au quotidien.";
+    return "You're in control of your pace, well done! Try to keep this consistency every day.";
   }
   if (diff > good) {
-    return "Respirez entre les phrases — chaque pause est un moment de contrôle gagné.";
+    return "Breathe between sentences — every pause is a moment of control gained.";
   }
-  return "Vous contrôlez bien votre débit. Accélérez progressivement quand vous vous sentez prêt.";
+  return "You're controlling your rate well. Speed up gradually when you feel ready.";
 };
 
 type Sentiment = "too_slow" | "comfortable" | "too_fast";
 
 const SENTIMENTS: { value: Sentiment; emoji: string; label: string }[] = [
-  { value: "too_slow", emoji: "🐢", label: "Plutôt lent" },
-  { value: "comfortable", emoji: "✅", label: "À l'aise" },
-  { value: "too_fast", emoji: "🐇", label: "Plutôt rapide" },
+  { value: "too_slow", emoji: "🐢", label: "Rather slow" },
+  { value: "comfortable", emoji: "✅", label: "Comfortable" },
+  { value: "too_fast", emoji: "🐇", label: "Rather fast" },
 ];
 
 const SessionResultModal = ({
@@ -257,7 +257,7 @@ const SessionResultModal = ({
       if (error) throw error;
     } catch (error) {
       console.error("Error saving sentiment:", error);
-      toast.error("Erreur lors de l'enregistrement");
+      toast.error("Error saving data");
     } finally {
       setSavingSentiment(false);
     }
@@ -269,7 +269,7 @@ const SessionResultModal = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-sm max-h-[85vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-center text-lg">Votre séance</DialogTitle>
+          <DialogTitle className="text-center text-lg">Your Session</DialogTitle>
         </DialogHeader>
         
         <div className="space-y-4 py-2">
@@ -320,17 +320,17 @@ const SessionResultModal = ({
                     <div>
                       <p className="text-sm font-semibold text-foreground">
                         {journeyResult.stepAdvanced
-                          ? "🎉 Nouvelle étape débloquée !"
-                          : "✅ Exercice validé !"}
+                          ? "🎉 New stage unlocked!"
+                          : "✅ Exercise validated!"}
                       </p>
                       <p className="text-xs text-muted-foreground">
                         {journeyResult.stepAdvanced
                           ? journeyResult.nextStepName
-                            ? `Direction : ${journeyResult.nextStepName}`
-                            : "Parcours terminé — bravo champion ! 🏆"
+                            ? `Next up: ${journeyResult.nextStepName}`
+                            : "Journey complete — great job champion! 🏆"
                           : journeyResult.remaining === 1
-                          ? "Plus qu'un seul exercice pour la suite !"
-                          : `Encore ${journeyResult.remaining} exercices pour avancer`}
+                          ? "Just one more exercise to advance!"
+                          : `${journeyResult.remaining} more exercises to advance`}
                       </p>
                     </div>
                   </div>
@@ -355,10 +355,10 @@ const SessionResultModal = ({
               ) : (
                 <div className="text-center space-y-1.5">
                   <p className="text-sm font-medium text-foreground">
-                    Pas encore dans la zone verte
+                    Not in the green zone yet
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    Réessayez en ralentissant — vous y êtes presque ! 💪
+                    Try again by slowing down — you're almost there! 💪
                   </p>
                 </div>
               )}
@@ -388,7 +388,7 @@ const SessionResultModal = ({
               </motion.div>
               <div>
                 <p className="text-lg font-bold leading-none">{currentStreak}</p>
-                <p className="text-[10px] text-muted-foreground">jour{currentStreak > 1 ? 's' : ''} de suite</p>
+                <p className="text-[10px] text-muted-foreground">day{currentStreak > 1 ? 's' : ''} in a row</p>
               </div>
             </div>
 
@@ -414,7 +414,7 @@ const SessionResultModal = ({
                   {todayMinutes}<span className="text-xs font-normal text-muted-foreground">/{dailyGoal}</span>
                 </p>
                 <p className="text-[10px] text-muted-foreground">
-                  {goalCompleted ? "✅ Objectif atteint" : "min aujourd'hui"}
+                  {goalCompleted ? "✅ Goal reached" : "min today"}
                 </p>
               </div>
             </div>
@@ -429,7 +429,7 @@ const SessionResultModal = ({
           >
             <SpeedGaugeBar sps={avgSps} targetSps={targetSps} />
             <p className="text-xs text-center text-muted-foreground mt-3">
-              Objectif : Niveau {targetLevel.level} ({targetLevel.label})
+              Target: Level {targetLevel.level} ({targetLevel.label})
             </p>
           </motion.div>
 
@@ -442,19 +442,19 @@ const SessionResultModal = ({
               className="text-center text-xs text-muted-foreground space-y-1"
             >
               {syllableCount > 0 && (
-                <p><span className="font-medium text-foreground">{syllableCount}</span> syllabes prononcées</p>
+                <p><span className="font-medium text-foreground">{syllableCount}</span> syllables spoken</p>
               )}
               {actualSpeakingTime !== undefined && totalSessionTime && totalSessionTime > 0 && (
                 <p>
-                  Vous avez parlé{' '}
+                  You spoke for{' '}
                   <span className="font-medium text-foreground">
                     {Math.floor(actualSpeakingTime / 60)}:{String(Math.floor(actualSpeakingTime % 60)).padStart(2, '0')}
                   </span>
-                  {' sur '}
+                  {' out of '}
                   <span className="font-medium text-foreground">
                     {Math.floor(totalSessionTime / 60)}:{String(Math.floor(totalSessionTime % 60)).padStart(2, '0')}
                   </span>
-                  {' — le reste était des pauses'}
+                  {' — the rest were pauses'}
                 </p>
               )}
             </motion.div>
@@ -468,7 +468,7 @@ const SessionResultModal = ({
             className="space-y-3"
           >
             <p className="text-sm text-center text-muted-foreground">
-              Comment vous êtes-vous senti(e) ?
+              How did you feel?
             </p>
             <div className="flex justify-center gap-3">
               {SENTIMENTS.map(({ value, emoji, label }) => (
@@ -508,16 +508,16 @@ const SessionResultModal = ({
             >
               <RotateCcw className="w-4 h-4" />
               {isJourneyMode && journeyResult && !journeyResult.validated
-                ? "Réessayer"
-                : "Recommencer"}
+                ? "Retry"
+                : "Try again"}
             </Button>
             <Button 
               onClick={onContinue}
               className="flex-1 gap-2"
             >
               {isJourneyMode && journeyResult?.validated
-                ? "Continuer le parcours"
-                : "Voir mon bilan"}
+                ? "Continue the journey"
+                : "View my summary"}
               <ArrowRight className="w-4 h-4" />
             </Button>
           </motion.div>

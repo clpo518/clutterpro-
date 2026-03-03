@@ -1,18 +1,18 @@
 /**
  * Clinical Report PDF Generator
  * 
- * Creates a professional, medical-grade PDF report for orthophonistes
+ * Creates a professional, medical-grade PDF report for SLPs
  * using @react-pdf/renderer
  * 
  * Structure:
- * 1. En-tête professionnel
- * 2. Informations patient
- * 3. Résumé du suivi
- * 4. Mesures du débit (tableau par situation)
- * 5. Analyse de la régularité
- * 6. Évolution temporelle
- * 7. Observations (si fournies)
- * 8. Pistes de travail
+ * 1. Professional header
+ * 2. Patient information
+ * 3. Follow-up summary
+ * 4. Rate measurements (table by context)
+ * 5. Regularity analysis
+ * 6. Temporal progression
+ * 7. Observations (if provided)
+ * 8. Therapeutic directions
  * 9. Disclaimer
  */
 
@@ -359,7 +359,7 @@ const ClinicalReportPDF: React.FC<ClinicalReportPDFProps> = ({
   analysis,
   therapistName,
 }) => {
-  const today = new Date().toLocaleDateString("fr-FR", {
+  const today = new Date().toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -379,129 +379,129 @@ const ClinicalReportPDF: React.FC<ClinicalReportPDFProps> = ({
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        {/* 1. EN-TÊTE PROFESSIONNEL */}
+        {/* 1. PROFESSIONAL HEADER */}
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Bilan de Suivi Orthophonique</Text>
-          <Text style={styles.headerSubtitle}>Analyse instrumentale du débit articulatoire</Text>
-          
+          <Text style={styles.headerTitle}>SLP Follow-Up Clinical Report</Text>
+          <Text style={styles.headerSubtitle}>Instrumental analysis of articulatory rate</Text>
+
           <View style={styles.headerMeta}>
-            <Text style={styles.headerMetaItem}>Date : {today}</Text>
+            <Text style={styles.headerMetaItem}>Date: {today}</Text>
             {therapistName && (
-              <Text style={styles.headerMetaItem}>Praticien : {therapistName}</Text>
+              <Text style={styles.headerMetaItem}>Clinician: {therapistName}</Text>
             )}
           </View>
-          
+
           {analysis.recipientDoctor && (
             <View style={styles.recipientBox}>
-              <Text style={styles.recipientText}>À l'attention de : {analysis.recipientDoctor}</Text>
+              <Text style={styles.recipientText}>Attention: {analysis.recipientDoctor}</Text>
             </View>
           )}
         </View>
         
-        {/* 2. INFORMATIONS PATIENT */}
+        {/* 2. PATIENT INFORMATION */}
         <View style={styles.section}>
-          <SectionHeader number={1} title="Informations Patient" />
+          <SectionHeader number={1} title="Patient Information" />
           <View style={styles.patientCard}>
             <View style={styles.patientInfo}>
               <Text style={styles.patientName}>{analysis.patientName}</Text>
               {analysis.patientAge && (
-                <Text style={styles.patientDetail}>Âge : {analysis.patientAge} ans</Text>
+                <Text style={styles.patientDetail}>Age: {analysis.patientAge} years</Text>
               )}
-              <Text style={styles.patientDetail}>Suivi depuis le {analysis.followUpSince}</Text>
+              <Text style={styles.patientDetail}>Follow-up since {analysis.followUpSince}</Text>
             </View>
           </View>
         </View>
         
-        {/* 3. RÉSUMÉ DU SUIVI */}
+        {/* 3. FOLLOW-UP SUMMARY */}
         <View style={styles.section}>
-          <SectionHeader number={2} title="Résumé du Suivi" />
+          <SectionHeader number={2} title="Follow-Up Summary" />
           <View style={styles.statsRow}>
             <View style={styles.statBox}>
               <Text style={styles.statValue}>{analysis.totalSessions}</Text>
-              <Text style={styles.statLabel}>Sessions réalisées</Text>
+              <Text style={styles.statLabel}>Sessions completed</Text>
             </View>
             <View style={styles.statBox}>
               <Text style={styles.statValue}>{analysis.totalPracticeMinutes}</Text>
-              <Text style={styles.statLabel}>Minutes de pratique</Text>
+              <Text style={styles.statLabel}>Practice minutes</Text>
             </View>
             <View style={styles.statBox}>
               <Text style={styles.statValue}>{analysis.currentStreak}</Text>
-              <Text style={styles.statLabel}>Jours consécutifs</Text>
+              <Text style={styles.statLabel}>Consecutive days</Text>
             </View>
             <View style={styles.statBox}>
               <Text style={styles.statValue}>{analysis.fluencyRatio}%</Text>
-              <Text style={styles.statLabel}>Dans la zone cible</Text>
+              <Text style={styles.statLabel}>Within target zone</Text>
             </View>
           </View>
         </View>
         
-        {/* 4. MESURES DU DÉBIT */}
+        {/* 4. RATE MEASUREMENTS */}
         <View style={styles.section}>
-          <SectionHeader number={3} title="Mesures du Débit Articulatoire" />
+          <SectionHeader number={3} title="Articulatory Rate Measurements" />
           <View style={styles.table}>
             {/* Header */}
             <View style={[styles.tableRow, styles.tableHeader]}>
-              <Text style={[styles.tableCell, styles.tableCellHeader]}>Situation</Text>
-              <Text style={[styles.tableCell, styles.tableCellHeader, styles.tableCellCenter]}>Mesuré (syll/s)</Text>
-              <Text style={[styles.tableCell, styles.tableCellHeader, styles.tableCellCenter]}>Norme</Text>
-              <Text style={[styles.tableCell, styles.tableCellHeader, styles.tableCellCenter]}>Interprétation</Text>
+              <Text style={[styles.tableCell, styles.tableCellHeader]}>Context</Text>
+              <Text style={[styles.tableCell, styles.tableCellHeader, styles.tableCellCenter]}>Measured (syll/s)</Text>
+              <Text style={[styles.tableCell, styles.tableCellHeader, styles.tableCellCenter]}>Norm</Text>
+              <Text style={[styles.tableCell, styles.tableCellHeader, styles.tableCellCenter]}>Interpretation</Text>
             </View>
-            
-            {/* Lecture */}
+
+            {/* Reading */}
             {analysis.readingStats.count > 0 && (
               <View style={styles.tableRow}>
-                <Text style={styles.tableCell}>Lecture à voix haute ({analysis.readingStats.count} sessions)</Text>
+                <Text style={styles.tableCell}>Oral reading ({analysis.readingStats.count} sessions)</Text>
                 <Text style={[styles.tableCell, styles.tableCellCenter]}>
                   {analysis.readingStats.min.toFixed(2)} - {analysis.readingStats.max.toFixed(2)}{"\n"}
-                  <Text style={styles.tableCellMuted}>(moy = {analysis.readingStats.avg.toFixed(2)})</Text>
+                  <Text style={styles.tableCellMuted}>(avg = {analysis.readingStats.avg.toFixed(2)})</Text>
                 </Text>
                 <Text style={[styles.tableCell, styles.tableCellCenter]}>3.5 - 5.5</Text>
                 <Text style={[styles.tableCell, styles.tableCellCenter]}>{getSPSInterpretation(analysis.readingStats.avg)}</Text>
               </View>
             )}
-            
+
             {/* Improvisation */}
             {analysis.improvisationStats.count > 0 && (
               <View style={styles.tableRow}>
-                <Text style={styles.tableCell}>Parole spontanée ({analysis.improvisationStats.count} sessions)</Text>
+                <Text style={styles.tableCell}>Spontaneous speech ({analysis.improvisationStats.count} sessions)</Text>
                 <Text style={[styles.tableCell, styles.tableCellCenter]}>
                   {analysis.improvisationStats.min.toFixed(2)} - {analysis.improvisationStats.max.toFixed(2)}{"\n"}
-                  <Text style={styles.tableCellMuted}>(moy = {analysis.improvisationStats.avg.toFixed(2)})</Text>
+                  <Text style={styles.tableCellMuted}>(avg = {analysis.improvisationStats.avg.toFixed(2)})</Text>
                 </Text>
                 <Text style={[styles.tableCell, styles.tableCellCenter]}>4.0 - 5.5</Text>
                 <Text style={[styles.tableCell, styles.tableCellCenter]}>{getSPSInterpretation(analysis.improvisationStats.avg)}</Text>
               </View>
             )}
-            
+
             {/* Global if only one type */}
             {(analysis.readingStats.count === 0 || analysis.improvisationStats.count === 0) && (
               <View style={[styles.tableRow, styles.tableRowLast]}>
-                <Text style={styles.tableCell}>Moyenne globale</Text>
+                <Text style={styles.tableCell}>Overall average</Text>
                 <Text style={[styles.tableCell, styles.tableCellCenter]}>
                   {analysis.minSPS.toFixed(2)} - {analysis.maxSPS.toFixed(2)}{"\n"}
-                  <Text style={styles.tableCellMuted}>(moy = {analysis.avgSPS.toFixed(2)})</Text>
+                  <Text style={styles.tableCellMuted}>(avg = {analysis.avgSPS.toFixed(2)})</Text>
                 </Text>
                 <Text style={[styles.tableCell, styles.tableCellCenter]}>3.5 - 5.5</Text>
                 <Text style={[styles.tableCell, styles.tableCellCenter]}>{getSPSInterpretation(analysis.avgSPS)}</Text>
               </View>
             )}
-            
+
             {/* Articulatory Rate */}
             <View style={[styles.tableRow, styles.tableRowLast]}>
-              <Text style={styles.tableCell}>Vitesse d'articulation*</Text>
+              <Text style={styles.tableCell}>Articulatory rate*</Text>
               <Text style={[styles.tableCell, styles.tableCellCenter]}>{analysis.articulatoryRate.toFixed(2)}</Text>
               <Text style={[styles.tableCell, styles.tableCellCenter]}>5.0 - 6.5</Text>
-              <Text style={[styles.tableCell, styles.tableCellCenter, styles.tableCellMuted]}>Hors pauses</Text>
+              <Text style={[styles.tableCell, styles.tableCellCenter, styles.tableCellMuted]}>Excluding pauses</Text>
             </View>
           </View>
           <Text style={{ fontSize: 7, color: colors.textMuted, marginTop: 4 }}>
-            * Vitesse d'articulation estimée selon Van Zaalen = débit hors pauses respiratoires
+            * Articulatory rate estimated per Van Zaalen = speech rate excluding breathing pauses
           </Text>
         </View>
         
-        {/* 5. ANALYSE DE LA RÉGULARITÉ */}
+        {/* 5. REGULARITY ANALYSIS */}
         <View style={styles.section}>
-          <SectionHeader number={4} title="Analyse de la Régularité" />
+          <SectionHeader number={4} title="Regularity Analysis" />
           <View style={styles.interpretationBox}>
             <Text style={styles.interpretationText}>{analysis.mainDiagnosis}</Text>
           </View>
@@ -510,12 +510,12 @@ const ClinicalReportPDF: React.FC<ClinicalReportPDFProps> = ({
           </View>
         </View>
         
-        {/* 6. ÉVOLUTION TEMPORELLE (si inclus) */}
+        {/* 6. TEMPORAL PROGRESSION (if included) */}
         {analysis.includeEvolutionChart && analysis.evolutionData.length > 2 && (
           <View style={styles.section}>
-            <SectionHeader number={5} title="Évolution Temporelle" />
+            <SectionHeader number={5} title="Temporal Progression" />
             <View style={styles.chartContainer}>
-              <Text style={styles.chartTitle}>Courbe de progression (dernières sessions)</Text>
+              <Text style={styles.chartTitle}>Progress chart (recent sessions)</Text>
               <View style={styles.chartBar}>
                 {analysis.evolutionData.map((point, idx) => (
                   <View key={idx} style={{ flex: 1, alignItems: "center" }}>
@@ -535,15 +535,15 @@ const ClinicalReportPDF: React.FC<ClinicalReportPDFProps> = ({
               <View style={styles.chartLegend}>
                 <View style={styles.chartLegendItem}>
                   <View style={[styles.chartLegendDot, { backgroundColor: colors.primary }]} />
-                  <Text style={styles.chartLegendText}>Normo-fluent (≤ 4.5)</Text>
+                  <Text style={styles.chartLegendText}>Normal fluency (≤ 4.5)</Text>
                 </View>
                 <View style={styles.chartLegendItem}>
                   <View style={[styles.chartLegendDot, { backgroundColor: colors.warning }]} />
-                  <Text style={styles.chartLegendText}>Rapide (4.5-5.5)</Text>
+                  <Text style={styles.chartLegendText}>Fast (4.5-5.5)</Text>
                 </View>
                 <View style={styles.chartLegendItem}>
                   <View style={[styles.chartLegendDot, { backgroundColor: colors.danger }]} />
-                  <Text style={styles.chartLegendText}>Tachylalie (&gt; 5.5)</Text>
+                  <Text style={styles.chartLegendText}>Cluttering (&gt; 5.5)</Text>
                 </View>
               </View>
             </View>
@@ -553,27 +553,27 @@ const ClinicalReportPDF: React.FC<ClinicalReportPDFProps> = ({
           </View>
         )}
         
-        {/* 7. OBSERVATIONS (si fournies) */}
+        {/* 7. OBSERVATIONS (if provided) */}
         {analysis.therapistNotes && (
           <View style={styles.section}>
-            <SectionHeader number={analysis.includeEvolutionChart ? 6 : 5} title="Observations du Praticien" />
+            <SectionHeader number={analysis.includeEvolutionChart ? 6 : 5} title="Clinician Observations" />
             <View style={styles.notesBox}>
               <Text style={styles.notesText}>{analysis.therapistNotes}</Text>
             </View>
           </View>
         )}
         
-        {/* 8. PISTES DE TRAVAIL */}
+        {/* 8. THERAPEUTIC DIRECTIONS */}
         <View style={styles.section}>
-          <SectionHeader 
-            number={analysis.therapistNotes 
-              ? (analysis.includeEvolutionChart ? 7 : 6) 
+          <SectionHeader
+            number={analysis.therapistNotes
+              ? (analysis.includeEvolutionChart ? 7 : 6)
               : (analysis.includeEvolutionChart ? 6 : 5)
-            } 
-            title="Pistes de Travail Suggérées" 
+            }
+            title="Suggested Therapeutic Directions"
           />
           <View style={styles.recommendationBox}>
-            <Text style={styles.recommendationTitle}>Axes thérapeutiques proposés :</Text>
+            <Text style={styles.recommendationTitle}>Proposed therapeutic approaches:</Text>
             <Text style={styles.interpretationText}>{analysis.recommendation}</Text>
           </View>
         </View>
@@ -581,18 +581,18 @@ const ClinicalReportPDF: React.FC<ClinicalReportPDFProps> = ({
         {/* 9. DISCLAIMER */}
         <View style={styles.disclaimer}>
           <Text style={styles.disclaimerText}>
-            Ce document constitue une aide instrumentale à la mesure du débit articulatoire.{"\n"}
-            Il ne se substitue pas au diagnostic clinique de l'orthophoniste ni au bilan orthophonique réglementaire.{"\n"}
-            Les données présentées sont à intégrer dans l'évaluation globale du patient.
+            This document is an instrumental aid for measuring articulatory rate.{"\n"}
+            It does not replace the clinical diagnosis of the SLP or the standard speech assessment.{"\n"}
+            The data presented should be integrated into the patient's overall evaluation.
           </Text>
           <Text style={[styles.disclaimerText, { marginTop: 6 }]}>
-            Données collectées via ParlerMoinsVite.fr • Plateforme d'entraînement à la fluence
+            Data collected via ClutterPro.com - Fluency training platform
           </Text>
         </View>
         
         {/* Footer */}
         <View style={styles.footer}>
-          <Text style={styles.footerText}>ParlerMoinsVite.fr — Outil d'aide à la mesure</Text>
+          <Text style={styles.footerText}>ClutterPro.com — Speech rate measurement tool</Text>
           <Text style={styles.footerText}>Page 1/1</Text>
         </View>
       </Page>

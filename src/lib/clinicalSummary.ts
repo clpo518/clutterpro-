@@ -2,7 +2,6 @@
  * Clinical Summary Generator
  * 
  * Generates professional clinical summaries for therapists to quickly review sessions.
- * Follows French medical terminology standards.
  * Uses SPS (Syllables Per Second) as the primary metric.
  */
 
@@ -27,39 +26,39 @@ export function getDebitStatus(avgWpm: number): {
   const sps = wpmToSps(avgWpm);
   
   if (avgWpm === 0) {
-    return { label: "Non mesuré", shortLabel: "—", color: "gray" };
+    return { label: "Not measured", shortLabel: "—", color: "gray" };
   }
   if (sps < 3.5) {
-    return { label: "Débit lent", shortLabel: "Lent", color: "green" };
+    return { label: "Slow pace", shortLabel: "Slow", color: "green" };
   }
   if (sps <= 5.5) {
-    return { label: "Débit normo-fluent", shortLabel: "Normo-fluent", color: "green" };
+    return { label: "Normal pace", shortLabel: "Normal", color: "green" };
   }
   if (sps <= 6.5) {
-    return { label: "Débit rapide", shortLabel: "Rapide", color: "yellow" };
+    return { label: "Fast pace", shortLabel: "Fast", color: "yellow" };
   }
-  return { label: "Tachylalie", shortLabel: "Tachylalie", color: "red" };
+  return { label: "Cluttering range", shortLabel: "Cluttering", color: "red" };
 }
 
 /**
- * Gets the exercise type label in French
+ * Gets the exercise type label
  */
 function getExerciseLabel(exerciseType?: string | null): string {
   switch (exerciseType) {
     case "improvisation":
       return "Improvisation";
     case "repetition":
-      return "Répétition";
+      return "Repetition";
     case "warmup":
-      return "Échauffement";
+      return "Warm-up";
     case "reading":
     default:
-      return "Lecture";
+      return "Reading";
   }
 }
 
 /**
- * Formats duration in human-readable French format
+ * Formats duration in human-readable format
  */
 function formatDurationText(seconds: number): string {
   const mins = Math.floor(seconds / 60);
@@ -90,7 +89,7 @@ export function generateClinicalSummary(input: ClinicalSummaryInput): string {
   let summary = `${exerciseLabel} (${duration}). ${status.label} (${sps} syll/sec)`;
   
   if (wordCount && wordCount > 0) {
-    summary += `. ${wordCount} mots`;
+    summary += `. ${wordCount} words`;
   }
   
   return summary;
@@ -121,8 +120,8 @@ export function getEducationalFeedback(avgWpm: number, targetWpm?: number | null
   
   if (avgWpm === 0) {
     return {
-      title: "Session terminée",
-      description: "Aucune parole détectée pendant cette session.",
+      title: "Session ended",
+      description: "No speech detected during this session.",
       emoji: "—",
       colorClass: "text-muted-foreground",
     };
@@ -136,40 +135,40 @@ export function getEducationalFeedback(avgWpm: number, targetWpm?: number | null
 
     if (Math.abs(diff) <= good) {
       return {
-        title: "Objectif atteint",
-        description: `Votre débit de ${avgSps} syll/sec est pile dans l'objectif de ${targetSps} syll/sec. Bravo !`,
+        title: "Goal reached",
+        description: `Your rate of ${avgSps} syll/sec is right on target (${targetSps} syll/sec). Great job!`,
         emoji: "✅",
         colorClass: "text-green-600",
       };
     }
     if (diff > good && diff <= bad) {
       return {
-        title: "Légèrement au-dessus",
-        description: `Votre débit de ${avgSps} syll/sec dépasse l'objectif de ${targetSps} syll/sec. Pensez à marquer davantage les pauses.`,
+        title: "Slightly above target",
+        description: `Your rate of ${avgSps} syll/sec is above the target of ${targetSps} syll/sec. Try adding more pauses.`,
         emoji: "⚡",
         colorClass: "text-amber-600",
       };
     }
     if (diff > bad) {
       return {
-        title: "Débit trop rapide",
-        description: `Votre débit de ${avgSps} syll/sec est bien au-dessus de l'objectif de ${targetSps} syll/sec. Essayez de ralentir.`,
+        title: "Too fast",
+        description: `Your rate of ${avgSps} syll/sec is well above the target of ${targetSps} syll/sec. Try slowing down.`,
         emoji: "🐇",
         colorClass: "text-red-600",
       };
     }
     if (diff < -good && diff >= -bad) {
       return {
-        title: "Bien contrôlé",
-        description: `Votre débit de ${avgSps} syll/sec est légèrement sous l'objectif de ${targetSps} syll/sec. Bonne maîtrise.`,
+        title: "Well controlled",
+        description: `Your rate of ${avgSps} syll/sec is slightly below the target of ${targetSps} syll/sec. Great control.`,
         emoji: "🐢",
         colorClass: "text-emerald-600",
       };
     }
     // diff < -bad
     return {
-      title: "Régime très lent",
-      description: `Votre débit de ${avgSps} syll/sec est très en-dessous de l'objectif de ${targetSps} syll/sec. Vous pouvez accélérer progressivement.`,
+      title: "Very slow pace",
+      description: `Your rate of ${avgSps} syll/sec is well below the target of ${targetSps} syll/sec. You can gradually increase your pace.`,
       emoji: "🐢",
       colorClass: "text-blue-600",
     };
@@ -178,34 +177,34 @@ export function getEducationalFeedback(avgWpm: number, targetWpm?: number | null
   // Fallback: absolute thresholds when no target is set
   if (avgSps < 3.5) {
     return {
-      title: "Débit très contrôlé",
-      description: "Débit lent et maîtrisé. Excellent pour travailler la précision articulatoire et la pose de voix.",
+      title: "Well controlled pace",
+      description: "Slow, controlled rate. Great for working on articulatory precision and voice placement.",
       emoji: "🐢",
       colorClass: "text-emerald-600",
     };
   }
-  
+
   if (avgSps <= 5.5) {
     return {
-      title: "Débit normo-fluent",
-      description: "Rythme conversationnel naturel et confortable pour l'auditeur. Maintenez ce cap !",
+      title: "Normal fluency",
+      description: "Natural conversational rhythm, comfortable for the listener. Keep it up!",
       emoji: "✅",
       colorClass: "text-green-600",
     };
   }
-  
+
   if (avgSps <= 6.5) {
     return {
-      title: "Débit rapide",
-      description: "Tendance à accélérer. Pensez à marquer davantage les pauses respiratoires entre les phrases.",
+      title: "Fast pace",
+      description: "Tendency to speed up. Try adding more breathing pauses between sentences.",
       emoji: "⚡",
       colorClass: "text-amber-600",
     };
   }
-  
+
   return {
-    title: "Tachylalie détectée",
-    description: "Tendance à la tachylalie (débit très rapide). L'intelligibilité peut être compromise. Accentuez les pauses respiratoires.",
+    title: "Cluttering range detected",
+    description: "Very fast rate detected. Intelligibility may be compromised. Focus on breathing pauses.",
     emoji: "🐇",
     colorClass: "text-red-600",
   };

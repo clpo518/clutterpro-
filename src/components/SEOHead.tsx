@@ -16,8 +16,8 @@ interface SEOConfig {
   jsonLd?: object;
 }
 
-const SITE_URL = 'https://www.parlermoinsvite.fr';
-const SITE_NAME = 'ParlerMoinsVite';
+const SITE_URL = 'https://www.clutterpro.com';
+const SITE_NAME = 'ClutterPro';
 const OG_DEFAULT = `${SITE_URL}/og-default.png`;
 
 // Per-page OG images
@@ -30,246 +30,144 @@ const ogImages: Record<string, string> = {
   '/about': `${SITE_URL}/og-about.png`,
   '/blog': `${SITE_URL}/og-blog.png`,
   '/diagnostic': `${SITE_URL}/og-diagnostic.png`,
-  '/blog/test-vocal-debit-parole-gratuit': `${SITE_URL}/og-diagnostic.png`,
-  '/blog/comprendre-le-bredouillement': `${SITE_URL}/og-blog-comprendre-bredouillement.png`,
-  '/blog/3-exercices-ralentir-debit': `${SITE_URL}/og-blog-exercices-debit.png`,
-  '/blog/mon-histoire-bredouillement-ia': `${SITE_URL}/og-blog-histoire-fondateur.png`,
-  '/blog/comment-parler-moins-vite': `${SITE_URL}/og-blog-parler-moins-vite.png`,
-  '/blog/stress-parler-trop-vite-solutions': `${SITE_URL}/og-blog-stress-parole.png`,
-  '/blog/guide-supprimer-mots-parasites-tics-langage': `${SITE_URL}/og-blog-mots-parasites.png`,
-  '/blog/mesurer-vitesse-articulatoire-praat': `${SITE_URL}/og-blog-vitesse-articulatoire.png`,
-  '/blog/exercice-orthophonie-enfant-non-lecteur-rebus': `${SITE_URL}/og-blog-rebus-enfant.png`,
-  '/blog/pourquoi-ralentir-ne-marche-pas': `${SITE_URL}/og-default.png`,
-  '/blog/comparatif-outils-debit-parole-bredouillement': `${SITE_URL}/og-blog-comparatif-outils.png`,
 };
 
 const seoConfig: Record<string, SEOConfig> = {
   // -- Public Pages --
   '/': {
-    title: 'Outil de Suivi Bredouillement pour Orthophonistes | ParlerMoinsVite',
-    description: "Plateforme de télé-soin pour orthophonistes. Suivez l'entraînement de vos patients bredouilleurs à distance avec des métriques SPS (Van Zaalen). Essai 30 jours gratuit.",
-    keywords: 'orthophoniste bredouillement, suivi patient tachylalie, télé-soin orthophonie, SPS Van Zaalen, outil rééducation fluence',
+    title: 'ClutterPro — Control Your Speech Rate',
+    description: 'ClutterPro helps people with cluttering and their speech-language pathologists measure, practice, and improve speech rate. Real-time SPS measurement, 60+ exercises, clinical tracking.',
+    keywords: 'cluttering speech therapy, SLP tool, speech rate measurement, SPS Van Zaalen, fluency training',
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       name: SITE_NAME,
       applicationCategory: 'HealthApplication',
       operatingSystem: 'Web',
-      description: "Outil de suivi du bredouillement pour orthophonistes. Métriques SPS, bilans automatiques et suivi patient à distance.",
+      description: 'Speech rate training tool for cluttering. Real-time SPS measurement, clinical reports, and remote patient monitoring.',
       url: SITE_URL,
       offers: {
         '@type': 'Offer',
-        price: '14.90',
-        priceCurrency: 'EUR',
-        description: 'Abonnement Pro à partir de 14,90€/mois'
+        price: '29',
+        priceCurrency: 'USD',
+        description: 'Pro subscription from $29/month'
       }
     }
   },
   '/patients': {
-    title: 'Exercices Bredouillement & Tachylalie | ParlerMoinsVite',
-    description: "L'application d'entraînement pour les personnes qui bredouillent ou parlent trop vite. Mesurez votre débit en syllabes/seconde, visualisez vos progrès et entraînez-vous 5 min/jour.",
-    keywords: 'bredouillement exercices, parler trop vite, tachylalie, ralentir débit parole, biofeedback vocal, entraînement élocution'
+    title: 'Cluttering Exercises & Speech Rate Training | ClutterPro',
+    description: 'The training app for people who clutter or speak too fast. Measure your rate in syllables/second, track your progress, and practice 5 min/day.',
+    keywords: 'cluttering exercises, speaking too fast, speech rate control, vocal biofeedback, speech training'
   },
   '/pricing': {
-    title: 'Tarifs Orthophonistes & Accès Patient Gratuit | ParlerMoinsVite',
-    description: "Abonnement Pro dès 14,90€/mois pour 3 patients. Gratuit pour les patients. Essai 30 jours sans carte bancaire. Sans engagement.",
-    keywords: 'tarif orthophoniste, prix suivi patient, abonnement orthophonie, outil clinique bredouillement'
+    title: 'ClutterPro Pricing — Plans for SLPs and Patients',
+    description: 'Pro subscription from $29/month for 3 patients. Free for patients. 30-day free trial. Cancel anytime.',
+    keywords: 'SLP subscription, cluttering therapy tool pricing, speech therapy software'
   },
   '/pro': {
-    title: 'Espace Orthophonistes — Suivi Bredouillement à Distance | ParlerMoinsVite',
-    description: "Outil clinique pour le suivi du bredouillement. SPS Van Zaalen, bilans PDF automatiques, suivi patient à distance. 30 jours d'essai gratuit.",
-    keywords: 'orthophoniste bredouillement, outil rééducation fluence, suivi patient distance, SPS Van Zaalen, bilan orthophonique'
+    title: 'ClutterPro for SLPs — Clinical Tools for Cluttering Therapy',
+    description: 'Clinical tool for cluttering assessment and monitoring. Van Zaalen SPS metrics, auto-generated PDF reports, remote patient tracking. 30-day free trial.',
+    keywords: 'SLP cluttering tool, fluency assessment, remote patient monitoring, SPS Van Zaalen, clinical report'
   },
   '/auth': {
-    title: 'Connexion — ParlerMoinsVite',
-    description: 'Connectez-vous à votre espace patient ou professionnel ParlerMoinsVite.',
-    keywords: 'connexion parlermoinsvite, inscription orthophoniste, compte patient'
+    title: 'Log In — ClutterPro',
+    description: 'Log in to your ClutterPro patient or professional account.',
+    keywords: 'clutterpro login, SLP signup, patient account'
   },
   '/assessment': {
-    title: 'Test Bredouillement Gratuit en 2 min | Évaluez votre débit',
-    description: "Évaluez vos symptômes de bredouillement gratuitement en 10 questions. Basé sur l'Inventaire Prédictif du Bredouillement validé cliniquement. Résultat immédiat.",
-    keywords: 'test bredouillement gratuit, auto-diagnostic tachylalie, évaluation débit parole, symptômes cluttering',
+    title: 'Free Cluttering Assessment — 2-Minute Self-Test',
+    description: 'Evaluate your cluttering symptoms for free in 10 questions. Based on clinically validated screening tools. Instant results.',
+    keywords: 'cluttering assessment free, cluttering self-test, speech rate evaluation, cluttering screening',
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'MedicalWebPage',
-      name: 'Test de dépistage du bredouillement',
-      description: "Auto-diagnostic basé sur l'Inventaire Prédictif du Bredouillement.",
-      audience: { '@type': 'PeopleAudience', healthCondition: { '@type': 'MedicalCondition', name: 'Bredouillement (Cluttering)' } }
+      name: 'Cluttering Screening Assessment',
+      description: 'Self-assessment based on clinically validated cluttering screening tools.',
+      audience: { '@type': 'PeopleAudience', healthCondition: { '@type': 'MedicalCondition', name: 'Cluttering' } }
     }
   },
   '/about': {
-    title: "Notre Histoire — Créé par un Bredouilleur, pour les Bredouilleurs",
-    description: "Découvrez l'histoire de Clément, fondateur de ParlerMoinsVite. Comment un développeur bredouilleur a créé l'outil d'entraînement qu'il cherchait.",
-    keywords: 'histoire parlermoinsvite, fondateur bredouillement, POCLE, Clément Pontegnier, Annecy'
+    title: 'About ClutterPro — Built by Someone Who Clutters',
+    description: 'The story of how a developer with cluttering built the speech training tool he wished existed.',
+    keywords: 'about clutterpro, founder cluttering, speech rate tool story'
   },
   '/contact': {
-    title: 'Contact — ParlerMoinsVite',
-    description: "Contactez l'équipe ParlerMoinsVite basée à Annecy. Réponse sous 24h. Support humain et confidentiel.",
-    keywords: 'contact parlermoinsvite, support orthophoniste, aide technique'
+    title: 'Contact — ClutterPro',
+    description: 'Contact the ClutterPro team. Response within 24 hours. Human and confidential support.',
+    keywords: 'contact clutterpro, SLP support, technical help'
   },
   '/legal/terms': {
-    title: "Conditions Générales d'Utilisation — ParlerMoinsVite",
-    description: "CGU de l'application ParlerMoinsVite. Conditions d'accès, utilisation du service et responsabilités.",
-    keywords: 'CGU, conditions générales, mentions légales'
+    title: 'Terms of Service — ClutterPro',
+    description: 'ClutterPro terms of service. Access conditions, service usage, and responsibilities.',
+    keywords: 'terms of service, legal, terms and conditions'
   },
   '/legal/privacy': {
-    title: 'Politique de Confidentialité & RGPD — ParlerMoinsVite',
-    description: 'Comment ParlerMoinsVite protège vos données personnelles. Hébergement européen, chiffrement, conformité RGPD.',
-    keywords: 'confidentialité, RGPD, données personnelles, protection données santé'
+    title: 'Privacy Policy — ClutterPro',
+    description: 'How ClutterPro protects your personal data. HIPAA-conscious security practices, encryption, and data protection.',
+    keywords: 'privacy policy, HIPAA, personal data protection, health data security'
   },
   '/diagnostic': {
-    title: 'Test Vocal Gratuit — Mesurez votre débit de parole en 30 secondes',
-    description: "Parlez-vous trop vite ? Faites le test vocal gratuit, sans inscription. Résultat clinique instantané en syllabes/seconde basé sur les normes de Van Zaalen.",
-    keywords: 'test vocal gratuit, mesurer débit parole, parler trop vite, diagnostic bredouillement, vitesse élocution, syllabes par seconde',
+    title: 'Free Voice Test — Measure Your Speech Rate in 30 Seconds',
+    description: 'Do you speak too fast? Take the free voice test, no signup needed. Instant clinical results in syllables/second based on Van Zaalen norms.',
+    keywords: 'free voice test, measure speech rate, speaking too fast test, cluttering diagnosis, syllables per second',
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'MedicalWebPage',
-      name: 'Test vocal de débit de parole',
-      description: "Auto-diagnostic vocal gratuit pour mesurer votre vitesse de parole en syllabes par seconde.",
-      audience: { '@type': 'PeopleAudience', healthCondition: { '@type': 'MedicalCondition', name: 'Bredouillement (Cluttering)' } }
+      name: 'Speech Rate Voice Test',
+      description: 'Free voice test to measure your speech rate in syllables per second.',
+      audience: { '@type': 'PeopleAudience', healthCondition: { '@type': 'MedicalCondition', name: 'Cluttering' } }
     }
   },
 
   // -- Blog Pages --
   '/blog': {
-    title: 'Blog Bredouillement & Élocution — Guides et Exercices',
-    description: 'Articles experts sur le bredouillement, exercices orthophoniques et témoignages. Apprenez à maîtriser votre débit de parole.',
-    keywords: 'blog bredouillement, exercices élocution, parler moins vite, tachylalie, orthophonie, débit parole'
-  },
-  '/blog/comprendre-le-bredouillement': {
-    title: "Je mange mes mots : Suis-je bredouilleur ? Guide Complet 2025",
-    description: 'Symptômes du bredouillement (cluttering), causes neurologiques et différences avec le bégaiement. Checklist de diagnostic + solutions.',
-    keywords: 'bredouillement symptômes, cluttering, différence bégaiement bredouillement, télescopage syllabes, diagnostic'
-  },
-  '/blog/3-exercices-ralentir-debit': {
-    title: "3 Exercices d'Orthophoniste pour Arrêter de Parler Trop Vite",
-    description: "Syllabe appuyée, Chunking, Biofeedback : 3 techniques de rééducation orthophonique pour ralentir votre débit sans passer pour un robot. 5 min/jour.",
-    keywords: 'exercices ralentir débit, articulation orthophonie, biofeedback vocal, chunking parole, syllabe appuyée'
-  },
-  '/blog/mon-histoire-bredouillement-ia': {
-    title: "Témoignage : J'ai codé un outil pour soigner mon bredouillement",
-    description: "L'histoire du créateur de ParlerMoinsVite. Comment un développeur bredouilleur a créé un outil de biofeedback vocal pour reprendre le contrôle.",
-    keywords: 'témoignage bredouillement, créateur parlermoinsvite, biofeedback vocal, histoire fondateur'
-  },
-  '/blog/comment-parler-moins-vite': {
-    title: 'Comment parler moins vite ? Comprendre le bredouillement',
-    description: "Guide complet pour comprendre le débit rapide et le bredouillement. Exercices d'orthophonie adaptés, biofeedback visuel et méthode karaoké.",
-    keywords: 'comment parler moins vite, bredouillement solutions, articuler mieux, exercices débit, lecture guidée'
-  },
-  '/blog/stress-parler-trop-vite-solutions': {
-    title: 'Pourquoi je parle trop vite quand je suis stressé ? 4 Solutions',
-    description: "Mécanique du stress sur la voix : respiration abdominale, règle des premiers mots, silence et biofeedback. 4 techniques anti-stress pour maîtriser son débit.",
-    keywords: 'stress parler vite, tachyphémie émotionnelle, respiration abdominale, prise de parole stress'
-  },
-  '/blog/guide-supprimer-mots-parasites-tics-langage': {
-    title: "\"Euh\", \"Du coup\" : Guide Complet pour Supprimer vos Tics de Langage",
-    description: "Psychologie des mots parasites, impact sur la crédibilité professionnelle et méthode en 3 étapes pour les éliminer. Détecteur automatique intégré.",
-    keywords: 'mots parasites, tics de langage, euh du coup en fait, éloquence professionnelle, diction'
-  },
-  '/blog/mesurer-vitesse-articulatoire-praat': {
-    title: "Mesurer la vitesse articulatoire : Fini la galère avec Praat ?",
-    description: "Comment calculer la vitesse articulatoire sans perdre 15 minutes sur Praat ? Découvrez la méthode automatique pour le bredouillement.",
-    keywords: 'vitesse articulatoire, Praat, mesure débit, syllabes par seconde, bredouillement diagnostic, BEB orthophonie'
-  },
-  '/blog/exercice-orthophonie-enfant-non-lecteur-rebus': {
-    title: "Orthophonie enfant non-lecteur : exercice Rébus pour le débit",
-    description: "Premier exercice de fluence pour enfants non-lecteurs. 30 séquences d'emojis avec biofeedback visuel, mode guidé et bilan SPS. Dès 4 ans, sans savoir lire.",
-    keywords: 'orthophonie enfant, exercice non lecteur, rébus orthophonie, tachylalie enfant, fluence enfant, biofeedback enfant, bredouillement enfant',
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: "Orthophonie et enfant non-lecteur : comment travailler le débit sans savoir lire ?",
-      description: "Premier exercice de fluence pour enfants non-lecteurs basé sur des séquences d'emojis avec biofeedback visuel.",
-      author: { '@type': 'Person', name: 'Clément Pontegnier' },
-      publisher: { '@type': 'Organization', name: 'ParlerMoinsVite' },
-      datePublished: '2025-07-14'
-    }
-  },
-  '/blog/comparatif-outils-debit-parole-bredouillement': {
-    title: "Comparatif Outils Débit de Parole 2026 : Speed Control, DAF, Praat…",
-    description: "Quel outil pour le bredouillement ? On compare Speed Control, DAF, Praat, métronome et ParlerMoinsVite. Fonctionnalités, limites et verdict clinique.",
-    keywords: 'comparatif outil débit parole, speed control avis, application bredouillement, tachylalie outil, mesurer SPS, biofeedback vocal, orthophonie outil',
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: "Quel outil pour travailler son débit de parole ? Comparatif 2026",
-      description: "Comparatif complet des outils pour le bredouillement : Speed Control, DAF, Praat, métronome, Speechlab et ParlerMoinsVite.",
-      author: { '@type': 'Person', name: 'Clément Pontegnier' },
-      publisher: { '@type': 'Organization', name: 'ParlerMoinsVite' },
-      datePublished: '2026-02-20'
-    }
-  },
-  '/blog/pourquoi-ralentir-ne-marche-pas': {
-    title: "Pourquoi ralentir est impossible quand on bredouille (et la solution)",
-    description: "Votre compteur de vitesse interne est cassé : voilà pourquoi « faire un effort » ne suffit pas. Découvrez le biofeedback visuel, la méthode qui répare la perception.",
-    keywords: 'ralentir bredouillement, biofeedback vocal, compteur vitesse parole, déficit monitoring, rééducation débit',
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: "Tout le monde vous dit de « ralentir », mais vous n'y arrivez pas ? Voici pourquoi.",
-      description: "Pourquoi « faire un effort » ne suffit pas quand on bredouille, et comment le biofeedback visuel répare le compteur de vitesse interne.",
-      author: { '@type': 'Person', name: 'Clément Pontegnier' },
-      publisher: { '@type': 'Organization', name: 'ParlerMoinsVite' },
-      datePublished: '2025-02-15'
-    }
-  },
-  '/blog/test-vocal-debit-parole-gratuit': {
-    title: "Parlez-vous trop vite ? Test vocal gratuit en 30 secondes",
-    description: "Mesurez votre débit de parole gratuitement avec notre test vocal en ligne. Résultat clinique instantané en syllabes/seconde (normes Van Zaalen). Sans inscription.",
-    keywords: 'test vocal gratuit, mesurer débit parole, parler trop vite test, bredouillement auto-diagnostic, vitesse élocution, syllabes par seconde',
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: "Parlez-vous trop vite ? Faites le test vocal gratuit en 30 secondes",
-      description: "Mesurez votre débit de parole gratuitement avec notre test vocal en ligne. Résultat clinique instantané basé sur les normes de Van Zaalen.",
-      author: { '@type': 'Person', name: 'Clément Pontegnier' },
-      publisher: { '@type': 'Organization', name: 'ParlerMoinsVite' },
-      datePublished: '2025-02-12'
-    }
+    title: 'ClutterPro Blog — Cluttering Resources for SLPs',
+    description: 'Expert articles on cluttering, speech exercises, and clinical tools. Learn to master your speech rate.',
+    keywords: 'cluttering blog, speech exercises, speech rate, SLP resources, fluency'
   },
 
   // -- App Pages (Patient) --
   '/dashboard': {
-    title: 'Mon Espace — Suivi de Progression | ParlerMoinsVite',
-    description: 'Vos statistiques de débit, derniers enregistrements et objectifs de la semaine.',
-    keywords: 'tableau de bord, progression, statistiques débit, suivi entraînement'
+    title: 'My Dashboard — Progress Tracking | ClutterPro',
+    description: 'Your speech rate stats, recent recordings, and weekly goals.',
+    keywords: 'dashboard, progress, speech rate stats, training tracker'
   },
   '/library': {
-    title: "Bibliothèque d'Exercices — +60 Exercices | ParlerMoinsVite",
-    description: "Textes normés, virelangues, respiration, défis moteurs et pièges cognitifs. Plus de 60 exercices pour travailler votre rythme.",
-    keywords: 'exercices orthophonie, fluence, virelangues, lecture guidée, diadococinésie'
+    title: 'Exercise Library — 60+ Exercises | ClutterPro',
+    description: 'Clinical texts, tongue twisters, breathing exercises, and cognitive challenges. Over 60 exercises to work on your pace.',
+    keywords: 'speech exercises, fluency, tongue twisters, guided reading, articulation drills'
   },
   '/practice': {
-    title: "Studio d'Entraînement — Biofeedback Vocal | ParlerMoinsVite",
-    description: "Interface d'enregistrement avec retour visuel (Waveform), jauge SPS en temps réel et détection des mots parasites.",
-    keywords: 'entraînement biofeedback, exercice débit, jauge vitesse parole, karaoké vocal'
+    title: 'Training Studio — Vocal Biofeedback | ClutterPro',
+    description: 'Recording interface with visual feedback (waveform), real-time SPS gauge, and filler word detection.',
+    keywords: 'biofeedback training, speech rate exercise, speech speed gauge, karaoke reading'
   },
   '/settings': {
-    title: 'Paramètres — ParlerMoinsVite',
-    description: 'Gérez votre profil, vos préférences et votre abonnement.',
-    keywords: 'paramètres, profil, préférences'
+    title: 'Settings — ClutterPro',
+    description: 'Manage your profile, preferences, and subscription.',
+    keywords: 'settings, profile, preferences'
   },
   '/subscription/manage': {
-    title: 'Mon Abonnement — ParlerMoinsVite',
-    description: 'Gérez votre abonnement Premium ParlerMoinsVite.',
-    keywords: 'abonnement, gestion, premium'
+    title: 'My Subscription — ClutterPro',
+    description: 'Manage your ClutterPro subscription.',
+    keywords: 'subscription, management, billing'
   },
 
   // -- App Pages (Therapist) --
   '/patient/list': {
-    title: 'Mes Patients — Tableau de Bord Pro | ParlerMoinsVite',
-    description: 'Gérez vos patients, suivez leur progression et envoyez des prescriptions à distance.',
-    keywords: 'gestion patients, suivi orthophonie, tableau de bord pro'
+    title: 'My Patients — Pro Dashboard | ClutterPro',
+    description: 'Manage your patients, track their progress, and send remote exercise prescriptions.',
+    keywords: 'patient management, SLP dashboard, clinical tracking'
   },
   '/pro/subscription': {
-    title: 'Abonnement Pro — ParlerMoinsVite',
-    description: 'Choisissez votre offre professionnelle et commencez à suivre vos patients.',
-    keywords: 'abonnement pro, offre orthophoniste'
+    title: 'Pro Subscription — ClutterPro',
+    description: 'Choose your professional plan and start monitoring your patients.',
+    keywords: 'pro subscription, SLP plan'
   },
   '/pro/subscription/manage': {
-    title: 'Gérer mon Abonnement Pro — ParlerMoinsVite',
-    description: 'Modifiez ou annulez votre abonnement professionnel.',
-    keywords: 'gestion abonnement, annulation, facturation'
+    title: 'Manage Pro Subscription — ClutterPro',
+    description: 'Modify or cancel your professional subscription.',
+    keywords: 'subscription management, cancellation, billing'
   }
 };
 
@@ -280,23 +178,23 @@ const patientFaqJsonLd = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: "Est-ce que ça remplace un orthophoniste ?",
-      acceptedAnswer: { '@type': 'Answer', text: "Non, ParlerMoinsVite est un outil complémentaire pour s'entraîner entre les séances. Il est idéalement recommandé et suivi par votre praticien." }
+      name: 'Does this replace a speech-language pathologist?',
+      acceptedAnswer: { '@type': 'Answer', text: 'No, ClutterPro is a complementary tool for practicing between sessions. It is ideally used under the guidance of your SLP.' }
     },
     {
       '@type': 'Question',
-      name: "C'est quoi le bredouillement ?",
-      acceptedAnswer: { '@type': 'Answer', text: "Le bredouillement (cluttering) est un trouble de la fluence caractérisé par un débit perçu comme trop rapide et/ou irrégulier, des télescopages de syllabes, et parfois des difficultés à organiser son discours." }
+      name: 'What is cluttering?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Cluttering is a fluency disorder characterized by an excessively fast and/or irregular speech rate, collapsed syllables, and sometimes difficulty organizing discourse.' }
     },
     {
       '@type': 'Question',
-      name: "Combien de temps faut-il s'entraîner ?",
-      acceptedAnswer: { '@type': 'Answer', text: "5 à 10 minutes par jour suffisent pour observer des progrès. La régularité est plus importante que la durée." }
+      name: 'How long should I practice?',
+      acceptedAnswer: { '@type': 'Answer', text: '5 to 10 minutes per day is enough to see progress. Consistency matters more than duration.' }
     },
     {
       '@type': 'Question',
-      name: "Mes enregistrements sont-ils confidentiels ?",
-      acceptedAnswer: { '@type': 'Answer', text: "Oui. Vos enregistrements sont chiffrés et accessibles uniquement par vous (et votre orthophoniste si vous le liez à votre compte). Hébergement conforme RGPD." }
+      name: 'Are my recordings confidential?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. Your recordings are encrypted and accessible only by you (and your SLP if you link your account). HIPAA-conscious hosting.' }
     }
   ]
 };
@@ -307,52 +205,52 @@ const proFaqJsonLd = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: "Comment fonctionne l'essai gratuit ?",
-      acceptedAnswer: { '@type': 'Answer', text: "Vous avez 30 jours pour tester toutes les fonctionnalités avec jusqu'à 3 patients. Aucune carte bancaire requise." }
+      name: 'How does the free trial work?',
+      acceptedAnswer: { '@type': 'Answer', text: 'You get 30 days to test all features with up to 3 patients. No credit card required.' }
     },
     {
       '@type': 'Question',
-      name: "Mes patients doivent-ils payer ?",
-      acceptedAnswer: { '@type': 'Answer', text: "Non, c'est gratuit pour vos patients. Votre abonnement couvre leurs accès. Ils créent simplement leur compte avec votre Code Pro." }
+      name: 'Do my patients need to pay?',
+      acceptedAnswer: { '@type': 'Answer', text: "No, it's free for your patients. Your subscription covers their access. They simply create an account with your Pro Code." }
     },
     {
       '@type': 'Question',
-      name: "Les données sont-elles sécurisées ?",
-      acceptedAnswer: { '@type': 'Answer', text: "Absolument. Hébergement européen, chiffrement, conformité RGPD. Seuls vous et votre patient avez accès aux données." }
+      name: 'Is patient data secure?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Absolutely. Encrypted hosting, HIPAA-conscious security practices. Only you and your patient have access to the data.' }
     }
   ]
 };
 
 function useSEOConfig() {
   const location = useLocation();
-  
+
   let config = seoConfig[location.pathname];
   let jsonLd = config?.jsonLd;
-  
+
   if (!config) {
     if (location.pathname.startsWith('/patient/')) {
       config = {
-        title: 'Dossier Patient — Suivi Clinique | ParlerMoinsVite',
-        description: "Enregistrements, courbe d'évolution SPS et métriques cliniques de votre patient.",
-        keywords: 'dossier patient, suivi clinique, SPS, évolution orthophonie'
+        title: 'Patient Profile — Clinical Tracking | ClutterPro',
+        description: 'Recordings, SPS progress chart, and clinical metrics for your patient.',
+        keywords: 'patient profile, clinical tracking, SPS, speech therapy progress'
       };
     } else if (location.pathname.startsWith('/session/')) {
       config = {
-        title: 'Analyse de Session — ParlerMoinsVite',
-        description: 'Analysez votre enregistrement : courbe de débit SPS, disfluences détectées et waveform.',
-        keywords: 'session analyse, enregistrement, débit SPS, waveform'
+        title: 'Session Analysis — ClutterPro',
+        description: 'Analyze your recording: SPS rate curve, detected disfluencies, and waveform.',
+        keywords: 'session analysis, recording, SPS rate, waveform'
       };
     } else if (location.pathname.startsWith('/blog/')) {
       config = {
-        title: 'Article — Blog ParlerMoinsVite',
-        description: "Article sur le bredouillement, l'élocution et les exercices orthophoniques.",
-        keywords: 'blog bredouillement, article orthophonie'
+        title: 'Article — ClutterPro Blog',
+        description: 'Article on cluttering, speech rate, and speech therapy exercises.',
+        keywords: 'cluttering blog, speech therapy article'
       };
     } else {
       config = {
-        title: 'ParlerMoinsVite — Outil de suivi du bredouillement',
-        description: "Plateforme de télé-soin pour orthophonistes et patients bredouilleurs. Métriques SPS, biofeedback vocal et suivi à distance.",
-        keywords: 'parlermoinsvite, bredouillement, orthophoniste'
+        title: 'ClutterPro — Speech Rate Training for Cluttering',
+        description: 'ClutterPro helps people with cluttering and their speech-language pathologists measure, practice, and improve speech rate. Real-time SPS measurement, 60+ exercises, clinical tracking.',
+        keywords: 'clutterpro, cluttering, speech-language pathologist'
       };
     }
   }
@@ -430,7 +328,7 @@ export default function SEOHead() {
       <meta property="og:url" content={`${SITE_URL}${pathname}`} />
       <meta property="og:image" content={pageOgImage} />
       <meta property="og:site_name" content={SITE_NAME} />
-      <meta property="og:locale" content="fr_FR" />
+      <meta property="og:locale" content="en_US" />
       <meta property="og:type" content={ogType} />
       {isBlogArticle && blogPost && (
         <meta property="article:published_time" content={blogPost.date} />

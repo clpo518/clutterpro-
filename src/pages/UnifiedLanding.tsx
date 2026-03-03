@@ -40,7 +40,7 @@ const UnifiedLanding = () => {
                   <User className="w-5 h-5 text-primary" />
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                  Pour les patients
+                  For patients
                 </h2>
               </motion.div>
               <motion.p
@@ -50,7 +50,7 @@ const UnifiedLanding = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
               >
-                Entraînez-vous 5 min/jour et mesurez vos progrès.
+                Train 5 min/day and track your progress.
               </motion.p>
             </div>
           </section>
@@ -59,8 +59,8 @@ const UnifiedLanding = () => {
           <SPSExplainerSection />
         </div>
 
-        {/* Section Orthophonistes */}
-        <div id="orthophonistes">
+        {/* Section SLPs */}
+        <div id="for-slps">
           <section className="py-12 md:py-16">
             <div className="container px-4 md:px-6">
               <motion.div
@@ -73,7 +73,7 @@ const UnifiedLanding = () => {
                   <Stethoscope className="w-5 h-5 text-primary" />
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                  Pour les orthophonistes
+                  For SLPs
                 </h2>
               </motion.div>
               <motion.p
@@ -83,7 +83,7 @@ const UnifiedLanding = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
               >
-                Prolongez l'efficacité de vos séances à la maison.
+                Extend the effectiveness of your sessions at home.
               </motion.p>
             </div>
           </section>

@@ -20,7 +20,7 @@ export default function BlogStickyMobileCTA() {
     <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-background/95 backdrop-blur-sm border-t border-border/60 p-3 safe-bottom">
       <Button asChild className="w-full" size="sm">
         <Link to="/auth?tab=signup">
-          Essayer gratuitement
+          Try for free
           <ArrowRight className="ml-2 w-4 h-4" />
         </Link>
       </Button>

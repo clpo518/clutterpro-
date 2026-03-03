@@ -28,12 +28,12 @@ interface GenerateReportButtonProps {
 type GenerationStep = "idle" | "modal" | "analyzing" | "generating" | "downloading" | "done";
 
 const stepLabels: Record<GenerationStep, string> = {
-  idle: "Générer le Bilan",
-  modal: "Configuration...",
-  analyzing: "Analyse des données...",
-  generating: "Génération...",
-  downloading: "Préparation du téléchargement...",
-  done: "Bilan généré !",
+  idle: "Generate Report",
+  modal: "Configuring...",
+  analyzing: "Analyzing data...",
+  generating: "Generating...",
+  downloading: "Preparing download...",
+  done: "Report generated!",
 };
 
 const GenerateReportButton: React.FC<GenerateReportButtonProps> = ({
@@ -46,7 +46,7 @@ const GenerateReportButton: React.FC<GenerateReportButtonProps> = ({
   
   const handleButtonClick = useCallback(() => {
     if (sessions.length < 2) {
-      toast.error("Au moins 2 sessions sont nécessaires pour générer un bilan");
+      toast.error("At least 2 sessions are required to generate a report");
       return;
     }
     setModalOpen(true);
@@ -88,7 +88,7 @@ const GenerateReportButton: React.FC<GenerateReportButtonProps> = ({
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
-        link.download = `bilan-${patientSlug}-${dateSlug}.txt`;
+        link.download = `clinical_report-${patientSlug}-${dateSlug}.txt`;
         
         document.body.appendChild(link);
         link.click();
@@ -97,7 +97,7 @@ const GenerateReportButton: React.FC<GenerateReportButtonProps> = ({
         
         setStep("done");
         setModalOpen(false);
-        toast.success("Bilan texte généré avec succès !");
+        toast.success("Text report generated successfully!");
         
       } else {
         // Generate PDF Report
@@ -114,7 +114,7 @@ const GenerateReportButton: React.FC<GenerateReportButtonProps> = ({
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
-        link.download = `bilan-${patientSlug}-${dateSlug}.pdf`;
+        link.download = `clinical_report-${patientSlug}-${dateSlug}.pdf`;
         
         document.body.appendChild(link);
         link.click();
@@ -123,7 +123,7 @@ const GenerateReportButton: React.FC<GenerateReportButtonProps> = ({
         
         setStep("done");
         setModalOpen(false);
-        toast.success("Bilan PDF généré avec succès !");
+        toast.success("PDF report generated successfully!");
       }
       
       // Reset after delay
@@ -133,7 +133,7 @@ const GenerateReportButton: React.FC<GenerateReportButtonProps> = ({
       
     } catch (error) {
       console.error("Error generating report:", error);
-      toast.error("Erreur lors de la génération du bilan");
+      toast.error("Error generating report");
       setStep("idle");
       setModalOpen(false);
     }

@@ -123,7 +123,7 @@ const SubscriptionManage = () => {
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-sm">P</span>
             </div>
-            <span className="font-display font-bold">ParlerMoinsVite</span>
+            <span className="font-display font-bold">ClutterPro</span>
           </div>
         </div>
       </header>
@@ -138,12 +138,12 @@ const SubscriptionManage = () => {
           {/* Title */}
           <div className="text-center">
             <h1 className="text-2xl md:text-3xl font-display font-bold mb-2">
-              Gestion de votre abonnement
+              Manage your subscription
             </h1>
             <p className="text-muted-foreground">
-              {therapist 
-                ? "Vous êtes actuellement sur l'offre Premium" 
-                : "Abonnement Patient Autonome — 9€/mois"}
+              {therapist
+                ? "You are currently on the Premium plan"
+                : "Solo Patient Subscription - $9/month"}
             </p>
           </div>
 
@@ -156,14 +156,14 @@ const SubscriptionManage = () => {
                 </div>
                 <div className="space-y-2">
                   <h2 className="text-lg font-semibold text-foreground">
-                    🏆 Votre progression compte !
+                    Your progress matters!
                   </h2>
                   <p className="text-muted-foreground">
-                    Vous avez déjà effectué <strong className="text-foreground">{stats.sessionCount} session{stats.sessionCount > 1 ? 's' : ''}</strong> et 
-                    accumulé <strong className="text-foreground">{stats.totalMinutes >= 60 ? `${Math.floor(stats.totalMinutes / 60)}h${stats.totalMinutes % 60 > 0 ? `${stats.totalMinutes % 60}min` : ''}` : `${stats.totalMinutes} min`}</strong> d'entraînement.
+                    You've already completed <strong className="text-foreground">{stats.sessionCount} session{stats.sessionCount > 1 ? 's' : ''}</strong> and
+                    accumulated <strong className="text-foreground">{stats.totalMinutes >= 60 ? `${Math.floor(stats.totalMinutes / 60)}h${stats.totalMinutes % 60 > 0 ? `${stats.totalMinutes % 60}min` : ''}` : `${stats.totalMinutes} min`}</strong> of practice.
                   </p>
                   <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
-                    Ne perdez pas tout ce travail !
+                    Don't lose all this hard work!
                   </p>
                 </div>
               </div>
@@ -179,24 +179,24 @@ const SubscriptionManage = () => {
                 </div>
                 <div className="space-y-2">
                   <h2 className="text-lg font-semibold text-foreground">
-                    🎯 Objectif Bilan Final
+                    Progress assessment goal
                   </h2>
                   <p className="text-muted-foreground">
-                    Les orthophonistes recommandent un minimum de <strong className="text-foreground">3 mois d'entraînement régulier</strong> pour un bilan complet de progression.
+                    SLPs recommend a minimum of <strong className="text-foreground">3 months of regular practice</strong> for a complete progress assessment.
                   </p>
                   {stats.daysToGoal > 0 ? (
                     <div className="flex items-center gap-2 p-3 rounded-lg bg-green-500/10">
                       <span className="text-2xl font-bold text-green-600">{stats.daysToGoal}</span>
                       <span className="text-sm text-green-700 dark:text-green-400">
-                        jours restants pour atteindre cet objectif.<br/>
-                        <strong>Ne vous arrêtez pas si près du but !</strong>
+                        days remaining to reach this goal.<br/>
+                        <strong>Don't stop when you're this close!</strong>
                       </span>
                     </div>
                   ) : (
                     <div className="flex items-center gap-2 p-3 rounded-lg bg-green-500/20">
                       <CheckCircle className="w-5 h-5 text-green-600" />
                       <span className="text-sm text-green-700 dark:text-green-400 font-medium">
-                        Vous avez atteint les 3 mois ! Continuez pour consolider vos acquis.
+                        You've reached the 3-month mark! Keep going to consolidate your gains.
                       </span>
                     </div>
                   )}
@@ -214,13 +214,13 @@ const SubscriptionManage = () => {
                 </div>
                 <div className="space-y-2">
                   <h2 className="text-lg font-semibold text-foreground">
-                    👩‍⚕️ Votre orthophoniste compte sur vous
+                    Your SLP is counting on you
                   </h2>
                   <p className="text-muted-foreground">
-                    <strong className="text-foreground">{therapist.full_name || "Votre orthophoniste"}</strong> suit votre progression et utilise vos données pour ajuster votre rééducation.
+                    <strong className="text-foreground">{therapist.full_name || "Your SLP"}</strong> is tracking your progress and using your data to adjust your therapy.
                   </p>
                   <p className="text-sm text-purple-600 dark:text-purple-400 font-medium">
-                    En résiliant, vous perdrez cette connexion précieuse.
+                    By canceling, you'll lose this valuable connection.
                   </p>
                 </div>
               </div>
@@ -236,13 +236,13 @@ const SubscriptionManage = () => {
                 </div>
                 <div className="space-y-2">
                   <h2 className="text-lg font-semibold text-foreground">
-                    💡 Pourquoi 9€/mois ? (moins de 2 cafés ☕)
+                    Why $9/month? (less than 2 coffees)
                   </h2>
                   <ul className="text-sm text-muted-foreground space-y-1.5">
-                    <li>✅ Une équipe dédiée qui enrichit la bibliothèque d'exercices</li>
-                    <li>✅ Hébergement sécurisé de vos données vocales</li>
-                    <li>✅ Algorithme d'analyse de débit mis à jour en continu</li>
-                    <li>✅ Support humain par email</li>
+                    <li>A dedicated team constantly expanding the exercise library</li>
+                    <li>Secure hosting for your voice data</li>
+                    <li>Continuously updated speech rate analysis</li>
+                    <li>Human support via email</li>
                   </ul>
                 </div>
               </div>
@@ -257,14 +257,14 @@ const SubscriptionManage = () => {
               </div>
               <div className="space-y-4">
                 <h2 className="text-lg font-semibold text-foreground">
-                  ⚠️ Avant de modifier votre offre...
+                  Before you change your plan...
                 </h2>
                 
                 <div className="flex items-start gap-3 p-4 rounded-lg bg-background/50">
                   <Stethoscope className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-medium text-foreground">
-                      L'arrêt de l'abonnement entraîne la suspension du suivi orthophonique.
+                      Canceling your subscription will suspend SLP monitoring.
                     </p>
                   </div>
                 </div>
@@ -272,15 +272,15 @@ const SubscriptionManage = () => {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3 text-muted-foreground">
                     <TrendingDown className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
-                    <span>Votre orthophoniste ne pourra plus consulter vos nouveaux graphiques.</span>
+                    <span>Your SLP will no longer be able to view your new charts.</span>
                   </li>
                   <li className="flex items-start gap-3 text-muted-foreground">
                     <AlertTriangle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
-                    <span>L'historique nécessaire pour votre <strong className="text-foreground">Bilan Final</strong> ne sera plus alimenté.</span>
+                    <span>The history needed for your <strong className="text-foreground">Final Assessment</strong> will no longer be updated.</span>
                   </li>
                   <li className="flex items-start gap-3 text-muted-foreground">
                     <BookX className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
-                    <span>Vous perdrez l'accès aux exercices illimités et à la bibliothèque complète.</span>
+                    <span>You'll lose access to unlimited exercises and the full library.</span>
                   </li>
                 </ul>
               </div>
@@ -295,10 +295,10 @@ const SubscriptionManage = () => {
               </div>
               <div>
                 <p className="font-medium text-foreground">
-                  Vous êtes sur une bonne lancée ! 🚀
+                  You're on a roll!
                 </p>
                 <p className="text-muted-foreground text-sm">
-                  La régularité est la clé de la rééducation. Continuez vos efforts pour des résultats durables.
+                  Consistency is the key to progress. Keep up your efforts for lasting results.
                 </p>
               </div>
             </div>
@@ -312,10 +312,10 @@ const SubscriptionManage = () => {
               </div>
               <div className="flex-1 space-y-2">
                 <h2 className="text-lg font-semibold text-foreground">
-                  Moyen de paiement
+                  Payment method
                 </h2>
                 <p className="text-sm text-muted-foreground">
-                  Mettez à jour votre carte bancaire ou consultez vos factures.
+                  Update your card or view your invoices.
                 </p>
                 <Button
                   variant="outline"
@@ -329,7 +329,7 @@ const SubscriptionManage = () => {
                   ) : (
                     <CreditCard className="w-4 h-4" />
                   )}
-                  Gérer le paiement
+                  Manage payment
                 </Button>
               </div>
             </div>
@@ -354,7 +354,7 @@ const SubscriptionManage = () => {
                 className="w-full h-14 text-lg shadow-lg shadow-primary/25 hover:shadow-xl transition-all"
               >
                 <CheckCircle className="w-5 h-5 mr-2" />
-                Je garde mon abonnement (Recommandé)
+                Keep my subscription (Recommended)
               </Button>
             </motion.div>
 
@@ -362,20 +362,20 @@ const SubscriptionManage = () => {
             <div className="text-center pt-4">
               <button
                 onClick={() => {
-                  const subject = encodeURIComponent("[Résiliation] Demande de désabonnement");
-                  const body = encodeURIComponent(`Bonjour,\n\nJe souhaite résilier mon abonnement Premium.\n\nMon email de compte : ${user?.email || ""}\n\nMerci de traiter ma demande.\n\nCordialement`);
-                  window.open(`mailto:contact@parlermoinsvite.fr?subject=${subject}&body=${body}`, "_blank");
+                  const subject = encodeURIComponent("[Cancellation] Subscription cancellation request");
+                  const body = encodeURIComponent(`Hello,\n\nI would like to cancel my Premium subscription.\n\nMy account email: ${user?.email || ""}\n\nPlease process my request.\n\nBest regards`);
+                  window.open(`mailto:support@clutterpro.com?subject=${subject}&body=${body}`, "_blank");
                 }}
                 className="text-sm text-muted-foreground hover:text-foreground/70 underline-offset-4 hover:underline transition-colors"
               >
-                Envoyer un email pour résilier
+                Send an email to cancel
               </button>
             </div>
           </div>
 
           {/* Fine print */}
           <p className="text-xs text-center text-muted-foreground">
-            En cas de résiliation, votre accès Premium reste actif jusqu'à la fin de votre période de facturation en cours.
+            If you cancel, your Premium access remains active until the end of your current billing period.
           </p>
         </motion.div>
       </main>

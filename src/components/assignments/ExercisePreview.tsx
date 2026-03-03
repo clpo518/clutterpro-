@@ -18,7 +18,7 @@ const ExercisePreview = ({ category }: ExercisePreviewProps) => {
       <div className="rounded-lg border border-border bg-secondary/30 overflow-hidden">
         <div className="px-4 py-3 border-b border-border/50">
           <p className="text-sm font-semibold">
-            {category.icon} {category.title} — {category.exercises.length} exercice{category.exercises.length > 1 ? "s" : ""}
+            {category.icon} {category.title} — {category.exercises.length} exercise{category.exercises.length > 1 ? "s" : ""}
           </p>
           <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{category.description}</p>
         </div>
@@ -27,7 +27,7 @@ const ExercisePreview = ({ category }: ExercisePreviewProps) => {
           <Collapsible open={isOpen} onOpenChange={setIsOpen}>
             <CollapsibleTrigger className="flex items-center gap-1.5 text-xs font-medium text-primary hover:underline cursor-pointer py-1">
               {isOpen ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
-              {isOpen ? "Masquer les exercices" : "Voir les exercices"}
+              {isOpen ? "Hide exercises" : "View exercises"}
             </CollapsibleTrigger>
 
             <CollapsibleContent className="mt-1">
@@ -39,7 +39,7 @@ const ExercisePreview = ({ category }: ExercisePreviewProps) => {
                         <div className="min-w-0 flex-1">
                           <p className="text-sm font-medium leading-snug">{ex.title}</p>
                           <p className="text-xs text-muted-foreground/80 italic line-clamp-1 mt-0.5">
-                            « {ex.text.slice(0, 90)}… »
+                            "{ex.text.slice(0, 90)}..."
                           </p>
                         </div>
                         <button
@@ -49,7 +49,7 @@ const ExercisePreview = ({ category }: ExercisePreviewProps) => {
                             setPreviewExercise(ex);
                           }}
                           className="shrink-0 mt-0.5 p-1 rounded hover:bg-primary/10 text-muted-foreground hover:text-primary transition-colors"
-                          title="Aperçu du texte"
+                          title="Text preview"
                         >
                           <Eye className="w-3.5 h-3.5" />
                         </button>

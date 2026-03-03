@@ -93,10 +93,10 @@ const PatientHomeworkSection = () => {
     const now = new Date();
     const diffDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
     
-    if (diffDays === 0) return "Aujourd'hui";
-    if (diffDays === 1) return "Hier";
+    if (diffDays === 0) return "Today";
+    if (diffDays === 1) return "Yesterday";
     if (diffDays < 7) return `Il y a ${diffDays} jours`;
-    return date.toLocaleDateString("fr-FR", { day: "numeric", month: "short" });
+    return date.toLocaleDateString("en-US", { day: "numeric", month: "short" });
   };
 
   if (loading) {
@@ -129,9 +129,9 @@ const PatientHomeworkSection = () => {
         <CardHeader className="pb-2">
           <CardTitle className="flex items-center gap-2 text-lg">
             <Target className="w-5 h-5 text-primary" />
-            🎯 Mes Prescriptions
+            🎯 My Prescriptions
             <Badge variant="destructive" className="ml-auto">
-              {assignments.length} en attente
+              {assignments.length} pending
             </Badge>
           </CardTitle>
         </CardHeader>
@@ -163,7 +163,7 @@ const PatientHomeworkSection = () => {
                               {category?.title || assignment.exercise_category}
                             </h4>
                             <Badge variant="outline" className="text-xs">
-                              Prescrit par {assignment.therapist?.full_name || "Votre orthophoniste"}
+                              Assigned by {assignment.therapist?.full_name || "Your SLP"}
                             </Badge>
                           </div>
                           
@@ -187,7 +187,7 @@ const PatientHomeworkSection = () => {
                       
                       <Button size="sm" className="gap-1 group-hover:gap-2 transition-all">
                         <BookOpen className="w-4 h-4" />
-                        <span className="hidden sm:inline">Commencer</span>
+                        <span className="hidden sm:inline">Start</span>
                         <ChevronRight className="w-4 h-4" />
                       </Button>
                     </div>

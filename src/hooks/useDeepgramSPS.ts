@@ -15,10 +15,10 @@ interface WordWithTimestamp {
   fillerKey?: string;
 }
 
-// French single-word fillers
-const SINGLE_FILLERS = new Set(['euh', 'heu', 'hum', 'ben', 'bah', 'bon', 'genre', 'alors', 'voilà', 'quoi']);
-// French two-word fillers
-const TWO_WORD_FILLERS = new Set(['du coup', 'en fait', 'tu vois']);
+// English single-word fillers
+const SINGLE_FILLERS = new Set(['um', 'uh', 'uhh', 'umm', 'like', 'basically', 'literally', 'actually', 'honestly', 'so', 'right', 'okay', 'well']);
+// English two-word fillers
+const TWO_WORD_FILLERS = new Set(['you know', 'i mean', 'kind of', 'sort of']);
 
 interface FillerDetails {
   [filler: string]: number;
@@ -179,7 +179,7 @@ export function useDeepgramSPS(): UseDeepgramSPSReturn {
    */
   const connectWebSocket = useCallback((apiKey: string) => {
     const fillerParam = detectFillersRef.current ? '&filler_words=true' : '';
-    const wsUrl = `wss://api.deepgram.com/v1/listen?model=nova-2&language=fr&punctuate=true&interim_results=true&encoding=linear16&sample_rate=16000${fillerParam}`;
+    const wsUrl = `wss://api.deepgram.com/v1/listen?model=nova-2&language=en-US&punctuate=true&interim_results=true&encoding=linear16&sample_rate=16000${fillerParam}`;
 
     const socket = new WebSocket(wsUrl, ['token', apiKey]);
     socketRef.current = socket;
@@ -368,7 +368,7 @@ export function useDeepgramSPS(): UseDeepgramSPSReturn {
         reconnectAttemptsRef.current += 1;
         const attempt = reconnectAttemptsRef.current;
         console.log(`[DeepgramSPS] Reconnecting... attempt ${attempt}/${MAX_RECONNECT_ATTEMPTS}`);
-        setError(`Reconnexion (${attempt}/${MAX_RECONNECT_ATTEMPTS})...`);
+        setError(`Reconnecting (${attempt}/${MAX_RECONNECT_ATTEMPTS})...`);
 
         setTimeout(() => {
           if (!isStoppingRef.current && apiKeyRef.current) {
@@ -376,7 +376,7 @@ export function useDeepgramSPS(): UseDeepgramSPSReturn {
           }
         }, RECONNECT_DELAY_MS * attempt);
       } else if (!isStoppingRef.current && event.code !== 1000) {
-        setError(`Connexion perdue (code ${event.code})`);
+        setError(`Connection lost (code ${event.code})`);
         setIsListening(false);
       } else {
         setIsListening(false);

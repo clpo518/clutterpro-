@@ -23,12 +23,12 @@ const PatientEvolutionChart = ({ sessions, patientName }: PatientEvolutionChartP
         <CardHeader>
           <CardTitle className="text-foreground flex items-center gap-2">
             <Calendar className="w-5 h-5 text-primary" />
-            Historique & Progrès
+            History & Progress
           </CardTitle>
           <CardDescription className="text-muted-foreground">
-            {sessions.length === 0 
-              ? "Aucune session enregistrée"
-              : "Au moins 2 sessions sont nécessaires pour voir l'évolution"}
+            {sessions.length === 0
+              ? "No sessions recorded"
+              : "At least 2 sessions are needed to see progress"}
           </CardDescription>
         </CardHeader>
       </Card>
@@ -38,7 +38,7 @@ const PatientEvolutionChart = ({ sessions, patientName }: PatientEvolutionChartP
   // Prepare chart data (oldest first) - converted to SPS
   const chartData = [...sessions].reverse().map((s, i) => ({
     session: i + 1,
-    date: new Date(s.created_at).toLocaleDateString("fr-FR", { day: "numeric", month: "short" }),
+    date: new Date(s.created_at).toLocaleDateString("en-US", { day: "numeric", month: "short" }),
     avg: wpmToSps(s.avg_wpm),
     max: wpmToSps(s.max_wpm),
     duration: Math.round(s.duration_seconds / 60),
@@ -66,11 +66,11 @@ const PatientEvolutionChart = ({ sessions, patientName }: PatientEvolutionChartP
           <div>
             <CardTitle className="text-foreground flex items-center gap-2">
               <Calendar className="w-5 h-5 text-primary" />
-              Historique & Progrès
+              History & Progress
               {patientName && <span className="text-muted-foreground font-normal">• {patientName}</span>}
             </CardTitle>
             <CardDescription className="text-muted-foreground">
-              Évolution sur les {sessions.length} dernières sessions
+              Progress over the last {sessions.length} sessions
             </CardDescription>
           </div>
           
@@ -96,11 +96,11 @@ const PatientEvolutionChart = ({ sessions, patientName }: PatientEvolutionChartP
         <div className="grid grid-cols-3 gap-4">
           <div className="bg-muted/50 rounded-lg p-3 text-center border border-border">
             <div className="text-2xl font-mono font-bold text-foreground">{overallAvg}</div>
-            <div className="text-xs text-muted-foreground">syll/sec moy.</div>
+            <div className="text-xs text-muted-foreground">avg syll/sec</div>
           </div>
           <div className="bg-muted/50 rounded-lg p-3 text-center border border-border">
             <div className="text-2xl font-mono font-bold text-green-600">{bestSession.avg}</div>
-            <div className="text-xs text-muted-foreground">Meilleur score</div>
+            <div className="text-xs text-muted-foreground">Best score</div>
           </div>
           <div className="bg-muted/50 rounded-lg p-3 text-center border border-border">
             <div className="text-2xl font-mono font-bold text-primary">{targetPercentage}%</div>
@@ -141,7 +141,7 @@ const PatientEvolutionChart = ({ sessions, patientName }: PatientEvolutionChartP
                 labelStyle={{ color: "hsl(var(--muted-foreground))" }}
                 formatter={(value: number, name: string) => {
                   const labels: Record<string, string> = {
-                    avg: "Moyenne",
+                    avg: "Average",
                     max: "Maximum",
                   };
                   return [`${value} syll/sec`, labels[name] || name];
@@ -155,7 +155,7 @@ const PatientEvolutionChart = ({ sessions, patientName }: PatientEvolutionChartP
                 strokeDasharray="5 5"
                 strokeWidth={2}
                 label={{ 
-                  value: "Zone confort (4.5)", 
+                  value: "Comfort zone (4.5)",
                   position: "right", 
                   fontSize: 10,
                   fill: "#10b981",
@@ -169,7 +169,7 @@ const PatientEvolutionChart = ({ sessions, patientName }: PatientEvolutionChartP
                 strokeDasharray="3 3"
                 strokeWidth={1}
                 label={{ 
-                  value: "Limite haute", 
+                  value: "Upper limit",
                   position: "right", 
                   fontSize: 9,
                   fill: "#ef4444",
@@ -213,15 +213,15 @@ const PatientEvolutionChart = ({ sessions, patientName }: PatientEvolutionChartP
         <div className="flex items-center justify-center gap-6 text-xs">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-emerald-500" />
-            <span className="text-muted-foreground">Vitesse moyenne</span>
+            <span className="text-muted-foreground">Average speed</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-0.5 bg-red-500" style={{ width: 12 }} />
-            <span className="text-muted-foreground">Vitesse max</span>
+            <span className="text-muted-foreground">Max speed</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-0.5 border-t-2 border-dashed border-emerald-500" style={{ width: 12 }} />
-            <span className="text-muted-foreground">Zone confort (4.5)</span>
+            <span className="text-muted-foreground">Comfort zone (4.5)</span>
           </div>
         </div>
       </CardContent>

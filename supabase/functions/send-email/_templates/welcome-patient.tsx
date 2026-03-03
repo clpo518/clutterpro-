@@ -15,55 +15,55 @@ interface WelcomePatientEmailProps {
 }
 
 export function WelcomePatientEmail(props: WelcomePatientEmailProps) {
-  const { patientName = 'Cher patient', therapistName, appUrl, isSolo, referralCode } = props
-  const referralLink = referralCode ? `https://www.parlermoinsvite.fr/auth?tab=signup&ref=${referralCode}` : null
+  const { patientName = 'Dear patient', therapistName, appUrl, isSolo, referralCode } = props
+  const referralLink = referralCode ? `https://www.clutterpro.com/auth?tab=signup&ref=${referralCode}` : null
   return (
-    <BaseLayout preview="Tout commence par une première respiration.">
-      <Heading style={heading}>Bienvenue chez vous 🌟</Heading>
+    <BaseLayout preview="It all starts with one first breath.">
+      <Heading style={heading}>Welcome home 🌟</Heading>
 
-      <Text style={paragraph}>Bonjour {patientName},</Text>
+      <Text style={paragraph}>Hi {patientName},</Text>
 
       <Text style={paragraph}>
-        Vous avez fait le premier pas, et c'est déjà beaucoup. Prendre soin de sa parole demande du courage, et nous sommes honorés de vous accompagner dans ce chemin.
+        You've taken the first step, and that already means a lot. Taking care of your speech takes courage, and we're honored to support you on this journey.
       </Text>
 
       {therapistName && (
         <Text style={paragraph}>
-          {therapistName} vous a invité à rejoindre Parler Moins Vite. Ensemble, vous allez progresser à votre rythme, en toute sérénité.
+          {therapistName} has invited you to join ClutterPro. Together, you'll make progress at your own pace, with total peace of mind.
         </Text>
       )}
 
       {isSolo && (
         <Text style={soloBox}>
-          🚀 Vous avez activé <strong>7 jours d'essai gratuit</strong>. Profitez de toutes les fonctionnalités sans limite pendant cette période. Si vous avez un orthophoniste, vous pourrez ajouter son Code Pro dans les Réglages à tout moment.
+          🚀 You've activated a <strong>7-day free trial</strong>. Enjoy all features without limits during this period. If you have an SLP, you can add their Pro Code in Settings at any time.
         </Text>
       )}
 
       <Text style={reassuranceBox}>
-        💚 Vous êtes dans un espace sécurisé. Ici, pas de jugement, pas de pression. Chaque exercice est conçu pour vous aider à trouver votre propre tempo, celui qui vous ressemble.
+        💚 You're in a safe space. No judgment, no pressure here. Every exercise is designed to help you find your own tempo — the one that feels right for you.
       </Text>
 
       <Text style={highlightParagraph}>
-        Votre parole, votre rythme. C'est notre philosophie. Les progrès viendront naturellement, session après session, à votre cadence.
+        Your speech, your pace. That's our philosophy. Progress will come naturally, session after session, at your own rhythm.
       </Text>
 
       <Button style={button} href={appUrl}>
-        Démarrer mon premier exercice
+        Start my first session
       </Button>
 
       <Text style={tipBox}>
-        🎧 Conseil : Trouvez un endroit calme pour votre première session. 5 minutes suffisent pour commencer.
+        🎧 Tip: Find a quiet spot for your first session. 5 minutes is all you need to get started.
       </Text>
 
       {isSolo && referralLink && (
         <Text style={referralBox}>
-          🎁 <strong>Passez le mot !</strong> Partagez votre lien d'invitation avec un ami. S'il s'abonne après son essai gratuit, vous gagnez chacun <strong>1 mois offert</strong>.<br /><br />
-          Votre lien : <a href={referralLink} style={{ color: '#3a9e8e' }}>{referralLink}</a>
+          🎁 <strong>Spread the word!</strong> Share your invite link with a friend. If they subscribe after their free trial, you both get <strong>1 free month</strong>.<br /><br />
+          Your link: <a href={referralLink} style={{ color: '#3a9e8e' }}>{referralLink}</a>
         </Text>
       )}
 
-      <Text style={signatureText}>À vos côtés,</Text>
-      <Text style={signatureName}>L'équipe Parler Moins Vite</Text>
+      <Text style={signatureText}>By your side,</Text>
+      <Text style={signatureName}>The ClutterPro Team</Text>
     </BaseLayout>
   )
 }

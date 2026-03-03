@@ -79,7 +79,7 @@ export const StreakBadge = ({ currentStreak, longestStreak, justIncremented = fa
                 <Flame className={`w-5 h-5 ${isActive ? "text-orange-500 fill-orange-500/30" : "text-muted-foreground"}`} />
               </div>
               <div>
-                <p className="font-semibold text-sm">Série de jours</p>
+                <p className="font-semibold text-sm">Day streak</p>
                 <p className="text-2xl font-bold text-orange-500">{currentStreak}</p>
               </div>
             </div>
@@ -93,18 +93,18 @@ export const StreakBadge = ({ currentStreak, longestStreak, justIncremented = fa
           <div className="pt-2 border-t border-border space-y-2">
             <p className="text-xs text-muted-foreground">
               {currentStreak > 0 
-                ? `Bravo ! Vous vous êtes entraîné ${currentStreak} jour${currentStreak > 1 ? 's' : ''} de suite.`
-                : "Entraînez-vous aujourd'hui pour démarrer une série !"
+                ? `Well done! You trained ${currentStreak} day${currentStreak > 1 ? 's' : ''} in a row.`
+                : "Train today to start a streak!"
               }
             </p>
             <div className="flex items-center justify-between text-xs">
-              <span className="text-muted-foreground">Record personnel</span>
+              <span className="text-muted-foreground">Personal record</span>
               <span className="font-medium">{longestStreak} jour{longestStreak > 1 ? 's' : ''}</span>
             </div>
           </div>
           
           <p className="text-[10px] text-muted-foreground/70 italic">
-            💡 Revenir chaque jour augmente votre série !
+            💡 Coming back every day grows your streak!
           </p>
         </div>
       </PopoverContent>

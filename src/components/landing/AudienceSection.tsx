@@ -9,36 +9,36 @@ import {
 
 const faqs = [
   {
-    question: "Est-ce que ça remplace un orthophoniste ?",
-    answer: "Non, ParlerMoinsVite est un outil complémentaire pour s'entraîner entre les séances. Il est idéalement recommandé et suivi par votre praticien. L'application ne pose pas de diagnostic et ne remplace pas un suivi professionnel."
+    question: "Does this replace an SLP?",
+    answer: "No, ClutterPro is a complementary tool for practicing between sessions. It is ideally recommended and monitored by your practitioner. The app does not diagnose and does not replace professional care."
   },
   {
-    question: "C'est quoi le bredouillement ?",
-    answer: "Le bredouillement (ou cluttering en anglais) est un trouble de la fluence caractérisé par un débit perçu comme trop rapide et/ou irrégulier, des télescopages de syllabes, et parfois des difficultés à organiser son discours. Contrairement au bégaiement, les personnes qui bredouillent n'en ont souvent pas conscience."
+    question: "What is cluttering?",
+    answer: "Cluttering is a fluency disorder characterized by a speech rate perceived as too fast and/or irregular, syllable telescoping, and sometimes difficulty organizing discourse. Unlike stuttering, people who clutter are often unaware of it."
   },
   {
-    question: "L'application aide-t-elle aussi pour le bégaiement ?",
-    answer: "Oui ! Bien que conçue à l'origine pour le bredouillement, l'application est aussi utile pour travailler la fluence dans le cadre du bégaiement. Les exercices de contrôle du débit, de gestion du souffle et de transfert en dialogue aident à améliorer la fluidité de la parole, en complément d'un suivi orthophonique."
+    question: "Does the app also help with stuttering?",
+    answer: "Yes! Although originally designed for cluttering, the app is also useful for working on fluency in the context of stuttering. Rate control, breathing, and dialogue transfer exercises help improve speech fluidity, as a complement to SLP sessions."
   },
   {
-    question: "Pourquoi l'appli me demande mon âge ?",
-    answer: "Un enfant, un adolescent et un adulte ne parlent pas à la même vitesse — c'est naturel ! En connaissant votre âge, l'application adapte automatiquement votre objectif de vitesse pour qu'il soit réaliste et personnalisé. Cela évite les \"faux positifs\" frustrants où l'on vous dirait de ralentir alors que vous parlez à une vitesse normale pour votre âge."
+    question: "Why does the app ask for my age?",
+    answer: "Children, teenagers, and adults don't speak at the same speed - that's natural! By knowing your age, the app automatically adjusts your speed target to be realistic and personalized. This avoids frustrating false positives where you'd be told to slow down when you're speaking at a normal rate for your age."
   },
   {
-    question: "Combien de temps faut-il s'entraîner ?",
-    answer: "5 à 10 minutes par jour suffisent pour observer des progrès. La régularité est plus importante que la durée. Nous recommandons des séances courtes mais quotidiennes."
+    question: "How long should I practice?",
+    answer: "5 to 10 minutes per day is enough to see progress. Consistency is more important than duration. We recommend short but daily sessions."
   },
   {
-    question: "L'application fonctionne-t-elle hors connexion ?",
-    answer: "Non, une connexion internet est nécessaire pour l'analyse vocale en temps réel et la sauvegarde de vos sessions. Vos données sont stockées de manière sécurisée."
+    question: "Does the app work offline?",
+    answer: "No, an internet connection is required for real-time voice analysis and session saving. Your data is stored securely."
   },
   {
-    question: "Mes enregistrements sont-ils confidentiels ?",
-    answer: "Oui, absolument. Vos enregistrements sont chiffrés et accessibles uniquement par vous (et votre orthophoniste si vous le liez à votre compte). Nous ne les utilisons jamais à d'autres fins."
+    question: "Are my recordings confidential?",
+    answer: "Yes, absolutely. Your recordings are encrypted and accessible only by you (and your SLP if you link your account). We never use them for any other purpose."
   },
   {
-    question: "Mon enfant ne sait pas lire, peut-il utiliser l'appli ?",
-    answer: "Oui ! Le mode Rébus utilise des images et des emojis pour guider la parole, sans besoin de lire. Idéal pour les enfants de 4 à 7 ans."
+    question: "My child can't read yet, can they use the app?",
+    answer: "Yes! The Rebus mode uses images and emojis to guide speech, without the need to read. Ideal for children aged 4 to 7."
   },
 ];
 
@@ -55,13 +55,13 @@ export const AudienceSection = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             <HelpCircle className="w-4 h-4" />
-            Questions fréquentes
+            Frequently Asked Questions
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Vous avez des questions ?
+            Have questions?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Tout ce que vous devez savoir sur ParlerMoinsVite et les troubles de la fluence.
+            Everything you need to know about ClutterPro and fluency disorders.
           </p>
         </motion.div>
         

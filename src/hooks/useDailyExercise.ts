@@ -149,13 +149,13 @@ export function useDailyExercise(): DailyExerciseResult {
 
     if (count < 5) {
       weights = BEGINNER_WEIGHTS;
-      reason = "Parfait pour débuter en douceur";
+      reason = "Perfect for getting started gently";
     } else if (count < 20) {
       weights = INTERMEDIATE_WEIGHTS;
-      reason = "Adapté à votre progression";
+      reason = "Tailored to your progress";
     } else {
       weights = ADVANCED_WEIGHTS;
-      reason = "Un défi à votre niveau";
+      reason = "A challenge at your level";
     }
 
     // Stronger penalty for recently used categories/types

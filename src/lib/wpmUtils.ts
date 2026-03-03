@@ -89,44 +89,44 @@ export function getSpeedFeedback(avgWpm: number): {
   
   if (avgWpm === 0) {
     return {
-      title: "Séance trop courte",
-      description: "Nous n'avons pas capté assez de parole. Réessayez en parlant un peu plus fort.",
+      title: "Session too short",
+      description: "We didn't capture enough speech. Try again speaking a little louder.",
       emoji: "⏸️",
       colorClass: "text-muted-foreground"
     };
   }
   
-  if (sps < 3.5) {
+  if (sps < 3.0) {
     return {
-      title: "Rythme posé",
-      description: "Vous prenez bien votre temps — idéal pour travailler l'articulation.",
-      emoji: "🐢",
+      title: "Target Zone ✓",
+      description: "Excellent rate control — you stayed in the target zone. Your listener can follow every word.",
+      emoji: "🎯",
       colorClass: "text-emerald-600"
     };
   }
-  
-  if (sps <= 5.5) {
+
+  if (sps <= 4.5) {
     return {
-      title: "Rythme confortable ✨",
-      description: "Votre débit est fluide et agréable à écouter. Continuez comme ça !",
+      title: "Conversational rate",
+      description: "Good work. Your rate was mostly controlled with a few fast bursts. Keep using the phrasing technique.",
       emoji: "✨",
       colorClass: "text-green-600"
     };
   }
-  
-  if (sps <= 6.5) {
+
+  if (sps <= 5.5) {
     return {
-      title: "Un peu rapide",
-      description: "Vous accélérez légèrement — pensez à marquer une pause entre les phrases.",
+      title: "Rate climbing — monitor",
+      description: "Your rate climbed above 5.0 SPS. Try the phrasing technique on your next attempt. Use a 'pause and check' before key sentences.",
       emoji: "⚡",
       colorClass: "text-orange-600"
     };
   }
-  
+
   return {
-    title: "On ralentit ensemble",
-    description: "Votre débit est élevé. Essayez de respirer entre les phrases et d'allonger les pauses.",
-    emoji: "🌬️",
+    title: "Cluttering range",
+    description: "Your rate is above 5.5 SPS. Focus on pausing between phrases. Give yourself a speeding ticket and try again at a slower pace.",
+    emoji: "🔴",
     colorClass: "text-red-600"
   };
 }
@@ -157,20 +157,27 @@ export interface CoachFeedback {
 function getContextualTip(categoryId?: string): string {
   switch (categoryId) {
     case 'slow-reading':
-      return "Vous posez de bonnes bases. Les phrases courtes sont vos alliées pour garder un rythme régulier.";
+    case 'reading-aloud':
+      return "Use a 'slow and go' approach — pause before key words. Think in phrases, not words.";
     case 'daily-life':
-      return "Essayez d'appliquer ce rythme dans une vraie conversation demain — c'est là que les progrès se consolident.";
+    case 'functional-communication':
+      return "Try applying this rate in a real conversation today — that's where therapy gains transfer.";
     case 'articulation':
+    case 'over-articulation':
     case 'motor-challenges':
-      return "La précision prime sur la vitesse. N'hésitez pas à recommencer plus lentement si besoin.";
+      return "Your job is to monitor, not to be perfect. Precision over speed — restart slowly if needed.";
     case 'improvisation':
-      return "Une idée = une phrase. Marquez bien les transitions, et laissez-vous le temps de réfléchir.";
+    case 'conversational-practice':
+      return "One idea per phrase. Give yourself a speeding ticket if you feel your rate climbing.";
     case 'warmup':
-      return "Bon échauffement ! Enchaînez avec un exercice de lecture pour consolider vos acquis.";
-    case 'clinical-texts':
-      return "Ce texte de référence vous aide à mesurer votre progression au fil du temps.";
+    case 'breathing-preparation':
+      return "Good warm-up session! Follow it with a reading exercise to reinforce rate control.";
+    case 'self-monitoring':
+      return "Record yourself and listen back — your ear is your best tool for catching fast speech.";
+    case 'phrasing-pausing':
+      return "Focus on pausing between phrases. A 1-second pause after each sentence feels long to you — it feels natural to your listener.";
     default:
-      return "Respirez profondément entre les phrases — c'est le meilleur réflexe pour garder le contrôle.";
+      return "Breathe between sentences — it's the single most effective habit for rate control.";
   }
 }
 
@@ -181,8 +188,8 @@ function getStabilityAnalysis(avgWpm: number, maxWpm: number): CoachFeedback['st
   if (avgWpm === 0 || maxWpm === 0) {
     return {
       score: 'warning',
-      title: "Pas assez de données",
-      description: "La séance était trop courte pour évaluer la régularité. Réessayez avec un texte plus long.",
+      title: "Not enough data",
+      description: "The session was too short to evaluate consistency. Try again with a longer text.",
       emoji: "📊"
     };
   }
@@ -192,8 +199,8 @@ function getStabilityAnalysis(avgWpm: number, maxWpm: number): CoachFeedback['st
   if (variance < 20) {
     return {
       score: 'excellent',
-      title: "Rythme très stable 🎯",
-      description: `Seulement ${Math.round(variance)}% d'écart — vous gardez bien le contrôle tout au long de la séance.`,
+      title: "Very stable pace 🎯",
+      description: `Only ${Math.round(variance)}% variation — you're maintaining great control.`,
       emoji: "🎯"
     };
   }
@@ -201,16 +208,16 @@ function getStabilityAnalysis(avgWpm: number, maxWpm: number): CoachFeedback['st
   if (variance < 40) {
     return {
       score: 'good',
-      title: "Bonne régularité",
-      description: `Quelques accélérations détectées (${Math.round(variance)}% d'écart), mais le rythme reste globalement stable.`,
+      title: "Good consistency",
+      description: `Some acceleration detected (${Math.round(variance)}% variation), but your overall rhythm stays stable.`,
       emoji: "📈"
     };
   }
 
   return {
     score: 'warning',
-    title: "Rythme variable",
-    description: `${Math.round(variance)}% d'écart entre votre moyenne et vos pics. Les exercices de respiration peuvent vous aider à stabiliser.`,
+    title: "Variable pace",
+    description: `${Math.round(variance)}% gap between your average and peak rate. Breathing exercises can help.`,
     emoji: "🌬️"
   };
 }
@@ -235,11 +242,11 @@ export function generateCoachFeedback(
   if (targetSps && avgSps > 0) {
     const diff = Math.round((avgSps - targetSps) * 10) / 10;
     if (Math.abs(diff) <= 0.3) {
-      verdictDescription = `Objectif atteint ! Vous visiez ${targetSps} syll/sec et avez fait ${avgSps} syll/sec. ${baseVerdict.description}`;
+      verdictDescription = `Goal reached! You targeted ${targetSps} syll/s and averaged ${avgSps} syll/s. ${baseVerdict.description}`;
     } else if (diff < 0) {
-      verdictDescription = `Vous êtes ${Math.abs(diff)} syll/sec sous votre cible de ${targetSps} syll/sec. ${baseVerdict.description}`;
+      verdictDescription = `You are ${Math.abs(diff)} syll/sec below your target of ${targetSps} syll/sec. ${baseVerdict.description}`;
     } else {
-      verdictDescription = `Vous êtes ${diff} syll/sec au-dessus de votre cible de ${targetSps} syll/sec. Essayez de ralentir davantage.`;
+      verdictDescription = `You are ${diff} syll/sec above your target of ${targetSps} syll/sec. ${baseVerdict.description}`;
     }
   }
 

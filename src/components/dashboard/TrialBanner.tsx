@@ -23,7 +23,7 @@ const TrialBanner = ({ hasActiveTrial, trialDaysRemaining, isSolo, isPremium }: 
 
   const handleSubscribe = async () => {
     if (!session?.access_token) {
-      toast.error("Veuillez vous connecter pour vous abonner");
+      toast.error("Please log in to subscribe");
       return;
     }
 
@@ -39,7 +39,7 @@ const TrialBanner = ({ hasActiveTrial, trialDaysRemaining, isSolo, isPremium }: 
       }
     } catch (error) {
       console.error("Error creating checkout:", error);
-      toast.error("Erreur lors de la création du paiement");
+      toast.error("Error creating payment");
     } finally {
       setCheckoutLoading(false);
     }
@@ -60,9 +60,9 @@ const TrialBanner = ({ hasActiveTrial, trialDaysRemaining, isSolo, isPremium }: 
                   <AlertTriangle className="w-5 h-5 text-destructive" />
                 </div>
               <div>
-                  <h3 className="font-semibold text-sm">Essai terminé</h3>
+                  <h3 className="font-semibold text-sm">Trial ended</h3>
                   <p className="text-xs text-muted-foreground">
-                    Abonnez-vous pour continuer à utiliser tous les exercices et le suivi de progression.
+                    Subscribe to continue using all exercises and progress tracking.
                   </p>
                 </div>
               </div>
@@ -76,7 +76,7 @@ const TrialBanner = ({ hasActiveTrial, trialDaysRemaining, isSolo, isPremium }: 
                 ) : (
               <Crown className="w-4 h-4" />
                 )}
-                S'abonner — 9€/mois
+                Subscribe — $9/mo
               </Button>
             </div>
           </CardContent>
@@ -100,14 +100,14 @@ const TrialBanner = ({ hasActiveTrial, trialDaysRemaining, isSolo, isPremium }: 
               </div>
               <div>
                 <h3 className="font-semibold text-sm">
-                  Mode Autonomie — Essai gratuit
+                  Solo Mode — Free trial
                 </h3>
                 <p className="text-xs text-muted-foreground">
                   {trialDaysRemaining !== null && trialDaysRemaining > 0
-                    ? `${trialDaysRemaining} jour${trialDaysRemaining > 1 ? "s" : ""} restant${trialDaysRemaining > 1 ? "s" : ""}`
-                    : "Dernier jour d'essai"
+                    ? `${trialDaysRemaining} day${trialDaysRemaining > 1 ? "s" : ""} remaining`
+                    : "Last day of trial"
                   }
-                  {" · "}Vous pouvez rattacher un orthophoniste dans les Réglages
+                  {" · "}You can link an SLP in Settings
                 </p>
               </div>
             </div>
@@ -123,11 +123,11 @@ const TrialBanner = ({ hasActiveTrial, trialDaysRemaining, isSolo, isPremium }: 
               ) : (
               <Crown className="w-4 h-4" />
               )}
-              S'abonner — 9€/mois
+              Subscribe — $9/mo
             </Button>
           </div>
           <p className="text-[11px] text-muted-foreground mt-3 leading-relaxed">
-            💡 Moins de 2 cafés par mois pour soutenir une équipe dédiée, des exercices mis à jour régulièrement et un hébergement sécurisé de vos données.
+            Less than a coffee a day to support a dedicated team, regularly updated exercises, and secure data hosting.
           </p>
         </CardContent>
       </Card>

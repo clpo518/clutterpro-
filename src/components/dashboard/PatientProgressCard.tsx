@@ -25,18 +25,18 @@ const PatientProgressCard = ({ sessions }: PatientProgressCardProps) => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <BarChart3 className="w-5 h-5 text-primary" />
-            Vos progrès
+            Your progress
           </CardTitle>
           <CardDescription>
-            {sessions.length === 0 
-              ? "Lancez votre première séance pour découvrir vos progrès"
-              : "Encore une séance pour débloquer votre courbe d'évolution !"}
+            {sessions.length === 0
+              ? "Start your first session to see your progress"
+              : "One more session to unlock your progress chart!"}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="h-32 flex items-center justify-center bg-muted/30 rounded-lg">
             <p className="text-muted-foreground text-sm">
-              📊 Votre courbe de progression apparaîtra ici
+              Your progress chart will appear here
             </p>
           </div>
         </CardContent>
@@ -47,7 +47,7 @@ const PatientProgressCard = ({ sessions }: PatientProgressCardProps) => {
   // Prepare chart data (oldest first, last 15 sessions max) - converted to SPS
   const chartData = [...sessions].slice(0, 15).reverse().map((s, i) => ({
     session: i + 1,
-    date: new Date(s.created_at).toLocaleDateString("fr-FR", { day: "numeric", month: "short" }),
+    date: new Date(s.created_at).toLocaleDateString("en-US", { day: "numeric", month: "short" }),
     avg: wpmToSps(s.avg_wpm),
     max: wpmToSps(s.max_wpm),
   }));
@@ -73,10 +73,10 @@ const PatientProgressCard = ({ sessions }: PatientProgressCardProps) => {
           <div>
             <CardTitle className="flex items-center gap-2">
               <BarChart3 className="w-5 h-5 text-primary" />
-              Vos progrès
+              Your progress
             </CardTitle>
             <CardDescription>
-              Évolution sur vos {chartData.length} sessions
+              Trend over your {chartData.length} sessions
             </CardDescription>
           </div>
           
@@ -96,7 +96,7 @@ const PatientProgressCard = ({ sessions }: PatientProgressCardProps) => {
             <span>
               {isImproving ? `−${improvement} syll/sec` :
                isRegressing ? `+${Math.abs(improvement)} syll/sec` :
-               "Stable"}
+               "Steady"}
             </span>
           </motion.div>
         </div>
@@ -115,7 +115,7 @@ const PatientProgressCard = ({ sessions }: PatientProgressCardProps) => {
             <div className="text-2xl font-bold text-foreground">
               {overallAvg}
             </div>
-            <div className="text-[11px] text-muted-foreground font-medium mt-0.5">syll/sec moy.</div>
+            <div className="text-[11px] text-muted-foreground font-medium mt-0.5">avg. syll/sec</div>
           </motion.div>
           <motion.div
             initial={{ y: 10, opacity: 0 }}
@@ -172,7 +172,7 @@ const PatientProgressCard = ({ sessions }: PatientProgressCardProps) => {
                 labelStyle={{ color: "hsl(var(--muted-foreground))", fontSize: 11 }}
                 formatter={(value: number, name: string) => {
                   const labels: Record<string, string> = {
-                    avg: "Moyenne",
+                    avg: "Average",
                     max: "Maximum",
                   };
                   return [`${value} syll/sec`, labels[name] || name];
@@ -186,7 +186,7 @@ const PatientProgressCard = ({ sessions }: PatientProgressCardProps) => {
                 strokeDasharray="6 4"
                 strokeWidth={1.5}
                 label={{ 
-                  value: "Zone confort (4.5)", 
+                  value: "Comfort zone (4.5)", 
                   position: "right", 
                   fontSize: 9,
                   fill: "hsl(var(--primary))",
@@ -238,15 +238,15 @@ const PatientProgressCard = ({ sessions }: PatientProgressCardProps) => {
         <div className="flex items-center justify-center gap-5 text-[11px]">
           <div className="flex items-center gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full bg-primary" />
-            <span className="text-muted-foreground">Vitesse moyenne</span>
+            <span className="text-muted-foreground">Average rate</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="w-3.5 h-[2px] bg-destructive/50 rounded" />
-            <span className="text-muted-foreground">Vitesse max</span>
+            <span className="text-muted-foreground">Max rate</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="w-3.5 h-[2px] border-t-[2px] border-dashed border-primary" />
-            <span className="text-muted-foreground">Zone confort</span>
+            <span className="text-muted-foreground">Comfort zone</span>
           </div>
         </div>
       </CardContent>

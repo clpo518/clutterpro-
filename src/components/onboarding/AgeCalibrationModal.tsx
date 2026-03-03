@@ -32,9 +32,9 @@ const AgeCalibrationModal = ({ open, userId, onComplete }: AgeCalibrationModalPr
   const handleSubmit = async () => {
     const year = parseInt(birthYear, 10);
     const validation = validateBirthYear(year);
-    
+
     if (!validation.valid) {
-      setError(validation.error || "Année invalide");
+      setError(validation.error || "Invalid year");
       return;
     }
 
@@ -49,14 +49,14 @@ const AgeCalibrationModal = ({ open, userId, onComplete }: AgeCalibrationModalPr
 
       if (updateError) throw updateError;
 
-      toast.success("Objectif calibré ! 🎯", {
-        description: `Votre zone verte est maintenant réglée sur ${getNormSPS(year)} syll/sec`
+      toast.success("Goal calibrated! 🎯", {
+        description: `Your green zone is now set to ${getNormSPS(year)} syll/sec`
       });
-      
+
       onComplete(year);
     } catch (err) {
       console.error("Error saving birth year:", err);
-      toast.error("Erreur lors de la sauvegarde");
+      toast.error("Error saving data");
     } finally {
       setSaving(false);
     }
@@ -72,8 +72,8 @@ const AgeCalibrationModal = ({ open, userId, onComplete }: AgeCalibrationModalPr
 
   return (
     <Dialog open={open}>
-      <DialogContent 
-        className="max-w-[95vw] sm:max-w-md mx-auto max-h-[90vh] overflow-y-auto" 
+      <DialogContent
+        className="max-w-[95vw] sm:max-w-md mx-auto max-h-[90vh] overflow-y-auto"
         onPointerDownOutside={(e) => e.preventDefault()}
         onEscapeKeyDown={(e) => e.preventDefault()}
       >
@@ -82,10 +82,10 @@ const AgeCalibrationModal = ({ open, userId, onComplete }: AgeCalibrationModalPr
             <Dna className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
           </div>
           <DialogTitle className="text-xl sm:text-2xl font-display">
-            Un objectif adapté à votre âge
+            A goal tailored to your age
           </DialogTitle>
           <DialogDescription className="text-sm sm:text-base">
-            Pour des résultats réalistes et un entraînement sur-mesure
+            For realistic results and personalized training
           </DialogDescription>
         </DialogHeader>
 
@@ -93,13 +93,13 @@ const AgeCalibrationModal = ({ open, userId, onComplete }: AgeCalibrationModalPr
           {/* Birth Year Input */}
           <div className="space-y-2">
             <Label htmlFor="birth-year" className="text-sm sm:text-base font-medium">
-              Année de naissance
+              Birth year
             </Label>
             <Input
               id="birth-year"
               type="text"
               inputMode="numeric"
-              placeholder={`ex: ${currentYear - 30}`}
+              placeholder={`e.g. ${currentYear - 30}`}
               value={birthYear}
               onChange={(e) => handleYearChange(e.target.value)}
               className="text-center text-lg sm:text-xl font-mono h-12 sm:h-14"
@@ -121,13 +121,13 @@ const AgeCalibrationModal = ({ open, userId, onComplete }: AgeCalibrationModalPr
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-muted-foreground">Votre norme clinique</p>
+                    <p className="text-sm text-muted-foreground">Your clinical norm</p>
                     <p className="text-2xl font-bold text-primary">
                       {previewNorm} <span className="text-base font-normal">syll/sec</span>
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm text-muted-foreground">Catégorie</p>
+                    <p className="text-sm text-muted-foreground">Category</p>
                     <p className="font-medium">{previewAgeGroup}</p>
                   </div>
                 </div>
@@ -140,25 +140,25 @@ const AgeCalibrationModal = ({ open, userId, onComplete }: AgeCalibrationModalPr
             <div className="flex items-start gap-2">
               <Info className="w-4 h-4 sm:w-5 sm:h-5 text-primary shrink-0 mt-0.5" />
               <div>
-                <p className="font-medium text-xs sm:text-sm">Pourquoi cette question ?</p>
+                <p className="font-medium text-xs sm:text-sm">Why do we ask this?</p>
                 <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-                  Chaque âge a sa propre vitesse naturelle de parole. 
-                  Cette info ajuste votre <span className="text-primary font-medium">Zone Verte</span> à votre profil.
+                  Each age has its own natural speech rate.
+                  This info adjusts your <span className="text-primary font-medium">Green Zone</span> to your profile.
                 </p>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-2 pt-2 border-t border-border/50">
               <Lock className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground shrink-0" />
               <p className="text-[10px] sm:text-xs text-muted-foreground">
-                Donnée privée, utilisée uniquement pour le calibrage.
+                Private data, used only for calibration.
               </p>
             </div>
           </div>
 
           {/* Submit Button */}
-          <Button 
-            onClick={handleSubmit} 
+          <Button
+            onClick={handleSubmit}
             disabled={!isValidYear || saving}
             className="w-full h-11 sm:h-12 text-sm sm:text-base"
             size="lg"
@@ -166,10 +166,10 @@ const AgeCalibrationModal = ({ open, userId, onComplete }: AgeCalibrationModalPr
             {saving ? (
               <>
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                Calibrage...
+                Calibrating...
               </>
             ) : (
-              "Calibrer mon objectif"
+              "Calibrate my goal"
             )}
           </Button>
         </div>

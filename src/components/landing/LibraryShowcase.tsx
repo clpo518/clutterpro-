@@ -4,19 +4,19 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, ArrowRight, Sparkles } from "lucide-react";
 
 const categories = [
-  { icon: "📖", title: "Ralentissement", count: 10, bg: "bg-emerald-50 dark:bg-emerald-950/40", iconBg: "bg-emerald-100 dark:bg-emerald-900/50", text: "text-emerald-700 dark:text-emerald-400" },
+  { icon: "📖", title: "Slowing Down", count: 10, bg: "bg-emerald-50 dark:bg-emerald-950/40", iconBg: "bg-emerald-100 dark:bg-emerald-900/50", text: "text-emerald-700 dark:text-emerald-400" },
   { icon: "🎯", title: "Articulation", count: 20, bg: "bg-red-50 dark:bg-red-950/40", iconBg: "bg-red-100 dark:bg-red-900/50", text: "text-red-700 dark:text-red-400" },
-  { icon: "🧘", title: "Gestion du Souffle", count: 10, bg: "bg-pink-50 dark:bg-pink-950/40", iconBg: "bg-pink-100 dark:bg-pink-900/50", text: "text-pink-700 dark:text-pink-400" },
-  { icon: "⚡", title: "Défis Moteurs", count: 12, bg: "bg-cyan-50 dark:bg-cyan-950/40", iconBg: "bg-cyan-100 dark:bg-cyan-900/50", text: "text-cyan-700 dark:text-cyan-400" },
-  { icon: "🏋️", title: "Échauffement", count: 5, bg: "bg-orange-50 dark:bg-orange-950/40", iconBg: "bg-orange-100 dark:bg-orange-900/50", text: "text-orange-700 dark:text-orange-400" },
-  { icon: "🧠", title: "Pièges Cognitifs", count: 8, bg: "bg-purple-50 dark:bg-purple-950/40", iconBg: "bg-purple-100 dark:bg-purple-900/50", text: "text-purple-700 dark:text-purple-400" },
-  { icon: "💬", title: "Mode Dialogue", count: 0, isNew: true, bg: "bg-primary/5 dark:bg-primary/10", iconBg: "bg-primary/15 dark:bg-primary/20", text: "text-primary" },
+  { icon: "🧘", title: "Breath Management", count: 10, bg: "bg-pink-50 dark:bg-pink-950/40", iconBg: "bg-pink-100 dark:bg-pink-900/50", text: "text-pink-700 dark:text-pink-400" },
+  { icon: "⚡", title: "Motor Challenges", count: 12, bg: "bg-cyan-50 dark:bg-cyan-950/40", iconBg: "bg-cyan-100 dark:bg-cyan-900/50", text: "text-cyan-700 dark:text-cyan-400" },
+  { icon: "🏋️", title: "Warm-Up", count: 5, bg: "bg-orange-50 dark:bg-orange-950/40", iconBg: "bg-orange-100 dark:bg-orange-900/50", text: "text-orange-700 dark:text-orange-400" },
+  { icon: "🧠", title: "Cognitive Traps", count: 8, bg: "bg-purple-50 dark:bg-purple-950/40", iconBg: "bg-purple-100 dark:bg-purple-900/50", text: "text-purple-700 dark:text-purple-400" },
+  { icon: "💬", title: "Dialogue Mode", count: 0, isNew: true, bg: "bg-primary/5 dark:bg-primary/10", iconBg: "bg-primary/15 dark:bg-primary/20", text: "text-primary" },
 ];
 
 const rebusCategory = {
   icon: "🖼️",
-  title: "Mode Rébus",
-  subtitle: "Spécial enfants & non-lecteurs",
+  title: "Rebus Mode",
+  subtitle: "For children & non-readers",
   count: 25,
 };
 
@@ -35,13 +35,13 @@ export const LibraryShowcase = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             <BookOpen className="w-4 h-4" />
-            Bibliothèque Complète
+            Full Library
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            +{totalCount} exercices variés
+            +{totalCount} varied exercises
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Du contenu riche et diversifié pour éviter la monotonie et progresser dans toutes les dimensions de la parole.
+            Rich and varied content to avoid monotony and progress across all dimensions of speech.
           </p>
         </motion.div>
 
@@ -103,23 +103,23 @@ export const LibraryShowcase = () => {
 
               {/* Example rebus preview */}
               <div className="bg-white/70 dark:bg-background/50 rounded-xl p-4 mb-4 border border-yellow-200/60 dark:border-yellow-800/40">
-                <p className="text-sm text-muted-foreground mb-2 font-medium">Exemple :</p>
+                <p className="text-sm text-muted-foreground mb-2 font-medium">Example:</p>
                 <div className="flex items-center gap-2 text-2xl flex-wrap">
                   <span>🏠</span>
                   <span className="text-lg text-foreground">→</span>
-                  <span className="text-base font-medium text-foreground">"maison"</span>
+                  <span className="text-base font-medium text-foreground">"house"</span>
                   <span className="mx-1 text-muted-foreground">·</span>
                   <span>🐱</span>
                   <span className="text-lg text-foreground">→</span>
-                  <span className="text-base font-medium text-foreground">"chat"</span>
+                  <span className="text-base font-medium text-foreground">"cat"</span>
                 </div>
               </div>
 
               <div className="flex items-center justify-between">
                 <span className="text-sm font-bold text-yellow-700 dark:text-yellow-400 bg-yellow-100 dark:bg-yellow-900/40 px-3 py-1 rounded-full">
-                  {rebusCategory.count} exercices
+                  {rebusCategory.count} exercises
                 </span>
-                <span className="text-xs text-muted-foreground">Dès 4 ans</span>
+                <span className="text-xs text-muted-foreground">Ages 4+</span>
               </div>
             </div>
           </motion.div>
@@ -133,11 +133,11 @@ export const LibraryShowcase = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <p className="text-muted-foreground mb-6">
-            Nouveaux exercices ajoutés chaque mois pour maintenir la motivation.
+            New exercises added every month to keep motivation high.
           </p>
           <Button asChild size="lg" className="gap-2">
             <Link to="/auth">
-              Découvrir la bibliothèque
+              Explore the library
               <ArrowRight className="w-4 h-4" />
             </Link>
           </Button>

@@ -13,46 +13,46 @@ interface B2CTrialExpiringEmailProps {
 }
 
 export function B2CTrialExpiringEmail(props: B2CTrialExpiringEmailProps) {
-  const { patientName = 'Cher utilisateur', daysRemaining, subscribeUrl } = props
+  const { patientName = 'Dear user', daysRemaining, subscribeUrl } = props
 
   return (
-    <BaseLayout preview={`Votre essai gratuit se termine dans ${daysRemaining} jour${daysRemaining > 1 ? 's' : ''}`}>
+    <BaseLayout preview={`Your free trial ends in ${daysRemaining} day${daysRemaining > 1 ? 's' : ''}`}>
       <Heading style={heading}>
-        ⏰ Plus que {daysRemaining} jour{daysRemaining > 1 ? 's' : ''} d'essai
+        ⏰ Only {daysRemaining} day{daysRemaining > 1 ? 's' : ''} left in your trial
       </Heading>
 
-      <Text style={paragraph}>Bonjour {patientName},</Text>
+      <Text style={paragraph}>Hi {patientName},</Text>
 
       <Text style={paragraph}>
-        Votre essai gratuit de 7 jours sur Parler Moins Vite touche à sa fin.
+        Your 7-day free trial on ClutterPro is coming to an end.
         {daysRemaining <= 1
-          ? " C'est votre dernier jour pour profiter de toutes les fonctionnalités."
-          : ` Il vous reste ${daysRemaining} jours pour continuer à vous entraîner sans interruption.`
+          ? " This is your last day to enjoy all features."
+          : ` You have ${daysRemaining} days left to keep practicing without interruption.`
         }
       </Text>
 
       <Text style={benefitsBox}>
-        ✅ Ce que vous conservez avec l'abonnement : bibliothèque complète (+60 exercices), mesure de vitesse en temps réel, courbes de progression, et la possibilité de rattacher un orthophoniste à tout moment.
+        ✅ What you keep with a subscription: Full exercise library (60+ exercises), real-time rate measurement, progress charts, and the ability to link an SLP at any time.
       </Text>
 
       <Text style={priceBox}>
-        ☕ Seulement 9€/mois — moins de 2 cafés — pour continuer votre parcours vers une parole plus fluide.
+        ☕ Only $9/month — less than two coffees — to continue your journey toward smoother speech.
       </Text>
 
       <Button style={button} href={subscribeUrl}>
-        Continuer pour 9€/mois
+        Continue for $9/month
       </Button>
 
       <Text style={reassuranceText}>
-        💚 Vos données de progression sont préservées. En vous abonnant, vous reprenez exactement là où vous en êtes.
+        💚 Your progress data is preserved. By subscribing, you pick up right where you left off.
       </Text>
 
       <Text style={alternativeText}>
-        💡 Vous avez un orthophoniste ? Demandez-lui son Code Pro et ajoutez-le dans vos Réglages pour basculer sur un accès gratuit inclus dans son abonnement.
+        💡 Have an SLP? Ask them for their Pro Code and add it in your Settings to switch to a free access included in their subscription.
       </Text>
 
-      <Text style={signatureText}>À vos côtés,</Text>
-      <Text style={signatureName}>L'équipe Parler Moins Vite</Text>
+      <Text style={signatureText}>By your side,</Text>
+      <Text style={signatureName}>The ClutterPro Team</Text>
     </BaseLayout>
   )
 }

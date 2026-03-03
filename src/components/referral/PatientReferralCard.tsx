@@ -60,35 +60,35 @@ const PatientReferralCard = () => {
   const handleCopyLink = async () => {
     if (!stats?.referralCode) return;
 
-    const referralLink = `https://www.parlermoinsvite.fr/auth?tab=signup&ref=${stats.referralCode}`;
+    const referralLink = `https://www.clutterpro.com/auth?tab=signup&ref=${stats.referralCode}`;
     const success = await copyToClipboard(referralLink);
-    
+
     if (success) {
       setCopied(true);
-      toast.success("Lien copié !");
+      toast.success("Link copied!");
       setTimeout(() => setCopied(false), 3000);
     } else {
-      toast.error("Erreur lors de la copie");
+      toast.error("Failed to copy");
     }
   };
 
   const handleCopyMessage = async () => {
     if (!stats?.referralCode) return;
 
-    const referralLink = `https://www.parlermoinsvite.fr/auth?tab=signup&ref=${stats.referralCode}`;
-    const message = `Hey ! Je m'entraîne à parler plus lentement avec ParlerMoinsVite, et c'est vraiment bien fait 🎙️
+    const referralLink = `https://www.clutterpro.com/auth?tab=signup&ref=${stats.referralCode}`;
+    const message = `Hey! I've been training my speech rate with ClutterPro, and it's really well made
 
-Si tu veux essayer, inscris-toi avec mon lien et on gagne chacun 1 mois gratuit quand tu t'abonnes 🎁
+If you want to try it, sign up with my link and we both get 1 free month when you subscribe!
 
-👉 ${referralLink}
+${referralLink}
 
-C'est gratuit pendant 7 jours, sans engagement !`;
-    
+It's free for 7 days, no commitment!`;
+
     const success = await copyToClipboard(message);
     if (success) {
-      toast.success("Message copié ! Prêt à envoyer");
+      toast.success("Message copied! Ready to send");
     } else {
-      toast.error("Erreur lors de la copie");
+      toast.error("Failed to copy");
     }
   };
 
@@ -96,7 +96,7 @@ C'est gratuit pendant 7 jours, sans engagement !`;
 
   return (
     <Card className="border border-border/60 bg-gradient-to-br from-accent/30 via-background to-primary/5">
-      <CardHeader 
+      <CardHeader
         className="cursor-pointer select-none pb-3"
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -107,14 +107,14 @@ C'est gratuit pendant 7 jours, sans engagement !`;
             </div>
             <div>
               <CardTitle className="text-sm">
-                Aidez un ami, gagnez 1 mois 🎁
+                Help a friend, earn 1 month
               </CardTitle>
               <CardDescription className="text-xs">
-                Partagez le mot, c'est gagnant-gagnant
+                Spread the word, it's a win-win
               </CardDescription>
             </div>
           </div>
-          <ChevronDown 
+          <ChevronDown
             className={`w-4 h-4 text-muted-foreground transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
           />
         </div>
@@ -135,11 +135,11 @@ C'est gratuit pendant 7 jours, sans engagement !`;
                 <div className="flex gap-4 p-3 rounded-lg bg-primary/10 border border-primary/20">
                   <div className="text-center">
                     <div className="text-xl font-bold text-primary">{stats.completedReferrals}</div>
-                    <div className="text-[10px] text-muted-foreground">Amis parrainés</div>
+                    <div className="text-[10px] text-muted-foreground">Friends referred</div>
                   </div>
                   <div className="text-center">
                     <div className="text-xl font-bold text-primary">{stats.bonusMonths}</div>
-                    <div className="text-[10px] text-muted-foreground">Mois gagnés</div>
+                    <div className="text-[10px] text-muted-foreground">Months earned</div>
                   </div>
                 </div>
               )}
@@ -149,20 +149,20 @@ C'est gratuit pendant 7 jours, sans engagement !`;
                 <div className="flex items-start gap-2.5 text-sm">
                   <Gift className="w-4 h-4 text-primary mt-0.5 shrink-0" />
                   <p className="text-muted-foreground">
-                    Partagez votre lien. Quand votre ami s'inscrit et <strong className="text-foreground">passe à l'abonnement</strong>, vous recevez chacun <strong className="text-foreground">1 mois gratuit</strong>.
+                    Share your link. When your friend signs up and <strong className="text-foreground">subscribes</strong>, you each get <strong className="text-foreground">1 free month</strong>.
                   </p>
                 </div>
                 <div className="flex items-start gap-2.5 text-sm">
                   <CreditCard className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
                   <p className="text-xs text-muted-foreground">
-                    L'essai de 7 jours est gratuit. Le bonus n'est activé que si votre ami s'abonne (9€/mois).
+                    The 7-day trial is free. The bonus activates only if your friend subscribes ($9/month).
                   </p>
                 </div>
                 {stats.completedReferrals === 0 && (
                   <div className="flex items-start gap-2.5 text-sm">
                     <PartyPopper className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
                     <p className="text-xs text-muted-foreground">
-                      Illimité : plus vous parrainez, plus vous gagnez !
+                      Unlimited: the more you refer, the more you earn!
                     </p>
                   </div>
                 )}
@@ -179,23 +179,23 @@ C'est gratuit pendant 7 jours, sans engagement !`;
                   {copied ? (
                     <>
                       <Check className="w-4 h-4" />
-                      Copié !
+                      Copied!
                     </>
                   ) : (
                     <>
                       <Copy className="w-4 h-4" />
-                      Copier mon lien d'invitation
+                      Copy my invite link
                     </>
                   )}
                 </Button>
-                
+
                 <Button
                   onClick={handleCopyMessage}
                   variant="ghost"
                   size="sm"
                   className="w-full gap-2 text-muted-foreground"
                 >
-                  Copier un message prêt à envoyer
+                  Copy a ready-to-send message
                 </Button>
               </div>
             </CardContent>

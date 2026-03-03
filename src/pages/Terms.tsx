@@ -10,11 +10,11 @@ const Terms = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="w-5 h-5" />
-            <span>Retour à l'accueil</span>
+            <span>Back to home</span>
           </Link>
           <div className="flex items-center gap-2">
             <Scale className="w-5 h-5 text-primary" />
-            <span className="font-display font-bold">Mentions Légales</span>
+            <span className="font-display font-bold">Legal</span>
           </div>
           <div className="w-24" />
         </div>
@@ -29,68 +29,64 @@ const Terms = () => {
           {/* Page Title */}
           <div className="text-center mb-12">
             <h1 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-foreground">
-              Conditions Générales de Vente et d'Utilisation (CGV/CGU)
+              Terms of Service
             </h1>
             <p className="text-muted-foreground">
-              Mise à jour : Janvier 2026
+              Last updated: January 2026
             </p>
           </div>
 
           {/* Legal Content */}
           <div className="space-y-10 text-foreground/90 leading-relaxed">
-            
+
             {/* Article 1 */}
             <section>
               <h2 className="text-2xl font-serif font-semibold mb-4 text-foreground">
-                1. Mentions Légales
+                1. General Information
               </h2>
               <p className="mb-4">
-                Le site et l'application <strong>ParlerMoinsVite</strong> sont édités par la société <strong>POCLE</strong>, Société par Actions Simplifiée (SAS) au capital de <strong>1 500 euros</strong>.
+                The website and application <strong>ClutterPro</strong> are operated by <strong>ClutterPro Inc.</strong>
               </p>
               <ul className="space-y-2 list-none pl-0">
-                <li><strong>Siège social :</strong> 21 B RUE DU SIMPLON, 75018 PARIS</li>
-                <li><strong>Immatriculation :</strong> RCS de PARIS sous le numéro <strong>847 536 711</strong></li>
-                <li><strong>N° de TVA Intracommunautaire :</strong> FR70847536711</li>
-                <li><strong>Directeur de la publication :</strong> Clément PONTEGNIER</li>
-                <li><strong>Hébergeur :</strong> Supabase / Vercel</li>
-                <li><strong>Contact :</strong> <a href="mailto:contact@parlermoinsvite.fr" className="text-primary hover:underline">contact@parlermoinsvite.fr</a></li>
+                <li><strong>Hosting:</strong> Supabase / Vercel</li>
+                <li><strong>Contact:</strong> <a href="mailto:support@clutterpro.com" className="text-primary hover:underline">support@clutterpro.com</a></li>
               </ul>
             </section>
 
             {/* Article 2 */}
             <section>
               <h2 className="text-2xl font-serif font-semibold mb-4 text-foreground">
-                2. Objet et Champ d'Application
+                2. Purpose and Scope
               </h2>
               <p>
-                Les présentes CGV régissent la vente d'abonnements et l'utilisation de l'application "ParlerMoinsVite". Elles s'appliquent à tout professionnel de santé souscripteur (l'"Orthophoniste" ou "Abonné") ainsi qu'à toute personne bénéficiant d'un accès via un Code Pro (le "Patient"). L'utilisation de l'application vaut acceptation sans réserve des présentes conditions.
+                These Terms of Service govern the sale of subscriptions and the use of the "ClutterPro" application. They apply to all subscribing healthcare professionals (the "SLP" or "Subscriber") as well as any person with access via a Pro Code (the "Patient"). Use of the application constitutes unconditional acceptance of these terms.
               </p>
             </section>
 
             {/* Article 3 - CRITICAL WARNING BOX */}
             <section>
               <h2 className="text-2xl font-serif font-semibold mb-4 text-foreground">
-                3. AVERTISSEMENT IMPORTANT (NON-RESPONSABILITÉ MÉDICALE)
+                3. IMPORTANT DISCLAIMER (MEDICAL NON-LIABILITY)
               </h2>
               <div className="bg-red-50 dark:bg-red-950/30 border-2 border-red-400 dark:border-red-700 rounded-xl p-6 space-y-4">
                 <div className="flex items-start gap-3">
                   <AlertTriangle className="w-6 h-6 text-red-600 dark:text-red-400 flex-shrink-0 mt-1" />
                   <p className="font-semibold text-red-800 dark:text-red-300">
-                    L'application ParlerMoinsVite est un outil d'entraînement vocal et de régulation du débit. CE N'EST PAS UN DISPOSITIF MÉDICAL.
+                    ClutterPro is a speech rate training and regulation tool. IT IS NOT A MEDICAL DEVICE.
                   </p>
                 </div>
                 <ul className="space-y-3 text-red-900 dark:text-red-200 ml-9">
                   <li className="flex items-start gap-2">
                     <span className="text-red-600 dark:text-red-400">•</span>
-                    <span>L'application ne fournit aucun diagnostic, ni prescription médicale.</span>
+                    <span>The application does not provide any diagnosis or medical prescription.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-red-600 dark:text-red-400">•</span>
-                    <span>L'utilisation de l'application ne saurait se substituer à une consultation chez un orthophoniste, un médecin ORL ou tout autre spécialiste de santé.</span>
+                    <span>The use of the application is not a substitute for a consultation with a speech-language pathologist, ENT physician, or any other healthcare specialist.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-red-600 dark:text-red-400">•</span>
-                    <span>La société POCLE décline toute responsabilité en cas d'absence de progrès ou d'aggravation des troubles. L'utilisateur est seul responsable de l'interprétation des données fournies (graphiques, vitesse) qui ne sont données qu'à titre indicatif.</span>
+                    <span>ClutterPro disclaims all liability in case of lack of progress or worsening of conditions. The user is solely responsible for the interpretation of provided data (charts, speed) which are given for informational purposes only.</span>
                   </li>
                 </ul>
               </div>
@@ -99,46 +95,46 @@ const Terms = () => {
             {/* Article 4 */}
             <section>
               <h2 className="text-2xl font-serif font-semibold mb-4 text-foreground">
-                4. Services, Accès et Modèle d'Abonnement
+                4. Services, Access, and Subscription Model
               </h2>
               <p className="mb-4">
-                L'application fonctionne selon deux modèles complémentaires :
+                The application operates under two complementary models:
               </p>
-              
-              <h3 className="text-lg font-semibold mb-3 text-foreground">4.1 — Modèle Professionnel (B2B)</h3>
+
+              <h3 className="text-lg font-semibold mb-3 text-foreground">4.1 — Professional Model (B2B)</h3>
               <ul className="space-y-2 list-disc pl-6 mb-6">
-                <li><strong>L'Orthophoniste</strong> souscrit un abonnement payant et dispose d'un "Code Pro" unique qu'il transmet à ses patients.</li>
-                <li><strong>Le Patient</strong> bénéficie d'un accès gratuit à l'ensemble des fonctionnalités (exercices, analyse spectrale, suivi de progression) grâce au Code Pro fourni par son orthophoniste.</li>
-                <li>L'abonnement de l'Orthophoniste inclut un nombre de "comptes patients actifs" (sièges). L'Orthophoniste peut archiver un patient pour libérer un siège.</li>
-                <li>En cas de résiliation de l'abonnement par l'Orthophoniste, les patients associés perdent l'accès aux exercices et aux données de suivi.</li>
+                <li><strong>The SLP</strong> subscribes to a paid plan and receives a unique "Pro Code" to share with their patients.</li>
+                <li><strong>The Patient</strong> receives free access to all features (exercises, spectral analysis, progress tracking) through the Pro Code provided by their SLP.</li>
+                <li>The SLP's subscription includes a number of "active patient seats." The SLP can archive a patient to free up a seat.</li>
+                <li>If the SLP cancels their subscription, associated patients lose access to exercises and tracking data.</li>
               </ul>
 
-              <h3 className="text-lg font-semibold mb-3 text-foreground">4.2 — Abonnement Patient Autonome (B2C)</h3>
+              <h3 className="text-lg font-semibold mb-3 text-foreground">4.2 — Solo Patient Subscription (B2C)</h3>
               <ul className="space-y-2 list-disc pl-6 mb-4">
-                <li>Toute personne peut s'inscrire sans Code Pro et bénéficier d'un <strong>essai gratuit de 7 jours</strong> donnant accès à l'intégralité des fonctionnalités.</li>
-                <li>À l'issue de l'essai, l'utilisateur peut souscrire un abonnement mensuel au tarif en vigueur (actuellement <strong>9 € TTC / mois</strong>) pour conserver l'accès.</li>
-                <li>L'utilisateur autonome peut, à tout moment, rattacher son compte à un orthophoniste via un Code Pro dans les Réglages, ce qui le bascule vers le modèle B2B.</li>
-                <li>En cas de non-renouvellement, l'accès aux exercices et aux données de suivi est suspendu.</li>
+                <li>Anyone can sign up without a Pro Code and receive a <strong>7-day free trial</strong> with access to all features.</li>
+                <li>After the trial, the user can subscribe to a monthly plan at the current rate (currently <strong>$9 USD/month</strong>) to retain access.</li>
+                <li>Solo users can link their account to an SLP via a Pro Code in Settings at any time, switching to the B2B model.</li>
+                <li>If the subscription is not renewed, access to exercises and tracking data is suspended.</li>
               </ul>
             </section>
 
             {/* Article 5 */}
             <section>
               <h2 className="text-2xl font-serif font-semibold mb-4 text-foreground">
-                5. Prix et Modalités de Paiement
+                5. Pricing and Payment Terms
               </h2>
               <p className="mb-4">
-                Les prix sont indiqués en Euros (€) toutes taxes comprises (TTC).
+                Prices are listed in US Dollars (USD).
               </p>
               <ul className="space-y-3 list-disc pl-6">
                 <li>
-                  <strong>Abonnement Professionnel (B2B) :</strong> L'Orthophoniste souscrit un abonnement mensuel. Le paiement est exigible immédiatement à la commande, avec reconduction tacite sauf résiliation avant la date d'échéance.
+                  <strong>Professional Subscription (B2B):</strong> The SLP subscribes to a monthly plan. Payment is due immediately upon order, with automatic renewal unless canceled before the billing date.
                 </li>
                 <li>
-                  <strong>Abonnement Patient Autonome (B2C) :</strong> Le patient sans Code Pro peut souscrire un abonnement mensuel (actuellement 9 € TTC / mois) après la période d'essai gratuit de 7 jours. L'abonnement est reconduit tacitement chaque mois.
+                  <strong>Solo Patient Subscription (B2C):</strong> Patients without a Pro Code can subscribe to a monthly plan (currently $9 USD/month) after the 7-day free trial. The subscription auto-renews each month.
                 </li>
                 <li>
-                  <strong>Sécurisation :</strong> Les transactions sont sécurisées par notre prestataire de paiement (Stripe). POCLE ne conserve aucune coordonnée bancaire.
+                  <strong>Security:</strong> Transactions are secured by our payment processor (Stripe). ClutterPro does not store any banking information.
                 </li>
               </ul>
             </section>
@@ -146,30 +142,30 @@ const Terms = () => {
             {/* Article 6 */}
             <section>
               <h2 className="text-2xl font-serif font-semibold mb-4 text-foreground">
-                6. Renoncement au Droit de Rétractation
+                6. Cancellation and Refund Policy
               </h2>
               <p className="mb-4">
-                Conformément à l'article L.221-28 du Code de la consommation, le droit de rétractation ne peut être exercé pour les contrats de fourniture d'un contenu numérique non fourni sur un support matériel, dont l'exécution a commencé après accord préalable exprès du consommateur et renoncement exprès à son droit de rétractation.
+                You may cancel your subscription at any time. Upon cancellation, you will retain access until the end of your current billing period. No partial refunds are provided for unused portions of a subscription period.
               </p>
               <p className="font-semibold bg-amber-50 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-700 rounded-lg p-4 text-amber-900 dark:text-amber-200">
-                En souscrivant à l'abonnement professionnel et en accédant immédiatement aux fonctionnalités, l'Orthophoniste renonce expressément à son droit de rétractation.
+                By subscribing and immediately accessing the features, the Subscriber acknowledges that the digital content has been delivered and that refunds are subject to our discretion.
               </p>
             </section>
 
             {/* Article 7 */}
             <section>
               <h2 className="text-2xl font-serif font-semibold mb-4 text-foreground">
-                7. Données Personnelles et Santé (RGPD)
+                7. Personal and Health Data
               </h2>
               <p className="mb-4">
-                La société POCLE attache une importance capitale à la protection de vos données.
+                ClutterPro places the utmost importance on protecting your data.
               </p>
               <ul className="space-y-2 list-disc pl-6">
                 <li>
-                  <strong>Enregistrements :</strong> Vos fichiers audio ne sont écoutés par personne d'autre que vous-même et, le cas échéant, votre orthophoniste lié par Code Pro.
+                  <strong>Recordings:</strong> Your audio files are not listened to by anyone other than you and, if applicable, your SLP linked via Pro Code.
                 </li>
                 <li>
-                  <strong>Sécurité :</strong> Les données sont chiffrées en transit et au repos.
+                  <strong>Security:</strong> Data is encrypted in transit and at rest.
                 </li>
               </ul>
             </section>
@@ -177,30 +173,30 @@ const Terms = () => {
             {/* Article 8 */}
             <section>
               <h2 className="text-2xl font-serif font-semibold mb-4 text-foreground">
-                8. Responsabilité et Force Majeure
+                8. Liability and Force Majeure
               </h2>
               <p>
-                La responsabilité de POCLE ne saurait être engagée en cas de dysfonctionnement du réseau internet, de bugs informatiques ou d'incompatibilité matérielle. En tout état de cause, la responsabilité de la société est limitée au montant payé par le client pour le service sur les 12 derniers mois.
+                ClutterPro shall not be held liable for internet network malfunctions, software bugs, or hardware incompatibility. In any event, ClutterPro's liability is limited to the amount paid by the customer for the service over the last 12 months.
               </p>
             </section>
 
             {/* Article 9 */}
             <section>
               <h2 className="text-2xl font-serif font-semibold mb-4 text-foreground">
-                9. Propriété Intellectuelle
+                9. Intellectual Property
               </h2>
               <p>
-                Tous les éléments de l'application (textes, codes, graphiques sonores, algorithmes de détection) sont la propriété exclusive de POCLE. Toute reproduction ou rétro-ingénierie est strictement interdite.
+                All elements of the application (texts, code, graphics, audio, detection algorithms) are the exclusive property of ClutterPro. Any reproduction or reverse engineering is strictly prohibited.
               </p>
             </section>
 
             {/* Article 10 */}
             <section>
               <h2 className="text-2xl font-serif font-semibold mb-4 text-foreground">
-                10. Droit Applicable et Litiges
+                10. Governing Law and Disputes
               </h2>
               <p>
-                Les présentes conditions sont soumises au droit français. En cas de litige, et à défaut d'accord amiable, compétence exclusive est attribuée aux tribunaux du ressort de la Cour d'appel de PARIS.
+                These terms are governed by the laws of the State of Delaware. In the event of a dispute, and failing an amicable resolution, exclusive jurisdiction is granted to the courts of the State of Delaware.
               </p>
             </section>
 
@@ -208,12 +204,12 @@ const Terms = () => {
 
           {/* Back to Home */}
           <div className="mt-16 text-center border-t border-border pt-8">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="inline-flex items-center gap-2 text-primary hover:underline"
             >
               <ArrowLeft className="w-4 h-4" />
-              Retour à l'accueil
+              Back to home
             </Link>
           </div>
         </motion.div>

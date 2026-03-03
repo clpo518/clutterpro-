@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/landing/Footer";
 import { Navbar } from "@/components/landing/Navbar";
-import { 
-  Mountain, 
-  Timer, 
-  Lightbulb, 
-  Heart, 
-  Waves, 
-  Play, 
-  ArrowRight, 
+import {
+  Mountain,
+  Timer,
+  Lightbulb,
+  Heart,
+  Waves,
+  Play,
+  ArrowRight,
   Quote,
   PenLine,
   Smartphone,
@@ -23,12 +23,12 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       {/* Hero Section - Personal Story */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
         {/* Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-teal-900 via-emerald-800 to-slate-900" />
-        
+
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-blue-500/30 to-transparent" />
@@ -39,7 +39,7 @@ const About = () => {
             <path d="M0,120 L150,80 L350,100 L550,60 L750,95 L950,70 L1200,90 L1200,120 Z" fill="currentColor" />
           </svg>
         </div>
-        
+
         <div className="container relative z-10 px-4 md:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -48,17 +48,17 @@ const About = () => {
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-teal-200 text-sm font-medium mb-6">
               <Heart className="w-4 h-4" />
-              Une histoire personnelle
+              A personal story
             </span>
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              J'ai créé l'outil <br />
+              I built the tool <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-emerald-300">
-                dont j'avais besoin.
+                I wished I had.
               </span>
             </h1>
             <p className="text-lg md:text-xl text-teal-100/80 max-w-2xl mx-auto">
-              Mon parcours avec le bredouillement, et comment cette frustration 
-              est devenue une mission.
+              My journey with cluttering, and how that frustration
+              became a mission.
             </p>
           </motion.div>
         </div>
@@ -77,24 +77,24 @@ const About = () => {
             >
               <div className="relative">
                 <div className="w-72 h-80 md:w-80 md:h-96 rounded-3xl overflow-hidden shadow-2xl">
-                  <img 
-                    src={clementPhoto} 
-                    alt="Clément, fondateur de ParlerMoinsVite" 
+                  <img
+                    src={clementPhoto}
+                    alt="Clement, founder of ClutterPro"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 {/* Decorative elements */}
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-2xl -z-10" />
                 <div className="absolute -top-4 -left-4 w-16 h-16 bg-teal-500/20 rounded-xl -z-10" />
-                
+
                 {/* Name badge */}
                 <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white dark:bg-card px-4 py-2 rounded-full shadow-lg border border-border">
-                  <p className="font-semibold text-foreground">Clément</p>
-                  <p className="text-xs text-muted-foreground text-center">Fondateur</p>
+                  <p className="font-semibold text-foreground">Clement</p>
+                  <p className="text-xs text-muted-foreground text-center">Founder</p>
                 </div>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -103,21 +103,21 @@ const About = () => {
             >
               <span className="inline-flex items-center gap-2 text-primary font-medium mb-4">
                 <Lightbulb className="w-5 h-5" />
-                Mon Histoire
+                My Story
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Le bredouillement, depuis tout petit
+                Living with cluttering since childhood
               </h2>
               <div className="prose prose-slate dark:prose-invert">
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  Aussi loin que je me souvienne, j'ai toujours parlé trop vite. Les mots se bousculaient, 
-                  mes idées allaient plus vite que ma bouche ne pouvait suivre. Le <strong>bredouillement</strong>, 
-                  c'était mon quotidien.
+                  As far back as I can remember, I've always spoken too fast. Words would pile up,
+                  my ideas running faster than my mouth could keep up. <strong>Cluttering</strong> was
+                  my daily reality.
                 </p>
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  En <strong>2022</strong>, j'ai enfin franchi le pas et consulté une orthophoniste, 
-                  <strong> Audrey Laydernier</strong>. Ce suivi a été un tournant. Pour la première fois, 
-                  j'ai compris ce qui se passait et j'ai découvert des techniques qui fonctionnaient.
+                  In <strong>2022</strong>, I finally took the step and consulted an SLP,
+                  <strong> Audrey Laydernier</strong>. That experience was a turning point. For the first time,
+                  I understood what was happening and discovered techniques that actually worked.
                 </p>
               </div>
             </motion.div>
@@ -137,10 +137,10 @@ const About = () => {
           >
             <Quote className="w-12 h-12 text-primary/40 mx-auto mb-6" />
             <blockquote className="text-xl md:text-2xl font-medium text-foreground italic leading-relaxed">
-              "J'avais décroché. J'aurais eu besoin d'une app pour me motiver, 
-              faire les exercices à la maison, sans avoir à m'enregistrer sur mon téléphone."
+              "I had dropped out. I needed an app to keep me motivated,
+              to do the exercises at home, without having to record myself on my phone."
             </blockquote>
-            <p className="text-muted-foreground mt-4">— La frustration qui a tout déclenché</p>
+            <p className="text-muted-foreground mt-4">-- The frustration that started it all</p>
           </motion.div>
         </div>
       </section>
@@ -157,13 +157,13 @@ const About = () => {
           >
             <span className="inline-flex items-center gap-2 text-primary font-medium mb-4">
               <Timer className="w-5 h-5" />
-              Les Frustrations
+              The Frustrations
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Ce qui manquait cruellement
+              What was sorely missing
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Malgré l'efficacité des séances, il y avait des freins qui m'ont fait décrocher.
+              Despite the effectiveness of sessions, there were obstacles that made me drop out.
             </p>
           </motion.div>
 
@@ -171,22 +171,22 @@ const About = () => {
             {[
               {
                 icon: Smartphone,
-                title: "S'enregistrer sur le téléphone",
-                description: "Personne n'aime réécouter sa propre voix. C'était un frein psychologique énorme pour pratiquer à la maison.",
+                title: "Recording on the phone",
+                description: "Nobody likes listening to their own voice. It was a huge psychological barrier to practicing at home.",
                 color: "text-red-500",
                 bg: "bg-red-500/10"
               },
               {
                 icon: PenLine,
-                title: "Compter les syllabes au crayon",
-                description: "En séance, on comptait manuellement les syllabes pour calculer le débit. Une perte de temps précieuse sur les 30 minutes.",
+                title: "Counting syllables by hand",
+                description: "In session, we manually counted syllables to calculate speech rate. A precious waste of time in a 30-minute appointment.",
                 color: "text-amber-500",
                 bg: "bg-amber-500/10"
               },
               {
                 icon: Target,
-                title: "Pas de motivation entre les séances",
-                description: "Sans outil ludique ni suivi, j'ai fini par décrocher. La motivation s'érodait entre chaque rendez-vous.",
+                title: "No motivation between sessions",
+                description: "Without a fun tool or tracking, I ended up dropping out. Motivation eroded between each appointment.",
                 color: "text-blue-500",
                 bg: "bg-blue-500/10"
               }
@@ -226,24 +226,24 @@ const About = () => {
             >
               <span className="inline-flex items-center gap-2 text-teal-600 dark:text-teal-400 font-medium mb-4">
                 <Sparkles className="w-5 h-5" />
-                La Naissance
+                The Beginning
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Alors j'ai créé ParlerMoinsVite
+                So I created ClutterPro
               </h2>
               <div className="prose prose-slate dark:prose-invert">
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  La rééducation m'a aidé. Vraiment. Mais j'ai réalisé qu'il manquait un <strong>outil moderne</strong> 
-                  pour accompagner les patients entre les séances.
+                  Speech therapy helped me. Truly. But I realized there was no <strong>modern tool</strong>
+                  to support patients between sessions.
                 </p>
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  Un outil qui <strong>calcule automatiquement</strong> le débit de parole. Qui donne un 
-                  <strong> feedback visuel en temps réel</strong>. Qui <strong>motive</strong> à pratiquer 
-                  régulièrement avec des objectifs et des streaks.
+                  A tool that <strong>automatically calculates</strong> speech rate. That gives
+                  <strong> real-time visual feedback</strong>. That <strong>motivates</strong> you to practice
+                  regularly with goals and streaks.
                 </p>
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  C'est ainsi qu'est né <strong>parlermoinsvite.fr</strong> — l'outil que j'aurais 
-                  voulu avoir dès le premier jour de ma rééducation.
+                  That's how <strong>ClutterPro</strong> was born -- the tool I wish
+                  I had from day one of my speech therapy.
                 </p>
               </div>
             </motion.div>
@@ -267,13 +267,13 @@ const About = () => {
                 <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-blue-500 to-blue-400">
                   <div className="absolute inset-0 opacity-30">
                     {[...Array(8)].map((_, i) => (
-                      <div 
+                      <div
                         key={i}
                         className="absolute h-px bg-white/50"
-                        style={{ 
-                          top: `${20 + i * 10}%`, 
-                          left: `${10 + i * 5}%`, 
-                          width: `${30 + Math.random() * 30}%` 
+                        style={{
+                          top: `${20 + i * 10}%`,
+                          left: `${10 + i * 5}%`,
+                          width: `${30 + Math.random() * 30}%`
                         }}
                       />
                     ))}
@@ -300,21 +300,21 @@ const About = () => {
           >
             <Waves className="w-12 h-12 text-primary mx-auto mb-6" />
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Prêt à trouver votre rythme ?
+              Ready to find your rhythm?
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-8">
-              Rejoignez des centaines de personnes qui ont repris le contrôle de leur parole.
+              Join hundreds of people who have taken back control of their speech.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="gap-2" asChild>
                 <Link to="/auth">
                   <Play className="w-5 h-5" />
-                  Commencer l'entraînement
+                  Start practicing
                 </Link>
               </Button>
               <Button size="lg" variant="outline" className="gap-2" asChild>
                 <Link to="/pricing">
-                  Voir les tarifs
+                  View pricing
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>

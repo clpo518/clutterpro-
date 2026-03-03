@@ -12,27 +12,27 @@ interface PaymentFailedEmailProps {
 }
 
 export function PaymentFailedEmail(props: PaymentFailedEmailProps) {
-  const { userName = 'Cher utilisateur', updatePaymentUrl } = props
+  const { userName = 'Dear user', updatePaymentUrl } = props
   return (
-    <BaseLayout preview="Action requise : votre paiement a échoué">
-      <Heading style={heading}>⚠️ Votre paiement a échoué</Heading>
+    <BaseLayout preview="Action required: your payment has failed">
+      <Heading style={heading}>⚠️ Your payment has failed</Heading>
 
-      <Text style={paragraph}>Bonjour {userName},</Text>
+      <Text style={paragraph}>Hi {userName},</Text>
 
       <Text style={paragraph}>
-        Nous n'avons pas pu traiter votre dernier paiement pour votre abonnement Parler Moins Vite.
+        We were unable to process your latest payment for your ClutterPro subscription.
       </Text>
 
       <Text style={paragraph}>
-        Pour continuer à profiter de toutes les fonctionnalités premium, veuillez mettre à jour vos informations de paiement.
+        To continue enjoying all premium features, please update your payment information.
       </Text>
 
       <Button style={button} href={updatePaymentUrl}>
-        Mettre à jour mon moyen de paiement
+        Update my payment method
       </Button>
 
       <Text style={smallText}>
-        Si vous pensez qu'il s'agit d'une erreur, contactez-nous à contact@parlermoinsvite.fr
+        If you believe this is an error, contact us at support@clutterpro.com
       </Text>
     </BaseLayout>
   )

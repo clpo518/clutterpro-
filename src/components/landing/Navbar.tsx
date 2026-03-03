@@ -45,11 +45,11 @@ export const Navbar = () => {
   const logoDestination = getLogoDestination();
 
   const navLinks = [
-    { href: "/#patients", label: "Patients" },
-    { href: "/#orthophonistes", label: "Orthophonistes" },
-    { href: "/diagnostic", label: "Test vocal" },
-    { href: "/pricing", label: "Tarifs" },
-    { href: "/about", label: "À propos" },
+    { href: "/#patients", label: "For Patients" },
+    { href: "/#slps", label: "For SLPs" },
+    { href: "/diagnostic", label: "Voice Test" },
+    { href: "/pricing", label: "Pricing" },
+    { href: "/about", label: "About" },
   ];
 
   const handleAnchorClick = (href: string) => {
@@ -80,10 +80,10 @@ export const Navbar = () => {
               <Activity className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="text-lg font-semibold text-foreground hidden sm:block">
-              ParlerMoinsVite
+              ClutterPro
             </span>
           </Link>
-          
+
           {/* Desktop navigation */}
           <div className="hidden lg:flex items-center">
             {navLinks.map((link) => (
@@ -96,9 +96,9 @@ export const Navbar = () => {
                   {link.label}
                 </button>
               ) : (
-                <Link 
+                <Link
                   key={link.href}
-                  to={link.href} 
+                  to={link.href}
                   className="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors text-sm rounded-lg hover:bg-muted/50"
                 >
                   {link.label}
@@ -110,24 +110,24 @@ export const Navbar = () => {
           <div className="hidden md:flex items-center gap-2">
             {user ? (
               <Button asChild>
-                <Link to={logoDestination}>Mon espace</Link>
+                <Link to={logoDestination}>My Dashboard</Link>
               </Button>
             ) : (
               <>
                 <Button variant="ghost" asChild>
-                  <Link to="/auth">Connexion</Link>
+                  <Link to="/auth">Log in</Link>
                 </Button>
                 <Button asChild>
-                  <Link to="/auth?tab=signup">Essai gratuit</Link>
+                  <Link to="/auth?tab=signup">Free trial</Link>
                 </Button>
               </>
             )}
           </div>
-          
+
           {/* Mobile menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <button className="p-2 rounded-lg hover:bg-muted/50 transition-colors" aria-label="Ouvrir le menu">
+              <button className="p-2 rounded-lg hover:bg-muted/50 transition-colors" aria-label="Open menu">
                 <Menu className="w-5 h-5" />
               </button>
             </SheetTrigger>
@@ -138,11 +138,11 @@ export const Navbar = () => {
                     <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center">
                       <Activity className="w-4 h-4 text-primary-foreground" />
                     </div>
-                    ParlerMoinsVite
+                    ClutterPro
                   </Link>
                 </SheetTitle>
               </SheetHeader>
-              
+
               <div className="flex flex-col gap-6 mt-8">
                 <div className="flex flex-col gap-0.5">
                   {navLinks.map((link) => (
@@ -155,9 +155,9 @@ export const Navbar = () => {
                         {link.label}
                       </button>
                     ) : (
-                      <Link 
+                      <Link
                         key={link.href}
-                        to={link.href} 
+                        to={link.href}
                         className="text-foreground hover:text-primary transition-colors py-2.5 px-3 rounded-lg hover:bg-muted"
                         onClick={() => setIsOpen(false)}
                       >
@@ -170,15 +170,15 @@ export const Navbar = () => {
                 <div className="flex flex-col gap-3 pt-4 border-t border-border mt-auto">
                   {user ? (
                     <Button asChild className="w-full justify-center">
-                      <Link to={logoDestination} onClick={() => setIsOpen(false)}>Mon espace</Link>
+                      <Link to={logoDestination} onClick={() => setIsOpen(false)}>My Dashboard</Link>
                     </Button>
                   ) : (
                     <>
                       <Button variant="outline" asChild className="w-full justify-center">
-                        <Link to="/auth" onClick={() => setIsOpen(false)}>Connexion</Link>
+                        <Link to="/auth" onClick={() => setIsOpen(false)}>Log in</Link>
                       </Button>
                       <Button asChild className="w-full justify-center">
-                        <Link to="/auth?tab=signup" onClick={() => setIsOpen(false)}>Essai gratuit</Link>
+                        <Link to="/auth?tab=signup" onClick={() => setIsOpen(false)}>Free trial</Link>
                       </Button>
                     </>
                   )}

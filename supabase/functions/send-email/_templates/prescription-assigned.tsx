@@ -18,40 +18,40 @@ interface PrescriptionAssignedEmailProps {
 
 export function PrescriptionAssignedEmail({
   patientName = 'Patient',
-  therapistName = 'Votre orthophoniste',
-  exerciseTitle = 'Exercice',
+  therapistName = 'Your SLP',
+  exerciseTitle = 'Exercise',
   message,
-  exerciseUrl = 'https://www.parlermoinsvite.fr/dashboard',
+  exerciseUrl = 'https://www.clutterpro.com/dashboard',
 }: PrescriptionAssignedEmailProps) {
   return (
-    <BaseLayout preview={`${therapistName} vous a prescrit un exercice`}>
-      <Heading style={heading}>📋 Nouvel exercice prescrit</Heading>
+    <BaseLayout preview={`${therapistName} has assigned you an exercise`}>
+      <Heading style={heading}>📋 New exercise assigned</Heading>
 
       <Text style={text}>
-        Bonjour {patientName},
+        Hi {patientName},
       </Text>
 
       <Text style={text}>
-        <strong>{therapistName}</strong> vous a prescrit un nouvel exercice :
+        <strong>{therapistName}</strong> has assigned you a new exercise:
       </Text>
 
       <Section style={exerciseBox}>
         <Text style={exerciseName}>{exerciseTitle}</Text>
         {message && (
-          <Text style={messageStyle}>💬 « {message} »</Text>
+          <Text style={messageStyle}>💬 "{message}"</Text>
         )}
       </Section>
 
       <Section style={ctaSection}>
         <Button style={ctaButton} href={exerciseUrl}>
-          Faire l'exercice →
+          Start the exercise →
         </Button>
       </Section>
 
       <Hr style={hr} />
 
       <Text style={footerNote}>
-        Connectez-vous à votre espace pour retrouver tous vos exercices prescrits.
+        Log in to your dashboard to find all your assigned exercises.
       </Text>
     </BaseLayout>
   )

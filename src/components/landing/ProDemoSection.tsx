@@ -5,15 +5,15 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { KaraokeDemo } from "./KaraokeDemo";
 
 const rebusItems = [
-  { emoji: "🐮", label: "vache", pauseAfter: true },
-  { emoji: "🍽️", label: "mange", pauseAfter: true },
-  { emoji: "🍦", label: "glace", pauseAfter: false },
+  { emoji: "🐮", label: "cow", pauseAfter: true },
+  { emoji: "🍽️", label: "eats", pauseAfter: true },
+  { emoji: "🍦", label: "ice cream", pauseAfter: false },
 ];
 
 export const ProDemoSection = () => {
   const [activeWord, setActiveWord] = useState(0);
   const [activeRebus, setActiveRebus] = useState(-1);
-  const words = ["Je", "prends", "le", "temps", "de", "parler."];
+  const words = ["I", "take", "the", "time", "to", "speak."];
 
   const animateWords = () => {
     setActiveWord(0);
@@ -42,13 +42,13 @@ export const ProDemoSection = () => {
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             <Play className="w-4 h-4" />
-            Démo interactive
+            Interactive demo
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Voici ce que vos patients <span className="text-primary">utiliseront</span>
+            Here's what your patients <span className="text-primary">will use</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            3 modes parmi les 12 disponibles. Vos patients s'exercent en autonomie entre deux séances.
+            3 of 12 available modes. Your patients practice independently between sessions.
           </p>
         </motion.div>
 
@@ -64,17 +64,17 @@ export const ProDemoSection = () => {
               <TabsList className="grid w-full grid-cols-3 mb-8">
                 <TabsTrigger value="lecture" className="gap-1 md:gap-2 text-xs md:text-sm px-2 md:px-3">
                   <Play className="w-3 h-3 md:w-4 md:h-4" />
-                  Lecture<span className="hidden sm:inline"> guidée</span>
+                  Guided<span className="hidden sm:inline"> Reading</span>
                 </TabsTrigger>
                 <TabsTrigger value="dialogue" className="gap-1 md:gap-2 text-xs md:text-sm px-2 md:px-3">
                   <MessageSquare className="w-3 h-3 md:w-4 md:h-4" />
                   Dialogue
                   <span className="hidden sm:inline ml-1 px-1.5 py-0.5 text-[10px] font-bold bg-primary text-primary-foreground rounded-full uppercase">
-                    Nouveau
+                    New
                   </span>
                 </TabsTrigger>
                 <TabsTrigger value="rebus" className="gap-1 md:gap-2 text-xs md:text-sm px-2 md:px-3">
-                  🖼️ Rébus<span className="hidden sm:inline"> enfant</span>
+                  🖼️ Rebus<span className="hidden sm:inline"> (children)</span>
                 </TabsTrigger>
               </TabsList>
 
@@ -83,10 +83,10 @@ export const ProDemoSection = () => {
                 <div className="text-center mb-6">
                   <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-3">
                     <Play className="w-4 h-4" />
-                    Mode Lecture — Guidage thérapeutique
+                    Reading Mode — Therapeutic guidance
                   </span>
                   <p className="text-muted-foreground text-sm">
-                    Le surligneur avance mot par mot et s'adapte à la vitesse cible du patient (de 3.0 à 5.0 syll/s). Le patient lit à voix haute en suivant le rythme.
+                    The highlighter advances word by word and adapts to the patient's target speed (3.0 to 5.0 syll/s). The patient reads aloud following the rhythm.
                   </p>
                 </div>
 
@@ -96,9 +96,9 @@ export const ProDemoSection = () => {
 
                 <div className="grid grid-cols-3 gap-3 mb-6">
                   {[
-                    { label: "Modes", value: "Libre / Guidé / Syllabique" },
-                    { label: "Biofeedback", value: "SPS en temps réel" },
-                    { label: "Adapté", value: "Enfant → Senior" },
+                    { label: "Modes", value: "Free / Guided / Syllabic" },
+                    { label: "Biofeedback", value: "Real-time SPS" },
+                    { label: "Adapted", value: "Child → Senior" },
                   ].map((item, i) => (
                     <div key={i} className="text-center p-3 bg-muted/50 rounded-lg">
                       <div className="text-[10px] text-muted-foreground uppercase tracking-wide">{item.label}</div>
@@ -108,7 +108,7 @@ export const ProDemoSection = () => {
                 </div>
 
                 <p className="text-center text-xs text-muted-foreground">
-                  👆 Cliquez pour lancer. Le surligneur avance au rythme recommandé (~4 syll/s).
+                  👆 Click to start. The highlighter advances at the recommended pace (~4 syll/s).
                 </p>
               </TabsContent>
 
@@ -117,25 +117,25 @@ export const ProDemoSection = () => {
                 <div className="text-center mb-6">
                   <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-3">
                     <MessageSquare className="w-4 h-4" />
-                    Mode Dialogue — Transfert en situation réelle
+                    Dialogue Mode — Transfer to real-life situations
                   </span>
                   <p className="text-muted-foreground text-sm">
-                    Le patient pose le téléphone et discute. Un seul gros indicateur visuel guide le débit en temps réel.
+                    The patient puts the phone down and talks. One large visual indicator guides speech rate in real time.
                   </p>
                 </div>
 
                 <div className="flex flex-col items-center gap-6 mb-8">
                   <div className="w-44 h-44 rounded-full border-4 border-emerald-500 bg-emerald-100 dark:bg-emerald-900/30 flex flex-col items-center justify-center shadow-lg">
                     <span className="text-5xl">✅</span>
-                    <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400 mt-1">Parfait</span>
+                    <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400 mt-1">Perfect</span>
                     <span className="text-xs text-muted-foreground">4.0 syll/s</span>
                   </div>
 
                   <div className="grid grid-cols-3 gap-4 w-full max-w-sm">
                     {[
-                      { emoji: "🐢", label: "Trop lent", color: "border-sky-300" },
-                      { emoji: "✅", label: "Zone cible", color: "border-emerald-500" },
-                      { emoji: "⚡", label: "Trop rapide", color: "border-amber-500" },
+                      { emoji: "🐢", label: "Too slow", color: "border-sky-300" },
+                      { emoji: "✅", label: "Target zone", color: "border-emerald-500" },
+                      { emoji: "⚡", label: "Too fast", color: "border-amber-500" },
                     ].map((state, i) => (
                       <div key={i} className={`text-center p-3 rounded-xl border-2 ${state.color} bg-card`}>
                         <span className="text-2xl">{state.emoji}</span>
@@ -147,9 +147,9 @@ export const ProDemoSection = () => {
 
                 <div className="grid grid-cols-3 gap-3 mb-6">
                   {[
-                    { label: "Durée", value: "30s à 5 min" },
-                    { label: "Situations", value: "Boulangerie, RDV…" },
-                    { label: "Objectif", value: "Transfert des acquis" },
+                    { label: "Duration", value: "30s to 5 min" },
+                    { label: "Situations", value: "Bakery, appointments…" },
+                    { label: "Goal", value: "Transfer of skills" },
                   ].map((item, i) => (
                     <div key={i} className="text-center p-3 bg-muted/50 rounded-lg">
                       <div className="text-[10px] text-muted-foreground uppercase tracking-wide">{item.label}</div>
@@ -159,7 +159,7 @@ export const ProDemoSection = () => {
                 </div>
 
                 <p className="text-center text-xs text-muted-foreground">
-                  💬 L'emoji change en temps réel selon le débit du patient — visible de loin, sans stress.
+                  💬 The emoji changes in real time based on the patient's speech rate — visible from a distance, stress-free.
                 </p>
               </TabsContent>
 
@@ -167,10 +167,10 @@ export const ProDemoSection = () => {
               <TabsContent value="rebus">
                 <div className="text-center mb-6">
                   <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 text-orange-600 dark:text-orange-400 text-sm font-medium mb-3">
-                    🖼️ Mode Rébus — Patients non-lecteurs (4-7 ans)
+                    🖼️ Rebus Mode — Non-reading patients (ages 4–7)
                   </span>
                   <p className="text-muted-foreground text-sm">
-                    L'enfant regarde les images et répète à voix haute, en soufflant entre chaque image.
+                    The child looks at the images and repeats them aloud, breathing between each image.
                   </p>
                 </div>
 
@@ -217,15 +217,15 @@ export const ProDemoSection = () => {
                     className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-xl font-medium hover:bg-orange-600 hover:scale-105 transition-all duration-200 shadow-lg shadow-orange-500/25"
                   >
                     <Play className="w-5 h-5" />
-                    Lancer la démo
+                    Launch demo
                   </button>
                 </div>
 
                 <div className="grid grid-cols-3 gap-3 mb-6">
                   {[
-                    { label: "Âge cible", value: "4–7 ans" },
-                    { label: "Exercices", value: "30+ thèmes" },
-                    { label: "Modélisation", value: "🐢 Lent / 🐇 Rapide" },
+                    { label: "Target age", value: "4–7 years" },
+                    { label: "Exercises", value: "30+ themes" },
+                    { label: "Modeling", value: "🐢 Slow / 🐇 Fast" },
                   ].map((item, i) => (
                     <div key={i} className="text-center p-3 bg-muted/50 rounded-lg">
                       <div className="text-[10px] text-muted-foreground uppercase tracking-wide">{item.label}</div>
@@ -235,7 +235,7 @@ export const ProDemoSection = () => {
                 </div>
 
                 <p className="text-center text-xs text-muted-foreground">
-                  🖼️ Pas besoin de savoir lire : les emojis guident la parole, les barres orange marquent les pauses respiratoires.
+                  🖼️ No reading required: emojis guide speech, orange bars mark breathing pauses.
                 </p>
               </TabsContent>
             </Tabs>

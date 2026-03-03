@@ -17,7 +17,7 @@ const CookieConsent = () => {
       const { timestamp } = JSON.parse(consent);
       const expiryDate = new Date(timestamp);
       expiryDate.setDate(expiryDate.getDate() + CONSENT_EXPIRY_DAYS);
-      
+
       if (new Date() > expiryDate) {
         // Consent expired, show banner again
         localStorage.removeItem(COOKIE_CONSENT_KEY);
@@ -66,49 +66,49 @@ const CookieConsent = () => {
                 <div className="hidden md:flex w-12 h-12 rounded-full bg-primary/10 items-center justify-center flex-shrink-0">
                   <Cookie className="w-6 h-6 text-primary" />
                 </div>
-                
+
                 {/* Content */}
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2 md:hidden">
                     <Cookie className="w-5 h-5 text-primary" />
-                    <h3 className="font-semibold text-foreground">Cookies & Confidentialité</h3>
+                    <h3 className="font-semibold text-foreground">Cookies & Privacy</h3>
                   </div>
                   <h3 className="hidden md:block font-semibold text-foreground mb-1">
-                    Cookies & Confidentialité
+                    Cookies & Privacy
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Nous utilisons des cookies pour assurer le bon fonctionnement du site et analyser 
-                    votre progression. <strong className="text-foreground">Vos données vocales restent strictement privées</strong> et 
-                    ne sont jamais partagées à des fins publicitaires.{" "}
+                    We use cookies to ensure the site works properly and to analyze
+                    your progress. <strong className="text-foreground">Your voice data remains strictly private</strong> and
+                    is never shared for advertising purposes.{" "}
                     <Link to="/legal/privacy" className="text-primary hover:underline">
-                      En savoir plus
+                      Learn more
                     </Link>
                   </p>
                 </div>
-                
+
                 {/* Actions */}
                 <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
-                  <Button 
+                  <Button
                     onClick={handleAccept}
                     className="gap-2 w-full sm:w-auto"
                   >
                     <Shield className="w-4 h-4" />
-                    Accepter & Continuer
+                    Accept & Continue
                   </Button>
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     onClick={handleDecline}
                     className="text-muted-foreground hover:text-foreground w-full sm:w-auto"
                   >
-                    Continuer sans accepter
+                    Continue without accepting
                   </Button>
                 </div>
-                
+
                 {/* Close button (mobile) */}
-                <button 
+                <button
                   onClick={handleDecline}
                   className="absolute top-3 right-3 md:hidden p-1 rounded-full hover:bg-muted transition-colors"
-                  aria-label="Fermer"
+                  aria-label="Close"
                 >
                   <X className="w-4 h-4 text-muted-foreground" />
                 </button>

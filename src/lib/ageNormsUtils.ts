@@ -22,12 +22,12 @@ export interface AgeNorm {
 export const AGE_NORMS: AgeNorm[] = [
   {
     group: 'child',
-    label: 'Enfant',
+    label: 'Child',
     emoji: '👶',
     minAge: 0,
     maxAge: 12,
     normSPS: 4.2,
-    description: 'Développement du débit articulatoire'
+    description: 'Developing articulation rate'
   },
   {
     group: 'adolescent',
@@ -36,16 +36,16 @@ export const AGE_NORMS: AgeNorm[] = [
     minAge: 13,
     maxAge: 20,
     normSPS: 5.5,
-    description: 'Pic de vitesse physiologique'
+    description: 'Peak physiological speed'
   },
   {
     group: 'adult',
-    label: 'Adulte',
+    label: 'Adult',
     emoji: '👤',
     minAge: 21,
     maxAge: 60,
     normSPS: 5.0,
-    description: 'Débit stabilisé'
+    description: 'Stabilized rate'
   },
   {
     group: 'senior',
@@ -54,7 +54,7 @@ export const AGE_NORMS: AgeNorm[] = [
     minAge: 61,
     maxAge: 120,
     normSPS: 4.5,
-    description: 'Ralentissement physiologique naturel'
+    description: 'Natural physiological slowing'
   }
 ];
 
@@ -129,8 +129,8 @@ export function getDynamicLevels(normSPS: number): DynamicSPSLevel[] {
     {
       level: 1,
       sps: 1.0,
-      label: "Ultra-lent",
-      description: "Travail phonétique approfondi.",
+      label: "Ultra-slow",
+      description: "Deep phonetic work.",
       emoji: "🐌",
       recommended: Math.abs(1.0 - normSPS) < 0.5,
       isAboveNorm: 1.0 > normSPS + 0.5
@@ -138,8 +138,8 @@ export function getDynamicLevels(normSPS: number): DynamicSPSLevel[] {
     {
       level: 2,
       sps: 2.0,
-      label: "Tortue",
-      description: "Hyper-contrôle.",
+      label: "Tortoise",
+      description: "Maximum control.",
       emoji: "🐢",
       recommended: Math.abs(2.0 - normSPS) < 0.5,
       isAboveNorm: 2.0 > normSPS + 0.5
@@ -147,8 +147,8 @@ export function getDynamicLevels(normSPS: number): DynamicSPSLevel[] {
     {
       level: 3,
       sps: 3.0,
-      label: "Lent",
-      description: "Rythme de dictée.",
+      label: "Slow",
+      description: "Dictation pace.",
       emoji: "🎯",
       recommended: Math.abs(3.0 - normSPS) < 0.5,
       isAboveNorm: 3.0 > normSPS + 0.5
@@ -156,8 +156,8 @@ export function getDynamicLevels(normSPS: number): DynamicSPSLevel[] {
     {
       level: 4,
       sps: 4.0,
-      label: "Modéré",
-      description: "Conversation naturelle.",
+      label: "Moderate",
+      description: "Natural conversation.",
       emoji: "💬",
       recommended: Math.abs(4.0 - normSPS) < 0.5,
       isAboveNorm: 4.0 > normSPS + 0.5
@@ -165,8 +165,8 @@ export function getDynamicLevels(normSPS: number): DynamicSPSLevel[] {
     {
       level: 5,
       sps: 5.0,
-      label: "Rapide",
-      description: "Débit soutenu.",
+      label: "Fast",
+      description: "Sustained rate.",
       emoji: "⚡",
       recommended: Math.abs(5.0 - normSPS) < 0.5,
       isAboveNorm: 5.0 > normSPS + 0.5
@@ -175,7 +175,7 @@ export function getDynamicLevels(normSPS: number): DynamicSPSLevel[] {
       level: 6,
       sps: 6.0,
       label: "Challenge",
-      description: "Pour tester vos limites.",
+      description: "Push your limits.",
       emoji: "🏃",
       recommended: Math.abs(6.0 - normSPS) < 0.5,
       isAboveNorm: 6.0 > normSPS + 0.5
@@ -200,42 +200,42 @@ export function getExtendedLevels(normSPS: number): DynamicSPSLevel[] {
     
     switch (i) {
       case 1:
-        label = "Ultra-lent";
+        label = "Ultra-slow";
         emoji = "🐌";
-        description = "Articulation extrême.";
+        description = "Extreme articulation.";
         break;
       case 2:
-        label = "Tortue";
+        label = "Tortoise";
         emoji = "🐢";
-        description = "Hyper-contrôle.";
+        description = "Maximum control.";
         break;
       case 3:
-        label = "Lent";
+        label = "Slow";
         emoji = "🎯";
-        description = "Rythme de dictée.";
+        description = "Dictation pace.";
         break;
       case 4:
-        label = "Modéré";
+        label = "Moderate";
         emoji = "💬";
-        description = "Conversation naturelle.";
+        description = "Natural conversation.";
         break;
       case 5:
-        label = "Rapide";
+        label = "Fast";
         emoji = "⚡";
-        description = "Débit soutenu.";
+        description = "Sustained rate.";
         break;
       case 6:
         label = "Challenge";
         emoji = "🏃";
-        description = "Pour tester vos limites.";
+        description = "Push your limits.";
         break;
     }
-    
+
     // Override for the norm level
     if (isNorm) {
-      label = "Recommandé";
+      label = "Recommended";
       emoji = "✅";
-      description = "Votre norme clinique.";
+      description = "Your clinical norm.";
     }
     
     levels.push({
@@ -268,7 +268,7 @@ export function getAboveNormWarning(selectedSPS: number, normSPS: number, ageGro
   }
   
   const diff = Math.round((selectedSPS - normSPS) * 10) / 10;
-  return `Ce niveau dépasse de ${diff} syll/sec la norme physiologique ${ageGroupLabel.toLowerCase()}. Augmentez progressivement.`;
+  return `This level exceeds the ${ageGroupLabel.toLowerCase()} physiological norm by ${diff} syll/sec. Increase gradually.`;
 }
 
 /**
@@ -280,15 +280,15 @@ export function validateBirthYear(year: number): { valid: boolean; error?: strin
   const maxYear = currentYear - 5; // Minimum 5 years old
   
   if (!Number.isInteger(year)) {
-    return { valid: false, error: "L'année doit être un nombre entier" };
+    return { valid: false, error: "Year must be a whole number" };
   }
-  
+
   if (year < minYear) {
-    return { valid: false, error: `L'année doit être après ${minYear}` };
+    return { valid: false, error: `Year must be after ${minYear}` };
   }
-  
+
   if (year > maxYear) {
-    return { valid: false, error: `L'année doit être avant ${maxYear}` };
+    return { valid: false, error: `Year must be before ${maxYear}` };
   }
   
   return { valid: true };

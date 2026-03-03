@@ -22,36 +22,36 @@ function getDiagnosticInterpretation(avgSps: number, normSps: number) {
 
   if (diff > 1.0) {
     return {
-      title: "Débit rapide",
+      title: "Fast speech rate",
       emoji: "⚡",
-      description: `Votre débit de ${avgSps.toFixed(1)} syll/sec est significativement au-dessus de la moyenne pour votre âge (${normSps.toFixed(1)} syll/sec). Cela peut être un signe de bredouillement ou de tachylalie.`,
-      detail: "L'entraînement régulier peut vous aider à mieux contrôler votre rythme de parole et à gagner en clarté.",
+      description: `Your rate of ${avgSps.toFixed(1)} syll/sec is significantly above the average for your age (${normSps.toFixed(1)} syll/sec). This may be a sign of cluttering or tachylalia.`,
+      detail: "Regular training can help you better control your speech rate and gain clarity.",
       severity: "high" as const,
     };
   }
   if (diff > 0) {
     return {
-      title: "Légèrement rapide",
+      title: "Slightly fast",
       emoji: "🔶",
-      description: `Votre débit de ${avgSps.toFixed(1)} syll/sec est légèrement au-dessus de la norme (${normSps.toFixed(1)} syll/sec).`,
-      detail: "Avec quelques exercices ciblés, vous pouvez gagner en clarté et en confort de parole.",
+      description: `Your rate of ${avgSps.toFixed(1)} syll/sec is slightly above the norm (${normSps.toFixed(1)} syll/sec).`,
+      detail: "With a few targeted exercises, you can gain clarity and speaking comfort.",
       severity: "medium" as const,
     };
   }
   if (diff >= -0.5) {
     return {
-      title: "Débit normal",
+      title: "Normal rate",
       emoji: "✅",
-      description: `Votre débit de ${avgSps.toFixed(1)} syll/sec est dans la norme pour votre âge (${normSps.toFixed(1)} syll/sec).`,
-      detail: "Vous pouvez tout de même vous entraîner pour gagner en aisance dans des situations variées.",
+      description: `Your rate of ${avgSps.toFixed(1)} syll/sec is within the norm for your age (${normSps.toFixed(1)} syll/sec).`,
+      detail: "You can still train to gain confidence in varied speaking situations.",
       severity: "normal" as const,
     };
   }
   return {
-    title: "Débit contrôlé",
+    title: "Controlled rate",
     emoji: "🐢",
-    description: `Votre débit de ${avgSps.toFixed(1)} syll/sec est en dessous de la norme (${normSps.toFixed(1)} syll/sec).`,
-    detail: "L'application peut vous aider à maintenir cette maîtrise et à vous adapter à différents contextes de parole.",
+    description: `Your rate of ${avgSps.toFixed(1)} syll/sec is below the norm (${normSps.toFixed(1)} syll/sec).`,
+    detail: "The app can help you maintain this control and adapt to different speaking contexts.",
     severity: "normal" as const,
   };
 }
@@ -94,8 +94,8 @@ function ResultGauge({ value, norm, max = 8 }: { value: number; norm: number; ma
         className="absolute -top-5 text-xs font-medium text-primary"
         style={{ left: `${normPct}%`, transform: "translateX(-50%)" }}
       >
-        Norme
-      </div>
+        Norm
+</div>
       {/* Value bar */}
       <motion.div
         className="h-full rounded-full"
@@ -127,7 +127,7 @@ const Diagnostic = () => {
   const [birthYear, setBirthYear] = useState("");
   const [birthYearError, setBirthYearError] = useState<string | null>(null);
   const [normSps, setNormSps] = useState(5.0);
-  const [ageLabel, setAgeLabel] = useState("Adulte");
+  const [ageLabel, setAgeLabel] = useState("Adult");
   const [countdown, setCountdown] = useState(DURATION_SECONDS);
   const [isRecording, setIsRecording] = useState(false);
   const [showAnalyzing, setShowAnalyzing] = useState(false);
@@ -199,7 +199,7 @@ const Diagnostic = () => {
       }, 250);
     } catch (err) {
       console.error("Mic access error:", err);
-      setMicError("Impossible d'accéder au microphone. Vérifiez les permissions de votre navigateur.");
+      setMicError("Cannot access microphone. Check your browser permissions and try again.");
     }
   }, [deepgram, volume]);
 
@@ -310,22 +310,22 @@ const Diagnostic = () => {
                   <CardContent className="p-6 md:p-8 space-y-6">
                     <div className="text-center space-y-2">
                       <div className="text-3xl">🎙️</div>
-                      <h1 className="text-2xl font-bold text-foreground">Diagnostic vocal gratuit</h1>
+                      <h1 className="text-2xl font-bold text-foreground">Free voice test</h1>
                       <p className="text-muted-foreground">
-                        Mesurez votre vitesse de parole en 30 secondes.
+                        Measure your speech rate in 30 seconds.
                         <br />
-                        Résultat immédiat, aucune inscription requise.
+                        Instant result, no sign-up required.
                       </p>
                     </div>
 
                     <div className="space-y-3">
                       <Label htmlFor="birthYear" className="text-sm font-medium">
-                        Année de naissance
+                        Year of birth
                       </Label>
                       <Input
                         id="birthYear"
                         type="number"
-                        placeholder="ex: 1995"
+                        placeholder="e.g. 1995"
                         value={birthYear}
                         onChange={(e) => handleBirthYearChange(e.target.value)}
                         className="text-center text-lg"
@@ -336,7 +336,7 @@ const Diagnostic = () => {
                         <p className="text-sm text-destructive">{birthYearError}</p>
                       )}
                       <p className="text-xs text-muted-foreground text-center">
-                        Cette info permet d'adapter l'analyse à votre profil.
+                        This helps calibrate the analysis to your age profile.
                       </p>
                     </div>
 
@@ -347,10 +347,10 @@ const Diagnostic = () => {
                         className="bg-secondary rounded-lg p-4 text-center space-y-1"
                       >
                         <p className="text-sm font-medium text-foreground">
-                          {getAgeGroup(parseInt(birthYear)).emoji} Profil : {ageLabel}
+                          {getAgeGroup(parseInt(birthYear)).emoji} Profile: {ageLabel}
                         </p>
                         <p className="text-sm text-muted-foreground">
-                          Norme clinique : <span className="font-semibold text-primary">{normSps} syll/sec</span>
+                          Clinical norm: <span className="font-semibold text-primary">{normSps} syll/sec</span>
                         </p>
                       </motion.div>
                     )}
@@ -361,7 +361,7 @@ const Diagnostic = () => {
                       className="w-full"
                       size="lg"
                     >
-                      Continuer <ArrowRight className="ml-2 h-4 w-4" />
+                      Continue <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </CardContent>
                 </Card>
@@ -382,32 +382,32 @@ const Diagnostic = () => {
                   <CardContent className="p-6 md:p-8 space-y-6">
                     <div className="text-center space-y-2">
                       <div className="text-3xl">📋</div>
-                      <h2 className="text-xl font-bold text-foreground">Comment ça marche</h2>
+                      <h2 className="text-xl font-bold text-foreground">How it works</h2>
                     </div>
 
                     <div className="space-y-4">
                       <div className="flex items-start gap-3">
                         <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">1</div>
                         <div>
-                          <p className="font-medium text-foreground">Vous allez parler librement pendant 30 secondes</p>
-                          <p className="text-sm text-muted-foreground">Pas de texte à lire, pas de piège.</p>
+                          <p className="font-medium text-foreground">You will speak freely for 30 seconds</p>
+                          <p className="text-sm text-muted-foreground">No text to read, no tricks.</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
                         <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">2</div>
                         <div>
-                          <p className="font-medium text-foreground">Racontez-nous quelque chose</p>
+                          <p className="font-medium text-foreground">Tell us something</p>
                           <p className="text-sm text-muted-foreground">
-                            Vos dernières vacances, un souvenir agréable, ou ce que vous avez fait ce week-end.
+                            Your last vacation, a happy memory, or what you did this weekend.
                           </p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
                         <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">3</div>
                         <div>
-                          <p className="font-medium text-foreground">On mesure votre vitesse de parole</p>
+                          <p className="font-medium text-foreground">We measure your speech rate</p>
                           <p className="text-sm text-muted-foreground">
-                            En syllabes par seconde — c'est la mesure utilisée en orthophonie.
+                            In syllables per second — the measure used in speech-language pathology.
                           </p>
                         </div>
                       </div>
@@ -416,7 +416,7 @@ const Diagnostic = () => {
                     <div className="bg-accent/50 rounded-lg p-4 flex items-start gap-3">
                       <Shield className="h-5 w-5 text-accent-foreground mt-0.5 shrink-0" />
                       <p className="text-sm text-accent-foreground">
-                        Votre audio n'est ni enregistré ni stocké. L'analyse est instantanée et confidentielle.
+                        Your audio is never recorded or stored. The analysis is instant and confidential.
                       </p>
                     </div>
 
@@ -425,7 +425,7 @@ const Diagnostic = () => {
                         <ArrowLeft className="h-4 w-4" />
                       </Button>
                       <Button onClick={() => { setStep(3); startRecording(); }} className="flex-1" size="lg">
-                        <Mic className="mr-2 h-4 w-4" /> Je suis prêt
+                        <Mic className="mr-2 h-4 w-4" /> I'm ready
                       </Button>
                     </div>
                   </CardContent>
@@ -450,10 +450,10 @@ const Diagnostic = () => {
                         <div className="text-4xl">🎤</div>
                         <p className="text-destructive font-medium">{micError}</p>
                         <p className="text-sm text-muted-foreground">
-                          Autorisez l'accès au microphone dans les paramètres de votre navigateur, puis réessayez.
+                          Allow microphone access in your browser settings, then try again.
                         </p>
                         <Button onClick={() => { setMicError(null); startRecording(); }}>
-                          Réessayer
+                          Try again
                         </Button>
                       </div>
                     ) : showAnalyzing ? (
@@ -464,8 +464,8 @@ const Diagnostic = () => {
                         >
                           <Activity className="h-10 w-10 text-primary mx-auto" />
                         </motion.div>
-                        <p className="text-lg font-medium text-foreground">Analyse en cours...</p>
-                        <p className="text-sm text-muted-foreground">Calcul de votre vitesse de parole</p>
+                        <p className="text-lg font-medium text-foreground">Analyzing...</p>
+                        <p className="text-sm text-muted-foreground">Calculating your speech rate</p>
                       </div>
                     ) : (
                       <>
@@ -479,7 +479,7 @@ const Diagnostic = () => {
                           >
                             {countdown}
                           </motion.div>
-                          <p className="text-sm text-muted-foreground">secondes restantes</p>
+                          <p className="text-sm text-muted-foreground">seconds remaining</p>
                         </div>
 
                         {/* Volume animation */}
@@ -492,7 +492,7 @@ const Diagnostic = () => {
                             <span className="relative inline-flex rounded-full h-3 w-3 bg-destructive"></span>
                           </span>
                           <span className="text-sm text-muted-foreground">
-                            {volume.isSpeaking ? "C'est très bien, continuez..." : "Parlez naturellement..."}
+                            {volume.isSpeaking ? "Great, keep going..." : "Speak naturally..."}
                           </span>
                         </div>
 
@@ -506,8 +506,8 @@ const Diagnostic = () => {
                           className="w-full"
                         >
                           {canStop
-                            ? "Terminer le test"
-                            : `Minimum ${MIN_DURATION - elapsedSeconds}s encore...`}
+                            ? "Finish the test"
+                            : `${MIN_DURATION - elapsedSeconds}s more minimum...`}
                         </Button>
                       </>
                     )}
@@ -532,12 +532,12 @@ const Diagnostic = () => {
                       /* No speech detected */
                       <div className="text-center space-y-4">
                         <div className="text-4xl">🤔</div>
-                        <h2 className="text-xl font-bold text-foreground">Aucune parole détectée</h2>
+                        <h2 className="text-xl font-bold text-foreground">No speech detected</h2>
                         <p className="text-muted-foreground">
-                          Nous n'avons pas détecté de parole. Vérifiez votre micro et réessayez.
+                          We didn't detect any speech. Check your microphone and try again.
                         </p>
                         <Button onClick={resetDiagnostic}>
-                          <RotateCcw className="mr-2 h-4 w-4" /> Recommencer
+                          <RotateCcw className="mr-2 h-4 w-4" /> Try again
                         </Button>
                       </div>
                     ) : (
@@ -557,16 +557,16 @@ const Diagnostic = () => {
                           >
                             {finalSps.toFixed(1)}
                           </motion.div>
-                          <p className="text-sm text-muted-foreground mt-1">syllabes / seconde</p>
+                          <p className="text-sm text-muted-foreground mt-1">syllables / second</p>
                         </div>
 
                         {/* Gauge */}
                         <div className="pt-4">
                           <ResultGauge value={finalSps} norm={normSps} />
                           <div className="flex justify-between text-xs text-muted-foreground mt-2">
-                            <span>Lent</span>
-                            <span>Votre norme : {normSps} syll/s ({ageLabel})</span>
-                            <span>Rapide</span>
+                            <span>Slow</span>
+                            <span>Your norm: {normSps} syll/s ({ageLabel})</span>
+                            <span>Fast</span>
                           </div>
                         </div>
 
@@ -580,7 +580,7 @@ const Diagnostic = () => {
                         {deepgram.fillerCount > 0 && (
                           <div className="bg-accent/50 rounded-lg p-4">
                             <p className="text-sm text-accent-foreground">
-                              <span className="font-medium">Mots tics détectés : {deepgram.fillerCount}</span>
+                              <span className="font-medium">Filler words detected: {deepgram.fillerCount}</span>
                               {" — "}
                               {Object.entries(deepgram.fillerDetails)
                                 .map(([word, count]) => `"${word}" (${count}×)`)
@@ -596,17 +596,17 @@ const Diagnostic = () => {
                             className="w-full"
                             size="lg"
                           >
-                            Commencer mon entraînement <ChevronRight className="ml-1 h-4 w-4" />
+                            Start my training <ChevronRight className="ml-1 h-4 w-4" />
                           </Button>
                           <Button
                             onClick={() => navigate("/assessment")}
                             variant="outline"
                             className="w-full"
                           >
-                            Faire le test écrit aussi
+                            Take the written test too
                           </Button>
                           <p className="text-center text-xs text-muted-foreground">
-                            Gratuit · 5 minutes par jour · Résultats en 2 semaines
+                            Free · 5 minutes a day · Results in 2 weeks
                           </p>
                         </div>
 
@@ -616,7 +616,7 @@ const Diagnostic = () => {
                             className="text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
                           >
                             <RotateCcw className="inline h-3 w-3 mr-1" />
-                            Refaire le test
+                            Retake the test
                           </button>
                         </div>
                       </>

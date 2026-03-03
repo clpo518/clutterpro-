@@ -221,7 +221,7 @@ const SessionDetail = () => {
 
             setComments(commentsData.map(c => ({
               ...c,
-              author_name: authorMap.get(c.author_id) || "Inconnu"
+              author_name: authorMap.get(c.author_id) || "Unknown"
             })));
 
             // Mark comments as read if user is the session owner
@@ -236,12 +236,12 @@ const SessionDetail = () => {
             }
           }
         } else {
-          toast.error("Session non trouvée");
+          toast.error("Session not found");
           navigate("/dashboard");
         }
       } catch (error) {
         console.error("Error fetching session:", error);
-        toast.error("Erreur lors du chargement");
+        toast.error("Error loading session");
       } finally {
         setLoading(false);
       }
@@ -275,13 +275,13 @@ const SessionDetail = () => {
 
       setComments(prev => [...prev, {
         ...data,
-        author_name: authorData?.full_name || "Vous"
+        author_name: authorData?.full_name || "You"
       }]);
       setNewComment("");
-      toast.success("Feedback envoyé !");
+      toast.success("Feedback sent!");
     } catch (error) {
       console.error("Error adding comment:", error);
-      toast.error("Erreur lors de l'envoi");
+      toast.error("Error sending feedback");
     } finally {
       setSubmittingComment(false);
     }
@@ -294,7 +294,7 @@ const SessionDetail = () => {
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("fr-FR", {
+    return new Date(dateString).toLocaleDateString("en-US", {
       weekday: "long",
       day: "numeric",
       month: "long",
@@ -305,7 +305,7 @@ const SessionDetail = () => {
   };
 
   const formatCommentDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("fr-FR", {
+    return new Date(dateString).toLocaleDateString("en-US", {
       day: "numeric",
       month: "short",
       hour: "2-digit",
@@ -315,9 +315,9 @@ const SessionDetail = () => {
 
   const getPerformanceLevel = (avgWpm: number) => {
     if (avgWpm <= 140) return { label: "Excellent", color: "text-green-600", bg: "bg-green-100" };
-    if (avgWpm <= 160) return { label: "Très bien", color: "text-green-500", bg: "bg-green-50" };
-    if (avgWpm <= 180) return { label: "Bien", color: "text-yellow-600", bg: "bg-yellow-100" };
-    return { label: "À améliorer", color: "text-red-600", bg: "bg-red-100" };
+    if (avgWpm <= 160) return { label: "Very good", color: "text-green-500", bg: "bg-green-50" };
+    if (avgWpm <= 180) return { label: "Good", color: "text-yellow-600", bg: "bg-yellow-100" };
+    return { label: "Needs improvement", color: "text-red-600", bg: "bg-red-100" };
   };
 
   const handleShare = async () => {
@@ -325,20 +325,20 @@ const SessionDetail = () => {
 
     const avgSps = wpmToSps(session.avg_wpm);
     
-    const shareText = `🎯 Session ParlerMoinsVite
-📅 ${formatDate(session.created_at)}
-⏱️ Durée : ${formatDuration(session.duration_seconds)}
-📊 Vitesse moyenne : ${avgSps} syllabes/sec
-🏆 Performance : ${getPerformanceLevel(session.avg_wpm).label}
+    const shareText = `Session Summary - ClutterPro
+Date: ${formatDate(session.created_at)}
+Duration: ${formatDuration(session.duration_seconds)}
+Average rate: ${avgSps} syll/sec
+Performance: ${getPerformanceLevel(session.avg_wpm).label}
 
-${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
+${session.recording_url ? `🎧 Recording available` : ""}`;
 
     try {
-      // Méthode moderne (API Clipboard)
+      // Modern method (Clipboard API)
       if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(shareText);
       } else {
-        // Fallback pour les anciens navigateurs ou contextes non-sécurisés
+        // Fallback for older browsers or non-secure contexts
         const textArea = document.createElement('textarea');
         textArea.value = shareText;
         textArea.style.position = 'fixed';
@@ -354,11 +354,11 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
         }
       }
       setCopied(true);
-      toast.success("Résumé copié dans le presse-papiers");
+      toast.success("Summary copied to clipboard");
       setTimeout(() => setCopied(false), 3000);
     } catch (error) {
-      console.error("Erreur de copie:", error);
-      toast.error("Impossible de copier. Essayez de sélectionner le texte manuellement.");
+      console.error("Copy error:", error);
+      toast.error("Unable to copy. Try selecting the text manually.");
     }
   };
 
@@ -370,7 +370,7 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="animate-pulse text-muted-foreground">Chargement...</div>
+        <div className="animate-pulse text-muted-foreground">Loading...</div>
       </div>
     );
   }
@@ -391,19 +391,19 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
             className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            <span>{isTherapistView ? `Retour à ${patientName || "Patient"}` : "Retour"}</span>
+            <span>{isTherapistView ? `Back to ${patientName || "Patient"}` : "Back"}</span>
           </Link>
           
           {isTherapistView && (
             <div className="flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-purple-100 text-purple-700">
               <div className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
-              <span className="font-medium">Vue Clinique</span>
+              <span className="font-medium">Clinical View</span>
             </div>
           )}
           
           <Button variant="outline" onClick={handleShare} className="gap-2">
             {copied ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
-            {copied ? "Copié !" : "Partager"}
+            {copied ? "Copied!" : "Share"}
           </Button>
         </div>
       </header>
@@ -420,9 +420,9 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
             <div className="flex items-start gap-3 p-3 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 text-sm">
               <FlaskConical className="w-5 h-5 text-blue-500 mt-0.5 shrink-0" />
               <div>
-                <p className="font-medium text-blue-700 dark:text-blue-300">Session de test — Mode découverte</p>
+                <p className="font-medium text-blue-700 dark:text-blue-300">Test session - Discovery mode</p>
                 <p className="text-blue-600/80 dark:text-blue-400/80 text-xs mt-0.5">
-                  Cette session a été réalisée depuis votre compte orthophoniste. Elle n'est pas rattachée à un patient et n'apparaît pas dans les dossiers cliniques.
+                  This session was performed from your SLP account. It is not linked to a patient and does not appear in clinical records.
                 </p>
               </div>
             </div>
@@ -439,7 +439,7 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
             {!isTherapistView && (
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-4">
                 <Activity className="w-5 h-5" />
-                <span className="font-medium">Session terminée</span>
+                <span className="font-medium">Session completed</span>
               </div>
             )}
             <h1 className="text-2xl font-display font-bold mb-2">
@@ -453,11 +453,11 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
               <TabsList className="bg-muted">
                 <TabsTrigger value="analysis" className="gap-2">
                   <FileAudio className="w-4 h-4" />
-                  Analyse Audio
+                  Audio Analysis
                 </TabsTrigger>
                 <TabsTrigger value="evolution" className="gap-2">
                   <BarChart3 className="w-4 h-4" />
-                  Historique & Progrès
+                  History & Progress
                 </TabsTrigger>
               </TabsList>
 
@@ -468,18 +468,18 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                     <FlaskConical className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                     <div className="space-y-0.5">
                       <div className="flex items-center gap-2">
-                        <Label 
-                          htmlFor="disfluency-toggle" 
+                        <Label
+                          htmlFor="disfluency-toggle"
                           className="font-medium text-foreground cursor-pointer"
                         >
-                          Détection du bégaiement
+                          Stuttering detection
                         </Label>
                         <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 font-medium">
-                          En test
+                          Beta
                         </span>
                       </div>
                       <p className="text-xs text-muted-foreground leading-relaxed max-w-sm">
-                        Repère automatiquement les répétitions de sons, les allongements de syllabes et les silences inhabituels dans l'enregistrement.
+                        Automatically detects sound repetitions, syllable prolongations, and unusual silences in the recording.
                       </p>
                     </div>
                   </div>
@@ -501,12 +501,12 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                     <CardContent className="py-6 text-center">
                       <FlaskConical className="w-8 h-8 text-amber-500 mx-auto mb-3" />
                       <p className="text-sm text-amber-700 font-medium">
-                        Données de transcription non disponibles
+                        Transcription data not available
                       </p>
                       <p className="text-xs text-amber-600 mt-1">
-                        Cette session a été enregistrée avant l'activation de l'analyse des disfluences.
+                        This session was recorded before disfluency analysis was enabled.
                         <br />
-                        Les nouvelles sessions incluront ces données automatiquement.
+                        New sessions will include this data automatically.
                       </p>
                     </CardContent>
                   </Card>
@@ -525,10 +525,10 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                         <FileAudio className="w-8 h-8 text-destructive" />
                       </div>
                       <h3 className="text-lg font-semibold mb-2">
-                        Impossible de charger l'enregistrement
+                        Unable to load recording
                       </h3>
                       <p className="text-muted-foreground text-sm max-w-md mx-auto mb-4">
-                        L'URL d'accès n'a pas pu être générée. Vérifiez votre connexion et réessayez.
+                        The access URL could not be generated. Check your connection and try again.
                       </p>
                       <Button
                         variant="outline"
@@ -536,7 +536,7 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                         className="gap-2"
                       >
                         <RotateCcw className="w-4 h-4" />
-                        Réessayer
+                        Retry
                       </Button>
                     </CardContent>
                   </Card>
@@ -547,12 +547,12 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                         <FileAudio className="w-8 h-8 text-muted-foreground" />
                       </div>
                       <h3 className="text-lg font-semibold mb-2">
-                        Enregistrement non disponible
+                        Recording not available
                       </h3>
                       <p className="text-muted-foreground text-sm max-w-md mx-auto">
-                        Cette session a été enregistrée avant l'activation de l'audio.
+                        This session was recorded before audio was enabled.
                         <br />
-                        <span className="text-muted-foreground/70">Les nouvelles sessions incluront l'enregistrement automatiquement.</span>
+                        <span className="text-muted-foreground/70">New sessions will include the recording automatically.</span>
                       </p>
                     </CardContent>
                   </Card>
@@ -569,7 +569,7 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                   isTherapist={true}
                 />
 
-                {/* Mots parasites - toujours visible pour l'orthophoniste */}
+                {/* Disfluencies - always visible for the SLP */}
                 <motion.div
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -593,12 +593,12 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                         </span>
                         <div>
                           <p className="text-sm font-medium">
-                            Ressenti de {patientName || "ce patient"}
+                            How {patientName || "this patient"} felt
                           </p>
                           <p className="text-xs text-muted-foreground">
-                            {session.patient_sentiment === "too_slow" && "Se sentait trop lent"}
-                            {session.patient_sentiment === "comfortable" && "Se sentait à l'aise"}
-                            {session.patient_sentiment === "too_fast" && "Se sentait trop rapide"}
+                            {session.patient_sentiment === "too_slow" && "Felt too slow"}
+                            {session.patient_sentiment === "comfortable" && "Felt comfortable"}
+                            {session.patient_sentiment === "too_fast" && "Felt too fast"}
                           </p>
                         </div>
                       </div>
@@ -611,10 +611,10 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <MessageSquare className="w-5 h-5 text-purple-600" />
-                      Note pour le patient
+                      Note for the patient
                     </CardTitle>
                     <CardDescription>
-                      Envoyez un feedback personnalisé basé sur votre analyse
+                      Send personalized feedback based on your analysis
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
@@ -648,10 +648,10 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                         {/* Quick Emoji Feedback Buttons */}
                         <div className="flex gap-2 flex-wrap">
                           {[
-                            { emoji: "👍", label: "Bravo !" },
-                            { emoji: "⭐", label: "Excellent travail" },
-                            { emoji: "💪", label: "Persévérez" },
-                            { emoji: "🎯", label: "Objectif atteint" }
+                            { emoji: "👍", label: "Well done!" },
+                            { emoji: "⭐", label: "Excellent work" },
+                            { emoji: "💪", label: "Keep it up" },
+                            { emoji: "🎯", label: "Goal reached" }
                           ].map(({ emoji, label }) => (
                             <Button
                               key={emoji}
@@ -670,7 +670,7 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                         </div>
                         
                         <Textarea
-                          placeholder="Rédigez un message personnalisé ou cliquez sur un emoji ci-dessus..."
+                          placeholder="Write a personalized message or click an emoji above..."
                           value={newComment}
                           onChange={(e) => setNewComment(e.target.value)}
                           className="resize-none"
@@ -686,7 +686,7 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                           ) : (
                             <Send className="w-4 h-4" />
                           )}
-                          Envoyer le feedback
+                          Send feedback
                         </Button>
                       </div>
                     )}
@@ -740,7 +740,7 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted border border-border">
                       <Target className="w-4 h-4 text-primary" />
                       <span className="text-sm font-medium">
-                        Objectif choisi : <span className="text-primary">Niveau {targetLevel.level} — {targetLevel.label} ({targetSps} syll/sec)</span>
+                        Selected goal: <span className="text-primary">Level {targetLevel.level} — {targetLevel.label} ({targetSps} syll/sec)</span>
                       </span>
                     </div>
                   </motion.div>
@@ -762,7 +762,7 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                         <CardHeader className="pb-2 pt-5">
                           <CardDescription className="flex items-center gap-2 text-muted-foreground">
                             <Activity className="w-4 h-4" />
-                            Vitesse Moyenne
+                            Average Rate
                           </CardDescription>
                           <CardTitle className={`text-4xl font-bold ${colors.text}`}>
                             {avgSps} <span className="text-lg font-normal">syll/sec</span>
@@ -773,7 +773,7 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                   );
                 })()}
 
-                {/* Stabilité (Max) */}
+                {/* Stability (Max) */}
                 <motion.div
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -783,21 +783,21 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                     <CardHeader className="pb-2 pt-5">
                       <CardDescription className="flex items-center gap-2">
                         <TrendingUp className="w-4 h-4" />
-                        Stabilité (Pic)
+                        Stability (Peak)
                       </CardDescription>
                       <CardTitle className="text-4xl font-bold">
                         {wpmToSps(session.max_wpm)} <span className="text-lg font-normal text-muted-foreground">syll/sec</span>
                       </CardTitle>
                       <p className="text-xs text-muted-foreground mt-1">
-                        {session.max_wpm - session.avg_wpm > 40 
-                          ? "Variations importantes détectées" 
-                          : "Débit stable pendant la session"}
+                        {session.max_wpm - session.avg_wpm > 40
+                          ? "Significant variations detected"
+                          : "Stable rate throughout the session"}
                       </p>
                     </CardHeader>
                   </Card>
                 </motion.div>
 
-                {/* Durée */}
+                {/* Duration */}
                 <motion.div
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -807,15 +807,15 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                     <CardHeader className="pb-2 pt-5">
                       <CardDescription className="flex items-center gap-2">
                         <Clock className="w-4 h-4" />
-                        Durée
+                        Duration
                       </CardDescription>
                       <CardTitle className="text-4xl font-bold">
                         {formatDuration(session.duration_seconds)}
                       </CardTitle>
                       <p className="text-xs text-muted-foreground mt-1">
-                        {session.duration_seconds >= 180 
-                          ? "Excellente durée d'entraînement" 
-                          : "Continuez à vous entraîner"}
+                        {session.duration_seconds >= 180
+                          ? "Excellent training duration"
+                          : "Keep practicing"}
                       </p>
                     </CardHeader>
                   </Card>
@@ -831,7 +831,7 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                     <CardHeader className="pb-2 pt-5">
                       <CardDescription className="flex items-center gap-2 text-primary/70">
                         <Award className="w-4 h-4" />
-                        Volume Verbal
+                        Word Volume
                       </CardDescription>
                       <CardTitle className="text-4xl font-bold text-primary">
                         {session.wpm_data?.length > 0 
@@ -840,7 +840,7 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                         } <span className="text-lg font-normal">mots</span>
                       </CardTitle>
                       <p className="text-xs text-muted-foreground mt-1">
-                        Mots prononcés pendant la session
+                        Words spoken during the session
                       </p>
                     </CardHeader>
                   </Card>
@@ -866,10 +866,10 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                       <FileAudio className="w-6 h-6 text-muted-foreground" />
                     </div>
                     <p className="text-muted-foreground text-sm">
-                      Enregistrement audio non disponible pour cette session
+                      Audio recording not available for this session
                     </p>
                     <p className="text-xs text-muted-foreground/70 mt-1">
-                      Les nouvelles sessions incluront l'audio automatiquement
+                      New sessions will include audio automatically
                     </p>
                   </CardContent>
                 </Card>
@@ -909,10 +909,10 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <MessageSquare className="w-5 h-5" />
-                    Commentaires de l'orthophoniste
+                    SLP Comments
                   </CardTitle>
                   <CardDescription>
-                    Les retours de votre orthophoniste apparaîtront ici
+                    Your SLP's feedback will appear here
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -930,7 +930,7 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                           {comment.author_id !== user?.id && (
                             <div className="flex items-center gap-2 mb-2 text-chart-2">
                               <MessageSquare className="w-4 h-4" />
-                              <span className="text-sm font-medium">Message de votre orthophoniste</span>
+                              <span className="text-sm font-medium">Message from your SLP</span>
                             </div>
                           )}
                           <p className="text-sm">{comment.content}</p>
@@ -942,13 +942,13 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                     </div>
                   ) : (
                     <p className="text-center text-muted-foreground py-4">
-                      Aucun commentaire pour le moment
+                      No comments yet
                     </p>
                   )}
                 </CardContent>
               </Card>
 
-              {/* Analyse de la fluidité - Patient-friendly */}
+              {/* Speech fluency analysis - Patient-friendly */}
               {session.word_timestamps && session.word_timestamps.length > 0 && (
                 <motion.div
                   initial={{ y: 10, opacity: 0 }}
@@ -959,13 +959,13 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                     <CardHeader className="pb-2">
                       <div className="flex items-center gap-2">
                         <span className="text-xl">🔍</span>
-                        <CardTitle className="text-base">Fluidité de votre parole</CardTitle>
+                        <CardTitle className="text-base">Speech fluency</CardTitle>
                         <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground font-medium">
-                          Nouveauté
+                          New
                         </span>
                       </div>
                       <CardDescription className="text-xs">
-                        Repère les hésitations, les répétitions et les pauses longues dans votre enregistrement
+                        Identifies hesitations, repetitions, and long pauses in your recording
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -981,15 +981,15 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
                   <CardContent className="py-6 flex flex-col md:flex-row items-center justify-between gap-4">
                     <div>
                       <h3 className="font-display font-bold text-lg mb-1">
-                        Partagez avec votre orthophoniste
+                        Share with your SLP
                       </h3>
                       <p className="text-muted-foreground text-sm">
-                        Copiez le résumé de votre session pour le partager facilement
+                        Copy your session summary to share it easily
                       </p>
                     </div>
                     <Button onClick={handleShare} className="gap-2">
                       <Copy className="w-4 h-4" />
-                      Copier le résumé
+                      Copy summary
                     </Button>
                   </CardContent>
                 </Card>
@@ -1004,11 +1004,11 @@ ${session.recording_url ? `🎧 Enregistrement disponible` : ""}`;
               onClick={() => navigate(isTherapistView && patientSessions.length > 0 ? `/patient/${session.user_id}` : "/dashboard")}
               className={isTherapistView ? "border-slate-600 text-slate-300 hover:bg-slate-800" : ""}
             >
-              {isTherapistView ? `Voir toutes les sessions de ${patientName || "ce patient"}` : "Retour au tableau de bord"}
+              {isTherapistView ? `All sessions for ${patientName || "this patient"}` : "Back to dashboard"}
             </Button>
             {isOwnSession && (
               <Button onClick={() => navigate("/practice")}>
-                Nouvelle session
+                New session
               </Button>
             )}
           </div>

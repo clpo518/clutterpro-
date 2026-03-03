@@ -81,27 +81,27 @@ interface AdminStats {
 const COLORS = ["hsl(var(--primary))", "hsl(var(--accent))", "hsl(var(--secondary))", "#f59e0b", "#ef4444", "#8b5cf6"];
 
 const EXERCISE_LABELS: Record<string, string> = {
-  reading: "Lecture",
+  reading: "Reading",
   improvisation: "Improvisation",
-  warmup: "Échauffement",
-  repetition: "Répétition",
+  warmup: "Warm-Up",
+  repetition: "Repetition",
   dialogue: "Dialogue",
 };
 
 const SUB_LABELS: Record<string, string> = {
-  none: "Aucun",
-  active: "Actif",
-  canceled: "Annulé",
-  trial: "Essai",
-  refunded: "Remboursé",
+  none: "None",
+  active: "Active",
+  canceled: "Canceled",
+  trial: "Trial",
+  refunded: "Refunded",
 };
 
 const PLAN_LABELS: Record<string, string> = {
-  essentiel: "Essentiel",
-  monthly: "Mensuel",
-  yearly: "Annuel",
+  essentiel: "Essential",
+  monthly: "Monthly",
+  yearly: "Yearly",
   expert: "Expert",
-  trial: "Essai",
+  trial: "Trial",
 };
 
 function wpmToSps(wpm: number): string {
@@ -122,7 +122,7 @@ const KpiCard = ({ title, value, icon: Icon, suffix }: { title: string; value: s
 
 const RoleBadge = ({ isTherapist }: { isTherapist: boolean }) => (
   <Badge variant={isTherapist ? "default" : "secondary"} className="text-xs">
-    {isTherapist ? "Ortho" : "Patient"}
+    {isTherapist ? "SLP" : "Patient"}
   </Badge>
 );
 
@@ -180,7 +180,7 @@ export default function Admin() {
     setError(null);
     const { data, error: fnError } = await supabase.functions.invoke("admin-stats");
     if (fnError) {
-      setError(fnError.message?.includes("non-2xx") ? "Accès refusé. Vérifiez que votre compte est autorisé." : fnError.message);
+      setError(fnError.message?.includes("non-2xx") ? "Access denied. Check that your account is authorized." : fnError.message);
       setLoading(false);
       return;
     }
@@ -201,7 +201,7 @@ export default function Admin() {
         <Card className="max-w-md w-full">
           <CardContent className="p-8 text-center">
             <p className="text-destructive font-medium">{error}</p>
-            <Button className="mt-4" onClick={fetchStats}>Réessayer</Button>
+            <Button className="mt-4" onClick={fetchStats}>Retry</Button>
           </CardContent>
         </Card>
       </div>
@@ -213,10 +213,10 @@ export default function Admin() {
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Dashboard Admin</h1>
+          <h1 className="text-2xl font-bold">Admin Dashboard</h1>
           <Button variant="outline" size="sm" onClick={fetchStats} disabled={loading}>
             <RefreshCw className={`h-4 w-4 mr-2 ${loading ? "animate-spin" : ""}`} />
-            Actualiser
+            Refresh
           </Button>
         </div>
 
@@ -233,21 +233,21 @@ export default function Admin() {
               <CardContent className="py-4">
                 <div className="flex items-center gap-3 flex-wrap">
                   <UserPlus className="h-5 w-5 text-primary" />
-                  <span className="font-semibold">Cette semaine :</span>
-                  <Badge variant="default">{stats.newTherapistsThisWeek ?? 0} nouv. ortho{(stats.newTherapistsThisWeek ?? 0) > 1 ? "s" : ""}</Badge>
-                  <Badge variant="secondary">{stats.newPatientsThisWeek ?? 0} nouv. patient{(stats.newPatientsThisWeek ?? 0) > 1 ? "s" : ""}</Badge>
-                  <span className="text-sm text-muted-foreground ml-auto">Total : {(stats.newTherapistsThisWeek ?? 0) + (stats.newPatientsThisWeek ?? 0)} inscriptions</span>
+                  <span className="font-semibold">This week:</span>
+                  <Badge variant="default">{stats.newTherapistsThisWeek ?? 0} new SLP{(stats.newTherapistsThisWeek ?? 0) > 1 ? "s" : ""}</Badge>
+                  <Badge variant="secondary">{stats.newPatientsThisWeek ?? 0} new patient{(stats.newPatientsThisWeek ?? 0) > 1 ? "s" : ""}</Badge>
+                  <span className="text-sm text-muted-foreground ml-auto">Total: {(stats.newTherapistsThisWeek ?? 0) + (stats.newPatientsThisWeek ?? 0)} sign-ups</span>
                 </div>
               </CardContent>
             </Card>
 
             {/* KPIs */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              <KpiCard title="Inscrits (total)" value={stats.totalUsers} icon={Users} />
-              <KpiCard title="Orthophonistes" value={stats.therapists} icon={Stethoscope} />
+              <KpiCard title="Total sign-ups" value={stats.totalUsers} icon={Users} />
+              <KpiCard title="SLPs" value={stats.therapists} icon={Stethoscope} />
               <KpiCard title="Patients" value={stats.patients} icon={Users} />
-              <KpiCard title="Patients liés" value={stats.linkedPatients} icon={UserCheck} />
-              <KpiCard title="Actifs (7j)" value={stats.activeCount} icon={Activity} />
+              <KpiCard title="Linked patients" value={stats.linkedPatients} icon={UserCheck} />
+              <KpiCard title="Active (7d)" value={stats.activeCount} icon={Activity} />
               <KpiCard title="Sessions (total)" value={stats.totalSessions} icon={BarChart3} />
             </div>
 
@@ -255,44 +255,44 @@ export default function Admin() {
             <div className="space-y-2">
               <h2 className="text-lg font-semibold flex items-center gap-2">
                 <CreditCard className="h-5 w-5" />
-                Focus Abonnements
+                Subscription Focus
               </h2>
               {/* Summary KPIs */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <KpiCard title="Payants actifs" value={(stats.payingUsers ?? []).length} icon={CreditCard} />
-                <KpiCard title="Annulés" value={(stats.canceledUsers ?? []).length} icon={XCircle} />
-                <KpiCard title="En essai" value={stats.totalTrials ?? 0} icon={Clock} />
-                <KpiCard title="Essais expirant (7j)" value={(stats.expiringTrials ?? []).length} icon={AlertTriangle} />
+                <KpiCard title="Active paying" value={(stats.payingUsers ?? []).length} icon={CreditCard} />
+                <KpiCard title="Canceled" value={(stats.canceledUsers ?? []).length} icon={XCircle} />
+                <KpiCard title="In trial" value={stats.totalTrials ?? 0} icon={Clock} />
+                <KpiCard title="Trials expiring (7d)" value={(stats.expiringTrials ?? []).length} icon={AlertTriangle} />
               </div>
             </div>
 
             {/* Detailed lists */}
             <div className="grid md:grid-cols-3 gap-6">
               <UserListCard
-                title="Qui paie"
+                title="Paying users"
                 icon={CreditCard}
                 iconColor="text-green-500"
                 users={stats.payingUsers ?? []}
-                emptyText="Aucun abonné actif"
+                emptyText="No active subscribers"
                 showPlan
               />
               <UserListCard
-                title="Qui a arrêté"
+                title="Who stopped"
                 icon={XCircle}
                 iconColor="text-destructive"
                 users={stats.canceledUsers ?? []}
-                emptyText="Aucun abonnement annulé"
+                emptyText="No canceled subscriptions"
                 showPlan
               />
               <Card>
                 <CardHeader className="flex flex-row items-center gap-2 pb-3">
                   <AlertTriangle className="h-5 w-5 text-amber-500" />
-                  <CardTitle className="text-base">Essais bientôt finis</CardTitle>
+                  <CardTitle className="text-base">Trials ending soon</CardTitle>
                   <Badge variant="outline" className="ml-auto">{(stats.expiringTrials ?? []).length}</Badge>
                 </CardHeader>
                 <CardContent>
                   {(stats.expiringTrials ?? []).length === 0 ? (
-                    <p className="text-sm text-muted-foreground">Aucun essai n'expire dans les 7 prochains jours</p>
+                    <p className="text-sm text-muted-foreground">No trials expiring in the next 7 days</p>
                   ) : (
                     <div className="space-y-2 max-h-64 overflow-y-auto">
                       {(stats.expiringTrials ?? []).map((t) => (
@@ -306,7 +306,7 @@ export default function Admin() {
                             variant={t.daysLeft <= 2 ? "destructive" : "secondary"}
                             className="text-xs"
                           >
-                            {t.daysLeft}j restant{t.daysLeft > 1 ? "s" : ""}
+                            {t.daysLeft}d left
                           </Badge>
                         </div>
                       ))}
@@ -318,7 +318,7 @@ export default function Admin() {
 
             {/* Subscription breakdown */}
             <Card>
-              <CardHeader><CardTitle className="text-base">Répartition abonnements</CardTitle></CardHeader>
+              <CardHeader><CardTitle className="text-base">Subscription breakdown</CardTitle></CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                   {stats.subscriptionBreakdown.map((s) => (
@@ -336,8 +336,8 @@ export default function Admin() {
               <div className="space-y-2">
                 <h2 className="text-lg font-semibold flex items-center gap-2">
                   <Stethoscope className="h-5 w-5" />
-                  Relations Ortho → Patients
-                  <Badge variant="outline" className="ml-2">{stats.therapistPatientMap.length} orthos</Badge>
+                  SLP → Patient Relationships
+                  <Badge variant="outline" className="ml-2">{stats.therapistPatientMap.length} SLPs</Badge>
                 </h2>
                 <Card>
                   <CardContent className="pt-4">
@@ -376,7 +376,7 @@ export default function Admin() {
             {/* Charts */}
             <div className="grid md:grid-cols-2 gap-6">
               <Card>
-                <CardHeader><CardTitle className="text-base">Inscriptions / semaine</CardTitle></CardHeader>
+                <CardHeader><CardTitle className="text-base">Sign-ups / week</CardTitle></CardHeader>
                 <CardContent>
                   <ResponsiveContainer width="100%" height={250}>
                     <AreaChart data={stats.weeklySignups}>
@@ -384,13 +384,13 @@ export default function Admin() {
                       <XAxis dataKey="week" fontSize={12} />
                       <YAxis fontSize={12} allowDecimals={false} />
                       <Tooltip />
-                      <Area type="monotone" dataKey="count" name="Inscriptions" stroke="hsl(var(--primary))" fill="hsl(var(--primary))" fillOpacity={0.2} />
+                      <Area type="monotone" dataKey="count" name="Sign-ups" stroke="hsl(var(--primary))" fill="hsl(var(--primary))" fillOpacity={0.2} />
                     </AreaChart>
                   </ResponsiveContainer>
                 </CardContent>
               </Card>
               <Card>
-                <CardHeader><CardTitle className="text-base">Sessions / jour (14j)</CardTitle></CardHeader>
+                <CardHeader><CardTitle className="text-base">Sessions / day (14d)</CardTitle></CardHeader>
                 <CardContent>
                   <ResponsiveContainer width="100%" height={250}>
                     <BarChart data={stats.dailySessions}>
@@ -407,7 +407,7 @@ export default function Admin() {
 
             {/* Exercise breakdown - horizontal bars */}
             <Card>
-              <CardHeader><CardTitle className="text-base">Répartition exercices (depuis le début)</CardTitle></CardHeader>
+              <CardHeader><CardTitle className="text-base">Exercise breakdown (all time)</CardTitle></CardHeader>
               <CardContent>
                 <div className="space-y-3">
                   {stats.exerciseBreakdown
@@ -439,16 +439,16 @@ export default function Admin() {
               <div className="space-y-2">
                 <h2 className="text-lg font-semibold flex items-center gap-2">
                   <DollarSign className="h-5 w-5" />
-                  Coûts Deepgram (estimés)
+                  Deepgram Costs (estimated)
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <KpiCard title="Coût total" value={`$${stats.deepgramStats.costTotal}`} icon={DollarSign} />
-                  <KpiCard title="Ce mois-ci" value={`$${stats.deepgramStats.costThisMonth}`} icon={DollarSign} />
-                  <KpiCard title="Cette semaine" value={`$${stats.deepgramStats.costThisWeek}`} icon={DollarSign} />
-                  <KpiCard title="Moy. / session" value={`$${stats.deepgramStats.avgPerSession}`} icon={Clock} />
+                  <KpiCard title="Total cost" value={`$${stats.deepgramStats.costTotal}`} icon={DollarSign} />
+                  <KpiCard title="This month" value={`$${stats.deepgramStats.costThisMonth}`} icon={DollarSign} />
+                  <KpiCard title="This week" value={`$${stats.deepgramStats.costThisWeek}`} icon={DollarSign} />
+                  <KpiCard title="Avg. / session" value={`$${stats.deepgramStats.avgPerSession}`} icon={Clock} />
                 </div>
                 <Card>
-                  <CardHeader><CardTitle className="text-base">Coût par type d'exercice</CardTitle></CardHeader>
+                  <CardHeader><CardTitle className="text-base">Cost by exercise type</CardTitle></CardHeader>
                   <CardContent>
                     <div className="space-y-3">
                       {stats.deepgramStats.byExercise.map((ex, i) => {
@@ -473,7 +473,7 @@ export default function Admin() {
                       })}
                     </div>
                     <p className="text-xs text-muted-foreground mt-4">
-                      Basé sur le tarif Nova-2 streaming : ${stats.deepgramStats.ratePerMin}/min · {stats.deepgramStats.totalMinutes} min totales
+                      Based on Nova-2 streaming rate: ${stats.deepgramStats.ratePerMin}/min · {stats.deepgramStats.totalMinutes} total minutes
                     </p>
                   </CardContent>
                 </Card>
@@ -482,9 +482,9 @@ export default function Admin() {
 
             {/* Secondary metrics */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <KpiCard title="Durée moy. (depuis le début)" value={`${stats.avgDuration}s`} icon={Clock} />
-              <KpiCard title="Vitesse moy. (depuis le début)" value={wpmToSps(stats.avgWpm)} icon={Gauge} suffix=" syll/s" />
-              <KpiCard title="Taux enregistrement" value={`${stats.recordingRate}%`} icon={Mic} />
+              <KpiCard title="Avg. duration (all time)" value={`${stats.avgDuration}s`} icon={Clock} />
+              <KpiCard title="Avg. speed (all time)" value={wpmToSps(stats.avgWpm)} icon={Gauge} suffix=" syll/s" />
+              <KpiCard title="Recording rate" value={`${stats.recordingRate}%`} icon={Mic} />
             </div>
           </>
         ) : null}

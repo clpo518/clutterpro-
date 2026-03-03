@@ -41,14 +41,14 @@ const MiniBilan = ({ avgWpm, wordCount, duration, compact = false }: MiniBilanPr
             <div className="flex items-center gap-4 mt-3 text-xs text-muted-foreground">
               {wordCount !== undefined && wordCount > 0 && (
                 <span className="flex items-center gap-1">
-                  <span className="font-medium text-foreground">{wordCount}</span> mots prononcés
+                  <span className="font-medium text-foreground">{wordCount}</span> words spoken
                 </span>
               )}
               {duration !== undefined && duration > 0 && (
                 <span className="flex items-center gap-1">
                   <span className="font-medium text-foreground">
                     {Math.floor(duration / 60)}:{(duration % 60).toString().padStart(2, '0')}
-                  </span> de pratique
+                  </span> of practice
                 </span>
               )}
             </div>

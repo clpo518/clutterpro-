@@ -14,37 +14,37 @@ interface SubscriptionConfirmedEmailProps {
 }
 
 export function SubscriptionConfirmedEmail(props: SubscriptionConfirmedEmailProps) {
-  const { userName = 'Cher utilisateur', planName, isTherapist, dashboardUrl } = props
+  const { userName = 'Dear user', planName, isTherapist, dashboardUrl } = props
   return (
-    <BaseLayout preview="Votre abonnement est activé ! Bienvenue.">
-      <Heading style={heading}>✅ Abonnement activé</Heading>
+    <BaseLayout preview="Your subscription is active! Welcome.">
+      <Heading style={heading}>✅ Subscription activated</Heading>
 
-      <Text style={paragraph}>Bonjour {userName},</Text>
+      <Text style={paragraph}>Hi {userName},</Text>
 
       <Text style={paragraph}>
-        Votre abonnement <strong>{planName}</strong> est maintenant actif. Merci pour votre confiance !
+        Your <strong>{planName}</strong> subscription is now active. Thank you for your trust!
       </Text>
 
       {isTherapist ? (
         <Text style={highlightBox}>
-          🎯 Vous pouvez dès maintenant inviter vos patients et suivre leur progression en temps réel. Chaque exercice génère des données cliniques exploitables.
+          🎯 You can now invite your patients and track their progress in real time. Every exercise generates actionable clinical data.
         </Text>
       ) : (
         <Text style={highlightBox}>
-          🎯 Vous avez désormais accès à tous les exercices et au suivi détaillé de votre progression. C'est parti !
+          🎯 You now have access to all exercises and detailed progress tracking. Let's go!
         </Text>
       )}
 
       <Button style={button} href={dashboardUrl}>
-        {isTherapist ? "Accéder à mon tableau de bord" : "Commencer un exercice"}
+        {isTherapist ? "Access my dashboard" : "Start an exercise"}
       </Button>
 
       <Text style={smallText}>
-        Des questions ? Écrivez-nous à contact@parlermoinsvite.fr
+        Questions? Email us at support@clutterpro.com
       </Text>
 
-      <Text style={signatureText}>À votre service,</Text>
-      <Text style={signatureName}>L'équipe Parler Moins Vite</Text>
+      <Text style={signatureText}>At your service,</Text>
+      <Text style={signatureName}>The ClutterPro Team</Text>
     </BaseLayout>
   )
 }

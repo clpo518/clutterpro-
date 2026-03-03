@@ -20,7 +20,7 @@ import { PatientArchivedEmail } from './_templates/patient-archived.tsx';
 import { B2CTrialExpiringEmail } from './_templates/b2c-trial-expiring.tsx';
 import { AdminWeeklyDigestEmail } from './_templates/admin-weekly-digest.tsx';
 import { TrialExtendedEmail } from './_templates/trial-extended.tsx';
-import { NewsletterOrthoV1Email } from './_templates/newsletter-ortho-v1.tsx';
+import { NewsletterSlpV1Email } from './_templates/newsletter-slp-v1.tsx';
 import { TherapistExpiringPatientEmail } from './_templates/therapist-expiring-patient.tsx';
 import { PrescriptionAssignedEmail } from './_templates/prescription-assigned.tsx';
 import { TherapistNoPatientEmail } from './_templates/therapist-no-patient.tsx';
@@ -50,7 +50,7 @@ type EmailType =
     | 'b2c_trial_expiring'
     | 'admin_weekly_digest'
     | 'trial_extended'
-    | 'newsletter_ortho_v1'
+    | 'newsletter_slp_v1'
     | 'therapist_expiring_patient'
     | 'prescription_assigned'
     | 'therapist_no_patient';
@@ -61,28 +61,28 @@ interface EmailRequest {
   data: Record<string, unknown>;
 }
 
-// Subject lines for each email type - UX optimized French copy
+// Subject lines for each email type - UX optimized English copy
 const EMAIL_SUBJECTS: Record<EmailType, string | ((data: Record<string, unknown>) => string)> = {
-  payment_failed: "⚠️ Action requise : votre paiement a échoué",
-  subscription_canceled: "Votre abonnement est suspendu",
-  subscription_confirmed: "✅ Votre abonnement est activé",
-  subscription_expiring: (data) => `Votre abonnement expire le ${data.expirationDate}`,
-  inactivity_reminder: (data) => `⏰ Cela fait ${data.daysSinceLastSession} jour${data.daysSinceLastSession > 1 ? 's' : ''} sans pratique`,
-  weekly_report: "📊 Votre bilan hebdomadaire Parler Moins Vite",
-  welcome_patient: "Bienvenue chez vous – Votre parole, votre rythme",
-  welcome_therapist: "Optimisez le suivi de vos patients avec ParlerMoinsVite",
-  refund_confirmation: "💳 Confirmation de votre remboursement",
-  trial_expiring: (data) => `⏰ Votre essai se termine dans ${data.daysRemaining} jours`,
-  first_win: "Bravo ! Premier pas franchi 🏆",
-  patient_joined: (data) => `${data.patientName} est bien connecté à votre compte`,
-  patient_archived: "Votre suivi est en pause",
-  b2c_trial_expiring: (data) => `⏰ Plus que ${data.daysRemaining} jour${(data.daysRemaining as number) > 1 ? 's' : ''} d'essai gratuit`,
-  admin_weekly_digest: "🏠 Digest Admin – Parler Moins Vite",
-  trial_extended: "🎉 Votre accès gratuit est prolongé",
-  newsletter_ortho_v1: "☕ Les coulisses de ParlerMoinsVite — Nouveautés & nuits blanches",
-  therapist_expiring_patient: (data) => `⚠️ Votre accès se termine dans ${data.daysRemaining} jour${(data.daysRemaining as number) > 1 ? 's' : ''}`,
-  prescription_assigned: (data) => `📋 ${data.therapistName} vous a prescrit un exercice`,
-  therapist_no_patient: "💡 Rappel : invitez votre premier patient sur Parler Moins Vite",
+  payment_failed: "⚠️ Action required: your payment has failed",
+  subscription_canceled: "Your subscription is paused",
+  subscription_confirmed: "✅ Your subscription is active",
+  subscription_expiring: (data) => `Your subscription expires on ${data.expirationDate}`,
+  inactivity_reminder: (data) => `⏰ It's been ${data.daysSinceLastSession} day${data.daysSinceLastSession > 1 ? 's' : ''} without practice`,
+  weekly_report: "📊 Your ClutterPro weekly report",
+  welcome_patient: "Welcome home — Your speech, your pace",
+  welcome_therapist: "Optimize your patient tracking with ClutterPro",
+  refund_confirmation: "💳 Confirmation of your refund",
+  trial_expiring: (data) => `⏰ Your trial ends in ${data.daysRemaining} days`,
+  first_win: "Way to go! First step complete 🏆",
+  patient_joined: (data) => `${data.patientName} is now connected to your account`,
+  patient_archived: "Your follow-up is paused",
+  b2c_trial_expiring: (data) => `⏰ Only ${data.daysRemaining} day${(data.daysRemaining as number) > 1 ? 's' : ''} left in your free trial`,
+  admin_weekly_digest: "🏠 Admin Digest – ClutterPro",
+  trial_extended: "🎉 Your free access has been extended",
+  newsletter_slp_v1: "☕ Behind the scenes at ClutterPro — Updates & late nights",
+  therapist_expiring_patient: (data) => `⚠️ Your access ends in ${data.daysRemaining} day${(data.daysRemaining as number) > 1 ? 's' : ''}`,
+  prescription_assigned: (data) => `📋 ${data.therapistName} has assigned you an exercise`,
+  therapist_no_patient: "💡 Reminder: invite your first patient on ClutterPro",
 };
 
 // Render the appropriate email template
@@ -243,8 +243,8 @@ async function renderEmail(type: EmailType, data: Record<string, unknown>): Prom
       });
       break;
 
-    case 'newsletter_ortho_v1':
-      element = React.createElement(NewsletterOrthoV1Email);
+    case 'newsletter_slp_v1':
+      element = React.createElement(NewsletterSlpV1Email);
       break;
 
     case 'therapist_expiring_patient':
@@ -312,7 +312,7 @@ serve(async (req) => {
 
     // Send the email
     const emailResponse = await resend.emails.send({
-      from: "Parler Moins Vite <noreply@parlermoinsvite.fr>",
+      from: "ClutterPro <noreply@clutterpro.com>",
       to: [to],
       subject,
       html,

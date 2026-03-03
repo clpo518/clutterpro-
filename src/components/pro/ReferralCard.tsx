@@ -73,35 +73,35 @@ const ReferralCard = () => {
   const handleCopyLink = async () => {
     if (!stats?.referralCode) return;
 
-    const referralLink = `https://www.parlermoinsvite.fr/auth?ref=${stats.referralCode}`;
+    const referralLink = `https://www.clutterpro.com/auth?ref=${stats.referralCode}`;
     const success = await copyToClipboard(referralLink);
-    
+
     if (success) {
       setCopied(true);
-      toast.success("Lien de parrainage copié !");
+      toast.success("Referral link copied!");
       setTimeout(() => setCopied(false), 3000);
     } else {
-      toast.error("Erreur lors de la copie");
+      toast.error("Error copying");
     }
   };
 
   const handleCopyMessage = async () => {
     if (!stats?.referralCode) return;
 
-    const referralLink = `https://www.parlermoinsvite.fr/auth?ref=${stats.referralCode}`;
-    const message = `Salut ! Je te recommande ParlerMoinsVite, un outil génial pour le suivi des patients en rééducation du débit. 
+    const referralLink = `https://www.clutterpro.com/auth?ref=${stats.referralCode}`;
+    const message = `Hey! I recommend ClutterPro, a great tool for monitoring patients in speech rate therapy.
 
-En t'inscrivant avec mon lien, on bénéficie tous les deux d'1 mois offert 🎁
+By signing up with my link, we both get 1 free month!
 
-👉 ${referralLink}
+${referralLink}
 
-C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 30 jours, et si tu passes à l'abonnement, on gagne chacun 1 mois gratuit !`;
-    
+It's simple: create your account through this link, try it free for 30 days, and if you subscribe, we each get 1 free month!`;
+
     const success = await copyToClipboard(message);
     if (success) {
-      toast.success("Message copié ! Prêt à envoyer à un(e) collègue");
+      toast.success("Message copied! Ready to send to a colleague");
     } else {
-      toast.error("Erreur lors de la copie");
+      toast.error("Error copying");
     }
   };
 
@@ -114,7 +114,7 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
 
       // Don't allow self-referral
       if (stats?.referralCode && code === stats.referralCode) {
-        toast.error("Vous ne pouvez pas utiliser votre propre code");
+        toast.error("You cannot use your own code");
         setApplyingCode(false);
         return;
       }
@@ -129,7 +129,7 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
       if (findError) throw findError;
 
       if (!referrerProfile) {
-        toast.error("Code parrain invalide");
+        toast.error("Invalid referral code");
         setApplyingCode(false);
         return;
       }
@@ -145,7 +145,7 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
 
       if (insertError) {
         if (insertError.code === "23505") {
-          toast.error("Vous avez déjà utilisé un code parrain");
+          toast.error("You have already used a referral code");
         } else {
           throw insertError;
         }
@@ -155,10 +155,10 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
 
       setHasExistingReferral(true);
       setReferrerCodeInput("");
-      toast.success("Code parrain appliqué ! Le bonus sera activé lors de votre premier paiement.");
+      toast.success("Referral code applied! The bonus will be activated with your first payment.");
     } catch (error) {
       console.error("Error applying referral code:", error);
-      toast.error("Erreur lors de l'application du code");
+      toast.error("Error applying code");
     } finally {
       setApplyingCode(false);
     }
@@ -179,10 +179,10 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
             </div>
             <div>
               <CardTitle className="text-base flex items-center gap-2">
-                Parrainez, gagnez 1 mois
+                Refer & earn 1 free month
               </CardTitle>
               <CardDescription className="text-sm">
-                1 mois offert pour vous, 1 mois offert pour votre filleul(e)
+                1 free month for you, 1 free month for your referral
               </CardDescription>
             </div>
           </div>
@@ -207,11 +207,11 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
                 <div className="flex gap-4 p-3 rounded-lg bg-green-500/10 border border-green-500/20">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-primary">{stats.completedReferrals}</div>
-                    <div className="text-xs text-muted-foreground">Parrainages réussis</div>
+                    <div className="text-xs text-muted-foreground">Successful referrals</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-green-600">{stats.bonusMonths}</div>
-                    <div className="text-xs text-muted-foreground">Mois gagnés</div>
+                    <div className="text-xs text-muted-foreground">Months earned</div>
                   </div>
                 </div>
               )}
@@ -221,10 +221,10 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
                 <div className="p-4 rounded-xl bg-muted/50 border border-border space-y-3">
                   <div className="flex items-center gap-2">
                     <TicketCheck className="w-4 h-4 text-primary" />
-                    <p className="text-sm font-medium">Vous avez un code parrain ?</p>
+                    <p className="text-sm font-medium">Have a referral code?</p>
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    Un(e) collègue vous a partagé un code ? Saisissez-le ici pour bénéficier d'1 mois offert lors de votre premier paiement.
+                    A colleague shared a code with you? Enter it here to get 1 free month with your first payment.
                   </p>
                   <div className="flex gap-2">
                     <Input
@@ -252,7 +252,7 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
                 <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/20">
                   <p className="text-sm text-green-700 dark:text-green-400 flex items-center gap-2">
                     <Check className="w-4 h-4" />
-                    Code parrain appliqué — le bonus sera activé lors de votre premier paiement.
+                    Referral code applied — the bonus will be activated with your first payment.
                   </p>
                 </div>
               )}
@@ -260,7 +260,7 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
               {/* How it works - Step by step */}
               <div className="space-y-3">
                 <h4 className="font-medium text-sm text-foreground flex items-center gap-2">
-                  <span className="text-base">📋</span> Comment ça marche ?
+                  How does it work?
                 </h4>
                 
                 <div className="space-y-2">
@@ -270,9 +270,9 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
                       1
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium">Partagez votre lien ou code</p>
+                      <p className="text-sm font-medium">Share your link or code</p>
                       <p className="text-xs text-muted-foreground">
-                        Envoyez le lien ou le code ci-dessous à un(e) collègue orthophoniste
+                        Send the link or code below to an SLP colleague
                       </p>
                     </div>
                     <UserPlus className="w-4 h-4 text-muted-foreground flex-shrink-0" />
@@ -284,9 +284,9 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
                       2
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium">Votre collègue s'inscrit et teste</p>
+                      <p className="text-sm font-medium">Your colleague signs up and tries it</p>
                       <p className="text-xs text-muted-foreground">
-                        Il/elle bénéficie des 30 jours d'essai gratuit, sans engagement
+                        They get 30 days of free trial, no commitment
                       </p>
                     </div>
                     <ArrowRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />
@@ -298,9 +298,9 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
                       3
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium">Il/elle passe à l'abonnement</p>
+                      <p className="text-sm font-medium">They subscribe</p>
                       <p className="text-xs text-muted-foreground">
-                        Quand votre filleul(e) souscrit à une offre payante, la récompense est déclenchée
+                        When your referral subscribes to a paid plan, the reward is triggered
                       </p>
                     </div>
                     <CreditCard className="w-4 h-4 text-muted-foreground flex-shrink-0" />
@@ -312,9 +312,9 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
                       ✓
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium text-green-700 dark:text-green-400">1 mois offert pour chacun !</p>
+                      <p className="text-sm font-medium text-green-700 dark:text-green-400">1 free month for each!</p>
                       <p className="text-xs text-muted-foreground">
-                        Vous recevez automatiquement 1 mois gratuit, et votre filleul(e) aussi
+                        You automatically receive 1 free month, and your referral does too
                       </p>
                     </div>
                     <PartyPopper className="w-4 h-4 text-green-500 flex-shrink-0" />
@@ -325,18 +325,18 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
               {/* FAQ inline */}
               <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
                 <p className="text-xs text-amber-700 dark:text-amber-400">
-                  <strong>💡 Questions fréquentes :</strong>
+                  <strong>FAQ:</strong>
                 </p>
                 <ul className="text-xs text-muted-foreground mt-2 space-y-1">
-                  <li>• <strong>Lien ou code ?</strong> Le lien fait tout automatiquement. Sinon, votre filleul(e) peut entrer le code dans ses réglages.</li>
-                  <li>• <strong>Faut-il payer ?</strong> Non, l'essai est gratuit. La récompense n'est activée que si votre filleul(e) s'abonne.</li>
-                  <li>• <strong>Combien de parrainages ?</strong> Illimité ! Plus vous parrainez, plus vous gagnez.</li>
+                  <li>- <strong>Link or code?</strong> The link does everything automatically. Otherwise, your referral can enter the code in their settings.</li>
+                  <li>- <strong>Do I need to pay?</strong> No, the trial is free. The reward is only activated if your referral subscribes.</li>
+                  <li>- <strong>How many referrals?</strong> Unlimited! The more you refer, the more you earn.</li>
                 </ul>
               </div>
 
               {/* Referral Code Display */}
               <div className="p-3 rounded-lg bg-muted/50 border border-border">
-                <p className="text-xs text-muted-foreground mb-1">Votre code parrain</p>
+                <p className="text-xs text-muted-foreground mb-1">Your referral code</p>
                 <code className="text-lg font-mono font-bold text-primary">
                   {stats.referralCode}
                 </code>
@@ -352,12 +352,12 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
                   {copied ? (
                     <>
                       <Check className="w-4 h-4" />
-                      Copié !
+                      Copied!
                     </>
                   ) : (
                     <>
                       <Copy className="w-4 h-4" />
-                      Copier le lien d'invitation
+                      Copy invite link
                     </>
                   )}
                 </Button>
@@ -368,7 +368,7 @@ C'est simple : tu crées ton compte via ce lien, tu testes gratuitement pendant 
                   className="w-full gap-2"
                 >
                   <Sparkles className="w-4 h-4" />
-                  Copier un message type prêt à envoyer
+                  Copy a ready-to-send message
                 </Button>
               </div>
             </CardContent>

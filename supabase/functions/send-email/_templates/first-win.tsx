@@ -12,39 +12,39 @@ interface FirstWinEmailProps {
 }
 
 export function FirstWinEmail(props: FirstWinEmailProps) {
-  const { userName = 'Cher utilisateur', dashboardUrl } = props
+  const { userName = 'Dear user', dashboardUrl } = props
   return (
-    <BaseLayout preview="Vous venez de franchir le pas le plus difficile.">
-      <Heading style={heading}>Bravo ! Premier pas franchi 🏆</Heading>
+    <BaseLayout preview="You just took the hardest step.">
+      <Heading style={heading}>Way to go! First step complete 🏆</Heading>
 
-      <Text style={paragraph}>Bonjour {userName},</Text>
+      <Text style={paragraph}>Hi {userName},</Text>
 
       <Text style={celebrationBox}>
-        🎉 Vous venez de terminer votre premier exercice ! C'est le pas le plus difficile, et vous l'avez fait.
+        🎉 You just finished your first exercise! That's the hardest step, and you did it.
       </Text>
 
       <Text style={paragraph}>
-        Beaucoup de gens hésitent, repoussent, attendent "le bon moment". Pas vous. Vous avez agi, et c'est ce qui fait toute la différence.
+        Many people hesitate, postpone, or wait for "the right moment." Not you. You took action, and that's what makes all the difference.
       </Text>
 
       <Text style={scienceBox}>
-        🧠 Le saviez-vous ? La neuroplasticité fonctionne par répétition. Chaque session renforce les nouvelles connexions neuronales qui vous aident à maîtriser votre débit. La clé, c'est la régularité — même 5 minutes par jour.
+        🧠 Did you know? Neuroplasticity works through repetition. Each session strengthens new neural pathways that help you master your speech rate. The key is consistency — even 5 minutes a day.
       </Text>
 
       <Text style={highlightParagraph}>
-        Votre prochain objectif : 3 jours consécutifs. Petit, réalisable, transformateur.
+        Your next goal: 3 consecutive days. Small, achievable, transformative.
       </Text>
 
       <Button style={button} href={dashboardUrl}>
-        Voir ma progression
+        View my progress
       </Button>
 
       <Text style={tipBox}>
-        💡 Conseil : Programmez un rappel quotidien à une heure fixe. L'habitude est votre meilleure alliée.
+        💡 Tip: Set a daily reminder at a fixed time. Habit is your best ally.
       </Text>
 
-      <Text style={signatureText}>Fiers de vous,</Text>
-      <Text style={signatureName}>L'équipe Parler Moins Vite</Text>
+      <Text style={signatureText}>Proud of you,</Text>
+      <Text style={signatureName}>The ClutterPro Team</Text>
     </BaseLayout>
   )
 }

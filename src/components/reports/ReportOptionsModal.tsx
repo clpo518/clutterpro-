@@ -61,10 +61,10 @@ const ReportOptionsModal: React.FC<ReportOptionsModalProps> = ({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <FileText className="w-5 h-5 text-primary" />
-            Personnaliser le Bilan
+            Customize Report
           </DialogTitle>
           <DialogDescription>
-            Ajoutez des informations optionnelles avant de générer le bilan pour{" "}
+            Add optional information before generating the report for{" "}
             <span className="font-medium text-foreground">{patientName}</span>.
           </DialogDescription>
         </DialogHeader>
@@ -72,7 +72,7 @@ const ReportOptionsModal: React.FC<ReportOptionsModalProps> = ({
         <div className="grid gap-4 py-4">
           {/* Format Selector */}
           <div className="grid gap-2">
-            <Label>Format d'export</Label>
+            <Label>Export format</Label>
             <div className="flex gap-2">
               <button
                 type="button"
@@ -87,7 +87,7 @@ const ReportOptionsModal: React.FC<ReportOptionsModalProps> = ({
                 <FileText className="w-5 h-5" />
                 <div className="text-left">
                   <div className="font-medium">PDF</div>
-                  <div className="text-xs opacity-70">Mise en page pro</div>
+                  <div className="text-xs opacity-70">Professional layout</div>
                 </div>
               </button>
               <button
@@ -102,8 +102,8 @@ const ReportOptionsModal: React.FC<ReportOptionsModalProps> = ({
               >
                 <FileType className="w-5 h-5" />
                 <div className="text-left">
-                  <div className="font-medium">Texte</div>
-                  <div className="text-xs opacity-70">Copier-coller facile</div>
+                  <div className="font-medium">Text</div>
+                  <div className="text-xs opacity-70">Easy copy-paste</div>
                 </div>
               </button>
             </div>
@@ -111,31 +111,31 @@ const ReportOptionsModal: React.FC<ReportOptionsModalProps> = ({
 
           {/* Recipient Doctor */}
           <div className="grid gap-2">
-            <Label htmlFor="recipient">À l'attention de (optionnel)</Label>
+            <Label htmlFor="recipient">Attention (optional)</Label>
             <Input
               id="recipient"
-              placeholder="Dr. Martin, médecin traitant"
+              placeholder="Dr. Smith, primary care physician"
               value={recipientDoctor}
               onChange={(e) => setRecipientDoctor(e.target.value)}
             />
             <p className="text-xs text-muted-foreground">
-              Sera affiché en en-tête du document si renseigné
+              Will be displayed in the document header if provided
             </p>
           </div>
 
           {/* Therapist Notes */}
           <div className="grid gap-2">
-            <Label htmlFor="notes">Observations cliniques (optionnel)</Label>
+            <Label htmlFor="notes">Clinical observations (optional)</Label>
             <Textarea
               id="notes"
-              placeholder="Observations personnelles à inclure dans le bilan...&#10;&#10;Exemple : Patient coopérant, bonne conscience du trouble. Travail en cours sur les stratégies de ralentissement."
+              placeholder="Personal observations to include in the report...&#10;&#10;Example: Cooperative patient, good awareness of the disorder. Working on slowing strategies."
               value={therapistNotes}
               onChange={(e) => setTherapistNotes(e.target.value)}
               rows={4}
               className="resize-none"
             />
             <p className="text-xs text-muted-foreground">
-              Ces notes seront ajoutées dans une section "Observations du praticien"
+              These notes will be added in a "Clinician Observations" section
             </p>
           </div>
 
@@ -143,9 +143,9 @@ const ReportOptionsModal: React.FC<ReportOptionsModalProps> = ({
           {format === "pdf" && (
             <div className="flex items-center justify-between rounded-lg border p-3 shadow-sm">
               <div className="space-y-0.5">
-                <Label htmlFor="include-chart">Graphique d'évolution</Label>
+                <Label htmlFor="include-chart">Progress chart</Label>
                 <p className="text-xs text-muted-foreground">
-                  Inclure la courbe de progression dans le PDF
+                  Include the progression curve in the PDF
                 </p>
               </div>
               <Switch
@@ -159,18 +159,18 @@ const ReportOptionsModal: React.FC<ReportOptionsModalProps> = ({
 
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)} disabled={isGenerating}>
-            Annuler
+            Cancel
           </Button>
           <Button onClick={handleGenerate} disabled={isGenerating} className="gap-2">
             {isGenerating ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                Génération...
+                Generating...
               </>
             ) : (
               <>
                 {format === "pdf" ? <FileText className="w-4 h-4" /> : <FileType className="w-4 h-4" />}
-                Générer le {format === "pdf" ? "PDF" : "Texte"}
+                Generate {format === "pdf" ? "PDF" : "Text"}
               </>
             )}
           </Button>

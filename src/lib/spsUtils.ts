@@ -1,8 +1,8 @@
 /**
  * SPS (Syllables Per Second) Utility functions
- * Clinical standard for speech rate measurement in French
- * 
- * Conversion: ~1.8 syllables per French word on average
+ * Clinical standard for speech rate measurement
+ *
+ * Conversion: ~1.5 syllables per English word on average
  * Clinical targets: 2.0-6.0 SPS (vs 120-200 WPM)
  */
 
@@ -16,17 +16,17 @@ export const SPS_BUFFER_SIZE = 5;
 
 // Convert WPM to SPS (for backward compatibility with old data)
 export const wpmToSps = (wpm: number): number => {
-  // Average French word has ~1.8 syllables
-  // WPM * 1.8 = SPM (syllables per minute)
+  // Average English word has ~1.5 syllables
+  // WPM * 1.5 = SPM (syllables per minute)
   // SPM / 60 = SPS (syllables per second)
-  return Math.round((wpm * 1.8 / 60) * 10) / 10;
+  return Math.round((wpm * 1.5 / 60) * 10) / 10;
 };
 
 // Convert SPS to WPM (for display compatibility)
 export const spsToWpm = (sps: number): number => {
   // SPS * 60 = SPM
-  // SPM / 1.8 = WPM
-  return Math.round(sps * 60 / 1.8);
+  // SPM / 1.5 = WPM
+  return Math.round(sps * 60 / 1.5);
 };
 
 /**
@@ -42,12 +42,12 @@ export interface SPSTargetLevel {
 }
 
 export const SPS_TARGET_LEVELS: SPSTargetLevel[] = [
-  { level: 1, sps: 1.0, label: "Ultra-lent", description: "Travail phonétique approfondi.", emoji: "🐌" },
-  { level: 2, sps: 2.0, label: "Tortue", description: "Hyper-contrôle. Travail d'articulation.", emoji: "🐢" },
-  { level: 3, sps: 3.0, label: "Lent", description: "Rythme de dictée. Bon pour débuter.", emoji: "🎯" },
-  { level: 4, sps: 4.0, label: "Modéré", description: "Conversation naturelle.", emoji: "💬", recommended: true },
-  { level: 5, sps: 5.0, label: "Rapide", description: "Débit soutenu.", emoji: "⚡" },
-  { level: 6, sps: 6.0, label: "Challenge", description: "Pour tester vos limites.", emoji: "🏃" },
+  { level: 1, sps: 1.0, label: "Ultra-slow", description: "Deep phonetic work.", emoji: "🐌" },
+  { level: 2, sps: 2.0, label: "Tortoise", description: "Maximum control. Articulation drill.", emoji: "🐢" },
+  { level: 3, sps: 3.0, label: "Slow", description: "Dictation pace. Great for beginners.", emoji: "🎯" },
+  { level: 4, sps: 4.0, label: "Moderate", description: "Natural conversation.", emoji: "💬", recommended: true },
+  { level: 5, sps: 5.0, label: "Fast", description: "Sustained rate.", emoji: "⚡" },
+  { level: 6, sps: 6.0, label: "Challenge", description: "Push your limits.", emoji: "🏃" },
 ];
 
 /**
@@ -143,56 +143,56 @@ export function getSPSZone(currentSPS: number, targetSPS: number): {
   bgClass: string;
 } {
   if (currentSPS === 0) {
-    return { 
-      zone: 'waiting', 
-      label: "Parlez...", 
+    return {
+      zone: 'waiting',
+      label: "Start speaking...",
       colorClass: "text-muted-foreground",
       bgClass: "bg-muted"
     };
   }
-  
+
   // Proportional thresholds: target is a ceiling, not a bullseye
   const ratio = currentSPS / targetSPS;
-  
+
   if (ratio < 0.5) {
-    return { 
-      zone: 'too_slow', 
-      label: "Très lent", 
+    return {
+      zone: 'too_slow',
+      label: "Speed up a bit",
       colorClass: "text-blue-600 dark:text-blue-400",
       bgClass: "bg-blue-100 dark:bg-blue-900/30"
     };
   }
-  
+
   if (ratio < 0.8) {
-    return { 
-      zone: 'good', 
-      label: "Bien", 
+    return {
+      zone: 'good',
+      label: "Good",
       colorClass: "text-green-600 dark:text-green-400",
       bgClass: "bg-green-100 dark:bg-green-900/30"
     };
   }
-  
+
   if (ratio <= 1.2) {
-    return { 
-      zone: 'perfect', 
-      label: "Parfait", 
+    return {
+      zone: 'perfect',
+      label: "Perfect pace",
       colorClass: "text-emerald-600 dark:text-emerald-400",
       bgClass: "bg-emerald-100 dark:bg-emerald-900/30"
     };
   }
-  
+
   if (ratio <= 1.5) {
-    return { 
-      zone: 'warning', 
-      label: "Doucement...", 
+    return {
+      zone: 'warning',
+      label: "Slow down...",
       colorClass: "text-orange-600 dark:text-orange-400",
       bgClass: "bg-orange-100 dark:bg-orange-900/30"
     };
   }
-  
-  return { 
-    zone: 'danger', 
-    label: "Trop vite !", 
+
+  return {
+    zone: 'danger',
+    label: "Too fast!",
     colorClass: "text-red-600 dark:text-red-400",
     bgClass: "bg-red-100 dark:bg-red-900/30"
   };
@@ -209,8 +209,8 @@ export function getSpeedFeedback(avgSps: number, targetSps: number = 4.0): {
 } {
   if (avgSps === 0) {
     return {
-      title: "Session incomplète",
-      description: "Aucune parole détectée.",
+      title: "Incomplete session",
+      description: "No speech detected.",
       emoji: "⏸️",
       colorClass: "text-muted-foreground"
     };
@@ -221,8 +221,8 @@ export function getSpeedFeedback(avgSps: number, targetSps: number = 4.0): {
 
   if (diff >= -good && diff <= good) {
     return {
-      title: "Objectif atteint",
-      description: `Votre débit de ${avgSps.toFixed(1)} syll/s est pile dans l'objectif de ${targetSps.toFixed(1)} syll/s. Bravo !`,
+      title: "Goal reached",
+      description: `Your rate of ${avgSps.toFixed(1)} syll/s is right on target (${targetSps.toFixed(1)} syll/s). Great job!`,
       emoji: "✨",
       colorClass: "text-green-600"
     };
@@ -230,8 +230,8 @@ export function getSpeedFeedback(avgSps: number, targetSps: number = 4.0): {
 
   if (diff > good && diff <= bad) {
     return {
-      title: "Légèrement au-dessus",
-      description: `Votre débit de ${avgSps.toFixed(1)} syll/s dépasse l'objectif de ${targetSps.toFixed(1)} syll/s. Pensez à marquer davantage les pauses.`,
+      title: "Slightly above target",
+      description: `Your rate of ${avgSps.toFixed(1)} syll/s is above the target of ${targetSps.toFixed(1)} syll/s. Try adding more pauses.`,
       emoji: "⚡",
       colorClass: "text-orange-600"
     };
@@ -239,8 +239,8 @@ export function getSpeedFeedback(avgSps: number, targetSps: number = 4.0): {
 
   if (diff > bad) {
     return {
-      title: "Débit trop rapide",
-      description: `Votre débit de ${avgSps.toFixed(1)} syll/s est bien au-dessus de l'objectif de ${targetSps.toFixed(1)} syll/s. Essayez de ralentir.`,
+      title: "Too fast",
+      description: `Your rate of ${avgSps.toFixed(1)} syll/s is well above the target of ${targetSps.toFixed(1)} syll/s. Try slowing down.`,
       emoji: "🔴",
       colorClass: "text-red-600"
     };
@@ -248,8 +248,8 @@ export function getSpeedFeedback(avgSps: number, targetSps: number = 4.0): {
 
   if (diff < -good && diff >= -bad) {
     return {
-      title: "Bien contrôlé",
-      description: `Votre débit de ${avgSps.toFixed(1)} syll/s est légèrement sous l'objectif. Vous maîtrisez bien votre rythme.`,
+      title: "Well controlled",
+      description: `Your rate of ${avgSps.toFixed(1)} syll/s is slightly below target. You're doing a great job controlling your pace.`,
       emoji: "🐢",
       colorClass: "text-emerald-600"
     };
@@ -257,8 +257,8 @@ export function getSpeedFeedback(avgSps: number, targetSps: number = 4.0): {
 
   // diff < -bad
   return {
-    title: "Régime très lent",
-    description: `Votre débit de ${avgSps.toFixed(1)} syll/s est très en-dessous de l'objectif de ${targetSps.toFixed(1)} syll/s. Vous pouvez accélérer progressivement.`,
+    title: "Very slow pace",
+    description: `Your rate of ${avgSps.toFixed(1)} syll/s is well below the target of ${targetSps.toFixed(1)} syll/s. You can gradually increase your pace.`,
     emoji: "🐢",
     colorClass: "text-blue-600"
   };
@@ -281,16 +281,32 @@ export function formatSPS(sps: number): string {
 }
 
 /**
- * Clinical thresholds for SPS
+ * Clinical thresholds for SPS (Van Zaalen 2009 — English adult norms)
+ * < 3.0   → Slow — Target Zone (therapy goal)
+ * 3.0–4.5 → Conversational (normal adult rate)
+ * 4.5–5.5 → Fast — Monitor (borderline cluttering)
+ * > 5.5   → Cluttering Range (clinical concern)
  */
 export const SPS_THRESHOLDS = {
-  optimal: 5.0,    // Target zone center
-  elevated: 6.0,   // Getting fast
-  tachylalia: 7.0, // Clinical concern
+  targetZone: 3.0,   // Below this = target zone
+  conversational: 4.5, // Below this = normal
+  monitor: 5.5,      // Below this = borderline
+  // Above 5.5 = cluttering range
+} as const;
+
+/**
+ * Metric tooltips for clinical UI
+ */
+export const METRIC_TOOLTIPS = {
+  sps: "Syllables Per Second (SPS) measures your articulation rate. Silences and pauses are excluded. Typical cluttering range: above 5.5 SPS. Therapy target: below 4.5 SPS.",
+  pauseRatio: "Percentage of speech time spent in pauses. Healthy speech includes 20–30% pause time for processing and clarity.",
+  disfluencies: "Filler words and revisions (um, uh, like, you know...) per minute. Higher counts may indicate planning difficulties.",
+  intelligibility: "Estimated percentage of speech clearly understood by a naive listener.",
 } as const;
 
 /**
  * Returns a clinical status label based on average SPS
+ * (Van Zaalen 2009 norms for English-speaking adults)
  */
 export function getDebitStatus(avgSps: number): {
   label: string;
@@ -298,16 +314,16 @@ export function getDebitStatus(avgSps: number): {
   color: "green" | "yellow" | "red" | "gray";
 } {
   if (avgSps === 0) {
-    return { label: "Non mesuré", shortLabel: "—", color: "gray" };
+    return { label: "Not measured", shortLabel: "—", color: "gray" };
   }
-  if (avgSps < 3.5) {
-    return { label: "Débit lent", shortLabel: "Lent", color: "green" };
+  if (avgSps < SPS_THRESHOLDS.targetZone) {
+    return { label: "Slow — Target Zone", shortLabel: "Target Zone", color: "green" };
   }
-  if (avgSps <= 5.5) {
-    return { label: "Débit normo-fluent", shortLabel: "Normo-fluent", color: "green" };
+  if (avgSps <= SPS_THRESHOLDS.conversational) {
+    return { label: "Conversational", shortLabel: "Conversational", color: "green" };
   }
-  if (avgSps <= 6.5) {
-    return { label: "Débit rapide", shortLabel: "Rapide", color: "yellow" };
+  if (avgSps <= SPS_THRESHOLDS.monitor) {
+    return { label: "Fast — Monitor", shortLabel: "Monitor", color: "yellow" };
   }
-  return { label: "Tachylalie", shortLabel: "Tachylalie", color: "red" };
+  return { label: "Cluttering Range", shortLabel: "Cluttering", color: "red" };
 }

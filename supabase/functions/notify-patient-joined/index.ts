@@ -92,13 +92,13 @@ serve(async (req) => {
     const { data: patientAuth } = await supabaseAdmin.auth.admin.getUserById(patientId);
     const patientName = patientProfile?.full_name || 
       patientAuth?.user?.email?.split("@")[0] || 
-      "Un nouveau patient";
+      "A new patient";
 
     // Send the patient joined email with referral code
     const emailResult = await sendEmail("patient_joined", therapistAuth.user.email, {
       therapistName: therapistProfile?.full_name || therapistAuth.user.email.split("@")[0],
       patientName: patientName,
-      patientDetailUrl: `https://www.parlermoinsvite.fr/patient/${patientId}`,
+      patientDetailUrl: `https://www.clutterpro.com/patient/${patientId}`,
       referralCode: therapistProfile?.referral_code || null,
     });
 

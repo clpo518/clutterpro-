@@ -10,7 +10,7 @@ export interface RetellingAnalysis {
   concision: "concis" | "acceptable" | "digressif";
   concisionComment: string;
   digressions: string[];
-  organisation: "logique" | "partiellement logique" | "désorganisé";
+  organisation: "logique" | "partiellement logique" | "d\u00e9sorganis\u00e9";
   organisationComment: string;
   globalFeedback: string;
 }
@@ -24,8 +24,8 @@ interface RetellingBilanProps {
 }
 
 const concisionEmoji = { concis: "✅", acceptable: "🔶", digressif: "🔴" };
-const concisionLabel = { concis: "Concis", acceptable: "Acceptable", digressif: "Digressif" };
-const orgEmoji = { "logique": "✅", "partiellement logique": "🔶", "désorganisé": "🔴" };
+const concisionLabel = { concis: "Concise", acceptable: "Acceptable", digressif: "Digressive" };
+const orgEmoji = { "logique": "✅", "partiellement logique": "🔶", "d\u00e9sorganis\u00e9": "🔴" };
 
 const RetellingBilan = ({ analysis, loading, error, onRetry, onBackToLibrary }: RetellingBilanProps) => {
   if (loading) {
@@ -33,7 +33,7 @@ const RetellingBilan = ({ analysis, loading, error, onRetry, onBackToLibrary }: 
       <Card className="mt-6">
         <CardContent className="p-8 flex flex-col items-center gap-4">
           <Loader2 className="w-8 h-8 text-primary animate-spin" />
-          <p className="text-sm text-muted-foreground">Analyse de votre restitution en cours...</p>
+          <p className="text-sm text-muted-foreground">Analyzing your retelling...</p>
         </CardContent>
       </Card>
     );
@@ -46,7 +46,7 @@ const RetellingBilan = ({ analysis, loading, error, onRetry, onBackToLibrary }: 
           <AlertTriangle className="w-8 h-8 text-destructive mx-auto mb-3" />
           <p className="text-sm text-destructive mb-4">{error}</p>
           <Button onClick={onRetry} variant="outline" size="sm">
-            <RotateCcw className="w-4 h-4 mr-2" /> Réessayer
+            <RotateCcw className="w-4 h-4 mr-2" /> Retry
           </Button>
         </CardContent>
       </Card>
@@ -70,7 +70,7 @@ const RetellingBilan = ({ analysis, loading, error, onRetry, onBackToLibrary }: 
           <div className="text-4xl font-bold text-primary mb-1">
             {analysis.score}/{analysis.total}
           </div>
-          <p className="text-sm text-muted-foreground">points clés restitués</p>
+          <p className="text-sm text-muted-foreground">key points recalled</p>
           <div className="mt-3 h-3 bg-muted rounded-full overflow-hidden max-w-xs mx-auto">
             <motion.div
               className="h-full bg-primary rounded-full"
@@ -86,7 +86,7 @@ const RetellingBilan = ({ analysis, loading, error, onRetry, onBackToLibrary }: 
       <Card>
         <CardContent className="p-4 space-y-3">
           <h3 className="text-sm font-bold flex items-center gap-2">
-            <span>📋</span> Points clés
+            <span>📋</span> Key Points
           </h3>
           {analysis.keyPointResults.map((kp, i) => (
             <motion.div
@@ -120,7 +120,7 @@ const RetellingBilan = ({ analysis, loading, error, onRetry, onBackToLibrary }: 
       <div className="grid grid-cols-2 gap-3">
         <Card>
           <CardContent className="p-4">
-            <p className="text-xs text-muted-foreground mb-1">Concision</p>
+            <p className="text-xs text-muted-foreground mb-1">Conciseness</p>
             <p className="text-lg font-bold">
               {concisionEmoji[analysis.concision]} {concisionLabel[analysis.concision]}
             </p>
@@ -129,7 +129,7 @@ const RetellingBilan = ({ analysis, loading, error, onRetry, onBackToLibrary }: 
         </Card>
         <Card>
           <CardContent className="p-4">
-            <p className="text-xs text-muted-foreground mb-1">Organisation</p>
+            <p className="text-xs text-muted-foreground mb-1">Organization</p>
             <p className="text-lg font-bold">
               {orgEmoji[analysis.organisation] || "🔶"} {analysis.organisation}
             </p>
@@ -143,7 +143,7 @@ const RetellingBilan = ({ analysis, loading, error, onRetry, onBackToLibrary }: 
         <Card className="border-amber-200 dark:border-amber-800">
           <CardContent className="p-4">
             <h3 className="text-sm font-bold flex items-center gap-2 mb-2">
-              <AlertTriangle className="w-4 h-4 text-amber-500" /> Digressions détectées
+              <AlertTriangle className="w-4 h-4 text-amber-500" /> Digressions detected
             </h3>
             <ul className="space-y-1">
               {analysis.digressions.map((d, i) => (
@@ -169,10 +169,10 @@ const RetellingBilan = ({ analysis, loading, error, onRetry, onBackToLibrary }: 
       {/* Actions */}
       <div className="flex justify-center gap-3 pt-2">
         <Button variant="outline" onClick={onRetry} className="gap-2">
-          <RotateCcw className="w-4 h-4" /> Réessayer
+          <RotateCcw className="w-4 h-4" /> Retry
         </Button>
         <Button onClick={onBackToLibrary} className="gap-2">
-          Continuer <ArrowRight className="w-4 h-4" />
+          Continue <ArrowRight className="w-4 h-4" />
         </Button>
       </div>
     </motion.div>
