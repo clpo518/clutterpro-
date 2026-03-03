@@ -115,7 +115,7 @@ const About = () => {
                   my daily reality.
                 </p>
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  In <strong>2022</strong>, I finally took the step and consulted an SLP,
+                  In <strong>2022</strong>, I finally took the step and consulted a speech therapist,
                   <strong> Audrey Laydernier</strong>. That experience was a turning point. For the first time,
                   I understood what was happening and discovered techniques that actually worked.
                 </p>

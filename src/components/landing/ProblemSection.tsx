@@ -34,7 +34,7 @@ const steps = [
   },
   {
     icon: TrendingUp,
-    title: "Stay connected with your SLP",
+    title: "Stay connected with your speech therapist",
     description: "Don't practice alone. Share your sessions with your speech-language pathologist and receive remote feedback.",
     color: "text-primary",
   },

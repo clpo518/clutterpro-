@@ -9,7 +9,7 @@ import {
 
 const faqs = [
   {
-    question: "Does this replace an SLP?",
+    question: "Does this replace a speech therapist?",
     answer: "No, ClutterPro is a complementary tool for practicing between sessions. It is ideally recommended and monitored by your practitioner. The app does not diagnose and does not replace professional care."
   },
   {
@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     question: "Does the app also help with stuttering?",
-    answer: "Yes! Although originally designed for cluttering, the app is also useful for working on fluency in the context of stuttering. Rate control, breathing, and dialogue transfer exercises help improve speech fluidity, as a complement to SLP sessions."
+    answer: "Yes! Although originally designed for cluttering, the app is also useful for working on fluency in the context of stuttering. Rate control, breathing, and dialogue transfer exercises help improve speech fluidity, as a complement to therapy sessions."
   },
   {
     question: "Why does the app ask for my age?",
@@ -34,7 +34,7 @@ const faqs = [
   },
   {
     question: "Are my recordings confidential?",
-    answer: "Yes, absolutely. Your recordings are encrypted and accessible only by you (and your SLP if you link your account). We never use them for any other purpose."
+    answer: "Yes, absolutely. Your recordings are encrypted and accessible only by you (and your speech therapist if you link your account). We never use them for any other purpose."
   },
   {
     question: "My child can't read yet, can they use the app?",

@@ -143,7 +143,7 @@ const Auth = () => {
                 .eq("id", newUser.id);
             }
 
-            toast.success("Account created successfully! You are now linked to your SLP.");
+            toast.success("Account created successfully! You are now linked to your speech therapist.");
             navigate("/dashboard");
           } else if (patientMode === "solo") {
             // B2C solo signup - trial starts only after email verification
@@ -294,7 +294,7 @@ const Auth = () => {
               }}
               className="flex-1 text-xs py-1.5 px-2 rounded-lg bg-white dark:bg-zinc-800 border border-amber-300 hover:bg-amber-50 dark:hover:bg-zinc-700 transition-colors font-medium"
             >
-              SLP demo
+              Therapist demo
             </button>
           </div>
         </div>
@@ -325,7 +325,7 @@ const Auth = () => {
                   {forgotPassword
                     ? "Receive a link by email to create a new password"
                     : isLogin
-                      ? "Patient or SLP, same login"
+                      ? "Patient or therapist, same login"
                       : selectedRole === "patient"
                         ? patientMode === "solo"
                           ? "Start with a 7-day free trial"
@@ -412,7 +412,7 @@ const Auth = () => {
                   </TabsTrigger>
                   <TabsTrigger value="therapist" className="gap-2">
                     <Stethoscope className="w-4 h-4" />
-                    SLP
+                    Therapist
                   </TabsTrigger>
                 </TabsList>
               </Tabs>
@@ -442,7 +442,7 @@ const Auth = () => {
                     <div className="flex-1">
                       <h3 className="font-semibold text-sm mb-1">I have a Pro Code</h3>
                       <p className="text-xs text-muted-foreground">
-                        My SLP gave me a code (PRO-XXXXXX) to link to their practice
+                        My speech therapist gave me a code (PRO-XXXXXX) to link to their practice
                       </p>
                     </div>
                     <ArrowRight className="w-4 h-4 text-muted-foreground mt-1 group-hover:text-primary transition-colors" />
@@ -503,7 +503,7 @@ const Auth = () => {
                       </span>
                     </div>
                     <p className="text-xs text-amber-600/80 dark:text-amber-400/80 mt-1 ml-6">
-                      You can link an SLP later in Settings
+                      You can link a speech therapist later in Settings
                     </p>
                   </div>
                 )}
@@ -561,7 +561,7 @@ const Auth = () => {
                         <p className="text-sm text-destructive">{therapistCodeError}</p>
                       )}
                       <p className="text-xs text-muted-foreground">
-                        Given by your SLP to activate your monitoring
+                        Given by your speech therapist to activate your monitoring
                       </p>
                     </div>
                   )}

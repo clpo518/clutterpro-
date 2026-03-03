@@ -112,7 +112,7 @@ const Settings = () => {
       if (findError) throw findError;
 
       if (!therapist) {
-        toast.error("Invalid SLP code");
+        toast.error("Invalid therapist code");
         setLinkingTherapist(false);
         return;
       }
@@ -128,7 +128,7 @@ const Settings = () => {
       setProfile(prev => ({ ...prev, linked_therapist_id: therapist.id }));
       setLinkedTherapist({ full_name: therapist.full_name, therapist_code: therapist.therapist_code });
       setTherapistCode("");
-      toast.success(`You are now linked to ${therapist.full_name || "your SLP"}`);
+      toast.success(`You are now linked to ${therapist.full_name || "your speech therapist"}`);
 
       // Notify therapist that a new patient joined (fire and forget)
       supabase.functions.invoke('notify-patient-joined', {
@@ -147,7 +147,7 @@ const Settings = () => {
       });
     } catch (error) {
       console.error("Error linking therapist:", error);
-      toast.error("Error linking SLP");
+      toast.error("Error linking speech therapist");
     } finally {
       setLinkingTherapist(false);
     }
@@ -166,7 +166,7 @@ const Settings = () => {
 
       setProfile(prev => ({ ...prev, linked_therapist_id: null }));
       setLinkedTherapist(null);
-      toast.success("Link with SLP removed");
+      toast.success("Link with speech therapist removed");
     } catch (error) {
       toast.error("Error removing link");
     }
@@ -374,10 +374,10 @@ const Settings = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <UserPlus className="w-5 h-5" />
-                  My SLP
+                  My speech therapist
                 </CardTitle>
                 <CardDescription>
-                  Link your account to your SLP so they can track your progress
+                  Link your account to your speech therapist so they can track your progress
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -387,7 +387,7 @@ const Settings = () => {
                       <div>
                         <p className="text-sm text-muted-foreground mb-1">Followed by:</p>
                         <p className="text-lg font-semibold text-green-700 dark:text-green-400">
-                          {linkedTherapist?.full_name || "Your SLP"}
+                          {linkedTherapist?.full_name || "Your speech therapist"}
                         </p>
                         {!!linkedTherapist?.therapist_code && (
                           <p className="text-xs text-muted-foreground mt-1">
@@ -410,7 +410,7 @@ const Settings = () => {
                   <div className="space-y-4">
                     <div className="p-4 rounded-xl bg-muted/50 border border-border">
                       <p className="text-sm text-muted-foreground mb-3">
-                        Enter the code provided by your SLP:
+                        Enter the code provided by your speech therapist:
                       </p>
                       <div className="flex gap-2">
                         <Input

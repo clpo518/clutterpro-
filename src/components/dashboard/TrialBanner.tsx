@@ -107,7 +107,7 @@ const TrialBanner = ({ hasActiveTrial, trialDaysRemaining, isSolo, isPremium }: 
                     ? `${trialDaysRemaining} day${trialDaysRemaining > 1 ? "s" : ""} remaining`
                     : "Last day of trial"
                   }
-                  {" · "}You can link an SLP in Settings
+                  {" · "}You can link a speech therapist in Settings
                 </p>
               </div>
             </div>

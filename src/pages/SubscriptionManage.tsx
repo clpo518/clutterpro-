@@ -214,10 +214,10 @@ const SubscriptionManage = () => {
                 </div>
                 <div className="space-y-2">
                   <h2 className="text-lg font-semibold text-foreground">
-                    Your SLP is counting on you
+                    Your speech therapist is counting on you
                   </h2>
                   <p className="text-muted-foreground">
-                    <strong className="text-foreground">{therapist.full_name || "Your SLP"}</strong> is tracking your progress and using your data to adjust your therapy.
+                    <strong className="text-foreground">{therapist.full_name || "Your speech therapist"}</strong> is tracking your progress and using your data to adjust your therapy.
                   </p>
                   <p className="text-sm text-purple-600 dark:text-purple-400 font-medium">
                     By canceling, you'll lose this valuable connection.
@@ -264,7 +264,7 @@ const SubscriptionManage = () => {
                   <Stethoscope className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-medium text-foreground">
-                      Canceling your subscription will suspend SLP monitoring.
+                      Canceling your subscription will suspend therapist monitoring.
                     </p>
                   </div>
                 </div>
@@ -272,7 +272,7 @@ const SubscriptionManage = () => {
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3 text-muted-foreground">
                     <TrendingDown className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
-                    <span>Your SLP will no longer be able to view your new charts.</span>
+                    <span>Your speech therapist will no longer be able to view your new charts.</span>
                   </li>
                   <li className="flex items-start gap-3 text-muted-foreground">
                     <AlertTriangle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />

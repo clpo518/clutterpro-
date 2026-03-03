@@ -112,7 +112,7 @@ export const SPSExplainerSection = () => {
               title: "The result",
               color: "text-primary",
               bgColor: "bg-primary/10",
-              description: "A reliable number, in syllables per second, that your SLP can track from session to session."
+              description: "A reliable number, in syllables per second, that your speech therapist can track from session to session."
             }
           ].map((card, index) => (
             <motion.div

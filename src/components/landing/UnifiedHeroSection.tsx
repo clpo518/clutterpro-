@@ -137,7 +137,7 @@ export const UnifiedHeroSection = () => {
             <Button variant="outline" size="lg" className="text-base px-8 h-14 flex flex-col items-center gap-0" asChild>
               <a href="#patients">
                 <span>I'm a patient</span>
-                <span className="text-[10px] text-muted-foreground font-normal -mt-0.5">Free with your SLP</span>
+                <span className="text-[10px] text-muted-foreground font-normal -mt-0.5">Free with your speech therapist</span>
               </a>
             </Button>
           </motion.div>

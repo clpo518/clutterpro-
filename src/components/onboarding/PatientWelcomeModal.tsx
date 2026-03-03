@@ -62,7 +62,7 @@ const slides = [
   },
   {
     icon: Stethoscope,
-    title: "Your SLP follows along",
+    title: "Your therapist follows along",
     description: "Your sessions are shared with your clinician. They can send you targeted exercises and encouragement.",
     visual: "therapist",
     color: "from-purple-500 to-violet-500",

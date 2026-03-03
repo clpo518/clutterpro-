@@ -201,7 +201,7 @@ const Assessment = () => {
                   {isHighRisk ? (
                     <>
                       Your score indicates <strong>signs characteristic of cluttering</strong>.
-                      It is recommended to consult an SLP.
+                      It is recommended to consult a speech therapist.
                       Our app can help you <strong>start slowing down right now</strong>.
                     </>
                   ) : (

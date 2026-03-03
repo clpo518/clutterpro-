@@ -23,9 +23,9 @@ const CONTACT_SLP_TEMPLATE = `Hello,
 
 I would like to use the ClutterPro app for my training.
 
-My SLP is not yet familiar with the app. Here are their contact details so you can reach out:
+My speech therapist is not yet familiar with the app. Here are their contact details so you can reach out:
 
-SLP name: [Fill in]
+Therapist name: [Fill in]
 Email or phone: [Fill in]
 City / Practice: [Fill in]
 
@@ -37,7 +37,7 @@ Thank you for your help!`;
 // Template for option B: Solo training request
 const SOLO_TEMPLATE = `Hello,
 
-I would like to use ClutterPro to train on controlling my speech rate, without SLP supervision for now.
+I would like to use ClutterPro to train on controlling my speech rate, without therapist supervision for now.
 
 Could you let me know about individual access options?
 
@@ -62,7 +62,7 @@ const NoCodeModal = ({ open, onOpenChange }: NoCodeModalProps) => {
   };
 
   const handleMailtoSLP = () => {
-    const subject = encodeURIComponent("Contact my SLP - ClutterPro");
+    const subject = encodeURIComponent("Contact my speech therapist - ClutterPro");
     const body = encodeURIComponent(CONTACT_SLP_TEMPLATE);
     window.open(`mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`, "_blank");
   };
@@ -90,7 +90,7 @@ const NoCodeModal = ({ open, onOpenChange }: NoCodeModalProps) => {
         <DialogHeader>
           <DialogTitle className="text-xl">I don't have a code</DialogTitle>
           <DialogDescription>
-            Access to the app is reserved for patients followed by an SLP
+            Access to the app is reserved for patients followed by a speech therapist
           </DialogDescription>
         </DialogHeader>
 
@@ -102,7 +102,7 @@ const NoCodeModal = ({ open, onOpenChange }: NoCodeModalProps) => {
                 <Stethoscope className="w-5 h-5 text-purple-600 dark:text-purple-400" />
               </div>
               <div>
-                <h3 className="font-semibold mb-1">My SLP doesn't know the app</h3>
+                <h3 className="font-semibold mb-1">My speech therapist doesn't know the app</h3>
                 <p className="text-sm text-muted-foreground">
                   Give us their contact info, <strong className="text-foreground">we'll reach out to them for you</strong>.
                 </p>
@@ -141,7 +141,7 @@ const NoCodeModal = ({ open, onOpenChange }: NoCodeModalProps) => {
               <div>
                 <h3 className="font-semibold mb-1">I want to train on my own</h3>
                 <p className="text-sm text-muted-foreground">
-                  For access without SLP supervision, contact us and we'll review your request.
+                  For access without therapist supervision, contact us and we'll review your request.
                 </p>
               </div>
             </div>

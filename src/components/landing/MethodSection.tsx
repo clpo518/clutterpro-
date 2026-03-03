@@ -21,7 +21,7 @@ const pillars = [
   {
     icon: Mic,
     title: "Dialogue Mode",
-    description: "Transfer your skills to real-life situations: talk with friends, family, or your SLP, guided by a real-time visual indicator.",
+    description: "Transfer your skills to real-life situations: talk with friends, family, or your speech therapist, guided by a real-time visual indicator.",
     color: "from-primary/20 to-accent/10",
     iconColor: "text-primary",
     bgColor: "bg-primary/10"

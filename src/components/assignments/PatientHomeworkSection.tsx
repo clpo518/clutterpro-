@@ -163,7 +163,7 @@ const PatientHomeworkSection = () => {
                               {category?.title || assignment.exercise_category}
                             </h4>
                             <Badge variant="outline" className="text-xs">
-                              Assigned by {assignment.therapist?.full_name || "Your SLP"}
+                              Assigned by {assignment.therapist?.full_name || "your speech therapist"}
                             </Badge>
                           </div>
                           

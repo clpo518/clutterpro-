@@ -259,7 +259,7 @@ const ClinicalMetricsBar = ({
             {intelligibility}/10
           </div>
           <div className="text-xs text-muted-foreground mt-1 mb-2">
-            {isTherapist ? "Your rating" : "Rated by the SLP"}
+            {isTherapist ? "Your rating" : "Rated by your speech therapist"}
           </div>
           {isTherapist ? (
             <Slider

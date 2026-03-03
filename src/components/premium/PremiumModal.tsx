@@ -56,7 +56,7 @@ const PremiumModal = ({ open, onOpenChange, exerciseTitle }: PremiumModalProps) 
               <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
                 <HeadphonesIcon className="w-4 h-4 text-amber-600 dark:text-amber-400" />
               </div>
-              <span>Audio sharing with your SLP</span>
+              <span>Audio sharing with your speech therapist</span>
             </li>
             <li className="flex items-center gap-3 p-2 rounded-lg bg-muted/50">
               <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
