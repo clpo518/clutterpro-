@@ -5,7 +5,7 @@ const pillars = [
   {
     icon: Activity,
     title: "Clear Articulation",
-    description: "Exercises to pronounce each syllable distinctly and improve clarity.",
+    description: "Train yourself to pronounce every syllable. Short drills that make a big difference in how clearly people hear you.",
     color: "from-cyan-500/20 to-teal-500/10",
     iconColor: "text-cyan-600 dark:text-cyan-400",
     bgColor: "bg-cyan-100 dark:bg-cyan-900/30"
@@ -13,15 +13,15 @@ const pillars = [
   {
     icon: Timer,
     title: "Rhythm & Pausing",
-    description: "Learn to insert natural pauses between your phrases for a controlled speech rate.",
+    description: "Learn where to breathe and pause naturally. Your speech flows better when you give listeners time to follow.",
     color: "from-purple-500/20 to-violet-500/10",
     iconColor: "text-purple-600 dark:text-purple-400",
     bgColor: "bg-purple-100 dark:bg-purple-900/30"
   },
   {
     icon: Mic,
-    title: "Dialogue Mode",
-    description: "Transfer your skills to real-life situations: talk with friends, family, or your speech therapist, guided by a real-time visual indicator.",
+    title: "Real Conversations",
+    description: "Practice with real people — friends, family, your therapist — while a live indicator keeps you at the right pace.",
     color: "from-primary/20 to-accent/10",
     iconColor: "text-primary",
     bgColor: "bg-primary/10"
@@ -44,10 +44,10 @@ export const MethodSection = () => {
             Evidence-Based Method
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            The 3 Clinical Pillars
+            3 skills that change everything
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A comprehensive approach to fluency, tailored for cluttering, tachylalia, and fluency disorders.
+            Each exercise targets a specific skill. Together, they build clear, confident speech.
           </p>
         </motion.div>
 
@@ -88,12 +88,12 @@ export const MethodSection = () => {
             </div>
             <div className="text-center md:text-left">
               <h3 className="text-xl font-bold text-foreground mb-2">
-                A goal tailored to YOU
+                Your goal. Your pace.
               </h3>
               <p className="text-muted-foreground max-w-2xl">
-                A child, a teenager, and an adult don't speak at the same rate — and that's normal!
-                The app automatically adjusts to your age to give you a
-                realistic, personalized target. No more frustrating false positives.
+                A child, a teenager, and an adult don't speak at the same rate — and that's perfectly normal.
+                ClutterPro adjusts your target automatically based on your age.
+                No frustrating false alarms, just honest feedback.
               </p>
             </div>
           </div>
@@ -108,7 +108,7 @@ export const MethodSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <p className="text-sm text-muted-foreground">
-            A proven method, recommended by specialized speech-language pathologists.
+            Built on evidence-based methods recommended by speech-language pathologists.
           </p>
         </motion.div>
       </div>

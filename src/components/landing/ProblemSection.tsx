@@ -4,38 +4,38 @@ import { Eye, Mic, TrendingUp, MessageCircleQuestion, Zap, Shuffle } from "lucid
 const problems = [
   {
     icon: MessageCircleQuestion,
-    title: "People often ask you to repeat yourself?",
-    description: "Your listeners lose track of what you're saying.",
+    title: "Tired of repeating yourself?",
+    description: "Friends, coworkers, and family keep asking 'Can you say that again?' — and it's exhausting.",
   },
   {
     icon: Zap,
-    title: "Your ideas move faster than your words?",
-    description: "You think fast but your mouth can't keep up.",
+    title: "Your brain races ahead of your mouth?",
+    description: "You know exactly what to say, but the words come out jumbled or too fast to follow.",
   },
   {
     icon: Shuffle,
-    title: "You mix up syllables under stress?",
-    description: "In high-pressure situations, your speech rate spirals.",
+    title: "Stress makes it worse?",
+    description: "Job interviews, presentations, phone calls — the higher the stakes, the faster you speak.",
   },
 ];
 
 const steps = [
   {
     icon: Mic,
-    title: "Practice without boredom",
-    description: "Access varied exercises: guided reading, over-articulation drills, and conversational practice for real-world transfer.",
+    title: "Practice that fits your life",
+    description: "12 exercise modes — from guided reading to real conversations. Short daily sessions that build lasting habits.",
     color: "text-blue-600",
   },
   {
     icon: Eye,
-    title: "Understand your speech rate",
-    description: "Visualize your voice waveform. Concrete visual feedback to learn where to place your pauses.",
+    title: "See your progress in real time",
+    description: "Watch your speech rate live as you practice. Visual feedback shows you exactly when you're speeding up.",
     color: "text-green-600",
   },
   {
     icon: TrendingUp,
-    title: "Stay connected with your speech therapist",
-    description: "Don't practice alone. Share your sessions with your speech-language pathologist and receive remote feedback.",
+    title: "Share results with your therapist",
+    description: "Your speech therapist sees your progress remotely — no more guessing between appointments.",
     color: "text-primary",
   },
 ];
@@ -54,10 +54,10 @@ export const ProblemSection = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Do you recognize yourself?
+              Does this sound like you?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Sound familiar? ClutterPro was built for you.
+              You're not alone. Millions of people struggle with speech that's faster than their listeners can follow.
             </p>
           </motion.div>
 
@@ -97,10 +97,10 @@ export const ProblemSection = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              How it works
+              How ClutterPro works
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              A 3-step method to take control of your speech rate.
+              Three ways to build lasting habits — at your own pace.
             </p>
           </motion.div>
 

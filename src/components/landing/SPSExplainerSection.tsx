@@ -83,11 +83,10 @@ export const SPSExplainerSection = () => {
             The measure that matters
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            How we measure your speech rate
+            A smarter way to measure speech
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We don't simply count words — we measure your <strong className="text-foreground">actual articulation rate</strong>, 
-            without pauses or silence.
+            Most apps count words per minute. We measure how fast you actually speak — <strong className="text-foreground">pauses don't count against you</strong>.
           </p>
         </motion.div>
 
@@ -98,21 +97,21 @@ export const SPSExplainerSection = () => {
               title: "The problem",
               color: "text-destructive",
               bgColor: "bg-destructive/10",
-              description: "Classic counters include your pauses in the calculation. Result: your score drops even when you speak well."
+              description: "Other apps penalize you for pausing. You take a breath, and your score drops — even when you're speaking perfectly."
             },
             {
               icon: CheckCircle2,
-              title: "Our solution",
+              title: "Our approach",
               color: "text-emerald-600 dark:text-emerald-400",
               bgColor: "bg-emerald-500/10",
-              description: "We measure only the time you're actually speaking. Your breathing pauses no longer skew the result."
+              description: "We only measure the time you're actually talking. Pauses are natural and healthy — they shouldn't hurt your score."
             },
             {
               icon: Target,
               title: "The result",
               color: "text-primary",
               bgColor: "bg-primary/10",
-              description: "A reliable number, in syllables per second, that your speech therapist can track from session to session."
+              description: "A reliable number, in syllables per second, that you and your speech therapist can trust from session to session."
             }
           ].map((card, index) => (
             <motion.div

@@ -296,7 +296,7 @@ const Dashboard = () => {
               Hello {firstName} 👋
             </h1>
             <p className="text-muted-foreground">
-              {isSolo ? "Solo Mode · " : ""}Your training space, at your own pace.
+              {isSolo ? "Solo Mode · " : ""}Keep it up — every session counts.
             </p>
           </div>
 
@@ -384,7 +384,7 @@ const Dashboard = () => {
                       Ready for a session?
                     </h2>
                     <p className="opacity-80 text-sm">
-                      Reading, dialogue, articulation... your choice
+                      Pick an exercise — reading, dialogue, or articulation drills
                     </p>
                   </div>
                   <Button

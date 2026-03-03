@@ -3,7 +3,7 @@ import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "ClutterPro has transformed how I support my cluttering clients between sessions. The real-time SPS measurement is exactly what I needed.",
+    quote: "ClutterPro has transformed how I support my cluttering clients between sessions. The real-time speech rate measurement is exactly what I needed.",
     author: "Sarah M., SLP",
     role: "Private Practice, Austin TX",
     rating: 5,
@@ -34,10 +34,10 @@ export const TestimonialsSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            They took back control
+            Real results from real people
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            SLPs and patients are making real progress with ClutterPro every day.
+            Speech therapists and patients making real progress, every day.
           </p>
         </motion.div>
 
