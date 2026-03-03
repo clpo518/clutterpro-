@@ -35,7 +35,7 @@ const ExpiredOverlay = () => {
         <div className="grid grid-cols-2 gap-3 mb-6">
           <div className="p-4 rounded-xl border-2 border-border bg-muted/30">
             <p className="text-sm font-medium text-muted-foreground mb-1">Essential</p>
-            <p className="text-2xl font-bold text-foreground">$14.90</p>
+            <p className="text-2xl font-bold text-foreground">$29</p>
             <p className="text-xs text-muted-foreground">/mo - 3 patients</p>
           </div>
           <div className="p-4 rounded-xl border-2 border-primary/50 bg-primary/5 relative">
@@ -43,7 +43,7 @@ const ExpiredOverlay = () => {
               <Star className="w-3 h-3" /> Popular
             </div>
             <p className="text-sm font-medium text-muted-foreground mb-1">Expert</p>
-            <p className="text-2xl font-bold text-foreground">$19.90</p>
+            <p className="text-2xl font-bold text-foreground">$39</p>
             <p className="text-xs text-muted-foreground">/mo - 5 patients</p>
           </div>
         </div>

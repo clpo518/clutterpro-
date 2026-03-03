@@ -43,7 +43,7 @@ const PremiumModal = ({ open, onOpenChange, exerciseTitle }: PremiumModalProps) 
         </DialogHeader>
         <div className="py-4">
           <p className="text-center text-sm text-muted-foreground mb-4">
-            <strong className="text-primary">$79/year</strong> (only $6.58/mo) or <strong>$9/mo</strong>
+            <strong>$9/mo</strong>
           </p>
           <ul className="space-y-3 text-sm">
             <li className="flex items-center gap-3 p-2 rounded-lg bg-muted/50">
