@@ -193,7 +193,7 @@ export default function DialogueLab() {
       setIsRunning(true);
     } catch (e: any) {
       console.error("Start error:", e);
-      setStartError(e?.message || "Erreur au démarrage du micro");
+      setStartError(e?.message || "Error starting the microphone");
     }
   };
 
@@ -298,11 +298,11 @@ export default function DialogueLab() {
 
         {/* SPS comparison — 3 methods */}
         <div className="mb-1">
-          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2">Comparaison A/B/C</p>
+          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2">A/B/C Comparison</p>
         </div>
         <div className="grid grid-cols-3 gap-2 mb-4">
-          <SPSCard label="A · Classique" sublabel="Fenêtre 2s" sps={deepgram.currentSPS} />
-          <SPSCard label="B · Paquets" sublabel={`${packetSize} syll`} sps={latestPacketSps} />
+          <SPSCard label="A · Classic" sublabel="2s window" sps={deepgram.currentSPS} />
+          <SPSCard label="B · Packets" sublabel={`${packetSize} syll`} sps={latestPacketSps} />
           <SPSCard label="C · EMA" sublabel={`α=${alpha.toFixed(2)}`} sps={emaSps} />
         </div>
 
@@ -310,7 +310,7 @@ export default function DialogueLab() {
         <div className="flex gap-3 mb-4">
           {!isRunning ? (
             <Button className="flex-1 gap-2" size="lg" onClick={handleStart}>
-              <Mic className="h-5 w-5" /> Démarrer
+              <Mic className="h-5 w-5" /> Start
             </Button>
           ) : (
             <Button className="flex-1 gap-2" size="lg" variant="destructive" onClick={handleStop}>
@@ -329,7 +329,7 @@ export default function DialogueLab() {
           <div className="flex items-center gap-2 mb-3">
             <div className={`w-2 h-2 rounded-full ${deepgram.isConnected ? "bg-emerald-500" : "bg-orange-500"} animate-pulse`} />
             <span className="text-xs text-muted-foreground">
-              {deepgram.isConnected ? "Connected" : "Connecting…"} · {deepgram.syllableCount} syll. totales
+              {deepgram.isConnected ? "Connected" : "Connecting…"} · {deepgram.syllableCount} total syll.
             </span>
           </div>
         )}
@@ -338,53 +338,53 @@ export default function DialogueLab() {
         <Card className="mb-4">
           <CardContent className="pt-4 pb-4 space-y-4 text-xs text-muted-foreground">
             <div>
-              <p className="font-semibold text-foreground mb-1">A · Classique — Fenêtre glissante (2 secondes)</p>
-              <p>On prend toutes les syllabes prononcées dans les <strong>2 dernières secondes</strong> et on divise par la durée de parole réelle (silences exclus).</p>
-              <p className="mt-1"><span className="text-emerald-500">✓</span> Très stable, peu de fluctuations visuelles.</p>
-              <p><span className="text-red-500">✗</span> Latence d'environ 1 seconde : si le patient accélère brusquement, le pic n'apparaît qu'après un délai. Les accélérations très courtes peuvent être « noyées » dans la fenêtre.</p>
-              <p className="mt-1 italic">Analogie : comme une moyenne de température sur les 2 dernières heures — fiable mais ne détecte pas un coup de chaleur soudain.</p>
+              <p className="font-semibold text-foreground mb-1">A · Classic — Sliding window (2 seconds)</p>
+              <p>All syllables spoken in the <strong>last 2 seconds</strong> are counted and divided by actual speech duration (silences excluded).</p>
+              <p className="mt-1"><span className="text-emerald-500">✓</span> Very stable, minimal visual fluctuation.</p>
+              <p><span className="text-red-500">✗</span> ~1 second latency: sudden rate spikes appear with a delay. Very short bursts can be smoothed out by the window.</p>
+              <p className="mt-1 italic">Analogy: like a 2-hour temperature average — reliable but won't catch a sudden heat spike.</p>
             </div>
 
             <div>
-              <p className="font-semibold text-foreground mb-1">B · Paquets — Calcul par lot de N syllabes</p>
-              <p>On attend que le patient ait prononcé exactement <strong>N syllabes</strong> (ex : 10), puis on calcule le SPS sur ce paquet : N ÷ durée du paquet.</p>
-              <p className="mt-1"><span className="text-emerald-500">✓</span> Mesure précise et représentative : chaque paquet a le même poids syllabique. Utile pour comparer des segments de longueur égale.</p>
-              <p><span className="text-red-500">✗</span> Feedback discontinu : entre deux paquets, aucune mise à jour. Si le patient dit 9 syllabes sur 10, il ne voit rien jusqu'à la 10ème.</p>
-              <p className="mt-1 italic">Analogie : comme un compteur de voiture qui affiche la vitesse moyenne tous les 10 km — précis mais pas en temps réel.</p>
+              <p className="font-semibold text-foreground mb-1">B · Packets — Batch calculation of N syllables</p>
+              <p>Waits until exactly <strong>N syllables</strong> (e.g. 10) are spoken, then calculates SPS for that packet: N ÷ packet duration.</p>
+              <p className="mt-1"><span className="text-emerald-500">✓</span> Precise and representative: each packet has equal syllable weight. Useful for comparing equal-length segments.</p>
+              <p><span className="text-red-500">✗</span> Discontinuous feedback: no updates between packets. If the patient says 9 of 10 syllables, nothing shows until the 10th.</p>
+              <p className="mt-1 italic">Analogy: like a car meter showing average speed every 10 km — accurate but not real-time.</p>
             </div>
 
             <div>
-              <p className="font-semibold text-foreground mb-1">C · Lissage intelligent (par mot)</p>
-              <p>À chaque nouveau mot, on calcule le débit instantané sur les <strong>3 derniers mots</strong> (micro-fenêtre), puis on <strong>ajuste</strong> le score affiché via une moyenne pondérée.</p>
+              <p className="font-semibold text-foreground mb-1">C · Smart smoothing (per word)</p>
+              <p>With each new word, instantaneous rate is calculated over the <strong>last 3 words</strong> (micro-window), then the displayed score is <strong>adjusted</strong> via a weighted average.</p>
 
-              <p className="mt-2 font-medium text-foreground">Le curseur « alpha » = une balance ⚖️</p>
-              <p>Il décide du poids qu'on donne au <strong>dernier mot</strong> par rapport à <strong>tout l'historique</strong>.</p>
+              <p className="mt-2 font-medium text-foreground">The "alpha" slider = a balance ⚖️</p>
+              <p>It decides how much weight to give the <strong>latest word</strong> vs. <strong>all previous history</strong>.</p>
               <ul className="list-disc pl-4 space-y-0.5 mt-1">
-                <li><strong>Bas (0.10)</strong> → 10 % dernier mot, 90 % historique → très stable</li>
-                <li><strong>Moyen (0.25)</strong> → recommandé → bon équilibre</li>
-                <li><strong>Haut (0.50)</strong> → 50/50 → très réactif</li>
+                <li><strong>Low (0.10)</strong> → 10% latest word, 90% history → very stable</li>
+                <li><strong>Medium (0.25)</strong> → recommended → good balance</li>
+                <li><strong>High (0.50)</strong> → 50/50 → very responsive</li>
               </ul>
 
               <div className="mt-2 bg-muted/50 rounded-lg p-2.5">
-                <p className="font-medium text-foreground text-[11px] mb-1">📌 Exemple concret (alpha = 0.25)</p>
-                <p>Le patient parle à <strong>5.0 syll/s</strong> (score actuel).</p>
-                <p>Il accélère et dit un mot à <strong>8.0 syll/s</strong>.</p>
-                <p className="mt-1">→ Nouveau score = 25 % de 8.0 + 75 % de 5.0 = <strong>5.8 syll/s</strong></p>
-                <p className="mt-1">Le chiffre monte un peu, mais sans sauter à 8. Si le patient continue vite, le score va monter progressivement. S'il ralentit, le score redescend en douceur.</p>
+                <p className="font-medium text-foreground text-[11px] mb-1">📌 Example (alpha = 0.25)</p>
+                <p>Patient is speaking at <strong>5.0 syll/s</strong> (current score).</p>
+                <p>They speed up and say a word at <strong>8.0 syll/s</strong>.</p>
+                <p className="mt-1">→ New score = 25% of 8.0 + 75% of 5.0 = <strong>5.8 syll/s</strong></p>
+                <p className="mt-1">The number rises slightly, without jumping to 8. If the patient keeps speaking fast, the score gradually climbs. If they slow down, it eases back smoothly.</p>
               </div>
 
-              <p className="mt-2"><span className="text-emerald-500">✓</span> Se met à jour à chaque mot. Le débit évolue de façon fluide, sans à-coups.</p>
-              <p><span className="text-red-500">✗</span> Il faut tester le réglage avec le patient pour trouver le bon dosage.</p>
-              <p className="mt-1 italic">Analogie : comme un GPS qui recalcule l'heure d'arrivée à chaque virage — sans changer d'avis toutes les secondes.</p>
+              <p className="mt-2"><span className="text-emerald-500">✓</span> Updates on every word. Rate evolves smoothly, no sudden jumps.</p>
+              <p><span className="text-red-500">✗</span> Requires testing with the patient to find the right setting.</p>
+              <p className="mt-1 italic">Analogy: like a GPS recalculating arrival time at every turn — without changing its mind every second.</p>
             </div>
           </CardContent>
         </Card>
 
         {/* Packet history */}
         <div>
-          <p className="text-sm font-medium mb-2">Historique des paquets</p>
+          <p className="text-sm font-medium mb-2">Packet history</p>
           {packetHistory.length === 0 ? (
-            <p className="text-sm text-muted-foreground">Aucun paquet complété</p>
+            <p className="text-sm text-muted-foreground">No packets completed yet</p>
           ) : (
             <ScrollArea className="h-48">
               <div className="space-y-1.5">

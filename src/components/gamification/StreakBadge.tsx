@@ -23,10 +23,11 @@ export const StreakBadge = ({ currentStreak, longestStreak, justIncremented = fa
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <motion.button
+          aria-label={`Streak: ${currentStreak} day${currentStreak !== 1 ? 's' : ''} in a row`}
           className={`
             flex items-center gap-1.5 px-3 py-1.5 rounded-full font-medium text-sm cursor-pointer
-            ${isActive 
-              ? "bg-gradient-to-r from-orange-500/20 to-red-500/20 text-orange-500 border border-orange-500/30" 
+            ${isActive
+              ? "bg-gradient-to-r from-orange-500/20 to-red-500/20 text-orange-500 border border-orange-500/30"
               : "bg-muted text-muted-foreground border border-border"
             }
           `}
@@ -99,7 +100,7 @@ export const StreakBadge = ({ currentStreak, longestStreak, justIncremented = fa
             </p>
             <div className="flex items-center justify-between text-xs">
               <span className="text-muted-foreground">Personal record</span>
-              <span className="font-medium">{longestStreak} jour{longestStreak > 1 ? 's' : ''}</span>
+              <span className="font-medium">{longestStreak} day{longestStreak > 1 ? 's' : ''}</span>
             </div>
           </div>
           

@@ -15,23 +15,23 @@ import {
 const features = [
   {
     icon: BarChart3,
-    text: "Articulation Rate (SPS): Measures actual speech rate excluding silences (Van Zaalen method)."
+    text: "Articulation Rate: True speech speed with pauses excluded — the Van Zaalen gold standard."
   },
   {
     icon: Gauge,
-    text: "In-Session Flow Meter: Measure your patient's rate live, on your tablet, during the appointment."
+    text: "Live Flow Meter: Measure your patient's speech rate in real time, right from your tablet."
   },
   {
     icon: Headphones,
-    text: "Async review: Receive your patients' recordings between sessions."
+    text: "Between-Session Review: Listen to patient recordings and leave feedback without scheduling a visit."
   },
   {
     icon: Target,
-    text: "Fluency Ratio: Visualize speech time vs pause time for each session."
+    text: "Fluency Ratio: See the balance between speech time and pauses at a glance."
   },
   {
     icon: FileText,
-    text: "Report support: Objective data ready to integrate into your clinical notes."
+    text: "Report-Ready Data: Objective metrics you can paste directly into clinical notes."
   }
 ];
 
@@ -103,8 +103,8 @@ export const TherapistSection = () => {
                   <Stethoscope className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 </div>
                 <div>
-                  <p className="font-semibold">Tableau de bord Pro</p>
-                  <p className="text-sm text-muted-foreground">3 patients actifs</p>
+                  <p className="font-semibold">Pro Dashboard</p>
+                  <p className="text-sm text-muted-foreground">3 active patients</p>
                 </div>
               </div>
 
@@ -141,7 +141,7 @@ export const TherapistSection = () => {
               <div className="mt-6 p-3 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
                 <div className="flex items-center gap-2 text-green-700 dark:text-green-400 text-sm">
                   <CheckCircle className="w-4 h-4" />
-                  <span>Nouvelle session de Sophie M. disponible</span>
+                  <span>New session from Sophie M. available</span>
                 </div>
               </div>
             </div>

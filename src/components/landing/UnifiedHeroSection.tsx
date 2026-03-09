@@ -109,8 +109,8 @@ export const UnifiedHeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Speak at your best.{" "}
-            <span className="gradient-text">Every session.</span>
+            Speak clearly.{" "}
+            <span className="gradient-text">Be understood.</span>
           </motion.h1>
 
           <motion.p
@@ -119,7 +119,7 @@ export const UnifiedHeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            ClutterPro gives speech-language pathologists and their patients the tools to measure, practice, and improve speech rate — anywhere, anytime.
+            The only app built for cluttering and fast speech. Practice daily, track your speech rate, and see real progress — on your own or with your speech therapist.
           </motion.p>
 
           <motion.div
@@ -134,9 +134,10 @@ export const UnifiedHeroSection = () => {
                 <ArrowRight className="w-5 h-5 ml-1" />
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="text-base px-8 h-14" asChild>
+            <Button variant="outline" size="lg" className="text-base px-8 h-14 flex flex-col items-center gap-0" asChild>
               <a href="#patients">
-                I'm a patient
+                <span>I'm a patient</span>
+                <span className="text-[10px] text-muted-foreground font-normal -mt-0.5">Free with your speech therapist</span>
               </a>
             </Button>
           </motion.div>
@@ -156,7 +157,7 @@ export const UnifiedHeroSection = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.45 }}
           >
-            Measure your speech rate in syllables per second — the gold standard in speech-language pathology.
+            Your speech rate, measured in syllables per second — the clinical gold standard.
           </motion.p>
 
           {/* Tabbed exercise demo */}

@@ -22,7 +22,7 @@ export const PricingTeaser = () => {
             Free for patients
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Your SLP covers the subscription. You get access to all features.
+            Your speech therapist covers the subscription. You get access to all features.
           </p>
         </motion.div>
 
@@ -47,7 +47,7 @@ export const PricingTeaser = () => {
                 Full Patient Access
               </h3>
               <p className="text-muted-foreground">
-                Included in your SLP's subscription
+                Included in your therapist's subscription
               </p>
             </div>
 
@@ -57,7 +57,7 @@ export const PricingTeaser = () => {
                 "Real-time speech rate measurement (SPS)",
                 "Disfluency detection (um, like...)",
                 "History and progress charts",
-                "Audio sharing with your SLP",
+                "Audio sharing with your speech therapist",
                 "Personalized goals based on your age",
               ].map((feature, index) => (
                 <div key={index} className="flex items-start gap-3">
@@ -75,7 +75,7 @@ export const PricingTeaser = () => {
                 </Link>
               </Button>
               <p className="text-xs text-muted-foreground mt-3">
-                You'll need your SLP's Pro Code
+                You'll need your therapist's Pro Code
               </p>
             </div>
           </motion.div>
@@ -91,7 +91,7 @@ export const PricingTeaser = () => {
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <div className="flex-1 text-center sm:text-left">
                 <h3 className="text-lg font-semibold text-foreground mb-1">
-                  No SLP?
+                  No therapist?
                 </h3>
                 <p className="text-sm text-muted-foreground mb-3">
                   Start with a <strong>7-day free trial</strong>, then a simple no-commitment subscription.
@@ -123,7 +123,7 @@ export const PricingTeaser = () => {
               </div>
               <div className="flex-1">
                 <h4 className="font-semibold text-foreground mb-1">
-                  Are you an SLP?
+                  Are you a speech therapist?
                 </h4>
                 <p className="text-sm text-muted-foreground">
                   Free 30-day trial. Manage up to 5 patients with a single subscription.

@@ -45,7 +45,7 @@ const DailyExerciseCard = () => {
           <div className="flex items-center gap-1.5 text-primary mb-3">
             <Sparkles className="w-4 h-4" />
             <span className="text-xs font-semibold uppercase tracking-wide">
-              Exercice du jour
+              Exercise of the day
             </span>
           </div>
 
@@ -73,7 +73,7 @@ const DailyExerciseCard = () => {
               className="gap-2 flex-shrink-0"
             >
               <Play className="w-4 h-4" />
-              <span className="hidden sm:inline">Commencer</span>
+              <span className="hidden sm:inline">Start</span>
             </Button>
           </div>
         </CardContent>

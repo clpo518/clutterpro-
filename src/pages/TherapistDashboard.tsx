@@ -339,10 +339,10 @@ See you soon!`);
     const hour = new Date().getHours();
     const day = new Date().getDay(); // 0=Sun ... 6=Sat
     const variants = hour < 12
-      ? ["Good morning", "Great morning", "Hello"]
+      ? ["Good morning", "Welcome back", "Hello"]
       : hour < 18
-        ? ["Good afternoon", "Hello", "Hey"]
-        : ["Good evening", "Hello", "Hey"];
+        ? ["Good afternoon", "Welcome back", "Hello"]
+        : ["Good evening", "Welcome back", "Hello"];
     // Pick variant based on day of week for consistency within a day
     return variants[day % variants.length];
   };

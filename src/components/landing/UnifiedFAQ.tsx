@@ -21,7 +21,7 @@ const faqItems = [
   },
   {
     question: "Is the app free for patients?",
-    answer: "Yes, if your SLP uses ClutterPro, you get free access to all features. You can also use the app on your own for $9/month.",
+    answer: "Yes, if your speech therapist uses ClutterPro, you get free access to all features. You can also use the app on your own for $9/month.",
   },
   {
     question: "How do you calculate speech rate?",
@@ -29,11 +29,11 @@ const faqItems = [
   },
   {
     question: "Does the app also help with stuttering?",
-    answer: "Yes! Rate control, breathing, and dialogue transfer exercises are also beneficial for people who stutter. The app complements in-session SLP work.",
+    answer: "Yes! Rate control, breathing, and dialogue transfer exercises are also beneficial for people who stutter. The app complements in-session therapy work.",
   },
   {
     question: "Is the data secure?",
-    answer: "Absolutely. All data is hosted on secure US-based servers, encrypted, and follows HIPAA-conscious practices. Only you and your SLP (if linked) have access to recordings.",
+    answer: "Absolutely. All data is hosted on secure US-based servers, encrypted, and follows HIPAA-conscious practices. Only you and your speech therapist (if linked) have access to recordings.",
   },
   {
     question: "Do I need to install anything?",

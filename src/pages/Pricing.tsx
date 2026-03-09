@@ -439,7 +439,7 @@ const PatientPricingContent = ({
         Free for you.
       </h2>
       <p className="text-muted-foreground max-w-2xl mx-auto">
-        Your SLP covers the subscription.
+        Your speech therapist covers the subscription.
         You get access to <strong className="text-foreground">all features</strong> at no cost.
       </p>
     </motion.div>
@@ -464,7 +464,7 @@ const PatientPricingContent = ({
             <span className="text-muted-foreground">/mo</span>
           </div>
           <p className="text-muted-foreground mt-2 text-sm">
-            Included in your SLP's subscription
+            Included in your therapist's subscription
           </p>
         </div>
 
@@ -475,7 +475,7 @@ const PatientPricingContent = ({
             "Disfluency detection",
             "Age-based personalized goals",
             "History and progress charts",
-            "Audio sharing with your SLP",
+            "Audio sharing with your speech therapist",
           ].map((feature, index) => (
             <div key={index} className="flex items-center gap-3">
               <Check className="w-4 h-4 text-green-500 flex-shrink-0" />
@@ -494,7 +494,7 @@ const PatientPricingContent = ({
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
           <p className="text-xs text-muted-foreground mt-3">
-            You'll need your SLP's Pro Code
+            You'll need your therapist's Pro Code
           </p>
         </div>
       </Card>
@@ -510,10 +510,10 @@ const PatientPricingContent = ({
         {/* Flow Steps */}
         <div className="grid sm:grid-cols-4 gap-4 sm:gap-2">
           {[
-            { icon: Stethoscope, step: 1, title: "Your SLP", desc: "Subscribes and gives you a unique code" },
+            { icon: Stethoscope, step: 1, title: "Your therapist", desc: "Subscribes and gives you a unique code" },
             { icon: User, step: 2, title: "You sign up", desc: "Create your account with the Pro Code" },
             { icon: Mic, step: 3, title: "You practice", desc: "5 min/day with real-time measurement" },
-            { icon: BarChart3, step: 4, title: "Remote follow-up", desc: "Your SLP tracks your progress" },
+            { icon: BarChart3, step: 4, title: "Remote follow-up", desc: "Your therapist tracks your progress" },
           ].map((item, i) => (
             <div key={i} className="text-center">
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-2">
@@ -535,7 +535,7 @@ const PatientPricingContent = ({
               <MessageSquare className="w-4 h-4 text-amber-600" />
             </div>
             <div>
-              <h4 className="font-semibold text-sm mb-1">Why do I need an SLP code?</h4>
+              <h4 className="font-semibold text-sm mb-1">Why do I need a therapist code?</h4>
               <p className="text-xs text-muted-foreground">
                 Cluttering is a clinical disorder. The app is <strong className="text-foreground">complementary to professional therapy</strong>,
                 not a substitute. The code ensures you are supported by a qualified specialist.
@@ -555,7 +555,7 @@ const PatientPricingContent = ({
       <Accordion type="single" collapsible className="space-y-3">
         <AccordionItem value="code" className="bg-card border border-border rounded-xl px-5">
           <AccordionTrigger className="text-left hover:no-underline py-4">
-            <span className="font-medium text-sm">How do I get an SLP code?</span>
+            <span className="font-medium text-sm">How do I get a therapist code?</span>
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground pb-4 text-sm">
             Ask your speech-language pathologist if they use ClutterPro. If so, they'll give you their unique Pro Code (format: PRO-XXXXXX).
@@ -568,14 +568,14 @@ const PatientPricingContent = ({
             <span className="font-medium text-sm">Why is it free for me?</span>
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground pb-4 text-sm">
-            Your SLP pays a subscription that includes a number of patient seats.
+            Your speech therapist pays a subscription that includes a number of patient seats.
             By linking to their account via the Pro Code, you automatically get access to <strong className="text-foreground">all features</strong> at no extra cost.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="no-therapist" className="bg-card border border-border rounded-xl px-5">
           <AccordionTrigger className="text-left hover:no-underline py-4">
-            <span className="font-medium text-sm">I don't have an SLP. What should I do?</span>
+            <span className="font-medium text-sm">I don't have a speech therapist. What should I do?</span>
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground pb-4 text-sm">
             Good news: you can sign up in{" "}
@@ -593,7 +593,7 @@ const PatientPricingContent = ({
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground pb-4 text-sm">
             Absolutely. All data is encrypted and stored securely with HIPAA-conscious practices.
-            Only you and your SLP have access to your recordings and progress data.
+            Only you and your speech therapist have access to your recordings and progress data.
           </AccordionContent>
         </AccordionItem>
       </Accordion>

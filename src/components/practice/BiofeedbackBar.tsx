@@ -139,6 +139,7 @@ const BiofeedbackBar = ({
               size="lg"
               onClick={onTogglePause}
               disabled={disabled}
+              aria-label={isPaused ? "Resume recording" : "Pause recording"}
               className="h-12 sm:h-14 px-4 sm:px-6 rounded-xl gap-2 font-medium text-sm sm:text-base"
             >
               {isPaused ? (
@@ -157,9 +158,14 @@ const BiofeedbackBar = ({
 
           {/* SPS Display - Stabilized with debounce */}
           <div className="flex flex-col items-center">
-          <div className={`flex items-center gap-1.5 sm:gap-3 px-3 sm:px-6 py-2 sm:py-3 rounded-xl ${stableState.bgClass} min-w-0 sm:min-w-[180px] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]`}>
+          <div
+            role="status"
+            aria-live="polite"
+            aria-label={`Speech rate feedback: ${stableState.label}`}
+            className={`flex items-center gap-1.5 sm:gap-3 px-3 sm:px-6 py-2 sm:py-3 rounded-xl ${stableState.bgClass} min-w-0 sm:min-w-[180px] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]`}
+          >
               {/* Recording indicator */}
-              <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${isPaused ? 'bg-yellow-500' : 'bg-red-500 animate-pulse'}`} />
+              <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${isPaused ? 'bg-yellow-500' : 'bg-red-500 animate-pulse'}`} aria-hidden="true" />
               
               {/* Status emoji + label - Smoothly animated */}
               <div className="flex items-center gap-2 overflow-hidden">
@@ -171,6 +177,7 @@ const BiofeedbackBar = ({
                     exit={{ scale: 0.6, opacity: 0, rotate: 10 }}
                     transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
                     className="text-xl sm:text-2xl"
+                    aria-hidden="true"
                   >
                     {stableState.emoji}
                   </motion.span>
@@ -220,6 +227,7 @@ const BiofeedbackBar = ({
             size="lg"
             onClick={onStop}
             disabled={disabled}
+            aria-label="Stop recording"
             className="h-12 sm:h-14 px-4 sm:px-6 rounded-xl gap-2 font-medium text-sm sm:text-base"
           >
             <Square className="w-5 h-5" />

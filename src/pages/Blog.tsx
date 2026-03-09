@@ -86,7 +86,7 @@ export default function Blog() {
               From theory to practice
             </h2>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-              Start your training today with the code from your SLP.
+              Start your training today with the code from your speech therapist.
             </p>
             <Button asChild size="lg">
               <Link to="/auth?tab=signup">

@@ -45,7 +45,7 @@ const ProSubscriptionManage = () => {
       }
     } catch (error) {
       console.error("Portal error:", error);
-      toast.error("Erreur lors de l'ouverture du portail de paiement");
+      toast.error("Error opening the billing portal");
     } finally {
       setPortalLoading(false);
     }

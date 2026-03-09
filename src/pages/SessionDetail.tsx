@@ -909,10 +909,10 @@ ${session.recording_url ? `🎧 Recording available` : ""}`;
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <MessageSquare className="w-5 h-5" />
-                    SLP Comments
+                    Therapist Comments
                   </CardTitle>
                   <CardDescription>
-                    Your SLP's feedback will appear here
+                    Your speech therapist's feedback will appear here
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -930,7 +930,7 @@ ${session.recording_url ? `🎧 Recording available` : ""}`;
                           {comment.author_id !== user?.id && (
                             <div className="flex items-center gap-2 mb-2 text-chart-2">
                               <MessageSquare className="w-4 h-4" />
-                              <span className="text-sm font-medium">Message from your SLP</span>
+                              <span className="text-sm font-medium">Message from your speech therapist</span>
                             </div>
                           )}
                           <p className="text-sm">{comment.content}</p>
@@ -981,7 +981,7 @@ ${session.recording_url ? `🎧 Recording available` : ""}`;
                   <CardContent className="py-6 flex flex-col md:flex-row items-center justify-between gap-4">
                     <div>
                       <h3 className="font-display font-bold text-lg mb-1">
-                        Share with your SLP
+                        Share with your speech therapist
                       </h3>
                       <p className="text-muted-foreground text-sm">
                         Copy your session summary to share it easily

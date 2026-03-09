@@ -80,7 +80,7 @@ const TherapistShareCard = () => {
       const therapistData = therapistResults?.[0];
 
       if (findError || !therapistData) {
-        toast.error("Invalid code. Check the code with your SLP.");
+        toast.error("Invalid code. Check the code with your speech therapist.");
         return;
       }
 
@@ -99,7 +99,7 @@ const TherapistShareCard = () => {
       setLinkedTherapist(therapistData);
       setShowLinkDialog(false);
       setTherapistCode("");
-      toast.success(`Connected with ${therapistData.full_name || "your SLP"}!`);
+      toast.success(`Connected with ${therapistData.full_name || "your speech therapist"}!`);
     } catch (error) {
       console.error("Error linking therapist:", error);
       toast.error("An error occurred");
@@ -154,7 +154,7 @@ const TherapistShareCard = () => {
             </div>
             <div className="flex-1">
               <h3 className="font-medium text-sm flex items-center gap-2">
-                Connected with your SLP
+                Connected with your speech therapist
                 <span className="text-green-500">✓</span>
               </h3>
               <p className="text-xs text-muted-foreground">
@@ -188,7 +188,7 @@ const TherapistShareCard = () => {
               <UserPlus className="w-6 h-6 text-primary" />
             </div>
             <div className="flex-1">
-              <h3 className="font-medium text-sm">Change SLP</h3>
+              <h3 className="font-medium text-sm">Change therapist</h3>
               <p className="text-xs text-muted-foreground">
                 Enter a new Pro Code
               </p>
@@ -205,7 +205,7 @@ const TherapistShareCard = () => {
               <UserPlus className="w-8 h-8 text-primary" />
             </div>
             <DialogTitle className="text-center text-xl">
-              Link my account to my SLP
+              Link my account to my speech therapist
             </DialogTitle>
             <DialogDescription className="text-center">
               Enter the Pro Code provided by your clinician to share your progress.
@@ -213,7 +213,7 @@ const TherapistShareCard = () => {
           </DialogHeader>
           <div className="py-4 space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="therapist-code">Your SLP's Pro Code</Label>
+              <Label htmlFor="therapist-code">Your therapist's Pro Code</Label>
               <Input
                 id="therapist-code"
                 placeholder="Ex: PRO-ABC123"

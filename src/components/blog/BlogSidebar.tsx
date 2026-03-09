@@ -90,7 +90,7 @@ export default function BlogSidebar({ relatedPosts, audience, ctaLink, ctaLabel 
                 </li>
                 <li className="flex items-start gap-2.5 text-sm text-muted-foreground">
                   <Shield className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                  <span>Free with your SLP's Pro Code</span>
+                  <span>Free with your therapist's Pro Code</span>
                 </li>
               </ul>
 
