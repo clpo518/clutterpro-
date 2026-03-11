@@ -606,15 +606,15 @@ const SilenceTraining = () => {
               </div>
               <div className="space-y-2">
                 <div className="flex items-start gap-2.5 text-xs text-muted-foreground">
-                  <span className="shrink-0">1\uFE0F\u20E3</span>
-                  <span>A question appears \u2192 <strong className="text-foreground">stay silent</strong> during the countdown</span>
+                  <span className="shrink-0">{"1️⃣"}</span>
+                  <span>A question appears {"→"} <strong className="text-foreground">stay silent</strong> during the countdown</span>
                 </div>
                 <div className="flex items-start gap-2.5 text-xs text-muted-foreground">
-                  <span className="shrink-0">2\uFE0F\u20E3</span>
-                  <span>When the signal appears \u2192 <strong className="text-foreground">answer freely</strong></span>
+                  <span className="shrink-0">{"2️⃣"}</span>
+                  <span>When the signal appears {"→"} <strong className="text-foreground">answer freely</strong></span>
                 </div>
                 <div className="flex items-start gap-2.5 text-xs text-muted-foreground">
-                  <span className="shrink-0">3\uFE0F\u20E3</span>
+                  <span className="shrink-0">{"3️⃣"}</span>
                   <span>Pauses get progressively longer to desensitize you</span>
                 </div>
               </div>
