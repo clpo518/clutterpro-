@@ -59,7 +59,7 @@ export const ProDemoSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="bg-card rounded-2xl shadow-xl border border-border/50 p-6 md:p-10">
+          <div className="bg-card rounded-xl shadow-sm border border-border p-6 md:p-10">
             <Tabs defaultValue="lecture" className="w-full">
               <TabsList className="grid w-full grid-cols-3 mb-8">
                 <TabsTrigger value="lecture" className="gap-1 md:gap-2 text-xs md:text-sm px-2 md:px-3">
@@ -214,7 +214,7 @@ export const ProDemoSection = () => {
                 <div className="text-center mb-6">
                   <button
                     onClick={animateRebus}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-xl font-medium hover:bg-orange-600 hover:scale-105 transition-all duration-200 shadow-lg shadow-orange-500/25"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors"
                   >
                     <Play className="w-5 h-5" />
                     Launch demo

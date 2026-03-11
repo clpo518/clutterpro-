@@ -87,7 +87,7 @@ export const ProblemSection = () => {
       </section>
 
       {/* How it works Section */}
-      <section id="how-it-works" className="py-24 bg-gradient-to-b from-background to-secondary/30">
+      <section id="how-it-works" className="py-24 bg-background">
         <div className="container px-4 md:px-6">
           <motion.div
             className="text-center mb-16"
@@ -108,7 +108,7 @@ export const ProblemSection = () => {
             {steps.map((step, index) => (
               <motion.div
                 key={index}
-                className="relative bg-card rounded-2xl p-8 shadow-lg border border-border/50 hover:shadow-xl transition-shadow"
+                className="relative bg-card rounded-xl p-8 shadow-sm border border-border"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

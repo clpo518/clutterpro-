@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Pause, Play } from "lucide-react";
+import { Pause, Play, MessageSquare, Users, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
@@ -31,7 +31,7 @@ export const ExerciseDemoSection = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-b from-secondary/30 to-background">
+    <section className="py-24 bg-muted/30">
       <div className="container px-4 md:px-6">
         <motion.div
           className="text-center mb-16"
@@ -55,11 +55,11 @@ export const ExerciseDemoSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="bg-card rounded-2xl shadow-xl border border-border/50 p-8 md:p-12">
+          <div className="bg-card rounded-xl shadow-sm border border-border p-8 md:p-12">
             <Tabs defaultValue="dialogue" className="w-full">
               <TabsList className="grid w-full grid-cols-3 mb-8">
                 <TabsTrigger value="dialogue" className="gap-1 md:gap-2 text-[11px] md:text-sm px-1.5 md:px-3">
-                  <span className="shrink-0">💬</span>
+                  <MessageSquare className="w-3 h-3 md:w-4 md:h-4 shrink-0" />
                   <span className="truncate">Dialogue</span>
                 </TabsTrigger>
                 <TabsTrigger value="lecture" className="gap-1 md:gap-2 text-[11px] md:text-sm px-1.5 md:px-3">
@@ -67,7 +67,7 @@ export const ExerciseDemoSection = () => {
                   <span className="truncate">Reading</span>
                 </TabsTrigger>
                 <TabsTrigger value="rebus" className="gap-1 md:gap-2 text-[11px] md:text-sm px-1.5 md:px-3">
-                  <span className="shrink-0">🧒</span>
+                  <Users className="w-3 h-3 md:w-4 md:h-4 shrink-0" />
                   <span className="truncate">Children</span>
                 </TabsTrigger>
               </TabsList>
@@ -76,7 +76,7 @@ export const ExerciseDemoSection = () => {
               <TabsContent value="dialogue">
                 <div className="text-center mb-8">
                   <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                    💬 Dialogue Mode — In real-life situations
+                    <MessageSquare className="w-4 h-4" /> Dialogue Mode — In real-life situations
                   </span>
                   <p className="text-muted-foreground">
                     Place your phone on the table and talk. The indicator guides you in real time.
@@ -86,21 +86,21 @@ export const ExerciseDemoSection = () => {
                 <div className="flex flex-col items-center gap-6 mb-8">
                   {/* Simulated big gauge */}
                   <div className="w-40 h-40 rounded-full border-4 border-emerald-500 bg-emerald-100 dark:bg-emerald-900/30 flex flex-col items-center justify-center">
-                    <span className="text-5xl">✅</span>
+                    <CheckCircle2 className="w-12 h-12 text-emerald-600 dark:text-emerald-400" />
                     <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400 mt-1">Perfect</span>
                     <span className="text-xs text-muted-foreground">4.0 syll/s</span>
                   </div>
                   <p className="text-sm text-muted-foreground text-center max-w-sm">
-                    One large indicator visible from a distance — no stressful numbers, just an emoji that changes in real time.
+                    One large indicator visible from a distance — no stressful numbers, just a color that changes in real time.
                   </p>
                 </div>
 
                 <div className="text-center">
                   <a
                     href="/auth"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 hover:scale-105 transition-all duration-200 shadow-lg shadow-primary/25"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors"
                   >
-                    💬 Try Dialogue Mode
+                    Try Dialogue Mode
                   </a>
                 </div>
 
@@ -148,7 +148,7 @@ export const ExerciseDemoSection = () => {
                 <div className="text-center">
                   <button
                     onClick={animateWords}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 hover:scale-105 transition-all duration-200 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors"
                   >
                     <Play className="w-5 h-5" />
                     Launch demo
@@ -163,8 +163,8 @@ export const ExerciseDemoSection = () => {
               {/* Rebus tab */}
               <TabsContent value="rebus">
                 <div className="text-center mb-8">
-                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 text-orange-600 dark:text-orange-400 text-sm font-medium mb-4">
-                    🖼️ Rebus Mode — Child / Non-reader
+                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+                    <Users className="w-4 h-4" /> Rebus Mode — Child / Non-reader
                   </span>
                   <p className="text-muted-foreground">
                     The child looks at the images and repeats them aloud, breathing between each image.
@@ -195,7 +195,7 @@ export const ExerciseDemoSection = () => {
                           {[0, 1, 2].map((bar) => (
                             <motion.div
                               key={bar}
-                              className="w-1.5 rounded-full bg-orange-400"
+                              className="w-1.5 rounded-full bg-primary/60"
                               animate={
                                 index === activeRebus
                                   ? { height: [16, 28, 16], opacity: [0.5, 1, 0.5] }
@@ -214,7 +214,7 @@ export const ExerciseDemoSection = () => {
                 <div className="text-center">
                   <button
                     onClick={animateRebus}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-xl font-medium hover:bg-orange-600 hover:scale-105 transition-all duration-200 shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/30"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors"
                   >
                     <Play className="w-5 h-5" />
                     Launch demo

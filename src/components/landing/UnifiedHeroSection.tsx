@@ -3,39 +3,28 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Activity, ArrowRight, MessageSquare, Play, Stethoscope } from "lucide-react";
+import { Activity, ArrowRight, MessageSquare, Play, Users, CheckCircle } from "lucide-react";
 import { KaraokeDemo } from "./KaraokeDemo";
 
 /** Animated SPS counter widget for the hero */
 const SPSWidget = () => {
   const [sps, setSps] = useState(4.2);
-  const [emoji, setEmoji] = useState("✅");
 
   useEffect(() => {
-    const values = [
-      { sps: 4.2, emoji: "✅" },
-      { sps: 4.5, emoji: "✅" },
-      { sps: 5.1, emoji: "⚡" },
-      { sps: 4.8, emoji: "✅" },
-      { sps: 3.8, emoji: "✅" },
-      { sps: 5.6, emoji: "⚡" },
-      { sps: 4.0, emoji: "✅" },
-      { sps: 3.5, emoji: "🐢" },
-    ];
+    const values = [4.2, 4.5, 5.1, 4.8, 3.8, 5.6, 4.0, 3.5];
     let i = 0;
     const interval = setInterval(() => {
       i = (i + 1) % values.length;
-      setSps(values[i].sps);
-      setEmoji(values[i].emoji);
+      setSps(values[i]);
     }, 1800);
     return () => clearInterval(interval);
   }, []);
 
+  const isGood = sps <= 5.0;
+
   return (
-    <div className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-card border border-border/60 shadow-sm">
-      <motion.span className="text-2xl" key={emoji} initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 300 }}>
-        {emoji}
-      </motion.span>
+    <div className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-card border border-border shadow-sm">
+      <span className={`w-3 h-3 rounded-full ${isGood ? "bg-success" : "bg-warning"}`} />
       <div className="flex items-baseline gap-1.5">
         <motion.span
           className="text-2xl font-bold tabular-nums text-foreground"
@@ -73,22 +62,7 @@ export const UnifiedHeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 gradient-subtle" />
-
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-primary/[0.03]"
-          animate={{ scale: [1, 1.1, 1], rotate: [0, 10, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute top-1/2 -left-24 w-[400px] h-[400px] rounded-full bg-accent/30"
-          animate={{ scale: [1.1, 1, 1.1], y: [0, 20, 0] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
-
+    <section className="relative min-h-[90vh] flex items-center justify-center">
       <div className="container relative z-10 px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
@@ -110,7 +84,7 @@ export const UnifiedHeroSection = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             Stop repeating yourself.{" "}
-            <span className="gradient-text">Start being heard.</span>
+            <span className="text-primary">Start being heard.</span>
           </motion.h1>
 
           <motion.p
@@ -128,18 +102,15 @@ export const UnifiedHeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Button asChild size="lg" className="text-base px-8 h-14 shadow-md hover:shadow-lg">
+            <Button asChild size="lg" className="text-base px-8 h-14">
               <Link to="/auth?tab=signup">
                 Start free trial
                 <ArrowRight className="w-5 h-5 ml-1" />
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="text-base px-8 h-14 flex flex-col items-center gap-0" asChild>
-              <a href="#patients">
-                <span>I'm a patient</span>
-                <span className="text-[10px] text-muted-foreground font-normal -mt-0.5">Free with your speech therapist</span>
-              </a>
-            </Button>
+            <a href="#patients" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              I'm a patient — learn more
+            </a>
           </motion.div>
 
           {/* SPS Widget */}
@@ -167,7 +138,7 @@ export const UnifiedHeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <div className="bg-card rounded-2xl shadow-lg border border-border/60 p-4 md:p-6">
+            <div className="bg-card rounded-xl shadow-sm border border-border p-4 md:p-6">
               <p className="text-xs text-muted-foreground text-center mb-3">
                 Preview 3 of our 12 exercise modes
               </p>
@@ -182,7 +153,7 @@ export const UnifiedHeroSection = () => {
                     <span className="truncate">Dialogue</span>
                   </TabsTrigger>
                   <TabsTrigger value="rebus" className="gap-1 md:gap-2 text-[11px] md:text-sm px-1.5 md:px-3">
-                    <span className="shrink-0">🧒</span>
+                    <Users className="w-3 h-3 md:w-4 md:h-4 shrink-0" />
                     <span className="truncate">Kids</span>
                   </TabsTrigger>
                 </TabsList>
@@ -201,19 +172,13 @@ export const UnifiedHeroSection = () => {
                 <TabsContent value="dialogue" className="mt-0">
                   <div className="flex flex-col items-center gap-4 py-4">
                     <div className="w-28 h-28 md:w-36 md:h-36 rounded-full border-4 border-emerald-500 bg-emerald-500/10 flex flex-col items-center justify-center">
-                      <span className="text-3xl md:text-4xl">✅</span>
-                      <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">Perfect</span>
+                      <CheckCircle className="w-8 h-8 md:w-10 md:h-10 text-emerald-500" />
+                      <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-1">Perfect</span>
                       <span className="text-[11px] text-muted-foreground">4.0 syll/s</span>
                     </div>
                     <p className="text-xs text-muted-foreground text-center max-w-sm">
-                      A single indicator visible from afar — just an emoji that changes in real time based on your speech rate.
+                      A single indicator visible from afar — changes in real time based on your speech rate.
                     </p>
-                    <Button asChild size="sm" className="text-sm">
-                      <Link to="/dialogue">
-                        <MessageSquare className="w-4 h-4 mr-1" />
-                        Try Dialogue Mode
-                      </Link>
-                    </Button>
                   </div>
                 </TabsContent>
 
@@ -240,7 +205,7 @@ export const UnifiedHeroSection = () => {
                             {[0, 1, 2].map((bar) => (
                               <motion.div
                                 key={bar}
-                                className="w-1 rounded-full bg-orange-400"
+                                className="w-1 rounded-full bg-primary/60"
                                 animate={
                                   index === activeRebus
                                     ? { height: [12, 24, 12], opacity: [0.5, 1, 0.5] }
@@ -258,7 +223,7 @@ export const UnifiedHeroSection = () => {
                   <div className="text-center mb-2">
                     <button
                       onClick={animateRebus}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-orange-500 text-white rounded-xl text-sm font-medium hover:bg-orange-600 transition-all shadow-md"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
                     >
                       <Play className="w-4 h-4" />
                       Play demo

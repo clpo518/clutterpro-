@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Stethoscope, CheckCircle2, Timer, Sparkles } from "lucide-react";
+import { Stethoscope, CheckCircle2, Timer } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const LiveSessionCard = () => {
@@ -10,11 +10,11 @@ const LiveSessionCard = () => {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <Card className="p-8 md:p-12 border-2 border-primary/20 bg-gradient-to-br from-primary/[0.02] to-transparent">
+      <Card className="p-8 md:p-12 border border-border">
         {/* Badges */}
         <div className="flex flex-wrap items-center gap-3 mb-6">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-bold uppercase tracking-wide">
-            <Sparkles className="w-4 h-4" />New
+            <Stethoscope className="w-4 h-4" />Live Session
           </span>
           <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium">
             <Timer className="w-4 h-4" />In-Session Mode
@@ -102,7 +102,7 @@ const LiveSessionCard = () => {
                   <span>Session: <strong className="text-foreground">2 min 34</strong></span>
                 </div>
                 <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">
-                  ✅ Normo-fluent
+                  Normo-fluent
                 </span>
               </div>
 

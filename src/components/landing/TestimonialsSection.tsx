@@ -1,24 +1,20 @@
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
     quote: "I used to manually time recordings and count syllables. TalkSlower does it in real time. My cluttering clients actually practice between sessions now.",
     author: "Sarah M., CCC-SLP",
     role: "Private Practice, Austin TX",
-    rating: 5,
   },
   {
     quote: "I was at 6.2 syllables per second and didn't even know it. After 5 weeks of daily practice, I'm consistently under 4.5. My wife noticed before I did.",
     author: "James T.",
     role: "Patient, 34",
-    rating: 5,
   },
   {
     quote: "There's nothing else like this for cluttering. The SPS metric is clinically sound, and the Dialogue Mode is a game-changer for real-world transfer.",
     author: "Dr. Rebecca L., CCC-SLP",
     role: "University Clinic, Boston",
-    rating: 5,
   },
 ];
 
@@ -34,10 +30,10 @@ export const TestimonialsSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Real results from real people
+            Trusted by speech-language pathologists
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Speech therapists and patients making real progress, every day.
+            Feedback from practicing SLPs and their patients.
           </p>
         </motion.div>
 
@@ -45,21 +41,13 @@ export const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
-              className="relative bg-card rounded-2xl p-8 shadow-lg border border-border/50"
+              className="relative bg-card rounded-xl p-8 border border-border border-l-2 border-l-primary"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Quote className="absolute top-6 right-6 w-8 h-8 text-primary/20" />
-
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-
-              <p className="text-foreground mb-6 italic">
+              <p className="text-foreground mb-6 italic leading-relaxed">
                 "{testimonial.quote}"
               </p>
 

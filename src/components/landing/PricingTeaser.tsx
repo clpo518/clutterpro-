@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Check, Stethoscope, ArrowRight, Gift, Sparkles } from "lucide-react";
+import { Check, Stethoscope, ArrowRight, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -37,7 +37,7 @@ export const PricingTeaser = () => {
           >
             <div className="absolute -top-3 left-1/2 -translate-x-1/2">
               <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary text-primary-foreground text-sm font-medium">
-                <Sparkles className="w-4 h-4" />
+                <Check className="w-4 h-4" />
                 Everything included
               </span>
             </div>
@@ -68,7 +68,7 @@ export const PricingTeaser = () => {
             </div>
 
             <div className="text-center">
-              <Button className="hover:scale-105 transition-transform duration-200" size="lg" asChild>
+              <Button size="lg" asChild>
                 <Link to="/auth?tab=signup">
                   Create my patient account
                   <ArrowRight className="w-4 h-4 ml-2" />

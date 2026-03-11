@@ -4,38 +4,37 @@
 
 /* ============================================================
    TalkSlower Design System v3
-   Style: Soft & Organique — Headspace / Calm
-   Palettes douces, formes arrondies, animations fluides
+   Style: Clinical & Professional — Clean, trusted
    ============================================================ */
 
 @layer base {
   :root {
-    /* -------- Core Palette (warm but neutral) -------- */
-    --background: 40 18% 97%;
+    /* -------- Core Palette (neutral, clinical) -------- */
+    --background: 0 0% 98%;
     --foreground: 230 18% 22%;
 
-    /* Cards: cream-white with warmth */
-    --card: 40 40% 99%;
+    /* Cards: pure white */
+    --card: 0 0% 100%;
     --card-foreground: 230 18% 22%;
 
-    --popover: 40 40% 99%;
+    --popover: 0 0% 100%;
     --popover-foreground: 230 18% 22%;
 
     /* Primary: Soft teal — calming & medical */
     --primary: 170 45% 41%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary: Warm blush */
-    --secondary: 28 60% 95%;
-    --secondary-foreground: 170 40% 30%;
+    /* Secondary: Cool light gray */
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 210 15% 35%;
 
-    /* Muted: Warm sand */
-    --muted: 34 25% 93%;
+    /* Muted: Neutral gray */
+    --muted: 210 15% 95%;
     --muted-foreground: 230 10% 48%;
 
-    /* Accent: Peach glow */
-    --accent: 22 75% 93%;
-    --accent-foreground: 22 60% 35%;
+    /* Accent: Cool neutral */
+    --accent: 210 25% 94%;
+    --accent-foreground: 210 20% 40%;
 
     /* -------- Clinical Feedback Colors -------- */
     --speed-calm: 160 50% 45%;
@@ -53,21 +52,21 @@
     --warning-foreground: 0 0% 100%;
 
     /* -------- Borders & Inputs -------- */
-    --border: 36 20% 88%;
-    --input: 36 20% 88%;
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
     --ring: 170 45% 41%;
 
-    /* Radius: generous for organic feel */
-    --radius: 1.125rem;
+    /* Radius: professional */
+    --radius: 0.75rem;
 
     /* -------- Sidebar -------- */
-    --sidebar-background: 36 33% 97%;
+    --sidebar-background: 210 10% 97%;
     --sidebar-foreground: 230 18% 22%;
     --sidebar-primary: 170 45% 41%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 34 30% 94%;
-    --sidebar-accent-foreground: 170 40% 30%;
-    --sidebar-border: 36 20% 90%;
+    --sidebar-accent: 210 15% 95%;
+    --sidebar-accent-foreground: 210 15% 35%;
+    --sidebar-border: 220 13% 91%;
     --sidebar-ring: 170 45% 41%;
 
     /* -------- Shadows: soft & diffused -------- */
@@ -135,7 +134,7 @@
 }
 
 /* ============================================================
-   Custom Animations — organic, fluid
+   Animations — minimal, purposeful
    ============================================================ */
 
 @keyframes pulse-slow {
@@ -168,45 +167,11 @@
   to { opacity: 1; transform: scale(1); }
 }
 
-@keyframes shimmer {
-  from { background-position: 200% 0; }
-  to { background-position: -200% 0; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-@keyframes breathe {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.05); opacity: 0.9; }
-}
-
-@keyframes blob {
-  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-}
-
 .animate-pulse-slow { animation: pulse-slow 3s ease-in-out infinite; }
 .animate-wave { animation: wave 0.5s ease-in-out infinite; }
 .animate-fade-up { animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 .animate-fade-in { animation: fade-in 0.4s ease-out forwards; }
 .animate-scale-in { animation: scale-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-.animate-float { animation: float 5s ease-in-out infinite; }
-.animate-breathe { animation: breathe 6s ease-in-out infinite; }
-.animate-blob { animation: blob 8s ease-in-out infinite; }
-
-.animate-shimmer {
-  background: linear-gradient(
-    90deg,
-    hsl(var(--muted)) 0%,
-    hsl(var(--background)) 50%,
-    hsl(var(--muted)) 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 2s linear infinite;
-}
 
 /* ============================================================
    Base Styles
@@ -246,80 +211,46 @@
    ============================================================ */
 
 @layer components {
-  /* Soft elevated card */
+  /* Elevated card */
   .card-elevated {
-    @apply bg-card rounded-2xl border border-border/50;
+    @apply bg-card rounded-xl border border-border/50;
     box-shadow: var(--shadow-card);
-    transition: box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1), transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: box-shadow 0.3s ease;
   }
 
   .card-elevated:hover {
     box-shadow: var(--shadow-card-hover);
-    transform: translateY(-3px);
   }
 
-  /* Soft card — no hover lift, just gentle presence */
+  /* Soft card */
   .card-soft {
-    @apply bg-card/90 rounded-2xl border border-border/30;
+    @apply bg-card rounded-xl border border-border/30;
     box-shadow: var(--shadow-sm);
-    backdrop-filter: blur(8px);
   }
 
-  /* Glass effect — organic blur */
+  /* Glass effect */
   .glass {
-    @apply bg-card/70 backdrop-blur-2xl border border-border/30;
-    box-shadow: 0 4px 16px -4px hsl(170 45% 41% / 0.04);
+    @apply bg-card border border-border/30;
+    box-shadow: var(--shadow-sm);
   }
 
-  /* Smooth interactive element */
+  /* Interactive element */
   .interactive {
-    @apply transition-all duration-300;
-    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    @apply transition-colors duration-200;
   }
 
-  .interactive:hover {
-    @apply scale-[1.02];
-  }
-
-  .interactive:active {
-    @apply scale-[0.98];
-  }
-
-  /* Gradient text */
+  /* Gradient text — solid primary */
   .gradient-text {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      135deg,
-      hsl(var(--primary)) 0%,
-      hsl(170 45% 52%) 60%,
-      hsl(160 50% 45%) 100%
-    );
+    color: hsl(var(--primary));
   }
 
-  /* Organic gradient background */
+  /* Gradient backgrounds — flat */
   .gradient-subtle {
-    background: linear-gradient(
-      160deg,
-      hsl(var(--background)) 0%,
-      hsl(var(--secondary)) 40%,
-      hsl(var(--accent) / 0.25) 100%
-    );
+    background: hsl(var(--background));
   }
 
-  /* Organic gradient — warm flowing */
   .gradient-organic {
-    background: linear-gradient(
-      145deg,
-      hsl(var(--secondary)) 0%,
-      hsl(var(--background)) 35%,
-      hsl(var(--accent) / 0.3) 70%,
-      hsl(var(--secondary)) 100%
-    );
-  }
-
-  /* Blob shape for decorative backgrounds */
-  .blob {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    background: hsl(var(--background));
   }
 
   /* Clinical badge styles */

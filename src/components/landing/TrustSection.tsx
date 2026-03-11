@@ -58,11 +58,6 @@ export const TrustSection = () => {
                 <badge.icon className="w-4 h-4 text-primary" />
               </div>
               <span className="text-sm font-medium">{badge.label}</span>
-              {'isNew' in badge && badge.isNew && (
-                <span className="px-1.5 py-0.5 text-[10px] font-bold bg-orange-500 text-white rounded-full uppercase">
-                  New
-                </span>
-              )}
             </div>
           ))}
         </motion.div>

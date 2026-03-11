@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Heart, Quote, ArrowRight, Building2, Users, Code, Sparkles } from "lucide-react";
+import { Heart, Quote, ArrowRight, Building2, Users, Code, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import founderImage from "@/assets/clement-founder.jpg";
@@ -12,10 +12,7 @@ export const FounderStorySection = ({ audience = "patient" }: FounderStorySectio
   const isTherapist = audience === "therapist";
 
   return (
-    <section className="py-24 bg-gradient-to-b from-background via-secondary/30 to-background relative overflow-hidden">
-      {/* Subtle decorative elements */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
+    <section className="py-24 bg-background relative overflow-hidden">
 
       <div className="container px-4 md:px-6 relative">
         <motion.div
@@ -56,19 +53,14 @@ export const FounderStorySection = ({ audience = "patient" }: FounderStorySectio
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="relative">
-                {/* Decorative frame */}
-                <div className="absolute -inset-3 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl blur-sm" />
-                <div className="relative">
-                  <img
-                    src={founderImage}
-                    alt="Clement, founder of TalkSlower"
-                    className="w-full aspect-[4/5] object-cover rounded-2xl shadow-2xl"
-                  />
-                  {/* Name overlay */}
-                  <div className="absolute bottom-4 left-4 right-4 bg-background/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                    <p className="font-semibold text-foreground">Clement</p>
-                    <p className="text-sm text-muted-foreground">Founder &middot; Person who clutters</p>
-                  </div>
+                <img
+                  src={founderImage}
+                  alt="Clement, founder of TalkSlower"
+                  className="w-full aspect-[4/5] object-cover rounded-xl shadow-lg"
+                />
+                <div className="absolute bottom-4 left-4 right-4 bg-card rounded-lg p-4 border border-border">
+                  <p className="font-semibold text-foreground">Clement</p>
+                  <p className="text-sm text-muted-foreground">Founder &middot; Person who clutters</p>
                 </div>
               </div>
             </motion.div>
@@ -128,7 +120,7 @@ export const FounderStorySection = ({ audience = "patient" }: FounderStorySectio
 
               {/* CTA */}
               <div className="pt-4">
-                <Button asChild size="lg" className="rounded-xl shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all">
+                <Button asChild size="lg">
                   <Link to={isTherapist ? "/auth" : "/assessment"}>
                     {isTherapist ? "Create a Pro account" : "Start my training"}
                     <ArrowRight className="w-5 h-5 ml-2" />
@@ -147,7 +139,7 @@ export const FounderStorySection = ({ audience = "patient" }: FounderStorySectio
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <div className="p-8 md:p-10 rounded-2xl bg-card border border-border shadow-lg">
+          <div className="p-8 md:p-10 rounded-xl bg-card border border-border">
             <div className="text-center mb-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
                 <Building2 className="w-4 h-4" />
@@ -191,7 +183,7 @@ export const FounderStorySection = ({ audience = "patient" }: FounderStorySectio
             </div>
 
             <div className="flex items-center justify-center gap-4 pt-4 border-t border-border">
-              <Sparkles className="w-5 h-5 text-primary" />
+              <CheckCircle2 className="w-5 h-5 text-primary" />
               <p className="text-sm text-muted-foreground text-center">
                 <strong className="text-foreground">TalkSlower</strong> is developed and maintained with the goal of helping every person who clutters regain confidence.
               </p>

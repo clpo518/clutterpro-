@@ -1,28 +1,25 @@
 import { motion } from "framer-motion";
-import { Activity, Timer, Mic, Sparkles, Dna } from "lucide-react";
+import { Activity, Timer, Mic, FlaskConical, Dna } from "lucide-react";
 
 const pillars = [
   {
     icon: Activity,
     title: "Clear Articulation",
     description: "Swallowed syllables are the #1 reason people can't follow you. Targeted drills train your mouth to keep up with your brain.",
-    color: "from-cyan-500/20 to-teal-500/10",
-    iconColor: "text-cyan-600 dark:text-cyan-400",
-    bgColor: "bg-cyan-100 dark:bg-cyan-900/30"
+    iconColor: "text-primary",
+    bgColor: "bg-primary/10"
   },
   {
     icon: Timer,
     title: "Rhythm & Pausing",
     description: "People who clutter rarely pause. Learn where to breathe naturally so listeners can actually process what you're saying.",
-    color: "from-purple-500/20 to-violet-500/10",
-    iconColor: "text-purple-600 dark:text-purple-400",
-    bgColor: "bg-purple-100 dark:bg-purple-900/30"
+    iconColor: "text-primary",
+    bgColor: "bg-primary/10"
   },
   {
     icon: Mic,
     title: "Real Conversations",
     description: "Reading aloud is step one. The real test is talking to people. Dialogue Mode gives you live feedback during actual conversations.",
-    color: "from-primary/20 to-accent/10",
     iconColor: "text-primary",
     bgColor: "bg-primary/10"
   }
@@ -30,7 +27,7 @@ const pillars = [
 
 export const MethodSection = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-background to-secondary/30">
+    <section className="py-24 bg-background">
       <div className="container px-4 md:px-6">
         <motion.div
           className="text-center mb-16"
@@ -40,7 +37,7 @@ export const MethodSection = () => {
           transition={{ duration: 0.6 }}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            <Sparkles className="w-4 h-4" />
+            <FlaskConical className="w-4 h-4" />
             Evidence-Based Method
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -55,7 +52,7 @@ export const MethodSection = () => {
           {pillars.map((pillar, index) => (
             <motion.div
               key={index}
-              className={`relative p-8 rounded-2xl bg-gradient-to-br ${pillar.color} border border-border/50 hover:shadow-lg transition-shadow`}
+              className="relative p-8 rounded-xl bg-card border border-border"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -76,7 +73,7 @@ export const MethodSection = () => {
 
         {/* Personalized calibration highlight */}
         <motion.div
-          className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20"
+          className="mt-16 p-8 rounded-xl bg-muted/50 border border-border"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

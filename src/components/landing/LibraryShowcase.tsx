@@ -1,20 +1,19 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { BookOpen, ArrowRight, Sparkles } from "lucide-react";
+import { BookOpen, ArrowRight, Gauge, Mic2, Wind, Activity, Zap, Brain, MessageSquare } from "lucide-react";
 
 const categories = [
-  { icon: "📖", title: "Slowing Down", count: 10, bg: "bg-emerald-50 dark:bg-emerald-950/40", iconBg: "bg-emerald-100 dark:bg-emerald-900/50", text: "text-emerald-700 dark:text-emerald-400" },
-  { icon: "🎯", title: "Articulation", count: 20, bg: "bg-red-50 dark:bg-red-950/40", iconBg: "bg-red-100 dark:bg-red-900/50", text: "text-red-700 dark:text-red-400" },
-  { icon: "🧘", title: "Breath Management", count: 10, bg: "bg-pink-50 dark:bg-pink-950/40", iconBg: "bg-pink-100 dark:bg-pink-900/50", text: "text-pink-700 dark:text-pink-400" },
-  { icon: "⚡", title: "Motor Challenges", count: 12, bg: "bg-cyan-50 dark:bg-cyan-950/40", iconBg: "bg-cyan-100 dark:bg-cyan-900/50", text: "text-cyan-700 dark:text-cyan-400" },
-  { icon: "🏋️", title: "Warm-Up", count: 5, bg: "bg-orange-50 dark:bg-orange-950/40", iconBg: "bg-orange-100 dark:bg-orange-900/50", text: "text-orange-700 dark:text-orange-400" },
-  { icon: "🧠", title: "Cognitive Traps", count: 8, bg: "bg-purple-50 dark:bg-purple-950/40", iconBg: "bg-purple-100 dark:bg-purple-900/50", text: "text-purple-700 dark:text-purple-400" },
-  { icon: "💬", title: "Dialogue Mode", count: 0, isNew: true, bg: "bg-primary/5 dark:bg-primary/10", iconBg: "bg-primary/15 dark:bg-primary/20", text: "text-primary" },
+  { icon: Gauge, title: "Slowing Down", count: 10, bg: "bg-muted/50", iconBg: "bg-emerald-100 dark:bg-emerald-900/50", text: "text-emerald-700 dark:text-emerald-400" },
+  { icon: Mic2, title: "Articulation", count: 20, bg: "bg-muted/50", iconBg: "bg-red-100 dark:bg-red-900/50", text: "text-red-700 dark:text-red-400" },
+  { icon: Wind, title: "Breath Management", count: 10, bg: "bg-muted/50", iconBg: "bg-pink-100 dark:bg-pink-900/50", text: "text-pink-700 dark:text-pink-400" },
+  { icon: Activity, title: "Motor Challenges", count: 12, bg: "bg-muted/50", iconBg: "bg-cyan-100 dark:bg-cyan-900/50", text: "text-cyan-700 dark:text-cyan-400" },
+  { icon: Zap, title: "Warm-Up", count: 5, bg: "bg-muted/50", iconBg: "bg-orange-100 dark:bg-orange-900/50", text: "text-orange-700 dark:text-orange-400" },
+  { icon: Brain, title: "Cognitive Traps", count: 8, bg: "bg-muted/50", iconBg: "bg-purple-100 dark:bg-purple-900/50", text: "text-purple-700 dark:text-purple-400" },
+  { icon: MessageSquare, title: "Dialogue Mode", count: 0, bg: "bg-muted/50", iconBg: "bg-primary/15 dark:bg-primary/20", text: "text-primary" },
 ];
 
 const rebusCategory = {
-  icon: "🖼️",
   title: "Rebus Mode",
   subtitle: "For children & non-readers",
   count: 25,
@@ -24,7 +23,7 @@ export const LibraryShowcase = () => {
   const totalCount = categories.reduce((sum, c) => sum + c.count, 0) + rebusCategory.count;
 
   return (
-    <section className="py-24 bg-gradient-to-b from-secondary/30 to-background overflow-hidden">
+    <section className="py-24 bg-muted/30 overflow-hidden">
       <div className="container px-4 md:px-6">
         <motion.div
           className="text-center mb-14"
@@ -57,21 +56,17 @@ export const LibraryShowcase = () => {
             {categories.map((category, index) => (
               <motion.div
                 key={index}
-                className={`flex items-center gap-4 p-4 rounded-xl ${category.bg} transition-transform hover:scale-[1.02]`}
+                className={`flex items-center gap-4 p-4 rounded-xl ${category.bg}`}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: index * 0.06 }}
               >
-                <div className={`w-10 h-10 rounded-lg ${category.iconBg} flex items-center justify-center text-xl flex-shrink-0`}>
-                  {category.icon}
+                <div className={`w-10 h-10 rounded-lg ${category.iconBg} flex items-center justify-center flex-shrink-0`}>
+                  <category.icon className={`w-5 h-5 ${category.text}`} />
                 </div>
                 <span className={`font-medium flex-1 ${category.text}`}>{category.title}</span>
-                {(category as any).isNew ? (
-                  <span className="px-2 py-0.5 text-[10px] font-bold bg-primary text-primary-foreground rounded-full uppercase">New</span>
-                ) : (
-                  <span className={`text-sm font-bold ${category.text} tabular-nums`}>{category.count}</span>
-                )}
+                <span className={`text-sm font-bold ${category.text} tabular-nums`}>{category.count || "—"}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -84,25 +79,15 @@ export const LibraryShowcase = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 dark:from-amber-950/50 dark:via-yellow-950/40 dark:to-orange-950/40 border-2 border-yellow-200 dark:border-yellow-800 p-8">
-              {/* Decorative floating emojis */}
-              <div className="absolute top-4 right-4 text-3xl opacity-60 animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}>🐢</div>
-              <div className="absolute bottom-6 right-8 text-2xl opacity-50 animate-bounce" style={{ animationDelay: '1s', animationDuration: '2.5s' }}>🌈</div>
-              <div className="absolute top-1/2 right-4 text-2xl opacity-40 animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '3.5s' }}>⭐</div>
-
-              <div className="flex items-center gap-2 mb-4">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-xs font-bold uppercase tracking-wide">
-                  <Sparkles className="w-3 h-3" />
-                  New
-                </span>
+            <div className="relative rounded-xl overflow-hidden bg-muted/50 border border-border p-8">
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                <BookOpen className="w-6 h-6 text-primary" />
               </div>
-
-              <div className="text-5xl mb-4">{rebusCategory.icon}</div>
               <h3 className="text-2xl font-bold text-foreground mb-2">{rebusCategory.title}</h3>
               <p className="text-muted-foreground mb-4">{rebusCategory.subtitle}</p>
 
               {/* Example rebus preview */}
-              <div className="bg-white/70 dark:bg-background/50 rounded-xl p-4 mb-4 border border-yellow-200/60 dark:border-yellow-800/40">
+              <div className="bg-background/70 dark:bg-background/50 rounded-xl p-4 mb-4 border border-border">
                 <p className="text-sm text-muted-foreground mb-2 font-medium">Example:</p>
                 <div className="flex items-center gap-2 text-2xl flex-wrap">
                   <span>🏠</span>
@@ -116,7 +101,7 @@ export const LibraryShowcase = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <span className="text-sm font-bold text-yellow-700 dark:text-yellow-400 bg-yellow-100 dark:bg-yellow-900/40 px-3 py-1 rounded-full">
+                <span className="text-sm font-bold text-muted-foreground bg-background px-3 py-1 rounded-full">
                   {rebusCategory.count} exercises
                 </span>
                 <span className="text-xs text-muted-foreground">Ages 4+</span>
