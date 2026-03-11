@@ -201,13 +201,15 @@ const NeurologyTraining = () => {
             </button>
           </div>
         </header>
-        <RetellingPlayer
-          exercise={exercise}
-          onBack={() => {
-            setSelectedMode(null);
-            setExercise(null);
-          }}
-        />
+        <main className="flex-1 container mx-auto px-4 py-6 max-w-lg">
+          <RetellingPlayer
+            exercise={exercise}
+            onBack={() => {
+              setSelectedMode(null);
+              setExercise(null);
+            }}
+          />
+        </main>
       </div>
     );
   }

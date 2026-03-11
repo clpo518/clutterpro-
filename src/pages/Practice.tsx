@@ -4,7 +4,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Activity, ArrowLeft, Pause, Play, Shuffle, Lightbulb, Target, Mic, Repeat, Volume2, Timer, Gauge, ChevronLeft, ChevronRight, ChevronDown, Lock, Info, AlertTriangle, X, FlaskConical, Map, Settings2, FileText } from "lucide-react";
+import { Activity, ArrowLeft, Pause, Play, Shuffle, Lightbulb, Target, Mic, Repeat, Volume2, Timer, Gauge, ChevronLeft, ChevronRight, ChevronDown, Lock, Info, AlertTriangle, X, FlaskConical, Map, Settings2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { JOURNEY_STEPS } from "@/data/journeyPath";
 import { toast } from "sonner";
@@ -67,6 +67,7 @@ const Practice = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const categoryId = searchParams.get("category");
+  const isCustomTextEntry = searchParams.get("custom-text") === "true";
   const journeyStepParam = searchParams.get("journey_step");
   const journeyStep = journeyStepParam !== null ? parseInt(journeyStepParam, 10) : null;
   const assignmentId = searchParams.get("assignment");
@@ -207,6 +208,13 @@ const Practice = () => {
       }
     }
   }, [categoryId]);
+
+  // Auto-open custom text modal when navigated from Library
+  useEffect(() => {
+    if (isCustomTextEntry) {
+      setShowCustomTextModal(true);
+    }
+  }, [isCustomTextEntry]);
 
   // Navigation functions for exercises
   const goToPreviousExercise = () => {
@@ -1078,15 +1086,6 @@ const Practice = () => {
                   <span className="text-sm text-muted-foreground">
                     {currentCategory ? currentCategory.title : `Text ${fallbackTextIndex + 1}/${practiceTexts.length}`}
                   </span>
-                  <button
-                    onClick={() => setShowCustomTextModal(true)}
-                    disabled={isRecording}
-                    className="text-xs text-primary hover:text-primary/80 font-medium transition-colors disabled:opacity-50 flex items-center gap-1 ml-1"
-                    title="Use your own text"
-                  >
-                    <FileText className="w-3 h-3" />
-                    <span className="hidden sm:inline">My text</span>
-                  </button>
                 </div>
                 <div className="flex items-center gap-2">
                   {/* Pacing Mode Selector */}

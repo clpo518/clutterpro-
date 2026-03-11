@@ -16,10 +16,10 @@ interface WordWithTimestamp {
   speaker?: number;
 }
 
-// English single-word fillers
-const SINGLE_FILLERS = new Set(['um', 'uh', 'uhh', 'umm', 'like', 'basically', 'literally', 'actually', 'honestly', 'so', 'right', 'okay', 'well']);
+// English single-word fillers (only unambiguous fillers — no words with common non-filler uses)
+const SINGLE_FILLERS = new Set(['um', 'uh', 'uhh', 'umm', 'hmm', 'hm', 'er', 'erm']);
 // English two-word fillers
-const TWO_WORD_FILLERS = new Set(['you know', 'i mean', 'kind of', 'sort of']);
+const TWO_WORD_FILLERS = new Set(['you know', 'i mean']);
 
 interface FillerDetails {
   [filler: string]: number;

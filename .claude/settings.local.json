@@ -44,7 +44,8 @@
       "Bash(do sed -i 's/TalkSlower/TalkSlower/g; s/TALKSLOWER/TALKSLOWER/g; s/talkslower/talkslower/g' \"$f\")",
       "Bash(done)",
       "Bash(mv CLUTTERPRO_CONTEXT.md TALKSLOWER_CONTEXT.md)",
-      "Bash(mv CLUTTERPRO_MASTER.md TALKSLOWER_MASTER.md)"
+      "Bash(mv CLUTTERPRO_MASTER.md TALKSLOWER_MASTER.md)",
+      "Bash(xargs grep -l \"SilenceTraining\\\\|silence\\\\|pause\")"
     ]
   }
 }

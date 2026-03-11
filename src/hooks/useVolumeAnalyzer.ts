@@ -7,21 +7,24 @@ interface VolumeAnalyzerResult {
   stopAnalyzing: () => void;
 }
 
-const VOLUME_THRESHOLD = 0.15; // Threshold to consider "speaking"
+const VOLUME_THRESHOLD = 0.25; // Threshold to consider "speaking" (raised to ignore breathing/ambient)
 const ANALYSIS_INTERVAL = 50; // Analyze every 50ms for ultra-responsiveness
+const SPEAK_CONFIRM_MS = 250; // Volume must stay above threshold for 250ms to count as speaking
 
 export const useVolumeAnalyzer = (): VolumeAnalyzerResult => {
   const [volumeLevel, setVolumeLevel] = useState(0);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  
+
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const dataArrayRef = useRef<Uint8Array | null>(null);
-  
+
   // Track speaking state with hysteresis to avoid flickering
   const speakingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastSpeakingRef = useRef(false);
+  // Temporal confirmation: track when volume first went above threshold
+  const aboveThresholdSinceRef = useRef<number | null>(null);
 
   const analyzeVolume = useCallback(() => {
     if (!analyserRef.current || !dataArrayRef.current) return;
@@ -40,20 +43,32 @@ export const useVolumeAnalyzer = (): VolumeAnalyzerResult => {
     const scaledVolume = Math.min(1, rms * 2.5);
     setVolumeLevel(scaledVolume);
     
-    // Determine if speaking with hysteresis
-    const currentlySpeaking = scaledVolume > VOLUME_THRESHOLD;
-    
-    if (currentlySpeaking) {
-      // Clear any pending "stop speaking" timeout
-      if (speakingTimeoutRef.current) {
-        clearTimeout(speakingTimeoutRef.current);
-        speakingTimeoutRef.current = null;
+    // Determine if speaking with temporal confirmation + hysteresis
+    const aboveThreshold = scaledVolume > VOLUME_THRESHOLD;
+
+    if (aboveThreshold) {
+      // Track how long we've been above threshold
+      if (aboveThresholdSinceRef.current === null) {
+        aboveThresholdSinceRef.current = Date.now();
       }
-      if (!lastSpeakingRef.current) {
-        setIsSpeaking(true);
-        lastSpeakingRef.current = true;
+
+      const aboveDuration = Date.now() - aboveThresholdSinceRef.current;
+
+      // Only confirm speaking after sustained volume for SPEAK_CONFIRM_MS
+      if (aboveDuration >= SPEAK_CONFIRM_MS) {
+        if (speakingTimeoutRef.current) {
+          clearTimeout(speakingTimeoutRef.current);
+          speakingTimeoutRef.current = null;
+        }
+        if (!lastSpeakingRef.current) {
+          setIsSpeaking(true);
+          lastSpeakingRef.current = true;
+        }
       }
     } else {
+      // Reset temporal confirmation
+      aboveThresholdSinceRef.current = null;
+
       // Wait 300ms before declaring "not speaking" to avoid flickering
       if (lastSpeakingRef.current && !speakingTimeoutRef.current) {
         speakingTimeoutRef.current = setTimeout(() => {
@@ -105,6 +120,7 @@ export const useVolumeAnalyzer = (): VolumeAnalyzerResult => {
     setVolumeLevel(0);
     setIsSpeaking(false);
     lastSpeakingRef.current = false;
+    aboveThresholdSinceRef.current = null;
   }, []);
 
   // Cleanup on unmount

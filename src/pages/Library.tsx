@@ -4,7 +4,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Activity, ArrowLeft, BookOpen, Sparkles, Send, MessageCircle, FlaskConical } from "lucide-react";
+import { Activity, ArrowLeft, BookOpen, Sparkles, Send, MessageCircle, FlaskConical, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { exerciseCategories, ExerciseCategory } from "@/data/exercises";
 import AssignExerciseModal from "@/components/assignments/AssignExerciseModal";
@@ -157,8 +157,9 @@ const Library = () => {
               let count = tab.id === "all" 
                 ? exerciseCategories.length 
                 : exerciseCategories.filter(c => getFilterGroup(c) === tab.id).length;
-              // Include Dialogue mode in oral count
+              // Include Dialogue mode in oral count, My Text in reading count
               if (tab.id === "oral" || tab.id === "all") count += 1;
+              if (tab.id === "reading" || tab.id === "all") count += 1;
               return (
                 <button
                   key={tab.id}
@@ -178,6 +179,45 @@ const Library = () => {
               );
             })}
           </div>
+
+          {/* My Text - Standalone Card */}
+          {(activeFilter === "all" || activeFilter === "reading") && (
+            <motion.div
+              className="mb-4"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Card
+                className="relative cursor-pointer transition-all overflow-hidden bg-card border-border hover:shadow-lg hover:border-primary/30 group"
+                onClick={() => navigate("/practice?custom-text=true")}
+              >
+                <div className="flex items-center gap-4 p-4 sm:p-5">
+                  <div className="text-3xl sm:text-4xl shrink-0">📝</div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      <CardTitle className="text-base sm:text-lg leading-tight">My text</CardTitle>
+                      <span className="inline-flex text-[11px] font-medium px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">
+                        New
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground line-clamp-2">
+                      Paste your own text (presentation, article, clinical text…) and practice with biofeedback.
+                    </p>
+                  </div>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="shrink-0 gap-1"
+                    onClick={(e) => { e.stopPropagation(); navigate("/practice?custom-text=true"); }}
+                  >
+                    <FileText className="w-4 h-4" />
+                    <span className="hidden sm:inline">Paste</span>
+                  </Button>
+                </div>
+              </Card>
+            </motion.div>
+          )}
 
           {/* Dialogue Mode - Featured Card */}
           {(activeFilter === "all" || activeFilter === "oral") && (

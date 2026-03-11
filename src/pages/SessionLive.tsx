@@ -30,6 +30,8 @@ interface PatientOption {
 /* ──── Target SPS options ──── */
 const TARGET_SPS_OPTIONS = [
   { value: 0, label: "None" },
+  { value: 1.0, label: "1.0 — Very slow" },
+  { value: 2.0, label: "2.0 — Relaxed" },
   { value: 3.0, label: "3.0 — Slow" },
   { value: 3.5, label: "3.5 — Steady" },
   { value: 4.0, label: "4.0 — Moderate" },
