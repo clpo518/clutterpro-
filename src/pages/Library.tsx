@@ -60,13 +60,15 @@ const Library = () => {
   }, [activeFilter]);
 
   const handleCategoryClick = (categoryId: string) => {
-    // Route neuro categories to the dedicated NeurologyTraining page
+    // Route categories with dedicated pages
     if (categoryId === "neuro-projection") {
       navigate("/neuro-training?mode=projection");
     } else if (categoryId === "neuro-articulation") {
       navigate("/neuro-training?mode=articulation");
     } else if (categoryId === "neuro-narrative") {
       navigate("/neuro-training?mode=narrative");
+    } else if (categoryId === "silence-training") {
+      navigate("/silence-training");
     } else {
       navigate(`/practice?category=${categoryId}`);
     }
