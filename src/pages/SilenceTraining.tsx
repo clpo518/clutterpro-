@@ -3,7 +3,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft, Play, Square, Timer, Wind, Volume2, VolumeX,
-  CheckCircle2, RotateCcw, Trophy, Sparkles, ChevronRight, Zap, Flower2, Info,
+  RotateCcw, ChevronRight, Zap, Flower2, Info,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -19,11 +19,11 @@ import { toast } from "sonner";
 type ThemeKey = "routine" | "memories" | "hobbies" | "imagination" | "mix";
 
 const THEMES: { key: ThemeKey; label: string; icon: string }[] = [
-  { key: "routine", label: "Routine", icon: "\u{1F305}" },
-  { key: "memories", label: "Memories", icon: "\u{1F39E}\uFE0F" },
-  { key: "hobbies", label: "Hobbies", icon: "\u{1F3D5}\uFE0F" },
+  { key: "routine", label: "Routine", icon: "\u2600\uFE0F" },
+  { key: "memories", label: "Memories", icon: "\u{1F4F8}" },
+  { key: "hobbies", label: "Hobbies", icon: "\u{1F3AE}" },
   { key: "imagination", label: "Imagination", icon: "\u{1F308}" },
-  { key: "mix", label: "Mix", icon: "\u{1F3AD}" },
+  { key: "mix", label: "Mix", icon: "\u{1F3B2}" },
 ];
 
 const THEME_PROMPTS: Record<Exclude<ThemeKey, "mix">, string[]> = {
@@ -70,11 +70,12 @@ type Difficulty = "beginner" | "intermediate" | "advanced";
 
 const DIFFICULTY_CONFIG: Record<
   Difficulty,
-  { label: string; icon: string; silenceDurations: number[]; speakDuration: number; description: string; range: string }
+  { label: string; icon: string; rounds: number; silenceDurations: number[]; speakDuration: number; description: string; range: string }
 > = {
   beginner: {
     label: "Beginner",
     icon: "\u{1F331}",
+    rounds: 5,
     silenceDurations: [2, 2, 3, 3, 4],
     speakDuration: 20,
     description: "Short pauses",
@@ -83,7 +84,8 @@ const DIFFICULTY_CONFIG: Record<
   intermediate: {
     label: "Intermediate",
     icon: "\u{1F3AF}",
-    silenceDurations: [3, 4, 4, 5, 6],
+    rounds: 6,
+    silenceDurations: [3, 3, 4, 4, 5, 6],
     speakDuration: 15,
     description: "Moderate pauses",
     range: "3\u20136s",
@@ -91,17 +93,22 @@ const DIFFICULTY_CONFIG: Record<
   advanced: {
     label: "Advanced",
     icon: "\u{1F3C6}",
-    silenceDurations: [4, 5, 6, 7, 8],
+    rounds: 7,
+    silenceDurations: [4, 4, 5, 6, 6, 7, 8],
     speakDuration: 12,
     description: "Long pauses",
     range: "4\u20138s",
   },
 };
 
-const TARGET_ROUNDS = 5;
-
 type Phase = "silence" | "speak";
 type TrainingMode = "classic" | "interruption";
+
+interface RoundResult {
+  question: string;
+  silenceDuration: number;
+  held: boolean; // true = silence maintained, false = spoke
+}
 
 // Interruption mode: user speaks freely, random pauses imposed
 const INTERRUPTION_CONFIG: Record<Difficulty, { minSpeak: number; maxSpeak: number }> = {
@@ -133,30 +140,34 @@ const SilenceTraining = () => {
   const [roundIndex, setRoundIndex] = useState(0);
   const [pausesRespected, setPausesRespected] = useState(0);
   const [pausesTotal, setPausesTotal] = useState(0);
-  const [spokeInSilence, setSpokeInSilence] = useState(false);
   const [showResult, setShowResult] = useState(false);
+  const [roundResults, setRoundResults] = useState<RoundResult[]>([]);
 
-  // Refs
+  // Refs — use ref for spokeInSilence to avoid stale closures in setInterval
   const streamRef = useRef<MediaStream | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const usedPromptsRef = useRef<Set<string>>(new Set());
   const completedRoundsRef = useRef(0);
+  const spokeInSilenceRef = useRef(false);
+  const currentPromptRef = useRef("");
 
   // Hooks
   const { volumeLevel, isSpeaking, startAnalyzing, stopAnalyzing } = useVolumeAnalyzer();
   const gamification = useGamification();
   const journey = useJourneyProgress();
 
+  const targetRounds = DIFFICULTY_CONFIG[difficulty].rounds;
+
   // ── Estimated duration for progress bar ──────────────────────
   const estimatedDuration = useMemo(() => {
     const config = DIFFICULTY_CONFIG[difficulty];
     const silenceSum = config.silenceDurations.reduce((a, b) => a + b, 0);
     if (mode === "classic") {
-      return silenceSum + config.speakDuration * TARGET_ROUNDS;
+      return silenceSum + config.speakDuration * targetRounds;
     }
     const ic = INTERRUPTION_CONFIG[difficulty];
-    return silenceSum + ((ic.minSpeak + ic.maxSpeak) / 2) * TARGET_ROUNDS;
-  }, [difficulty, mode]);
+    return silenceSum + ((ic.minSpeak + ic.maxSpeak) / 2) * targetRounds;
+  }, [difficulty, mode, targetRounds]);
 
   // ── Prompt selection ────────────────────────────────────────
   const pickRandomPrompt = useCallback(() => {
@@ -197,6 +208,7 @@ const SilenceTraining = () => {
         ? getSilenceDuration()
         : getInterruptionSpeakDuration();
 
+      const firstPrompt = pickRandomPrompt();
       setIsRunning(true);
       setPhase(startPhase);
       setPhaseTimer(startTimer);
@@ -204,10 +216,12 @@ const SilenceTraining = () => {
       setRoundIndex(0);
       setPausesRespected(0);
       setPausesTotal(0);
-      setSpokeInSilence(false);
+      spokeInSilenceRef.current = false;
       setShowResult(false);
+      setRoundResults([]);
       completedRoundsRef.current = 0;
-      setCurrentPrompt(mode === "classic" ? pickRandomPrompt() : "Speak freely about anything...");
+      setCurrentPrompt(firstPrompt);
+      currentPromptRef.current = firstPrompt;
       usedPromptsRef.current.clear();
     } catch {
       toast.error("Microphone access is required for this exercise.");
@@ -233,6 +247,9 @@ const SilenceTraining = () => {
   useEffect(() => {
     if (!isRunning) return;
 
+    const diffConfig = DIFFICULTY_CONFIG[difficulty];
+    const rounds = diffConfig.rounds;
+
     timerRef.current = setInterval(() => {
       setTotalElapsed((prev) => prev + 1);
 
@@ -242,27 +259,31 @@ const SilenceTraining = () => {
             // Classic: silence → speak → silence → ...
             setPhase((currentPhase) => {
               if (currentPhase === "silence") {
+                // Silence ended — record result
+                const held = !spokeInSilenceRef.current;
+                const silDur = diffConfig.silenceDurations[completedRoundsRef.current % diffConfig.silenceDurations.length];
+                setRoundResults((prev) => [...prev, { question: currentPromptRef.current, silenceDuration: silDur, held }]);
                 setPausesTotal((t) => t + 1);
-                if (!spokeInSilence) {
-                  setPausesRespected((r) => r + 1);
-                }
-                setSpokeInSilence(false);
+                if (held) setPausesRespected((r) => r + 1);
+                spokeInSilenceRef.current = false;
                 return "speak";
               } else {
                 // Speak ended → round complete
                 completedRoundsRef.current += 1;
-                if (completedRoundsRef.current >= TARGET_ROUNDS) {
+                if (completedRoundsRef.current >= rounds) {
                   setTimeout(() => handleStop(), 0);
                   return currentPhase;
                 }
                 setRoundIndex((r) => r + 1);
-                setCurrentPrompt(pickRandomPrompt());
+                const nextPrompt = pickRandomPrompt();
+                setCurrentPrompt(nextPrompt);
+                currentPromptRef.current = nextPrompt;
                 return "silence";
               }
             });
             setPhase((nextPhase) => {
               if (nextPhase === "speak") {
-                setPhaseTimer(DIFFICULTY_CONFIG[difficulty].speakDuration);
+                setPhaseTimer(diffConfig.speakDuration);
               } else {
                 setPhaseTimer(getSilenceDuration());
               }
@@ -276,17 +297,21 @@ const SilenceTraining = () => {
                 setRoundIndex((r) => r + 1);
                 return "silence";
               } else {
-                // Silence ended — evaluate + round complete
+                // Silence ended — record result + round complete
+                const held = !spokeInSilenceRef.current;
+                const silDur = diffConfig.silenceDurations[completedRoundsRef.current % diffConfig.silenceDurations.length];
+                setRoundResults((prev) => [...prev, { question: currentPromptRef.current, silenceDuration: silDur, held }]);
                 setPausesTotal((t) => t + 1);
-                if (!spokeInSilence) {
-                  setPausesRespected((r) => r + 1);
-                }
-                setSpokeInSilence(false);
+                if (held) setPausesRespected((r) => r + 1);
+                spokeInSilenceRef.current = false;
                 completedRoundsRef.current += 1;
-                if (completedRoundsRef.current >= TARGET_ROUNDS) {
+                if (completedRoundsRef.current >= rounds) {
                   setTimeout(() => handleStop(), 0);
                   return currentPhase;
                 }
+                const nextPrompt = pickRandomPrompt();
+                setCurrentPrompt(nextPrompt);
+                currentPromptRef.current = nextPrompt;
                 return "speak";
               }
             });
@@ -308,12 +333,12 @@ const SilenceTraining = () => {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [isRunning, difficulty, mode, spokeInSilence, handleStop, pickRandomPrompt, getSilenceDuration, getInterruptionSpeakDuration]);
+  }, [isRunning, difficulty, mode, handleStop, pickRandomPrompt, getSilenceDuration, getInterruptionSpeakDuration]);
 
   // ── Detect voice during silence ─────────────────────────────
   useEffect(() => {
     if (isRunning && phase === "silence" && isSpeaking) {
-      setSpokeInSilence(true);
+      spokeInSilenceRef.current = true;
     }
   }, [isRunning, phase, isSpeaking]);
 
@@ -361,6 +386,8 @@ const SilenceTraining = () => {
       }
     };
   }, []);
+
+  const totalSilenceTime = roundResults.reduce((sum, r) => sum + r.silenceDuration, 0);
 
   const progressPercent = Math.min(100, (totalElapsed / estimatedDuration) * 100);
   const silencePhaseDuration = phase === "silence" ? getSilenceDuration() : DIFFICULTY_CONFIG[difficulty].speakDuration;
@@ -507,36 +534,34 @@ const SilenceTraining = () => {
             </CardContent>
           </Card>
 
-          {/* Question theme (classic mode only) */}
-          {mode === "classic" && (
-            <Card className="mb-4">
-              <CardContent className="pt-5 pb-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-lg">{"\u{1F3A8}"}</span>
-                  <h2 className="text-sm font-semibold">Question theme</h2>
-                </div>
-                <div className="flex gap-2 justify-center">
-                  {THEMES.map((theme) => (
-                    <button
-                      key={theme.key}
-                      onClick={() => setSelectedTheme(theme.key)}
-                      className={`flex flex-col items-center gap-1 p-2.5 rounded-xl border-2 transition-all min-w-[56px] ${
-                        selectedTheme === theme.key
-                          ? "border-primary bg-primary/5"
-                          : "border-border hover:border-primary/30"
-                      }`}
-                    >
-                      <span className="text-xl">{theme.icon}</span>
-                      <span className="text-[10px] font-medium">{theme.label}</span>
-                    </button>
-                  ))}
-                </div>
-                <p className="text-xs text-muted-foreground text-center mt-3">
-                  Questions in the same theme build on each other.
-                </p>
-              </CardContent>
-            </Card>
-          )}
+          {/* Question theme */}
+          <Card className="mb-4">
+            <CardContent className="pt-5 pb-4">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-lg">{"\u{1F3A8}"}</span>
+                <h2 className="text-sm font-semibold">Question theme</h2>
+              </div>
+              <div className="flex gap-2 justify-center">
+                {THEMES.map((theme) => (
+                  <button
+                    key={theme.key}
+                    onClick={() => setSelectedTheme(theme.key)}
+                    className={`flex flex-col items-center gap-1 p-2.5 rounded-xl border-2 transition-all min-w-[56px] ${
+                      selectedTheme === theme.key
+                        ? "border-primary bg-primary/5"
+                        : "border-border hover:border-primary/30"
+                    }`}
+                  >
+                    <span className="text-xl">{theme.icon}</span>
+                    <span className="text-[10px] font-medium">{theme.label}</span>
+                  </button>
+                ))}
+              </div>
+              <p className="text-xs text-muted-foreground text-center mt-3">
+                Questions in the same theme build on each other.
+              </p>
+            </CardContent>
+          </Card>
 
           {/* Difficulty */}
           <Card className="mb-4">
@@ -567,7 +592,7 @@ const SilenceTraining = () => {
                 )}
               </div>
               <p className="text-xs text-muted-foreground text-center mt-3">
-                {TARGET_ROUNDS} questions &middot; Pauses {DIFFICULTY_CONFIG[difficulty].range}
+                {targetRounds} questions &middot; Pauses {DIFFICULTY_CONFIG[difficulty].range}
               </p>
             </CardContent>
           </Card>
@@ -611,47 +636,42 @@ const SilenceTraining = () => {
 
   // ── Results Screen ──────────────────────────────────────────
   if (showResult) {
+    const resultEmoji = successRate >= 80 ? "\u{1F389}" : successRate >= 50 ? "\u{1F44D}" : "\u{1F4AA}";
+
     return (
       <div className="min-h-screen gradient-subtle">
         <div className="container max-w-lg mx-auto px-4 py-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="text-center"
           >
-            <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
-              {successRate >= 80 ? (
-                <Trophy className="w-10 h-10 text-primary" />
-              ) : successRate >= 50 ? (
-                <CheckCircle2 className="w-10 h-10 text-primary" />
-              ) : (
-                <Sparkles className="w-10 h-10 text-primary" />
-              )}
+            {/* Header */}
+            <div className="text-center mb-6">
+              <span className="text-5xl block mb-4">{resultEmoji}</span>
+              <h1 className="text-2xl font-bold mb-2">
+                {successRate >= 80
+                  ? "Excellent!"
+                  : successRate >= 50
+                  ? "Nice effort!"
+                  : "Good start!"}
+              </h1>
+              <p className="text-muted-foreground">
+                {successRate >= 80
+                  ? "You stayed calm and composed during most pauses."
+                  : successRate >= 50
+                  ? "You're building your tolerance. Keep practicing!"
+                  : "Silence is a skill \u2014 you'll get better each time."}
+              </p>
             </div>
 
-            <h1 className="text-2xl font-bold mb-2">
-              {successRate >= 80
-                ? "Excellent!"
-                : successRate >= 50
-                ? "Nice effort!"
-                : "Good start!"}
-            </h1>
-            <p className="text-muted-foreground mb-8">
-              {successRate >= 80
-                ? "You stayed calm and composed during most pauses."
-                : successRate >= 50
-                ? "You're building your tolerance. Keep practicing!"
-                : "Silence is a skill \u2014 you'll get better each time."}
-            </p>
-
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-3 mb-8">
+            <div className="grid grid-cols-3 gap-3 mb-6">
               <Card>
                 <CardContent className="py-4 text-center">
                   <p className="text-2xl font-bold text-primary">
                     {pausesRespected}/{pausesTotal}
                   </p>
-                  <p className="text-xs text-muted-foreground mt-1">Pauses respected</p>
+                  <p className="text-xs text-muted-foreground mt-1">Pauses held</p>
                 </CardContent>
               </Card>
               <Card>
@@ -662,12 +682,44 @@ const SilenceTraining = () => {
               </Card>
               <Card>
                 <CardContent className="py-4 text-center">
-                  <p className="text-2xl font-bold">
-                    {Math.floor(totalElapsed / 60)}:{(totalElapsed % 60).toString().padStart(2, "0")}
-                  </p>
-                  <p className="text-xs text-muted-foreground mt-1">Duration</p>
+                  <p className="text-2xl font-bold">{totalSilenceTime}s</p>
+                  <p className="text-xs text-muted-foreground mt-1">Total silence</p>
                 </CardContent>
               </Card>
+            </div>
+
+            {/* Per-round detail */}
+            {roundResults.length > 0 && (
+              <Card className="mb-6">
+                <CardContent className="pt-4 pb-3">
+                  <h3 className="text-sm font-semibold mb-3">Round details</h3>
+                  <div className="space-y-2">
+                    {roundResults.map((round, i) => (
+                      <div key={i} className="flex items-start gap-2.5 text-sm">
+                        <span className={`shrink-0 mt-0.5 ${round.held ? "text-green-500" : "text-red-500"}`}>
+                          {round.held ? "\u2713" : "\u2717"}
+                        </span>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs text-muted-foreground truncate">{round.question}</p>
+                        </div>
+                        <span className="text-xs text-muted-foreground shrink-0">
+                          {round.silenceDuration}s
+                        </span>
+                        <span className={`text-xs font-medium shrink-0 ${round.held ? "text-green-600" : "text-red-500"}`}>
+                          {round.held ? "Held" : "Spoke"}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Pedagogical insight */}
+            <div className="bg-indigo-50/50 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/30 rounded-lg p-3.5 mb-6">
+              <p className="text-xs text-indigo-800 dark:text-indigo-200 leading-relaxed">
+                <strong>Did you know?</strong> A pause of 3 to 5 seconds feels completely natural to your listener. What feels long to you is actually comfortable for them.
+              </p>
             </div>
 
             {/* Actions */}
@@ -678,6 +730,7 @@ const SilenceTraining = () => {
                 onClick={() => {
                   setShowResult(false);
                   setTotalElapsed(0);
+                  setRoundResults([]);
                 }}
               >
                 <RotateCcw className="w-4 h-4" />
@@ -685,9 +738,9 @@ const SilenceTraining = () => {
               </Button>
               <Button
                 className="flex-1 gap-2"
-                onClick={() => navigate("/dashboard")}
+                onClick={() => navigate("/library")}
               >
-                Continue
+                Back to library
                 <ChevronRight className="w-4 h-4" />
               </Button>
             </div>
@@ -706,7 +759,7 @@ const SilenceTraining = () => {
           <div className="flex items-center gap-3">
             <Timer className="w-4 h-4 text-muted-foreground" />
             <span className="text-sm font-medium">
-              Question {Math.min(roundIndex + 1, TARGET_ROUNDS)} / {TARGET_ROUNDS}
+              Question {Math.min(roundIndex + 1, targetRounds)} / {targetRounds}
             </span>
           </div>
           {/* Overall progress */}
@@ -825,16 +878,16 @@ const SilenceTraining = () => {
               exit={{ opacity: 0, scale: 0.9 }}
               className="text-center max-w-md"
             >
-              {/* Prompt (classic) or free talk (interruption) */}
-              {mode === "classic" ? (
-                <p className="text-xl font-semibold text-foreground mb-8">
-                  {currentPrompt}
-                </p>
-              ) : (
-                <p className="text-lg text-muted-foreground mb-8">
-                  Keep talking freely... a pause will come at any moment
+              {/* Prompt */}
+              <p className="text-xl font-semibold text-foreground mb-2">
+                {currentPrompt}
+              </p>
+              {mode === "interruption" && (
+                <p className="text-xs text-muted-foreground mb-6">
+                  A pause will come at any moment...
                 </p>
               )}
+              {mode === "classic" && <div className="mb-8" />}
 
               {/* Speak indicator */}
               <div className="relative w-40 h-40 mx-auto mb-6">
