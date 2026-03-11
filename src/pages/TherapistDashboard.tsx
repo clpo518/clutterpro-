@@ -232,7 +232,7 @@ const TherapistDashboard = () => {
 
 Hello,
 
-To complement our sessions and accelerate your progress, I invite you to use the ClutterPro app.
+To complement our sessions and accelerate your progress, I invite you to use the TalkSlower app.
 
 It's an interactive tool designed to help you daily:
 
@@ -246,7 +246,7 @@ It's an interactive tool designed to help you daily:
 
 Getting started is easy:
 
-1. Go to https://www.clutterpro.com
+1. Go to https://www.talkslower.com
 2. Create your free account with my Pro Code: ${profile.therapist_code}
 
 See you soon!`;
@@ -270,7 +270,7 @@ See you soon!`;
     const subject = encodeURIComponent("Your at-home training tool");
     const body = encodeURIComponent(`Hello,
 
-To complement our sessions and accelerate your progress, I invite you to use the ClutterPro app.
+To complement our sessions and accelerate your progress, I invite you to use the TalkSlower app.
 
 It's an interactive tool designed to help you daily:
 
@@ -281,7 +281,7 @@ It's an interactive tool designed to help you daily:
 
 Getting started:
 
-1. Go to https://www.clutterpro.com
+1. Go to https://www.talkslower.com
 2. Create your free account with my Pro Code: ${profile.therapist_code}
 
 See you soon!`);
@@ -543,7 +543,7 @@ See you soon!`);
             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
               <Activity className="w-6 h-6 text-primary-foreground" />
             </div>
-            <span className="font-display font-bold text-xl hidden sm:inline">ClutterPro</span>
+            <span className="font-display font-bold text-xl hidden sm:inline">TalkSlower</span>
             <span className="text-xs bg-chart-2/20 text-chart-2 px-2 py-0.5 rounded-full font-medium hidden sm:inline">PRO</span>
           </Link>
           <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground">

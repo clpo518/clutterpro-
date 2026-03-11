@@ -18,7 +18,7 @@ export function PatientJoinedEmail(props: PatientJoinedEmailProps) {
   const { therapistName = 'Dear SLP', patientName, patientDetailUrl, referralCode, patientsCount } = props
 
   const referralUrl = referralCode
-    ? `https://clutterpro.com/pro?ref=${referralCode}`
+    ? `https://talkslower.com/pro?ref=${referralCode}`
     : null;
 
   return (
@@ -50,7 +50,7 @@ export function PatientJoinedEmail(props: PatientJoinedEmailProps) {
       )}
 
       <Text style={signatureText}>Happy collaborating,</Text>
-      <Text style={signatureName}>The ClutterPro Team</Text>
+      <Text style={signatureName}>The TalkSlower Team</Text>
     </BaseLayout>
   )
 }

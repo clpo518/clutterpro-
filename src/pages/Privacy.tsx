@@ -39,7 +39,7 @@ const Privacy = () => {
           {/* Introduction */}
           <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 mb-10">
             <p className="text-foreground/90 leading-relaxed">
-              At <strong>ClutterPro</strong>, protecting your personal data is our top priority.
+              At <strong>TalkSlower</strong>, protecting your personal data is our top priority.
               This privacy policy explains how we collect, use, and protect
               your information, especially your <strong>voice recordings</strong>, in accordance with
               HIPAA-conscious practices and applicable data protection regulations.
@@ -139,7 +139,7 @@ const Privacy = () => {
               </div>
               <p className="mt-4 text-sm text-muted-foreground italic">
                 Note: Only the SLP you have explicitly linked via a Pro Code can access your recordings.
-                No other professional or ClutterPro employee has access.
+                No other professional or TalkSlower employee has access.
               </p>
             </section>
 
@@ -214,8 +214,8 @@ const Privacy = () => {
               <div className="mt-6 bg-primary/5 border border-primary/20 rounded-xl p-4">
                 <p>
                   To exercise your rights, contact us at:
-                  <a href="mailto:support@clutterpro.com" className="text-primary font-semibold hover:underline ml-1">
-                    support@clutterpro.com
+                  <a href="mailto:support@talkslower.com" className="text-primary font-semibold hover:underline ml-1">
+                    support@talkslower.com
                   </a>
                 </p>
                 <p className="text-sm text-muted-foreground mt-2">
@@ -235,7 +235,7 @@ const Privacy = () => {
                 </h2>
               </div>
               <p className="mb-4">
-                While ClutterPro is not a covered entity under HIPAA, we follow HIPAA-conscious practices to protect your health-related data:
+                While TalkSlower is not a covered entity under HIPAA, we follow HIPAA-conscious practices to protect your health-related data:
               </p>
               <ul className="space-y-2 list-disc pl-6">
                 <li><strong>Encryption:</strong> All data is encrypted in transit (HTTPS/TLS) and at rest.</li>
@@ -317,9 +317,9 @@ const Privacy = () => {
                 you can contact us:
               </p>
               <div className="bg-card border border-border rounded-xl p-6">
-                <p><strong>ClutterPro</strong></p>
+                <p><strong>TalkSlower</strong></p>
                 <p className="mt-2">
-                  Email: <a href="mailto:support@clutterpro.com" className="text-primary hover:underline">support@clutterpro.com</a>
+                  Email: <a href="mailto:support@talkslower.com" className="text-primary hover:underline">support@talkslower.com</a>
                 </p>
               </div>
             </section>

@@ -79,7 +79,7 @@ const About = () => {
                 <div className="w-72 h-80 md:w-80 md:h-96 rounded-3xl overflow-hidden shadow-2xl">
                   <img
                     src={clementPhoto}
-                    alt="Clement, founder of ClutterPro"
+                    alt="Clement, founder of TalkSlower"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -229,7 +229,7 @@ const About = () => {
                 The Beginning
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                So I created ClutterPro
+                So I created TalkSlower
               </h2>
               <div className="prose prose-slate dark:prose-invert">
                 <p className="text-muted-foreground text-lg leading-relaxed">
@@ -242,7 +242,7 @@ const About = () => {
                   regularly with goals and streaks.
                 </p>
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  That's how <strong>ClutterPro</strong> was born -- the tool I wish
+                  That's how <strong>TalkSlower</strong> was born -- the tool I wish
                   I had from day one of my speech therapy.
                 </p>
               </div>
@@ -303,7 +303,7 @@ const About = () => {
               Ready to find your rhythm?
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-8">
-              Join hundreds of people who have taken back control of their speech.
+              Start your journey to clearer, more confident speech — at your own pace.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="gap-2" asChild>

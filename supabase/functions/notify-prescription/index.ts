@@ -90,7 +90,7 @@ serve(async (req) => {
       therapistName,
       exerciseTitle,
       message: message || undefined,
-      exerciseUrl: "https://www.clutterpro.com/dashboard",
+      exerciseUrl: "https://www.talkslower.com/dashboard",
     });
 
     if (!emailResult.success) {

@@ -98,7 +98,7 @@ serve(async (req) => {
     const emailResult = await sendEmail("patient_joined", therapistAuth.user.email, {
       therapistName: therapistProfile?.full_name || therapistAuth.user.email.split("@")[0],
       patientName: patientName,
-      patientDetailUrl: `https://www.clutterpro.com/patient/${patientId}`,
+      patientDetailUrl: `https://www.talkslower.com/patient/${patientId}`,
       referralCode: therapistProfile?.referral_code || null,
     });
 

@@ -45,11 +45,11 @@ const Terms = () => {
                 1. General Information
               </h2>
               <p className="mb-4">
-                The website and application <strong>ClutterPro</strong> are operated by <strong>ClutterPro Inc.</strong>
+                The website and application <strong>TalkSlower</strong> are operated by <strong>TalkSlower Inc.</strong>
               </p>
               <ul className="space-y-2 list-none pl-0">
                 <li><strong>Hosting:</strong> Supabase / Vercel</li>
-                <li><strong>Contact:</strong> <a href="mailto:support@clutterpro.com" className="text-primary hover:underline">support@clutterpro.com</a></li>
+                <li><strong>Contact:</strong> <a href="mailto:support@talkslower.com" className="text-primary hover:underline">support@talkslower.com</a></li>
               </ul>
             </section>
 
@@ -59,7 +59,7 @@ const Terms = () => {
                 2. Purpose and Scope
               </h2>
               <p>
-                These Terms of Service govern the sale of subscriptions and the use of the "ClutterPro" application. They apply to all subscribing healthcare professionals (the "SLP" or "Subscriber") as well as any person with access via a Pro Code (the "Patient"). Use of the application constitutes unconditional acceptance of these terms.
+                These Terms of Service govern the sale of subscriptions and the use of the "TalkSlower" application. They apply to all subscribing healthcare professionals (the "SLP" or "Subscriber") as well as any person with access via a Pro Code (the "Patient"). Use of the application constitutes unconditional acceptance of these terms.
               </p>
             </section>
 
@@ -72,7 +72,7 @@ const Terms = () => {
                 <div className="flex items-start gap-3">
                   <AlertTriangle className="w-6 h-6 text-red-600 dark:text-red-400 flex-shrink-0 mt-1" />
                   <p className="font-semibold text-red-800 dark:text-red-300">
-                    ClutterPro is a speech rate training and regulation tool. IT IS NOT A MEDICAL DEVICE.
+                    TalkSlower is a speech rate training and regulation tool. IT IS NOT A MEDICAL DEVICE.
                   </p>
                 </div>
                 <ul className="space-y-3 text-red-900 dark:text-red-200 ml-9">
@@ -86,7 +86,7 @@ const Terms = () => {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-red-600 dark:text-red-400">•</span>
-                    <span>ClutterPro disclaims all liability in case of lack of progress or worsening of conditions. The user is solely responsible for the interpretation of provided data (charts, speed) which are given for informational purposes only.</span>
+                    <span>TalkSlower disclaims all liability in case of lack of progress or worsening of conditions. The user is solely responsible for the interpretation of provided data (charts, speed) which are given for informational purposes only.</span>
                   </li>
                 </ul>
               </div>
@@ -134,7 +134,7 @@ const Terms = () => {
                   <strong>Solo Patient Subscription (B2C):</strong> Patients without a Pro Code can subscribe to a monthly plan (currently $9 USD/month) after the 7-day free trial. The subscription auto-renews each month.
                 </li>
                 <li>
-                  <strong>Security:</strong> Transactions are secured by our payment processor (Stripe). ClutterPro does not store any banking information.
+                  <strong>Security:</strong> Transactions are secured by our payment processor (Stripe). TalkSlower does not store any banking information.
                 </li>
               </ul>
             </section>
@@ -158,7 +158,7 @@ const Terms = () => {
                 7. Personal and Health Data
               </h2>
               <p className="mb-4">
-                ClutterPro places the utmost importance on protecting your data.
+                TalkSlower places the utmost importance on protecting your data.
               </p>
               <ul className="space-y-2 list-disc pl-6">
                 <li>
@@ -176,7 +176,7 @@ const Terms = () => {
                 8. Liability and Force Majeure
               </h2>
               <p>
-                ClutterPro shall not be held liable for internet network malfunctions, software bugs, or hardware incompatibility. In any event, ClutterPro's liability is limited to the amount paid by the customer for the service over the last 12 months.
+                TalkSlower shall not be held liable for internet network malfunctions, software bugs, or hardware incompatibility. In any event, TalkSlower's liability is limited to the amount paid by the customer for the service over the last 12 months.
               </p>
             </section>
 
@@ -186,7 +186,7 @@ const Terms = () => {
                 9. Intellectual Property
               </h2>
               <p>
-                All elements of the application (texts, code, graphics, audio, detection algorithms) are the exclusive property of ClutterPro. Any reproduction or reverse engineering is strictly prohibited.
+                All elements of the application (texts, code, graphics, audio, detection algorithms) are the exclusive property of TalkSlower. Any reproduction or reverse engineering is strictly prohibited.
               </p>
             </section>
 

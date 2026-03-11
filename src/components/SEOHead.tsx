@@ -16,8 +16,8 @@ interface SEOConfig {
   jsonLd?: object;
 }
 
-const SITE_URL = 'https://www.clutterpro.com';
-const SITE_NAME = 'ClutterPro';
+const SITE_URL = 'https://www.talkslower.com';
+const SITE_NAME = 'TalkSlower';
 const OG_DEFAULT = `${SITE_URL}/og-default.png`;
 
 // Per-page OG images
@@ -35,8 +35,8 @@ const ogImages: Record<string, string> = {
 const seoConfig: Record<string, SEOConfig> = {
   // -- Public Pages --
   '/': {
-    title: 'ClutterPro — Control Your Speech Rate',
-    description: 'ClutterPro helps people with cluttering and their speech-language pathologists measure, practice, and improve speech rate. Real-time SPS measurement, 60+ exercises, clinical tracking.',
+    title: 'TalkSlower — Control Your Speech Rate',
+    description: 'TalkSlower helps people with cluttering and their speech-language pathologists measure, practice, and improve speech rate. Real-time SPS measurement, 60+ exercises, clinical tracking.',
     keywords: 'cluttering speech therapy, SLP tool, speech rate measurement, SPS Van Zaalen, fluency training',
     jsonLd: {
       '@context': 'https://schema.org',
@@ -55,24 +55,24 @@ const seoConfig: Record<string, SEOConfig> = {
     }
   },
   '/patients': {
-    title: 'Cluttering Exercises & Speech Rate Training | ClutterPro',
+    title: 'Cluttering Exercises & Speech Rate Training | TalkSlower',
     description: 'The training app for people who clutter or speak too fast. Measure your rate in syllables/second, track your progress, and practice 5 min/day.',
     keywords: 'cluttering exercises, speaking too fast, speech rate control, vocal biofeedback, speech training'
   },
   '/pricing': {
-    title: 'ClutterPro Pricing — Plans for SLPs and Patients',
+    title: 'TalkSlower Pricing — Plans for SLPs and Patients',
     description: 'Pro subscription from $29/month for 3 patients. Free for patients. 30-day free trial. Cancel anytime.',
     keywords: 'SLP subscription, cluttering therapy tool pricing, speech therapy software'
   },
   '/pro': {
-    title: 'ClutterPro for SLPs — Clinical Tools for Cluttering Therapy',
+    title: 'TalkSlower for SLPs — Clinical Tools for Cluttering Therapy',
     description: 'Clinical tool for cluttering assessment and monitoring. Van Zaalen SPS metrics, auto-generated PDF reports, remote patient tracking. 30-day free trial.',
     keywords: 'SLP cluttering tool, fluency assessment, remote patient monitoring, SPS Van Zaalen, clinical report'
   },
   '/auth': {
-    title: 'Log In — ClutterPro',
-    description: 'Log in to your ClutterPro patient or professional account.',
-    keywords: 'clutterpro login, SLP signup, patient account'
+    title: 'Log In — TalkSlower',
+    description: 'Log in to your TalkSlower patient or professional account.',
+    keywords: 'talkslower login, SLP signup, patient account'
   },
   '/assessment': {
     title: 'Free Cluttering Assessment — 2-Minute Self-Test',
@@ -87,23 +87,23 @@ const seoConfig: Record<string, SEOConfig> = {
     }
   },
   '/about': {
-    title: 'About ClutterPro — Built by Someone Who Clutters',
+    title: 'About TalkSlower — Built by Someone Who Clutters',
     description: 'The story of how a developer with cluttering built the speech training tool he wished existed.',
-    keywords: 'about clutterpro, founder cluttering, speech rate tool story'
+    keywords: 'about talkslower, founder cluttering, speech rate tool story'
   },
   '/contact': {
-    title: 'Contact — ClutterPro',
-    description: 'Contact the ClutterPro team. Response within 24 hours. Human and confidential support.',
-    keywords: 'contact clutterpro, SLP support, technical help'
+    title: 'Contact — TalkSlower',
+    description: 'Contact the TalkSlower team. Response within 24 hours. Human and confidential support.',
+    keywords: 'contact talkslower, SLP support, technical help'
   },
   '/legal/terms': {
-    title: 'Terms of Service — ClutterPro',
-    description: 'ClutterPro terms of service. Access conditions, service usage, and responsibilities.',
+    title: 'Terms of Service — TalkSlower',
+    description: 'TalkSlower terms of service. Access conditions, service usage, and responsibilities.',
     keywords: 'terms of service, legal, terms and conditions'
   },
   '/legal/privacy': {
-    title: 'Privacy Policy — ClutterPro',
-    description: 'How ClutterPro protects your personal data. HIPAA-conscious security practices, encryption, and data protection.',
+    title: 'Privacy Policy — TalkSlower',
+    description: 'How TalkSlower protects your personal data. HIPAA-conscious security practices, encryption, and data protection.',
     keywords: 'privacy policy, HIPAA, personal data protection, health data security'
   },
   '/diagnostic': {
@@ -121,51 +121,51 @@ const seoConfig: Record<string, SEOConfig> = {
 
   // -- Blog Pages --
   '/blog': {
-    title: 'ClutterPro Blog — Cluttering Resources for SLPs',
+    title: 'TalkSlower Blog — Cluttering Resources for SLPs',
     description: 'Expert articles on cluttering, speech exercises, and clinical tools. Learn to master your speech rate.',
     keywords: 'cluttering blog, speech exercises, speech rate, SLP resources, fluency'
   },
 
   // -- App Pages (Patient) --
   '/dashboard': {
-    title: 'My Dashboard — Progress Tracking | ClutterPro',
+    title: 'My Dashboard — Progress Tracking | TalkSlower',
     description: 'Your speech rate stats, recent recordings, and weekly goals.',
     keywords: 'dashboard, progress, speech rate stats, training tracker'
   },
   '/library': {
-    title: 'Exercise Library — 60+ Exercises | ClutterPro',
+    title: 'Exercise Library — 60+ Exercises | TalkSlower',
     description: 'Clinical texts, tongue twisters, breathing exercises, and cognitive challenges. Over 60 exercises to work on your pace.',
     keywords: 'speech exercises, fluency, tongue twisters, guided reading, articulation drills'
   },
   '/practice': {
-    title: 'Training Studio — Vocal Biofeedback | ClutterPro',
+    title: 'Training Studio — Vocal Biofeedback | TalkSlower',
     description: 'Recording interface with visual feedback (waveform), real-time SPS gauge, and filler word detection.',
     keywords: 'biofeedback training, speech rate exercise, speech speed gauge, karaoke reading'
   },
   '/settings': {
-    title: 'Settings — ClutterPro',
+    title: 'Settings — TalkSlower',
     description: 'Manage your profile, preferences, and subscription.',
     keywords: 'settings, profile, preferences'
   },
   '/subscription/manage': {
-    title: 'My Subscription — ClutterPro',
-    description: 'Manage your ClutterPro subscription.',
+    title: 'My Subscription — TalkSlower',
+    description: 'Manage your TalkSlower subscription.',
     keywords: 'subscription, management, billing'
   },
 
   // -- App Pages (Therapist) --
   '/patient/list': {
-    title: 'My Patients — Pro Dashboard | ClutterPro',
+    title: 'My Patients — Pro Dashboard | TalkSlower',
     description: 'Manage your patients, track their progress, and send remote exercise prescriptions.',
     keywords: 'patient management, SLP dashboard, clinical tracking'
   },
   '/pro/subscription': {
-    title: 'Pro Subscription — ClutterPro',
+    title: 'Pro Subscription — TalkSlower',
     description: 'Choose your professional plan and start monitoring your patients.',
     keywords: 'pro subscription, SLP plan'
   },
   '/pro/subscription/manage': {
-    title: 'Manage Pro Subscription — ClutterPro',
+    title: 'Manage Pro Subscription — TalkSlower',
     description: 'Modify or cancel your professional subscription.',
     keywords: 'subscription management, cancellation, billing'
   }
@@ -179,7 +179,7 @@ const patientFaqJsonLd = {
     {
       '@type': 'Question',
       name: 'Does this replace a speech-language pathologist?',
-      acceptedAnswer: { '@type': 'Answer', text: 'No, ClutterPro is a complementary tool for practicing between sessions. It is ideally used under the guidance of your SLP.' }
+      acceptedAnswer: { '@type': 'Answer', text: 'No, TalkSlower is a complementary tool for practicing between sessions. It is ideally used under the guidance of your SLP.' }
     },
     {
       '@type': 'Question',
@@ -230,27 +230,27 @@ function useSEOConfig() {
   if (!config) {
     if (location.pathname.startsWith('/patient/')) {
       config = {
-        title: 'Patient Profile — Clinical Tracking | ClutterPro',
+        title: 'Patient Profile — Clinical Tracking | TalkSlower',
         description: 'Recordings, SPS progress chart, and clinical metrics for your patient.',
         keywords: 'patient profile, clinical tracking, SPS, speech therapy progress'
       };
     } else if (location.pathname.startsWith('/session/')) {
       config = {
-        title: 'Session Analysis — ClutterPro',
+        title: 'Session Analysis — TalkSlower',
         description: 'Analyze your recording: SPS rate curve, detected disfluencies, and waveform.',
         keywords: 'session analysis, recording, SPS rate, waveform'
       };
     } else if (location.pathname.startsWith('/blog/')) {
       config = {
-        title: 'Article — ClutterPro Blog',
+        title: 'Article — TalkSlower Blog',
         description: 'Article on cluttering, speech rate, and speech therapy exercises.',
         keywords: 'cluttering blog, speech therapy article'
       };
     } else {
       config = {
-        title: 'ClutterPro — Speech Rate Training for Cluttering',
-        description: 'ClutterPro helps people with cluttering and their speech-language pathologists measure, practice, and improve speech rate. Real-time SPS measurement, 60+ exercises, clinical tracking.',
-        keywords: 'clutterpro, cluttering, speech-language pathologist'
+        title: 'TalkSlower — Speech Rate Training for Cluttering',
+        description: 'TalkSlower helps people with cluttering and their speech-language pathologists measure, practice, and improve speech rate. Real-time SPS measurement, 60+ exercises, clinical tracking.',
+        keywords: 'talkslower, cluttering, speech-language pathologist'
       };
     }
   }

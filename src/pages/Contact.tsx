@@ -78,14 +78,14 @@ const Contact = () => {
             className="w-full md:w-auto gap-2 mb-4"
             asChild
           >
-            <a href="mailto:support@clutterpro.com">
+            <a href="mailto:support@talkslower.com">
               Write to our team
               <Send className="w-4 h-4" />
             </a>
           </Button>
 
           <p className="text-sm text-muted-foreground">
-            Or write directly to: <span className="font-medium text-foreground select-all">support@clutterpro.com</span>
+            Or write directly to: <span className="font-medium text-foreground select-all">support@talkslower.com</span>
           </p>
         </motion.div>
 

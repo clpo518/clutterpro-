@@ -16,7 +16,7 @@ interface WelcomePatientEmailProps {
 
 export function WelcomePatientEmail(props: WelcomePatientEmailProps) {
   const { patientName = 'Dear patient', therapistName, appUrl, isSolo, referralCode } = props
-  const referralLink = referralCode ? `https://www.clutterpro.com/auth?tab=signup&ref=${referralCode}` : null
+  const referralLink = referralCode ? `https://www.talkslower.com/auth?tab=signup&ref=${referralCode}` : null
   return (
     <BaseLayout preview="It all starts with one first breath.">
       <Heading style={heading}>Welcome home 🌟</Heading>
@@ -29,7 +29,7 @@ export function WelcomePatientEmail(props: WelcomePatientEmailProps) {
 
       {therapistName && (
         <Text style={paragraph}>
-          {therapistName} has invited you to join ClutterPro. Together, you'll make progress at your own pace, with total peace of mind.
+          {therapistName} has invited you to join TalkSlower. Together, you'll make progress at your own pace, with total peace of mind.
         </Text>
       )}
 
@@ -63,7 +63,7 @@ export function WelcomePatientEmail(props: WelcomePatientEmailProps) {
       )}
 
       <Text style={signatureText}>By your side,</Text>
-      <Text style={signatureName}>The ClutterPro Team</Text>
+      <Text style={signatureName}>The TalkSlower Team</Text>
     </BaseLayout>
   )
 }

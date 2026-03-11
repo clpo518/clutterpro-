@@ -558,7 +558,7 @@ export function generateTextReport(analysis: ClinicalAnalysis, therapistName?: s
   lines.push("  measuring articulatory rate. It does not");
   lines.push("  replace clinical diagnosis.");
   lines.push("");
-  lines.push("  Generated via ClutterPro.com");
+  lines.push("  Generated via TalkSlower.com");
   lines.push("");
   lines.push(doubleDivider);
 

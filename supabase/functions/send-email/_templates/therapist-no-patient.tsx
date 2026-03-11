@@ -106,8 +106,8 @@ export function TherapistNoPatientEmail(props: TherapistNoPatientEmailProps) {
       </Text>
 
       <Text style={signatureText}>Talk soon,</Text>
-      <Text style={signatureName}>Clement — Founder of ClutterPro</Text>
-      <Text style={signatureEmail}>clement@clutterpro.com</Text>
+      <Text style={signatureName}>Clement — Founder of TalkSlower</Text>
+      <Text style={signatureEmail}>clement@talkslower.com</Text>
     </BaseLayout>
   )
 }

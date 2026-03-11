@@ -984,7 +984,7 @@ const ProLanding = () => {
                 Frequently Asked Questions
               </h2>
               <p className="text-lg text-muted-foreground">
-                Everything you need to know about ClutterPro
+                Everything you need to know about TalkSlower
               </p>
             </motion.div>
 
@@ -1052,7 +1052,7 @@ const ProLanding = () => {
                     </span>
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pb-5">
-                    No installation is required. ClutterPro works directly
+                    No installation is required. TalkSlower works directly
                     from a web browser, on phone, tablet, or computer. Your patients
                     can practice anywhere, anytime.
                   </AccordionContent>
@@ -1067,10 +1067,10 @@ const ProLanding = () => {
                   <AccordionContent className="text-muted-foreground pb-5">
                     Of course! We provide personalized onboarding to help you get started.
                     Email us at{" "}
-                    <a href="mailto:support@clutterpro.com" className="text-primary hover:underline font-medium">
-                      support@clutterpro.com
+                    <a href="mailto:support@talkslower.com" className="text-primary hover:underline font-medium">
+                      support@talkslower.com
                     </a>{" "}
-                    and we'll take the time to show you ClutterPro in detail.
+                    and we'll take the time to show you TalkSlower in detail.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>

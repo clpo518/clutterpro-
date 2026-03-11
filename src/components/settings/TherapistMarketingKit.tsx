@@ -25,14 +25,14 @@ const BADGES: BadgeConfig[] = [
     id: "clinical",
     label: "Clinical",
     tagline: "Partner Practitioner",
-    subtitle: "ClutterPro",
+    subtitle: "TalkSlower",
     previewBg: "bg-gradient-to-br from-[hsl(173,58%,32%)] to-[hsl(173,58%,26%)]",
     previewText: "text-white",
     previewAccent: "",
     icon: Activity,
     htmlStyle: `background: linear-gradient(135deg, hsl(173 58% 32%), hsl(173 58% 26%)); color: white; padding: 14px 22px; border-radius: 14px; display: inline-flex; align-items: center; gap: 14px; font-family: system-ui, -apple-system, sans-serif; text-decoration: none; box-shadow: 0 6px 20px rgba(15, 118, 110, 0.35); transition: transform 0.2s;`,
     htmlText1: "Partner Practitioner",
-    htmlText2: "ClutterPro",
+    htmlText2: "TalkSlower",
     htmlIconColor: "white",
   },
   {
@@ -53,22 +53,22 @@ const BADGES: BadgeConfig[] = [
     id: "light",
     label: "Light",
     tagline: "Recommended by your speech therapist",
-    subtitle: "clutterpro.com",
+    subtitle: "talkslower.com",
     previewBg: "bg-white border-2 border-border",
     previewText: "text-foreground",
     previewAccent: "text-primary",
     icon: Heart,
     htmlStyle: `background: #ffffff; color: #1f2937; padding: 14px 22px; border-radius: 14px; border: 2px solid #e5e7eb; display: inline-flex; align-items: center; gap: 14px; font-family: system-ui, -apple-system, sans-serif; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,0.08); transition: transform 0.2s;`,
     htmlText1: "Recommended by your speech therapist",
-    htmlText2: "clutterpro.com",
+    htmlText2: "talkslower.com",
     htmlIconColor: "#0F766E",
   },
 ];
 
-const publishedUrl = "https://www.clutterpro.com";
+const publishedUrl = "https://www.talkslower.com";
 
 function generateBadgeHTML(badge: BadgeConfig) {
-  return `<!-- ClutterPro Badge -->
+  return `<!-- TalkSlower Badge -->
 <a href="${publishedUrl}" target="_blank" rel="noopener noreferrer" style="${badge.htmlStyle}">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="${badge.htmlIconColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
   <span>
@@ -101,7 +101,7 @@ const TherapistMarketingKit = () => {
           Badge for your website
         </CardTitle>
         <CardDescription>
-          A badge to add to your website or professional profile to let patients know you use ClutterPro.
+          A badge to add to your website or professional profile to let patients know you use TalkSlower.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">

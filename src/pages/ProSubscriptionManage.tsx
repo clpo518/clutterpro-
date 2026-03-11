@@ -136,7 +136,7 @@ const ProSubscriptionManage = () => {
             <p className="text-muted-foreground">
               {stats?.subscriptionPlan === "trial"
                 ? "You are on a trial period"
-                : "You are subscribed to ClutterPro"
+                : "You are subscribed to TalkSlower"
               }
             </p>
           </div>
@@ -153,7 +153,7 @@ const ProSubscriptionManage = () => {
                     Your patients are counting on you
                   </h2>
                   <p className="text-muted-foreground">
-                    <strong className="text-foreground">{stats.activePatients} patient{stats.activePatients > 1 ? 's' : ''}</strong> {stats.activePatients > 1 ? 'are' : 'is'} actively using ClutterPro under your supervision.
+                    <strong className="text-foreground">{stats.activePatients} patient{stats.activePatients > 1 ? 's' : ''}</strong> {stats.activePatients > 1 ? 'are' : 'is'} actively using TalkSlower under your supervision.
                   </p>
                   <p className="text-sm text-green-600 dark:text-green-400 font-medium">
                     {stats.activePatients > 1 ? 'They would' : 'They would'} lose access to exercises if you cancel.
@@ -196,7 +196,7 @@ const ProSubscriptionManage = () => {
                   Continuity of care
                 </h2>
                 <p className="text-muted-foreground">
-                  Speech rate therapy requires regular monitoring over several months. Without ClutterPro, you won't be able to objectively measure speech rate in sessions or track your patients' progress.
+                  Speech rate therapy requires regular monitoring over several months. Without TalkSlower, you won't be able to objectively measure speech rate in sessions or track your patients' progress.
                 </p>
               </div>
             </div>
@@ -290,7 +290,7 @@ const ProSubscriptionManage = () => {
                 onClick={() => {
                   const subject = encodeURIComponent("[Pro Cancellation] Subscription cancellation request");
                   const body = encodeURIComponent(`Hello,\n\nI would like to cancel my Pro subscription.\n\nMy account email: ${user?.email || ""}\nNumber of active patients: ${stats?.activePatients || 0}\n\nPlease process my request.\n\nBest regards`);
-                  window.open(`mailto:support@clutterpro.com?subject=${subject}&body=${body}`, "_blank");
+                  window.open(`mailto:support@talkslower.com?subject=${subject}&body=${body}`, "_blank");
                 }}
                 className="text-sm text-muted-foreground hover:text-foreground/70 underline-offset-4 hover:underline transition-colors"
               >

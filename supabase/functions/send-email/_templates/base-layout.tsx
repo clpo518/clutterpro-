@@ -24,7 +24,7 @@ export function BaseLayout({ preview, children }: BaseLayoutProps) {
       <Body style={main}>
         <Container style={container}>
           <Section style={header}>
-            <Text style={logoText}>ClutterPro</Text>
+            <Text style={logoText}>TalkSlower</Text>
           </Section>
 
           <Section style={content}>
@@ -33,14 +33,14 @@ export function BaseLayout({ preview, children }: BaseLayoutProps) {
 
           <Section style={footer}>
             <Text style={footerText}>
-              © {new Date().getFullYear()} ClutterPro. All rights reserved.
+              © {new Date().getFullYear()} TalkSlower. All rights reserved.
             </Text>
             <Text style={footerText}>
-              <Link href="https://www.clutterpro.com" style={footerLink}>www.clutterpro.com</Link>
+              <Link href="https://www.talkslower.com" style={footerLink}>www.talkslower.com</Link>
             </Text>
             <Text style={footerLinks}>
               Questions? Email us at{' '}
-              <Link href="mailto:support@clutterpro.com" style={footerLink}>support@clutterpro.com</Link>
+              <Link href="mailto:support@talkslower.com" style={footerLink}>support@talkslower.com</Link>
             </Text>
           </Section>
         </Container>
@@ -51,7 +51,7 @@ export function BaseLayout({ preview, children }: BaseLayoutProps) {
 
 export default BaseLayout
 
-// Design tokens from ClutterPro design system
+// Design tokens from TalkSlower design system
 // Primary: hsl(170, 45%, 41%) = #3a9e8e (soft teal)
 // Foreground: hsl(230, 18%, 22%) = #2e3346
 // Muted foreground: hsl(230, 10%, 48%) = #6e7282

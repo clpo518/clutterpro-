@@ -61,7 +61,7 @@ async function notifyAdminNewPayment(
         <p><strong>Email:</strong> ${userEmail}</p>
         <p><strong>Role:</strong> ${role}</p>
         <p><strong>Plan:</strong> ${planName}</p>
-        <p style="color:#6e7282;font-size:13px;margin-top:24px;">— ClutterPro (automated notification)</p>
+        <p style="color:#6e7282;font-size:13px;margin-top:24px;">— TalkSlower (automated notification)</p>
       </div>
     `;
     const res = await fetch("https://api.resend.com/emails", {
@@ -71,8 +71,8 @@ async function notifyAdminNewPayment(
         Authorization: `Bearer ${resendKey}`,
       },
       body: JSON.stringify({
-        from: "ClutterPro <noreply@clutterpro.com>",
-        to: ["support@clutterpro.com"],
+        from: "TalkSlower <noreply@talkslower.com>",
+        to: ["support@talkslower.com"],
         subject,
         html,
       }),
@@ -229,8 +229,8 @@ serve(async (req) => {
               planName: planLabel,
               isTherapist: isB2BPlan,
               dashboardUrl: isB2BPlan
-                ? "https://www.clutterpro.com/patient/list"
-                : "https://www.clutterpro.com/practice",
+                ? "https://www.talkslower.com/patient/list"
+                : "https://www.talkslower.com/practice",
             });
             // Notify admin
             await notifyAdminNewPayment(
@@ -391,8 +391,8 @@ serve(async (req) => {
               await sendEmail("subscription_canceled", email, {
                 userName: userName || "User",
                 resubscribeUrl: isTherapist
-                  ? "https://www.clutterpro.com/pro/subscription"
-                  : "https://www.clutterpro.com/pricing",
+                  ? "https://www.talkslower.com/pro/subscription"
+                  : "https://www.talkslower.com/pricing",
               });
             }
           }
@@ -443,8 +443,8 @@ serve(async (req) => {
               await sendEmail("payment_failed", email, {
                 userName: userName || "User",
                 updatePaymentUrl: isTherapist
-                  ? "https://www.clutterpro.com/pro/subscription/manage"
-                  : "https://www.clutterpro.com/subscription/manage",
+                  ? "https://www.talkslower.com/pro/subscription/manage"
+                  : "https://www.talkslower.com/subscription/manage",
               });
             }
           }

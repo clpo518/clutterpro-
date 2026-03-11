@@ -16,7 +16,7 @@ export function TherapistExpiringPatientEmail(props: TherapistExpiringPatientEma
   const { patientName = 'Hi there', therapistName = 'your SLP', daysRemaining } = props
 
   return (
-    <BaseLayout preview={`Your access to ClutterPro is at stake`}>
+    <BaseLayout preview={`Your access to TalkSlower is at stake`}>
       <Heading style={heading}>
         ⚠️ Your access ends in {daysRemaining} day{daysRemaining > 1 ? 's' : ''}
       </Heading>
@@ -24,7 +24,7 @@ export function TherapistExpiringPatientEmail(props: TherapistExpiringPatientEma
       <Text style={paragraph}>Hi {patientName},</Text>
 
       <Text style={paragraph}>
-        {therapistName}'s ClutterPro subscription expires in {daysRemaining} day{daysRemaining > 1 ? 's' : ''}.
+        {therapistName}'s TalkSlower subscription expires in {daysRemaining} day{daysRemaining > 1 ? 's' : ''}.
       </Text>
 
       <Text style={warningBox}>
@@ -40,7 +40,7 @@ export function TherapistExpiringPatientEmail(props: TherapistExpiringPatientEma
       </Text>
 
       <Text style={scriptBox}>
-        "Hi, I just received a message from ClutterPro saying my access is about to expire. Would it be possible to renew your subscription so I can continue my exercises? Thank you!"
+        "Hi, I just received a message from TalkSlower saying my access is about to expire. Would it be possible to renew your subscription so I can continue my exercises? Thank you!"
       </Text>
 
       <Text style={reassuranceBox}>
@@ -55,12 +55,12 @@ export function TherapistExpiringPatientEmail(props: TherapistExpiringPatientEma
         You can also switch to <strong>Solo Mode</strong> and continue your exercises independently, with a 7-day free trial. Simply go to your Settings and choose "Switch to solo mode."
       </Text>
 
-      <Button style={autonomeButton} href="https://www.clutterpro.com/settings">
+      <Button style={autonomeButton} href="https://www.talkslower.com/settings">
         Continue in Solo Mode →
       </Button>
 
       <Text style={smallText}>
-        This message is sent automatically to help you continue your progress. Questions? Email us at support@clutterpro.com.
+        This message is sent automatically to help you continue your progress. Questions? Email us at support@talkslower.com.
       </Text>
     </BaseLayout>
   )

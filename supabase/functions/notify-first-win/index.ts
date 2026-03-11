@@ -108,7 +108,7 @@ serve(async (req) => {
     // Send the first win email
     const emailResult = await sendEmail("first_win", authUser.user.email, {
       userName: profile?.full_name || authUser.user.email.split("@")[0],
-      dashboardUrl: "https://www.clutterpro.com/dashboard",
+      dashboardUrl: "https://www.talkslower.com/dashboard",
     });
 
     if (!emailResult.success) {

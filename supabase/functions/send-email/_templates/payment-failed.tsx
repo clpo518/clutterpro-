@@ -20,7 +20,7 @@ export function PaymentFailedEmail(props: PaymentFailedEmailProps) {
       <Text style={paragraph}>Hi {userName},</Text>
 
       <Text style={paragraph}>
-        We were unable to process your latest payment for your ClutterPro subscription.
+        We were unable to process your latest payment for your TalkSlower subscription.
       </Text>
 
       <Text style={paragraph}>
@@ -32,7 +32,7 @@ export function PaymentFailedEmail(props: PaymentFailedEmailProps) {
       </Button>
 
       <Text style={smallText}>
-        If you believe this is an error, contact us at support@clutterpro.com
+        If you believe this is an error, contact us at support@talkslower.com
       </Text>
     </BaseLayout>
   )

@@ -31,10 +31,10 @@ export function RefundConfirmationEmail(props: RefundConfirmationEmailProps) {
       </Text>
 
       <Text style={paragraph}>
-        We hope to see you again on ClutterPro. If you have any questions, email us at support@clutterpro.com
+        We hope to see you again on TalkSlower. If you have any questions, email us at support@talkslower.com
       </Text>
 
-      <Text style={paragraph}>Thank you for using ClutterPro. 🙏</Text>
+      <Text style={paragraph}>Thank you for using TalkSlower. 🙏</Text>
     </BaseLayout>
   )
 }

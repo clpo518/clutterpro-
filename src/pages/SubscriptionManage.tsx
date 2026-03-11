@@ -123,7 +123,7 @@ const SubscriptionManage = () => {
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-sm">P</span>
             </div>
-            <span className="font-display font-bold">ClutterPro</span>
+            <span className="font-display font-bold">TalkSlower</span>
           </div>
         </div>
       </header>
@@ -364,7 +364,7 @@ const SubscriptionManage = () => {
                 onClick={() => {
                   const subject = encodeURIComponent("[Cancellation] Subscription cancellation request");
                   const body = encodeURIComponent(`Hello,\n\nI would like to cancel my Premium subscription.\n\nMy account email: ${user?.email || ""}\n\nPlease process my request.\n\nBest regards`);
-                  window.open(`mailto:support@clutterpro.com?subject=${subject}&body=${body}`, "_blank");
+                  window.open(`mailto:support@talkslower.com?subject=${subject}&body=${body}`, "_blank");
                 }}
                 className="text-sm text-muted-foreground hover:text-foreground/70 underline-offset-4 hover:underline transition-colors"
               >

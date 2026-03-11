@@ -20,7 +20,7 @@ export function SubscriptionCanceledEmail(props: SubscriptionCanceledEmailProps)
       <Text style={paragraph}>Hi {userName},</Text>
 
       <Text style={paragraph}>
-        We confirm that your ClutterPro subscription has been canceled. We respect your decision and thank you for being part of our community.
+        We confirm that your TalkSlower subscription has been canceled. We respect your decision and thank you for being part of our community.
       </Text>
 
       <Text style={dataBox}>
@@ -40,7 +40,7 @@ export function SubscriptionCanceledEmail(props: SubscriptionCanceledEmailProps)
       </Text>
 
       <Text style={paragraph}>
-        Your feedback means a lot. Email us at support@clutterpro.com
+        Your feedback means a lot. Email us at support@talkslower.com
       </Text>
 
       <Text style={paragraph}>
@@ -48,7 +48,7 @@ export function SubscriptionCanceledEmail(props: SubscriptionCanceledEmailProps)
       </Text>
 
       <Text style={signatureText}>With gratitude,</Text>
-      <Text style={signatureName}>The ClutterPro Team</Text>
+      <Text style={signatureName}>The TalkSlower Team</Text>
     </BaseLayout>
   )
 }

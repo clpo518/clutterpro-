@@ -1,12 +1,12 @@
-# 🇺🇸 ClutterPro — Complete US Translation Bible for Claude Code
+# 🇺🇸 TalkSlower — Complete US Translation Bible for Claude Code
 
-> **Instructions for Claude Code**: This document contains everything you need to translate the French SaaS `parlermoinsvite.fr` into an English US version called `ClutterPro`. Work through each section in order. Do NOT improvise translations — use exactly what is written here. Commit after each major section.
+> **Instructions for Claude Code**: This document contains everything you need to translate the French SaaS `parlermoinsvite.fr` into an English US version called `TalkSlower`. Work through each section in order. Do NOT improvise translations — use exactly what is written here. Commit after each major section.
 
 ---
 
 ## 0. CONTEXT & PRODUCT OVERVIEW
 
-**What this app does**: ClutterPro is a web app for people with cluttering (a fluency speech disorder characterized by excessively fast, disorganized speech). It provides:
+**What this app does**: TalkSlower is a web app for people with cluttering (a fluency speech disorder characterized by excessively fast, disorganized speech). It provides:
 - Real-time syllable-per-second (SPS) measurement via Deepgram API
 - Guided reading exercises with karaoke-style pacing
 - Speech therapy tools for SLPs (Speech-Language Pathologists)
@@ -741,7 +741,7 @@ POCLE SAS address → Remove or replace with your US entity
 ### UnifiedHeroSection.tsx
 ```
 Main headline → "Speak at your best. Every session."
-Sub-headline → "ClutterPro gives speech-language pathologists and their patients the tools to measure, practice, and improve speech rate — anywhere, anytime."
+Sub-headline → "TalkSlower gives speech-language pathologists and their patients the tools to measure, practice, and improve speech rate — anywhere, anytime."
 CTA button → "Start free trial"
 Secondary link → "I'm a patient"
 ```
@@ -769,7 +769,7 @@ const testimonials = [
   {
     name: "Sarah M., SLP",
     role: "Private Practice, Austin TX",
-    text: "ClutterPro has transformed how I support my cluttering clients between sessions. The real-time SPS measurement is exactly what I needed.",
+    text: "TalkSlower has transformed how I support my cluttering clients between sessions. The real-time SPS measurement is exactly what I needed.",
     avatar: "SM"
   },
   {
@@ -927,16 +927,16 @@ All email templates in `supabase/functions/send-email/_templates/`
 
 ### welcome-patient.tsx
 ```
-Subject: "Welcome to ClutterPro 🎉"
+Subject: "Welcome to TalkSlower 🎉"
 Body key strings:
-"Bienvenue sur ParlerMoinsVite" → "Welcome to ClutterPro"
+"Bienvenue sur ParlerMoinsVite" → "Welcome to TalkSlower"
 "Votre orthophoniste vous a invité(e)" → "Your SLP has invited you"
 "Commencer ma première séance" → "Start my first session"
 ```
 
 ### welcome-therapist.tsx
 ```
-Subject: "Your ClutterPro SLP account is ready"
+Subject: "Your TalkSlower SLP account is ready"
 "Votre code Pro est" → "Your Pro Code is"
 "Partagez-le à vos patients" → "Share it with your patients to get started"
 "Accéder à mon espace" → "Access my dashboard"
@@ -974,18 +974,18 @@ Subject: "Your weekly speech progress report"
 
 Default values:
 ```
-title: "ClutterPro — Speech Rate Training for Cluttering"
-description: "ClutterPro helps people with cluttering and their speech-language pathologists measure, practice, and improve speech rate. Real-time SPS measurement, 60+ exercises, clinical tracking."
+title: "TalkSlower — Speech Rate Training for Cluttering"
+description: "TalkSlower helps people with cluttering and their speech-language pathologists measure, practice, and improve speech rate. Real-time SPS measurement, 60+ exercises, clinical tracking."
 og:locale: "en_US"
 ```
 
 Page-specific:
 ```
-/ → "ClutterPro — Control Your Speech Rate"
-/pro → "ClutterPro for SLPs — Clinical Tools for Cluttering Therapy"
-/pricing → "ClutterPro Pricing — Plans for SLPs and Patients"
-/blog → "ClutterPro Blog — Cluttering Resources for SLPs"
-/about → "About ClutterPro — Built by Someone Who Clutters"
+/ → "TalkSlower — Control Your Speech Rate"
+/pro → "TalkSlower for SLPs — Clinical Tools for Cluttering Therapy"
+/pricing → "TalkSlower Pricing — Plans for SLPs and Patients"
+/blog → "TalkSlower Blog — Cluttering Resources for SLPs"
+/about → "About TalkSlower — Built by Someone Who Clutters"
 ```
 
 ---
@@ -1007,7 +1007,7 @@ Key changes:
 Add HIPAA section:
 ```
 ## HIPAA Notice
-ClutterPro takes the privacy of health information seriously. While ClutterPro is not a covered entity under HIPAA, we follow HIPAA-aligned security practices including encrypted data transmission, access controls, and audit logging. SLPs using ClutterPro with patients are encouraged to review their own HIPAA obligations.
+TalkSlower takes the privacy of health information seriously. While TalkSlower is not a covered entity under HIPAA, we follow HIPAA-aligned security practices including encrypted data transmission, access controls, and audit logging. SLPs using TalkSlower with patients are encouraged to review their own HIPAA obligations.
 ```
 
 **File**: `src/pages/Terms.tsx`
@@ -1023,7 +1023,7 @@ Remove French consumer protection law references
 
 **File**: `src/components/onboarding/PatientWelcomeModal.tsx`
 ```
-"Bienvenue sur ParlerMoinsVite !" → "Welcome to ClutterPro!"
+"Bienvenue sur ParlerMoinsVite !" → "Welcome to TalkSlower!"
 "Entraînez-vous 5 min/jour" → "Practice 5 min/day"
 "Mesurez votre progrès" → "Track your progress"
 "Suivez votre évolution" → "Watch yourself improve"
@@ -1033,7 +1033,7 @@ Remove French consumer protection law references
 
 **File**: `src/components/onboarding/WelcomeTourModal.tsx` (SLP tour)
 ```
-Slide 1: "Welcome to ClutterPro for SLPs"
+Slide 1: "Welcome to TalkSlower for SLPs"
 Slide 2: "Your Pro Code — Share this with your patients"
 Slide 3: "Patient Dashboard — Track progress at a glance"
 Slide 4: "Session Analysis — Review recordings and SPS data"
@@ -1048,14 +1048,14 @@ Slide 6: "Clinical Reports — Generate PDF reports in one click"
 **File**: `package.json`
 ```json
 {
-  "name": "clutterpro",
+  "name": "talkslower",
   "description": "Speech rate training app for cluttering — SLPs and patients"
 }
 ```
 
 **File**: `index.html`
 ```html
-<title>ClutterPro — Cluttering Speech Therapy Tool</title>
+<title>TalkSlower — Cluttering Speech Therapy Tool</title>
 <meta name="description" content="Real-time speech rate measurement and training for cluttering. For SLPs and patients." />
 ```
 
@@ -1063,11 +1063,11 @@ Slide 6: "Clinical Reports — Generate PDF reports in one click"
 ```
 User-agent: *
 Allow: /
-Sitemap: https://clutterpro.com/sitemap.xml
+Sitemap: https://talkslower.com/sitemap.xml
 ```
 
 **File**: `public/sitemap.xml`
-Update all URLs from `parlermoinsvite.fr` → `clutterpro.com` (or your chosen domain)
+Update all URLs from `parlermoinsvite.fr` → `talkslower.com` (or your chosen domain)
 
 ---
 
@@ -1122,7 +1122,7 @@ Cluttering affects approximately 1-2% of the population. It is more common in ma
 
 The most effective treatments combine:
 1. **Speech therapy** with a cluttering-specialist SLP
-2. **Daily practice** using tools like ClutterPro to measure and monitor speech rate
+2. **Daily practice** using tools like TalkSlower to measure and monitor speech rate
 3. **Awareness training** — learning to recognize when you're speeding up
 4. **Slowing techniques** practiced in real conversations
 
@@ -1169,7 +1169,7 @@ An academic tool developed at university level. Not commercially available, but 
 
 ## Modern Digital Tools
 
-### ClutterPro
+### TalkSlower
 The only SaaS tool built specifically for cluttering. Provides real-time SPS measurement using the Van Zaalen articulation rate method, session logging, patient management, and clinical report generation. Designed for SLPs in private practice and clinics.
 
 ## What to Look For in an Assessment Tool
@@ -1220,7 +1220,7 @@ While speaking, lightly tap your finger or foot for each syllable. This slows ra
 Divide sentences into 3-5 word chunks separated by micro-pauses. "The weather today / is unusually warm / for this time of year."
 
 ## 5. Record and Compare
-Record yourself in conversation for 2 minutes. Listen back and count your SPS using ClutterPro or manual counting. This awareness alone tends to slow rate.
+Record yourself in conversation for 2 minutes. Listen back and count your SPS using TalkSlower or manual counting. This awareness alone tends to slow rate.
 
 ## 6. Rate Contrast Practice
 Practice the same sentence at three speeds: very slow (2 SPS), target pace (4 SPS), and your natural fast rate. The contrast trains your ear for the difference.
@@ -1235,7 +1235,7 @@ Tell a story but physically pause (stop mid-sentence) every 5-7 words. This feel
 Make one phone call per day with the conscious goal of maintaining target pace. Start with low-stakes calls (weather line, recorded messages). Progress to real conversations.
 
 ## 10. Real-Time SPS Monitoring
-Use ClutterPro's real-time measurement during 5 minutes of structured reading each day. Seeing your SPS in real time provides immediate biofeedback that accelerates learning.
+Use TalkSlower's real-time measurement during 5 minutes of structured reading each day. Seeing your SPS in real time provides immediate biofeedback that accelerates learning.
 
 ---
 
@@ -1291,7 +1291,7 @@ At home, you can help by:
 - Modeling slow, clear speech yourself
 - Never finishing your child's sentences for them
 - Giving your child extra time to speak without interrupting
-- Using ClutterPro's Kids Mode for fun, engaging daily practice
+- Using TalkSlower's Kids Mode for fun, engaging daily practice
 
 With the right support, most children with cluttering make significant progress within 6-12 months of consistent therapy.
     `,
@@ -1382,7 +1382,7 @@ After completing all changes above, verify:
 - [ ] "Orthophoniste" → "SLP" everywhere
 - [ ] "Bredouillement" → "Cluttering" everywhere
 - [ ] "RGPD" → "HIPAA" in privacy/legal pages
-- [ ] `package.json` name updated to `clutterpro`
+- [ ] `package.json` name updated to `talkslower`
 - [ ] `index.html` title and meta updated
 - [ ] Blog posts replaced with English content
 - [ ] Navbar links in English
@@ -1390,9 +1390,9 @@ After completing all changes above, verify:
 - [ ] Testimonials in English
 - [ ] Email templates in English
 - [ ] All `€` → `$` currency symbols
-- [ ] `parlermoinsvite` references in URLs/text → `clutterpro`
+- [ ] `parlermoinsvite` references in URLs/text → `talkslower`
 
 ---
 
 *Document prepared by Claude (Anthropic) — March 2026*
-*For use with the ClutterPro US version based on parlermoinsvite.fr codebase*
+*For use with the TalkSlower US version based on parlermoinsvite.fr codebase*

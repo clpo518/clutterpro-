@@ -17,18 +17,18 @@ export function NewsletterSlpV1Email() {
   return (
     <Html>
       <Head />
-      <Preview>☕ Behind the scenes at ClutterPro — Updates, coffee, and late nights</Preview>
+      <Preview>☕ Behind the scenes at TalkSlower — Updates, coffee, and late nights</Preview>
       <Body style={main}>
         <Container style={container}>
           {/* Header */}
           <Section style={header}>
-            <Text style={logoText}>🎙️ ClutterPro</Text>
+            <Text style={logoText}>🎙️ TalkSlower</Text>
             <Text style={editionText}>Newsletter #1 — February 2026</Text>
           </Section>
 
           <Section style={content}>
             {/* Intro */}
-            <Heading as="h1" style={h1}>Behind the scenes at ClutterPro ☕</Heading>
+            <Heading as="h1" style={h1}>Behind the scenes at TalkSlower ☕</Heading>
 
             <Text style={text}>
               Hello,
@@ -48,7 +48,7 @@ export function NewsletterSlpV1Email() {
             <Section style={founderSection}>
               <Img
                 src="https://lllzwnffmdicoqqxqmeh.supabase.co/storage/v1/object/public/email-assets/clement-founder.jpg?v=2"
-                alt="Clement Pontegnier, founder of ClutterPro"
+                alt="Clement Pontegnier, founder of TalkSlower"
                 width="120"
                 height="120"
                 style={founderImg}
@@ -66,7 +66,7 @@ export function NewsletterSlpV1Email() {
             </Text>
 
             <Text style={text}>
-              Result: I spend my evenings and weekends building ClutterPro.
+              Result: I spend my evenings and weekends building TalkSlower.
               Just me, my keyboard, and way too much coffee. ☕
             </Text>
 
@@ -138,7 +138,7 @@ export function NewsletterSlpV1Email() {
 
             {/* CTA Button */}
             <Section style={ctaSection}>
-              <Link href="https://www.clutterpro.com/auth" style={ctaButton}>
+              <Link href="https://www.talkslower.com/auth" style={ctaButton}>
                 Discover what's new →
               </Link>
             </Section>
@@ -182,7 +182,7 @@ export function NewsletterSlpV1Email() {
 
             <Section style={contactCard}>
               <Text style={contactText}>
-                📧 <Link href="mailto:support@clutterpro.com" style={link}>support@clutterpro.com</Link>
+                📧 <Link href="mailto:support@talkslower.com" style={link}>support@talkslower.com</Link>
               </Text>
               <Text style={contactText}>
                 📅 Want a 15-min video call? Just email me, I'm always available.
@@ -204,7 +204,7 @@ export function NewsletterSlpV1Email() {
 
             <Text style={signature}>
               Clement Pontegnier<br />
-              <em>Founder of ClutterPro — Former clutterer, still a talker 😄</em><br />
+              <em>Founder of TalkSlower — Former clutterer, still a talker 😄</em><br />
               <em>Annecy, France 🏔️</em>
             </Text>
           </Section>
@@ -212,10 +212,10 @@ export function NewsletterSlpV1Email() {
           {/* Footer */}
           <Section style={footer}>
             <Text style={footerText}>
-              © {new Date().getFullYear()} ClutterPro. All rights reserved.
+              © {new Date().getFullYear()} TalkSlower. All rights reserved.
             </Text>
             <Text style={footerText}>
-              <Link href="https://www.clutterpro.com" style={footerLink}>www.clutterpro.com</Link>
+              <Link href="https://www.talkslower.com" style={footerLink}>www.talkslower.com</Link>
             </Text>
           </Section>
         </Container>

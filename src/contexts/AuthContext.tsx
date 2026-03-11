@@ -56,11 +56,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   // Activate the 7-day trial for solo patients once their email is confirmed
-  const activateSoloTrialIfNeeded = async (userId: string) => {
+  const activateSoloTrialIfNeeded = async (userId: string, userMetadata?: Record<string, unknown>) => {
     try {
+      // Quick check: if user signed up as therapist (from auth metadata), skip entirely
+      if (userMetadata?.is_therapist) return;
+
       const { data: profile } = await supabase
         .from("profiles")
-        .select("is_therapist, linked_therapist_id, trial_end_date" as any)
+        .select("is_therapist, linked_therapist_id, trial_end_date, trial_start_date, subscription_plan" as any)
         .eq("id", userId)
         .maybeSingle();
 
@@ -68,10 +71,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const p = profile as any;
 
       // Only activate for solo patients (not therapist, no linked therapist) with no trial yet
+      // Also skip if profile already has a trial_start_date (therapist trial) to avoid race conditions
       const isSoloPatient = !p.is_therapist && !p.linked_therapist_id;
       const trialNotStarted = !p.trial_end_date;
+      const isTherapistTrial = p.subscription_plan === 'trial' || !!p.trial_start_date;
 
-      if (isSoloPatient && trialNotStarted) {
+      if (isSoloPatient && trialNotStarted && !isTherapistTrial) {
         await supabase
           .from("profiles")
           .update({
@@ -87,7 +92,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     // Restore demo session across page reloads
-    const demoKey = sessionStorage.getItem("clutterpro_demo");
+    const demoKey = sessionStorage.getItem("talkslower_demo");
     if (demoKey === "patient") {
       setUser(DEMO_PATIENT);
       setLoading(false);
@@ -118,7 +123,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           const emailConfirmedAt = session.user.email_confirmed_at;
           if (emailConfirmedAt) {
             setTimeout(() => {
-              activateSoloTrialIfNeeded(session.user.id);
+              activateSoloTrialIfNeeded(session.user.id, session.user.user_metadata);
             }, 0);
           }
         }
@@ -239,14 +244,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const signIn = async (email: string, password: string) => {
     // Demo bypass — no Supabase needed
     if (email === "demo@patient.com" && password === "demo123") {
-      sessionStorage.setItem("clutterpro_demo", "patient");
+      sessionStorage.setItem("talkslower_demo", "patient");
       setUser(DEMO_PATIENT);
       setSession(null);
       setLoading(false);
       return { error: null };
     }
     if (email === "demo@slp.com" && password === "demo123") {
-      sessionStorage.setItem("clutterpro_demo", "slp");
+      sessionStorage.setItem("talkslower_demo", "slp");
       setUser(DEMO_SLP);
       setSession(null);
       setLoading(false);
@@ -260,7 +265,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signOut = async () => {
-    sessionStorage.removeItem("clutterpro_demo");
+    sessionStorage.removeItem("talkslower_demo");
     try {
       await supabase.auth.signOut();
     } catch (error) {

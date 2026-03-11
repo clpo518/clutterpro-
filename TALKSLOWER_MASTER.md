@@ -1,4 +1,4 @@
-# ClutterPro — Dossier Projet Complet
+# TalkSlower — Dossier Projet Complet
 > Dernière mise à jour : Mars 2026
 > À lire en début de chaque session Claude
 
@@ -28,7 +28,7 @@ Zéro concurrent direct identifié sur le marché US au moment du lancement.
 
 ---
 
-## 3. Le produit — ClutterPro
+## 3. Le produit — TalkSlower
 
 ### Ce que c'est
 App web SaaS de thérapie du bredouillement (cluttering) pour le marché US.
@@ -67,18 +67,18 @@ Standard clinique reconnu par l'ASHA.
 ## 5. Infrastructure
 
 ### Domaine
-- **En cours de décision** entre : `speakslower.com`, `cluttering.app`, `clutterpro.com`
+- **En cours de décision** entre : `speakslower.com`, `cluttering.app`, `talkslower.com`
 - À acheter sur **OVH**
 - `cluttering.com` → pris
 - Note : "clutter" en anglais familier = bordel → `speakslower.com` favori
 
 ### Frontend
 - **Hébergement** : Vercel (free tier, CDN US)
-- **Repo GitHub** : `https://github.com/clpo518/clutterpro-`
+- **Repo GitHub** : `https://github.com/clpo518/talkslower-`
 - **Dossier local** : `C:\Users\cleme\Downloads\cluttering`
 
 ### Backend Supabase
-- **Projet** : `clutterpro` — ID `butdaaniqckgfsofdket`
+- **Projet** : `talkslower` — ID `butdaaniqckgfsofdket`
 - **URL** : `https://butdaaniqckgfsofdket.supabase.co`
 - **Région** : US East (North Virginia) ✅ HIPAA-conscious
 - **Plan** : Free tier + cron job anti-pause → Pro à $25/mo au 1er client payant
@@ -108,8 +108,8 @@ Standard clinique reconnu par l'ASHA.
 
 ### Emails (Resend)
 - Compte Resend existant (partagé avec parlermoinsvite.fr pour l'instant)
-- From : `noreply@clutterpro.com` (déjà dans le code)
-- À faire : vérifier le domaine clutterpro.com dans Resend une fois OVH configuré
+- From : `noreply@talkslower.com` (déjà dans le code)
+- À faire : vérifier le domaine talkslower.com dans Resend une fois OVH configuré
 
 ---
 
@@ -147,7 +147,7 @@ Standard clinique reconnu par l'ASHA.
 
 ### Emails
 - 20 templates traduits en anglais ✅
-- From : `ClutterPro <noreply@clutterpro.com>` ✅
+- From : `TalkSlower <noreply@talkslower.com>` ✅
 - `newsletter-ortho-v1.tsx` renommé en `newsletter-slp-v1.tsx` ✅
 
 ---
@@ -155,7 +155,7 @@ Standard clinique reconnu par l'ASHA.
 ## 7. Ce qui reste à faire
 
 ### Priorité 1 — Pour être live
-- [ ] Choisir et acheter le domaine (speakslower.com ? cluttering.app ? clutterpro.com ?)
+- [ ] Choisir et acheter le domaine (speakslower.com ? cluttering.app ? talkslower.com ?)
 - [ ] Configurer Vercel : connecter repo GitHub → custom domain
 - [ ] Configurer DNS sur OVH → Vercel
 - [ ] Vérifier domaine sur Resend (SPF, DKIM, DMARC)
@@ -168,7 +168,7 @@ Standard clinique reconnu par l'ASHA.
 
 ### Priorité 3 — Marketing
 - [ ] Plan de lancement US (outreach SLPs, ASHA community, Reddit r/slp)
-- [ ] Profil LinkedIn ClutterPro
+- [ ] Profil LinkedIn TalkSlower
 - [ ] Email d'outreach pour premiers SLPs américains
 
 ---
@@ -189,8 +189,8 @@ Standard clinique reconnu par l'ASHA.
 | `src/components/onboarding/PatientWelcomeModal.tsx` | Onboarding patient |
 | `src/components/pro/WelcomeTourModal.tsx` | Onboarding SLP |
 | `supabase/functions/send-email/_templates/` | 20 templates email EN |
-| `CLUTTERPRO_CONTEXT.md` | Contexte court pour Claude Code |
-| `CLUTTERPRO_MASTER.md` | Ce fichier — dossier complet |
+| `TALKSLOWER_CONTEXT.md` | Contexte court pour Claude Code |
+| `TALKSLOWER_MASTER.md` | Ce fichier — dossier complet |
 
 ---
 
@@ -223,4 +223,4 @@ npx supabase db push --project-ref butdaaniqckgfsofdket
 - ✅ Pas de stockage audio (Deepgram temps réel) → HIPAA-conscious sans BAA
 - ✅ Pricing mensuel uniquement (pas d'annuel pour l'instant)
 - ✅ Compte Stripe partagé avec parlermoinsvite.fr (produits séparés)
-- ✅ Compte Resend partagé (domaine clutterpro.com à vérifier)
+- ✅ Compte Resend partagé (domaine talkslower.com à vérifier)

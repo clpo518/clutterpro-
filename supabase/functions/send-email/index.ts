@@ -68,21 +68,21 @@ const EMAIL_SUBJECTS: Record<EmailType, string | ((data: Record<string, unknown>
   subscription_confirmed: "✅ Your subscription is active",
   subscription_expiring: (data) => `Your subscription expires on ${data.expirationDate}`,
   inactivity_reminder: (data) => `⏰ It's been ${data.daysSinceLastSession} day${data.daysSinceLastSession > 1 ? 's' : ''} without practice`,
-  weekly_report: "📊 Your ClutterPro weekly report",
+  weekly_report: "📊 Your TalkSlower weekly report",
   welcome_patient: "Welcome home — Your speech, your pace",
-  welcome_therapist: "Optimize your patient tracking with ClutterPro",
+  welcome_therapist: "Optimize your patient tracking with TalkSlower",
   refund_confirmation: "💳 Confirmation of your refund",
   trial_expiring: (data) => `⏰ Your trial ends in ${data.daysRemaining} days`,
   first_win: "Way to go! First step complete 🏆",
   patient_joined: (data) => `${data.patientName} is now connected to your account`,
   patient_archived: "Your follow-up is paused",
   b2c_trial_expiring: (data) => `⏰ Only ${data.daysRemaining} day${(data.daysRemaining as number) > 1 ? 's' : ''} left in your free trial`,
-  admin_weekly_digest: "🏠 Admin Digest – ClutterPro",
+  admin_weekly_digest: "🏠 Admin Digest – TalkSlower",
   trial_extended: "🎉 Your free access has been extended",
-  newsletter_slp_v1: "☕ Behind the scenes at ClutterPro — Updates & late nights",
+  newsletter_slp_v1: "☕ Behind the scenes at TalkSlower — Updates & late nights",
   therapist_expiring_patient: (data) => `⚠️ Your access ends in ${data.daysRemaining} day${(data.daysRemaining as number) > 1 ? 's' : ''}`,
   prescription_assigned: (data) => `📋 ${data.therapistName} has assigned you an exercise`,
-  therapist_no_patient: "💡 Reminder: invite your first patient on ClutterPro",
+  therapist_no_patient: "💡 Reminder: invite your first patient on TalkSlower",
 };
 
 // Render the appropriate email template
@@ -312,7 +312,7 @@ serve(async (req) => {
 
     // Send the email
     const emailResponse = await resend.emails.send({
-      from: "ClutterPro <noreply@clutterpro.com>",
+      from: "TalkSlower <noreply@talkslower.com>",
       to: [to],
       subject,
       html,

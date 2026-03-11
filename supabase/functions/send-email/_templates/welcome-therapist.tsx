@@ -19,12 +19,12 @@ export function WelcomeTherapistEmail(props: WelcomeTherapistEmailProps) {
   const { therapistName = 'Dear SLP', therapistCode, referralCode, dashboardUrl } = props
 
   const referralUrl = referralCode
-    ? `https://clutterpro.com/pro?ref=${referralCode}`
-    : 'https://clutterpro.com/pro';
+    ? `https://talkslower.com/pro?ref=${referralCode}`
+    : 'https://talkslower.com/pro';
 
   return (
     <BaseLayout preview="Your Pro account is ready — invite your first patient.">
-      <Heading style={heading}>Welcome to ClutterPro for SLPs 🎯</Heading>
+      <Heading style={heading}>Welcome to TalkSlower for SLPs 🎯</Heading>
 
       <Text style={paragraph}>Hi {therapistName},</Text>
 
@@ -107,11 +107,11 @@ export function WelcomeTherapistEmail(props: WelcomeTherapistEmailProps) {
       )}
 
       <Text style={paragraph}>
-        Questions? Email us at support@clutterpro.com
+        Questions? Email us at support@talkslower.com
       </Text>
 
       <Text style={signatureText}>At your service,</Text>
-      <Text style={signatureName}>The ClutterPro Team</Text>
+      <Text style={signatureName}>The TalkSlower Team</Text>
     </BaseLayout>
   )
 }

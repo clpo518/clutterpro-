@@ -1,14 +1,14 @@
-# ClutterPro
+# TalkSlower
 
 > Speech rate training platform for people with cluttering
 > (tachylalia / fluency disorders). Real-time visual biofeedback
 > in syllables per second (SPS) based on Van Zaalen clinical norms.
 > Built by a person who clutters, validated by SLPs.
-> Published by ClutterPro Inc.
+> Published by TalkSlower Inc.
 
-## What is ClutterPro?
+## What is TalkSlower?
 
-ClutterPro is a web-based speech training app designed for people who speak too fast (cluttering / tachylalia). It provides real-time visual biofeedback measuring articulatory rate in syllables per second (SPS), based on Van Zaalen (2009) clinical thresholds. The tool is used by speech-language pathologists (SLPs) in the US for between-session patient monitoring.
+TalkSlower is a web-based speech training app designed for people who speak too fast (cluttering / tachylalia). It provides real-time visual biofeedback measuring articulatory rate in syllables per second (SPS), based on Van Zaalen (2009) clinical thresholds. The tool is used by speech-language pathologists (SLPs) in the US for between-session patient monitoring.
 
 ### Key Features
 
@@ -28,24 +28,24 @@ ClutterPro is a web-based speech training app designed for people who speak too 
 
 ## Main Pages
 
-- [Home](https://www.clutterpro.com/) : Platform overview and vocal biofeedback method.
-- [Free Voice Test](https://www.clutterpro.com/diagnostic) : Measure your speech rate in 30 seconds, no sign-up. Instant clinical result.
-- [Self-Assessment](https://www.clutterpro.com/assessment) : Cluttering screening test (Predictive Cluttering Inventory) — 10 questions.
-- [For SLPs](https://www.clutterpro.com/pro) : Professional features for patient monitoring (metrics, reports, assigned exercises).
-- [Pricing](https://www.clutterpro.com/pricing) : Plans and subscriptions (free for patients, subscription for SLPs).
-- [About](https://www.clutterpro.com/about) : Founder story and project mission.
+- [Home](https://www.talkslower.com/) : Platform overview and vocal biofeedback method.
+- [Free Voice Test](https://www.talkslower.com/diagnostic) : Measure your speech rate in 30 seconds, no sign-up. Instant clinical result.
+- [Self-Assessment](https://www.talkslower.com/assessment) : Cluttering screening test (Predictive Cluttering Inventory) — 10 questions.
+- [For SLPs](https://www.talkslower.com/pro) : Professional features for patient monitoring (metrics, reports, assigned exercises).
+- [Pricing](https://www.talkslower.com/pricing) : Plans and subscriptions (free for patients, subscription for SLPs).
+- [About](https://www.talkslower.com/about) : Founder story and project mission.
 
 ## Blog — Expert Articles
 
-- [What Is Cluttering? A Complete Guide](https://www.clutterpro.com/blog/what-is-cluttering) : Symptoms, neurological causes, and difference from stuttering.
-- [Best Tools for Cluttering Assessment in 2026](https://www.clutterpro.com/blog/best-cluttering-assessment-tools-2026) : Comparison of tools used by SLPs for measuring articulatory rate.
-- [10 Proven Speech Rate Exercises for Cluttering](https://www.clutterpro.com/blog/speech-rate-exercises-cluttering) : Mechanical re-education techniques: syllabic reading, chunking, biofeedback.
-- [Cluttering in Children: Signs, Causes and Therapy](https://www.clutterpro.com/blog/cluttering-in-children) : How to identify cluttering early and support young patients.
-- [Cluttering vs. Stuttering: Key Differences](https://www.clutterpro.com/blog/cluttering-vs-stuttering) : Clinical distinctions and co-occurrence patterns.
+- [What Is Cluttering? A Complete Guide](https://www.talkslower.com/blog/what-is-cluttering) : Symptoms, neurological causes, and difference from stuttering.
+- [Best Tools for Cluttering Assessment in 2026](https://www.talkslower.com/blog/best-cluttering-assessment-tools-2026) : Comparison of tools used by SLPs for measuring articulatory rate.
+- [10 Proven Speech Rate Exercises for Cluttering](https://www.talkslower.com/blog/speech-rate-exercises-cluttering) : Mechanical re-education techniques: syllabic reading, chunking, biofeedback.
+- [Cluttering in Children: Signs, Causes and Therapy](https://www.talkslower.com/blog/cluttering-in-children) : How to identify cluttering early and support young patients.
+- [Cluttering vs. Stuttering: Key Differences](https://www.talkslower.com/blog/cluttering-vs-stuttering) : Clinical distinctions and co-occurrence patterns.
 
 ## Legal Information
 
-- **Publisher** : ClutterPro Inc.
+- **Publisher** : TalkSlower Inc.
 - **Founder** : Clément Pontegnier
-- **Contact** : contact@clutterpro.com
-- **Website** : https://www.clutterpro.com
+- **Contact** : contact@talkslower.com
+- **Website** : https://www.talkslower.com

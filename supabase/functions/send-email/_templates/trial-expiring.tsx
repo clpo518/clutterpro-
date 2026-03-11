@@ -18,7 +18,7 @@ export function TrialExpiringEmail(props: TrialExpiringEmailProps) {
   const { therapistName = 'Dear SLP', daysRemaining, patientsCount, subscribeUrl, referralCode } = props
 
   const referralUrl = referralCode
-    ? `https://clutterpro.com/pro?ref=${referralCode}`
+    ? `https://talkslower.com/pro?ref=${referralCode}`
     : null;
 
   return (
@@ -30,7 +30,7 @@ export function TrialExpiringEmail(props: TrialExpiringEmailProps) {
       <Text style={paragraph}>Hi {therapistName},</Text>
 
       <Text style={paragraph}>
-        Your free trial of ClutterPro for SLPs expires in {daysRemaining} day{daysRemaining > 1 ? 's' : ''}.
+        Your free trial of TalkSlower for SLPs expires in {daysRemaining} day{daysRemaining > 1 ? 's' : ''}.
       </Text>
 
       {patientsCount > 0 && (
@@ -40,7 +40,7 @@ export function TrialExpiringEmail(props: TrialExpiringEmailProps) {
       )}
 
       <Text style={benefitsBox}>
-        ✨ With ClutterPro for SLPs: Unlimited patient tracking, advanced clinical metrics, PDF report generation, personalized exercise assignments, and priority support.
+        ✨ With TalkSlower for SLPs: Unlimited patient tracking, advanced clinical metrics, PDF report generation, personalized exercise assignments, and priority support.
       </Text>
 
       <Text style={testimonialBox}>
@@ -53,12 +53,12 @@ export function TrialExpiringEmail(props: TrialExpiringEmailProps) {
 
       {referralCode && referralUrl && (
         <Text style={referralBox}>
-          💡 Referral tip: Recommend ClutterPro to a colleague and both get 1 free month! Simply share this link: {referralUrl} — Your code: {referralCode}
+          💡 Referral tip: Recommend TalkSlower to a colleague and both get 1 free month! Simply share this link: {referralUrl} — Your code: {referralCode}
         </Text>
       )}
 
       <Text style={smallText}>
-        Questions about our plans? Email us at support@clutterpro.com — we'd be happy to help.
+        Questions about our plans? Email us at support@talkslower.com — we'd be happy to help.
       </Text>
     </BaseLayout>
   )

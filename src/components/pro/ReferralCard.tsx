@@ -73,7 +73,7 @@ const ReferralCard = () => {
   const handleCopyLink = async () => {
     if (!stats?.referralCode) return;
 
-    const referralLink = `https://www.clutterpro.com/auth?ref=${stats.referralCode}`;
+    const referralLink = `https://www.talkslower.com/auth?ref=${stats.referralCode}`;
     const success = await copyToClipboard(referralLink);
 
     if (success) {
@@ -88,8 +88,8 @@ const ReferralCard = () => {
   const handleCopyMessage = async () => {
     if (!stats?.referralCode) return;
 
-    const referralLink = `https://www.clutterpro.com/auth?ref=${stats.referralCode}`;
-    const message = `Hey! I recommend ClutterPro, a great tool for monitoring patients in speech rate therapy.
+    const referralLink = `https://www.talkslower.com/auth?ref=${stats.referralCode}`;
+    const message = `Hey! I recommend TalkSlower, a great tool for monitoring patients in speech rate therapy.
 
 By signing up with my link, we both get 1 free month!
 

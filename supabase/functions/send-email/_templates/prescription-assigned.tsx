@@ -21,7 +21,7 @@ export function PrescriptionAssignedEmail({
   therapistName = 'Your SLP',
   exerciseTitle = 'Exercise',
   message,
-  exerciseUrl = 'https://www.clutterpro.com/dashboard',
+  exerciseUrl = 'https://www.talkslower.com/dashboard',
 }: PrescriptionAssignedEmailProps) {
   return (
     <BaseLayout preview={`${therapistName} has assigned you an exercise`}>

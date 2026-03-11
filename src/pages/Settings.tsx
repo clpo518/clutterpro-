@@ -502,7 +502,7 @@ const Settings = () => {
                       const subject = encodeURIComponent("Your at-home practice tool");
                       const body = encodeURIComponent(`Hello,
 
-To complement our sessions and accelerate your progress, I'd like you to use the ClutterPro app.
+To complement our sessions and accelerate your progress, I'd like you to use the TalkSlower app.
 
 It's an interactive tool designed to help you practice daily:
 
@@ -513,7 +513,7 @@ It's an interactive tool designed to help you practice daily:
 
 To get started:
 
-1. Go to https://www.clutterpro.com
+1. Go to https://www.talkslower.com
 2. Create your free account with my Pro Code: ${profile.therapist_code}
 
 See you soon!`);
@@ -532,7 +532,7 @@ See you soon!`);
 
 Hello,
 
-To complement our sessions and accelerate your progress, I'd like you to use the ClutterPro app.
+To complement our sessions and accelerate your progress, I'd like you to use the TalkSlower app.
 
 It's an interactive tool designed to help you practice daily:
 
@@ -546,7 +546,7 @@ It's an interactive tool designed to help you practice daily:
 
 Getting started is simple:
 
-1. Go to https://www.clutterpro.com
+1. Go to https://www.talkslower.com
 2. Create your free account with my Pro Code: ${profile.therapist_code}
 
 See you soon!`;
@@ -754,13 +754,13 @@ See you soon!`;
                 </p>
                 <div className="flex items-center gap-2 p-3 bg-muted/50 rounded-lg">
                   <Mail className="w-4 h-4 text-muted-foreground shrink-0" />
-                  <code className="text-sm font-medium flex-1">support@clutterpro.com</code>
+                  <code className="text-sm font-medium flex-1">support@talkslower.com</code>
                   <Button 
                     variant="ghost" 
                     size="sm"
                     className="shrink-0"
                     onClick={async () => {
-                      const success = await copyToClipboard("support@clutterpro.com");
+                      const success = await copyToClipboard("support@talkslower.com");
                       if (success) {
                         toast.success("Email copied!");
                       } else {

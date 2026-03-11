@@ -16,12 +16,12 @@ interface NoCodeModalProps {
   onOpenChange: (open: boolean) => void;
 }
 
-const SUPPORT_EMAIL = "support@clutterpro.com";
+const SUPPORT_EMAIL = "support@talkslower.com";
 
 // Template for option A: SLP doesn't know the app - we contact them
 const CONTACT_SLP_TEMPLATE = `Hello,
 
-I would like to use the ClutterPro app for my training.
+I would like to use the TalkSlower app for my training.
 
 My speech therapist is not yet familiar with the app. Here are their contact details so you can reach out:
 
@@ -37,7 +37,7 @@ Thank you for your help!`;
 // Template for option B: Solo training request
 const SOLO_TEMPLATE = `Hello,
 
-I would like to use ClutterPro to train on controlling my speech rate, without therapist supervision for now.
+I would like to use TalkSlower to train on controlling my speech rate, without therapist supervision for now.
 
 Could you let me know about individual access options?
 
@@ -62,7 +62,7 @@ const NoCodeModal = ({ open, onOpenChange }: NoCodeModalProps) => {
   };
 
   const handleMailtoSLP = () => {
-    const subject = encodeURIComponent("Contact my speech therapist - ClutterPro");
+    const subject = encodeURIComponent("Contact my speech therapist - TalkSlower");
     const body = encodeURIComponent(CONTACT_SLP_TEMPLATE);
     window.open(`mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`, "_blank");
   };
@@ -79,7 +79,7 @@ const NoCodeModal = ({ open, onOpenChange }: NoCodeModalProps) => {
   };
 
   const handleMailtoSolo = () => {
-    const subject = encodeURIComponent("Individual access request - ClutterPro");
+    const subject = encodeURIComponent("Individual access request - TalkSlower");
     const body = encodeURIComponent(SOLO_TEMPLATE);
     window.open(`mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`, "_blank");
   };

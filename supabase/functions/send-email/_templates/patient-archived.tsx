@@ -49,14 +49,14 @@ export function PatientArchivedEmail({
       )}
 
       <Text style={paragraph}>
-        Questions? Email us at support@clutterpro.com, we're here to help.
+        Questions? Email us at support@talkslower.com, we're here to help.
       </Text>
 
       <Text style={signoff}>
         See you soon,
       </Text>
       <Text style={signatureName}>
-        The ClutterPro Team
+        The TalkSlower Team
       </Text>
     </BaseLayout>
   )

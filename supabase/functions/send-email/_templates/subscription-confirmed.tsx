@@ -40,11 +40,11 @@ export function SubscriptionConfirmedEmail(props: SubscriptionConfirmedEmailProp
       </Button>
 
       <Text style={smallText}>
-        Questions? Email us at support@clutterpro.com
+        Questions? Email us at support@talkslower.com
       </Text>
 
       <Text style={signatureText}>At your service,</Text>
-      <Text style={signatureName}>The ClutterPro Team</Text>
+      <Text style={signatureName}>The TalkSlower Team</Text>
     </BaseLayout>
   )
 }

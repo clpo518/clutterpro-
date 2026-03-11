@@ -111,7 +111,7 @@ serve(async (req) => {
             userName: patient.full_name || authUser.user.email.split("@")[0],
             daysSinceLastSession,
             currentStreak: patient.current_streak || 0,
-            practiceUrl: "https://www.clutterpro.com/practice",
+            practiceUrl: "https://www.talkslower.com/practice",
           });
 
           if (emailResult.success) {
@@ -215,7 +215,7 @@ serve(async (req) => {
               targetSps,
               currentStreak: profile.current_streak || 0,
               improvement,
-              practiceUrl: "https://www.clutterpro.com/practice",
+              practiceUrl: "https://www.talkslower.com/practice",
             });
 
             if (emailResult.success) {
@@ -318,7 +318,7 @@ serve(async (req) => {
               deepgramCostWeek,
               deepgramCostMonth,
               deepgramCostTotal,
-              dashboardUrl: "https://www.clutterpro.com/admin",
+              dashboardUrl: "https://www.talkslower.com/admin",
             });
 
             if (emailResult.success) {
@@ -374,7 +374,7 @@ serve(async (req) => {
               therapistName: therapist.full_name || authUser.user.email.split("@")[0],
               daysRemaining,
               patientsCount: patientsCount || 0,
-              subscribeUrl: "https://www.clutterpro.com/pro/subscription",
+              subscribeUrl: "https://www.talkslower.com/pro/subscription",
               referralCode: therapist.referral_code || null,
             });
 
@@ -417,7 +417,7 @@ serve(async (req) => {
             const emailResult = await sendEmail("b2c_trial_expiring", authUser.user.email, {
               patientName: patient.full_name || authUser.user.email.split("@")[0],
               daysRemaining,
-              subscribeUrl: "https://www.clutterpro.com/dashboard",
+              subscribeUrl: "https://www.talkslower.com/dashboard",
             });
 
             if (emailResult.success) {
@@ -536,8 +536,8 @@ serve(async (req) => {
           const emailResult = await sendEmail("therapist_no_patient", authUser.user.email, {
             therapistName: therapist.full_name || authUser.user.email.split("@")[0],
             therapistCode: therapist.therapist_code || null,
-            dashboardUrl: "https://www.clutterpro.com/dashboard/therapist",
-            sessionLiveUrl: "https://www.clutterpro.com/session-live",
+            dashboardUrl: "https://www.talkslower.com/dashboard/therapist",
+            sessionLiveUrl: "https://www.talkslower.com/session-live",
           });
 
           if (emailResult.success) {
