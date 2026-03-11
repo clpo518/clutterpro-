@@ -120,7 +120,7 @@ const TherapistDashboard = () => {
               : 30;
 
           const isSubscriptionActive = profileData.subscription_status === 'active' || profileData.is_premium === true;
-          const isTrialActive = profileData.subscription_plan === 'trial' && !isTrialExpired;
+          const isTrialActive = profileData.subscription_plan === 'trial' && !isTrialExpired && !isSubscriptionActive;
 
           setTherapistStatus({
             isValid: !isTrialExpired || isSubscriptionActive,
