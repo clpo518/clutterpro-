@@ -1,11 +1,11 @@
-# PM Brief — ClutterPro US Market Adaptation
+# PM Brief — TalkSlower US Market Adaptation
 > Give this brief to Claude Code. Read it entirely before touching any file.
 
 ---
 
 ## 1. Context
 
-You are working on **ClutterPro**, a SaaS web app for cluttering (speech fluency disorder) therapy.
+You are working on **TalkSlower**, a SaaS web app for cluttering (speech fluency disorder) therapy.
 The app was originally built for the French market (parlermoinsvite.fr). It has already been translated to English.
 Your job now is to make it feel **100% native to American SLPs** — not just translated, but culturally and clinically accurate.
 
@@ -220,7 +220,7 @@ Replace all coach feedback with language that mirrors what an SLP would say. Exa
 When an SLP signs up, the welcome modal should:
 1. Ask **"What setting do you work in?"** → Private Practice / Hospital / School / Teletherapy / Other
 2. Ask **"What age range do you primarily treat?"** → Adults / Adolescents (13–17) / Mixed
-3. Show a quick-start tip referencing **ASHA guidelines**: *"ClutterPro tracks articulation rate using the Van Zaalen (2009) method, consistent with ASHA's recommended assessment approach for cluttering."*
+3. Show a quick-start tip referencing **ASHA guidelines**: *"TalkSlower tracks articulation rate using the Van Zaalen (2009) method, consistent with ASHA's recommended assessment approach for cluttering."*
 
 This gives SLPs instant clinical credibility and trust in the tool.
 
@@ -245,15 +245,15 @@ Make sure:
 - Pro plan is **$29/mo** (solo SLP) and **$39/mo** (clinic/group)
 - Patient plan remains **free**
 - Tagline under pricing: *"Designed for SLPs. Trusted by ASHA members."*
-- Add a FAQ item: *"Is ClutterPro HIPAA-compliant?"* → Answer: *"ClutterPro does not store Protected Health Information (PHI). Audio is processed in real time and not retained. Always consult your practice's compliance officer for full HIPAA guidance."*
+- Add a FAQ item: *"Is TalkSlower HIPAA-compliant?"* → Answer: *"TalkSlower does not store Protected Health Information (PHI). Audio is processed in real time and not retained. Always consult your practice's compliance officer for full HIPAA guidance."*
 
 ---
 
 ### I. `index.html` and SEO metadata
 
 ```html
-<title>ClutterPro — Speech Rate Therapy Tool for SLPs</title>
-<meta name="description" content="ClutterPro helps speech-language pathologists track and treat cluttering. Real-time syllable rate analysis for SLP sessions and patient home practice.">
+<title>TalkSlower — Speech Rate Therapy Tool for SLPs</title>
+<meta name="description" content="TalkSlower helps speech-language pathologists track and treat cluttering. Real-time syllable rate analysis for SLP sessions and patient home practice.">
 <meta name="keywords" content="cluttering therapy, SLP tools, speech rate, syllables per second, speech-language pathology, fluency disorder">
 ```
 

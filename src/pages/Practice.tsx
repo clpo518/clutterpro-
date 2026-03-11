@@ -4,7 +4,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Activity, ArrowLeft, Pause, Play, Shuffle, Lightbulb, Target, Mic, Repeat, Volume2, Timer, Gauge, ChevronLeft, ChevronRight, ChevronDown, Lock, Info, AlertTriangle, X, FlaskConical, Map, Settings2 } from "lucide-react";
+import { Activity, ArrowLeft, Pause, Play, Shuffle, Lightbulb, Target, Mic, Repeat, Volume2, Timer, Gauge, ChevronLeft, ChevronRight, ChevronDown, Lock, Info, AlertTriangle, X, FlaskConical, Map, Settings2, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { JOURNEY_STEPS } from "@/data/journeyPath";
 import { toast } from "sonner";
@@ -12,6 +12,8 @@ import { exerciseCategories, getRandomExercise, getCategoryById, Exercise, Exerc
 import RebusPlayer from "@/components/practice/RebusPlayer";
 import RetellingPlayer from "@/components/practice/RetellingPlayer";
 import ExerciseIntroModal from "@/components/practice/ExerciseIntroModal";
+import CustomTextModal from "@/components/practice/CustomTextModal";
+import CountdownOverlay from "@/components/practice/CountdownOverlay";
 
 import { practiceTexts } from "@/data/practiceTexts";
 import RecordButton from "@/components/practice/RecordButton";
@@ -135,6 +137,9 @@ const Practice = () => {
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [currentCategory, setCurrentCategory] = useState(getCategoryById(categoryId || ""));
   const [fallbackTextIndex, setFallbackTextIndex] = useState(0);
+  const [showCustomTextModal, setShowCustomTextModal] = useState(false);
+  const [showCountdown, setShowCountdown] = useState(false);
+  const [forceShowIntro, setForceShowIntro] = useState(false);
   
   
   // Guided mode (Karaoke) state
@@ -914,8 +919,33 @@ const Practice = () => {
 
   return (
     <div className={`min-h-screen bg-gradient-to-br from-secondary via-background to-accent/30 ${isRecording ? 'pb-24' : ''}`}>
-      {/* Exercise intro modal — shown once per category */}
-      <ExerciseIntroModal categoryId={categoryId} onDismiss={() => {}} />
+      {/* 3-2-1 countdown before recording */}
+      <AnimatePresence>
+        {showCountdown && (
+          <CountdownOverlay
+            onComplete={() => {
+              setShowCountdown(false);
+              startRecording();
+            }}
+          />
+        )}
+      </AnimatePresence>
+      {/* Exercise intro modal — shown once per category, or on demand via info button */}
+      <ExerciseIntroModal categoryId={categoryId} onDismiss={() => setForceShowIntro(false)} forceOpen={forceShowIntro} />
+      {/* Custom text modal */}
+      <CustomTextModal
+        open={showCustomTextModal}
+        onOpenChange={setShowCustomTextModal}
+        onSubmit={(text, title) => {
+          setCurrentExercise({
+            id: "custom-text",
+            title,
+            text,
+            tip: "Read at a comfortable pace. The guided highlighter will pace you.",
+            type: "reading",
+          });
+        }}
+      />
       {/* Fixed Header */}
       <header className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -937,6 +967,15 @@ const Practice = () => {
                   <span className="font-display font-bold text-sm sm:text-base">
                     {currentCategory ? currentCategory.title : "Free session"}
                   </span>
+                  {categoryId && (
+                    <button
+                      onClick={() => setForceShowIntro(true)}
+                      className="p-1 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
+                      title="How this exercise works"
+                    >
+                      <Info className="w-4 h-4" />
+                    </button>
+                  )}
                 </>
               )}
             </div>
@@ -1039,6 +1078,15 @@ const Practice = () => {
                   <span className="text-sm text-muted-foreground">
                     {currentCategory ? currentCategory.title : `Text ${fallbackTextIndex + 1}/${practiceTexts.length}`}
                   </span>
+                  <button
+                    onClick={() => setShowCustomTextModal(true)}
+                    disabled={isRecording}
+                    className="text-xs text-primary hover:text-primary/80 font-medium transition-colors disabled:opacity-50 flex items-center gap-1 ml-1"
+                    title="Use your own text"
+                  >
+                    <FileText className="w-3 h-3" />
+                    <span className="hidden sm:inline">My text</span>
+                  </button>
                 </div>
                 <div className="flex items-center gap-2">
                   {/* Pacing Mode Selector */}
@@ -1610,7 +1658,7 @@ const Practice = () => {
 
             {/* Start Button */}
             <div className="flex justify-center">
-              <RecordButton onClick={startRecording} isRecording={false} />
+              <RecordButton onClick={() => setShowCountdown(true)} isRecording={false} />
             </div>
 
             <div className="text-center text-muted-foreground text-xs">

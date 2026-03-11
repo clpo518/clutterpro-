@@ -3,19 +3,19 @@ import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "ClutterPro has transformed how I support my cluttering clients between sessions. The real-time speech rate measurement is exactly what I needed.",
-    author: "Sarah M., SLP",
+    quote: "I used to manually time recordings and count syllables. TalkSlower does it in real time. My cluttering clients actually practice between sessions now.",
+    author: "Sarah M., CCC-SLP",
     role: "Private Practice, Austin TX",
     rating: 5,
   },
   {
-    quote: "I never realized how fast I was speaking until I saw my numbers. Five weeks in and my rate is finally in the normal range.",
+    quote: "I was at 6.2 syllables per second and didn't even know it. After 5 weeks of daily practice, I'm consistently under 4.5. My wife noticed before I did.",
     author: "James T.",
-    role: "Patient, 34 years old",
+    role: "Patient, 34",
     rating: 5,
   },
   {
-    quote: "Finally a tool built specifically for cluttering. My students use it for assessment and my clients use it for home practice. Highly recommend.",
+    quote: "There's nothing else like this for cluttering. The SPS metric is clinically sound, and the Dialogue Mode is a game-changer for real-world transfer.",
     author: "Dr. Rebecca L., CCC-SLP",
     role: "University Clinic, Boston",
     rating: 5,

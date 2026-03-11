@@ -48,7 +48,7 @@ export function WeeklyReportEmail(props: WeeklyReportEmailProps) {
       <Text style={paragraph}>Hi {userName},</Text>
 
       <Text style={paragraph}>
-        Here's a recap of your training week on ClutterPro!
+        Here's a recap of your training week on TalkSlower!
       </Text>
 
       <Section style={statsSection}>

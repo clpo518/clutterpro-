@@ -50,7 +50,7 @@ const UnifiedLanding = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
               >
-                Train 5 min/day and track your progress.
+                Practice on your own or with your therapist. See results in weeks, not months.
               </motion.p>
             </div>
           </section>
@@ -83,7 +83,7 @@ const UnifiedLanding = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
               >
-                Extend the effectiveness of your sessions at home.
+                Objective metrics between sessions. Less manual work. Better outcomes.
               </motion.p>
             </div>
           </section>

@@ -20,7 +20,7 @@ const PatientLanding = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <main className="pt-16">
-        {/* Bandeau CTA diagnostic vocal */}
+        {/* Voice test CTA banner */}
         <div className="bg-primary/5 border-b border-primary/10">
           <div className="container px-4 md:px-6 py-3 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 min-w-0">
@@ -28,12 +28,12 @@ const PatientLanding = () => {
                 <Mic className="w-4 h-4 text-primary" />
               </div>
               <p className="text-sm text-foreground font-medium truncate">
-                <span className="hidden sm:inline">Parlez-vous trop vite ? </span>Faites le test vocal gratuit en 30 secondes
+                <span className="hidden sm:inline">Do you speak too fast? </span>Take the free 30-second voice test
               </p>
             </div>
             <Button asChild size="sm" className="shrink-0">
               <Link to="/diagnostic">
-                Tester ma vitesse
+                Test my speed
                 <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
             </Button>

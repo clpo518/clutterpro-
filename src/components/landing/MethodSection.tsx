@@ -5,7 +5,7 @@ const pillars = [
   {
     icon: Activity,
     title: "Clear Articulation",
-    description: "Train yourself to pronounce every syllable. Short drills that make a big difference in how clearly people hear you.",
+    description: "Swallowed syllables are the #1 reason people can't follow you. Targeted drills train your mouth to keep up with your brain.",
     color: "from-cyan-500/20 to-teal-500/10",
     iconColor: "text-cyan-600 dark:text-cyan-400",
     bgColor: "bg-cyan-100 dark:bg-cyan-900/30"
@@ -13,7 +13,7 @@ const pillars = [
   {
     icon: Timer,
     title: "Rhythm & Pausing",
-    description: "Learn where to breathe and pause naturally. Your speech flows better when you give listeners time to follow.",
+    description: "People who clutter rarely pause. Learn where to breathe naturally so listeners can actually process what you're saying.",
     color: "from-purple-500/20 to-violet-500/10",
     iconColor: "text-purple-600 dark:text-purple-400",
     bgColor: "bg-purple-100 dark:bg-purple-900/30"
@@ -21,7 +21,7 @@ const pillars = [
   {
     icon: Mic,
     title: "Real Conversations",
-    description: "Practice with real people — friends, family, your therapist — while a live indicator keeps you at the right pace.",
+    description: "Reading aloud is step one. The real test is talking to people. Dialogue Mode gives you live feedback during actual conversations.",
     color: "from-primary/20 to-accent/10",
     iconColor: "text-primary",
     bgColor: "bg-primary/10"
@@ -44,10 +44,10 @@ export const MethodSection = () => {
             Evidence-Based Method
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            3 skills that change everything
+            3 skills. One clear voice.
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Each exercise targets a specific skill. Together, they build clear, confident speech.
+            Cluttering isn't just "talking fast." Each pillar targets a root cause — so the change lasts.
           </p>
         </motion.div>
 
@@ -92,7 +92,7 @@ export const MethodSection = () => {
               </h3>
               <p className="text-muted-foreground max-w-2xl">
                 A child, a teenager, and an adult don't speak at the same rate — and that's perfectly normal.
-                ClutterPro adjusts your target automatically based on your age.
+                TalkSlower adjusts your target automatically based on your age.
                 No frustrating false alarms, just honest feedback.
               </p>
             </div>

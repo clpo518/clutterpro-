@@ -68,7 +68,7 @@ export const LibraryShowcase = () => {
                 </div>
                 <span className={`font-medium flex-1 ${category.text}`}>{category.title}</span>
                 {(category as any).isNew ? (
-                  <span className="px-2 py-0.5 text-[10px] font-bold bg-primary text-primary-foreground rounded-full uppercase">Nouveau</span>
+                  <span className="px-2 py-0.5 text-[10px] font-bold bg-primary text-primary-foreground rounded-full uppercase">New</span>
                 ) : (
                   <span className={`text-sm font-bold ${category.text} tabular-nums`}>{category.count}</span>
                 )}
@@ -93,7 +93,7 @@ export const LibraryShowcase = () => {
               <div className="flex items-center gap-2 mb-4">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-xs font-bold uppercase tracking-wide">
                   <Sparkles className="w-3 h-3" />
-                  Nouveau
+                  New
                 </span>
               </div>
 

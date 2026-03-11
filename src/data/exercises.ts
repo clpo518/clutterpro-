@@ -753,7 +753,7 @@ export const exerciseCategories: ExerciseCategory[] = [
         id: "motor-8",
         title: "Buttercup Challenge",
         text: "BUT - TER - CUP - BUT - TER - CUP - BUT - TER - CUP",
-        tip: "Popular English-language test. The 'R' can be rolled or not.",
+        tip: "Classic diadochokinetic exercise. Focus on clean syllable boundaries.",
         type: "repetition",
         repetitions: 9
       },
@@ -882,6 +882,36 @@ export const exerciseCategories: ExerciseCategory[] = [
         title: "Classic Recitation",
         text: "To be, or not to be, that is the question: whether it is nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles, and by opposing end them. To die, to sleep, no more; and by a sleep to say we end the heartache and the thousand natural shocks that flesh is heir to. It is a consummation devoutly to be wished. To die, to sleep; to sleep, perchance to dream.",
         tip: "Classic verse demands a sustained rhythm. Breathe at the natural pauses."
+      },
+      {
+        id: "breath-square",
+        title: "Square Breathing",
+        text: "Inhale slowly for four seconds. Hold your breath for four seconds. Exhale slowly for four seconds. Hold again for four seconds. Repeat this cycle three times. Now, on your next exhale, say: I am calm and in control. Inhale again for four seconds. Hold. Exhale while saying: My voice flows at my own pace. Hold. Inhale. Hold. Exhale: Every word I speak has purpose. Hold. One final round. Inhale deeply. Hold it in. Exhale slowly: I give myself permission to pause.",
+        tip: "Follow the 4-4-4-4 pattern. Speak only during the exhale phase."
+      },
+      {
+        id: "breath-exhale-speech",
+        title: "Speech on Exhalation",
+        text: "Take a deep breath in. Now, on the exhale only, say: The morning sun rises over the hills. Breathe in again. Exhale and say: Birds begin their songs one by one. Breathe in. Exhale: A gentle breeze carries the scent of flowers. Breathe in. Exhale: Children walk to school along the tree-lined road. Breathe in. Exhale: Leaves rustle softly overhead. Breathe in. Exhale: The day unfolds with quiet promise.",
+        tip: "Only speak while exhaling. If you run out of air, pause and inhale before continuing."
+      },
+      {
+        id: "breath-phrase-stretch",
+        title: "Phrase Stretching",
+        text: "Start short: The cat sat. Now longer: The orange cat sat by the window. Even longer: The fluffy orange cat sat quietly by the kitchen window, watching the birds outside. Longer still: The fluffy orange cat sat quietly by the kitchen window, watching the birds outside as the morning sun warmed its soft fur and a gentle breeze came through the open door. Can you say that entire sentence in one breath? Try again, slower this time.",
+        tip: "Build up gradually. The goal is to extend your phrase length while maintaining one comfortable breath."
+      },
+      {
+        id: "breath-pause-insertion",
+        title: "Deliberate Pauses",
+        text: "Good communication [PAUSE] is not about speed. It is about [PAUSE] clarity and intention. When you pause [PAUSE] your listener has time to absorb your message. A well-placed pause [PAUSE] can emphasize a key point. It can also [PAUSE] give you time to breathe and think. Practice inserting a one-second pause [PAUSE] wherever you see the word PAUSE. Notice how [PAUSE] the meaning becomes clearer. Your speech [PAUSE] becomes more powerful.",
+        tip: "Hold a full one-second silence at each [PAUSE] marker. Resist the urge to rush through."
+      },
+      {
+        id: "breath-diaphragm",
+        title: "Diaphragmatic Awareness",
+        text: "Place one hand on your chest and the other on your belly. Breathe in slowly through your nose. Your belly should rise, not your chest. Exhale through your mouth and feel your belly fall. This is diaphragmatic breathing, the foundation of vocal control. Now read aloud: The river flows steadily toward the sea. It does not rush. It does not stop. It simply moves forward with quiet determination. Each bend in the river is a new perspective. Each calm stretch is a moment of reflection. The river knows its destination. It trusts the journey.",
+        tip: "Keep your hand on your belly as you read. It should gently expand with each breath."
       }
     ]
   },
@@ -2052,6 +2082,337 @@ export const exerciseCategories: ExerciseCategory[] = [
           "A courier swaps the suitcases the next day",
           "Everything is in order"
         ]
+      }
+    ]
+  },
+  // ─── NEUROLOGY / MOTOR SPEECH CATEGORIES ───
+  {
+    id: "neuro-projection",
+    level: 2,
+    title: "Vocal Projection",
+    description: "Strengthen your voice volume and projection. Uses real-time volume biofeedback — no speed measurement, only loudness.",
+    icon: "📢",
+    color: "from-violet-500/20 to-purple-600/10",
+    type: "warmup" as ExerciseType,
+    exercises: [
+      {
+        id: "proj-1",
+        title: "Counting to 20",
+        text: "Count slowly from 1 to 20. Project your voice clearly on each number — imagine someone 10 feet away needs to hear you.",
+        tip: "Focus on diaphragmatic breathing. Push air from your belly, not your throat.",
+        type: "warmup" as ExerciseType
+      },
+      {
+        id: "proj-2",
+        title: "Days of the Week",
+        text: "Monday. Tuesday. Wednesday. Thursday. Friday. Saturday. Sunday. Repeat three times, projecting louder each round.",
+        tip: "Each repetition should be noticeably louder than the last. Keep your jaw open wide.",
+        type: "warmup" as ExerciseType
+      },
+      {
+        id: "proj-3",
+        title: "Restaurant Order",
+        text: "I would like the grilled salmon with steamed vegetables and a glass of sparkling water, please. Could I also get the house salad on the side? Thank you very much.",
+        tip: "Imagine you're in a noisy restaurant. The waiter is 6 feet away. Project without shouting.",
+        type: "warmup" as ExerciseType
+      },
+      {
+        id: "proj-4",
+        title: "A Poem (The Road Not Taken)",
+        text: "Two roads diverged in a yellow wood, and sorry I could not travel both and be one traveler, long I stood and looked down one as far as I could to where it bent in the undergrowth.",
+        tip: "Read as if reciting on a stage. Let each word carry weight. Pause between phrases.",
+        type: "warmup" as ExerciseType
+      },
+      {
+        id: "proj-5",
+        title: "Vocal Siren",
+        text: "Say 'AAAAAAH' starting very softly, gradually getting louder to your maximum comfortable volume, then back down to soft. Repeat 5 times.",
+        tip: "This is a vocal warm-up, not a speed exercise. Focus on smooth volume transitions.",
+        type: "warmup" as ExerciseType
+      },
+      {
+        id: "proj-6",
+        title: "Phone Call Simulation",
+        text: "Hello, this is John Smith calling. I'm calling to confirm my appointment for tomorrow at 2:30 PM. Could you please call me back at 555-0142? Thank you.",
+        tip: "Phone calls require extra projection since there's no visual feedback. Speak clearly and slowly.",
+        type: "warmup" as ExerciseType
+      },
+      {
+        id: "proj-7",
+        title: "Emergency Phrases",
+        text: "Help! I need assistance. Please call 911. There has been an accident. My name is John Smith. I am located at 42 Oak Street.",
+        tip: "Emergency situations demand clear, projected speech. Practice these with authority.",
+        type: "warmup" as ExerciseType
+      },
+      {
+        id: "proj-8",
+        title: "Introducing Yourself",
+        text: "Good morning everyone. My name is Sarah Johnson. I work as a project manager at a technology company. I've been in this role for three years and I really enjoy leading teams.",
+        tip: "Imagine introducing yourself to a room of 20 people. Every person in the back row should hear you.",
+        type: "warmup" as ExerciseType
+      },
+      {
+        id: "proj-9",
+        title: "Asking for Directions",
+        text: "Excuse me, could you tell me how to get to the nearest train station? Is it within walking distance? Which street should I take? Thank you for your help.",
+        tip: "Practice asking confidently — don't let your voice trail off at the end of sentences.",
+        type: "warmup" as ExerciseType
+      },
+      {
+        id: "proj-10",
+        title: "Sustained Vowels",
+        text: "Hold each vowel for 5 seconds: AAAA — EEEE — IIII — OOOO — UUUU. Repeat at soft volume, then medium, then loud.",
+        tip: "Sustained phonation builds vocal endurance. Keep the sound steady — no wobbling.",
+        type: "warmup" as ExerciseType
+      }
+    ]
+  },
+  {
+    id: "neuro-articulation",
+    level: 3,
+    title: "Neuro Articulation",
+    description: "Targeted oral-motor exercises for dysarthria and motor speech disorders. Fricatives, praxis, diadochokinesis, and more.",
+    icon: "🧠",
+    color: "from-pink-500/20 to-rose-600/10",
+    exercises: [
+      {
+        id: "neuro-artic-1",
+        title: "Fricative Chains",
+        text: "FA — FE — FI — FO — FU. SA — SE — SI — SO — SU. SHA — SHE — SHI — SHO — SHU. Repeat each chain 3 times, exaggerating the airflow.",
+        tip: "Fricatives require sustained airflow through a narrow channel. Feel the air on your hand."
+      },
+      {
+        id: "neuro-artic-2",
+        title: "Bucco-Facial Praxis",
+        text: "Purse your lips tight (5 sec). Smile wide (5 sec). Stick your tongue out, then up, then down, then left, then right. Puff your cheeks. Alternate 5 times each.",
+        tip: "These movements strengthen the muscles used for speech. Do them in front of a mirror."
+      },
+      {
+        id: "neuro-artic-3",
+        title: "PA-TA-KA Drill",
+        text: "PA-PA-PA-PA-PA. TA-TA-TA-TA-TA. KA-KA-KA-KA-KA. PA-TA-KA, PA-TA-KA, PA-TA-KA. Repeat as fast as you can while staying clear.",
+        tip: "Classic diadochokinetic exercise. PA tests lips, TA tests tongue tip, KA tests tongue back."
+      },
+      {
+        id: "neuro-artic-4",
+        title: "Target Consonants: Stops",
+        text: "BAT — PAT. BIG — PIG. DIG — TIG. GOT — COT. BED — PET. DAM — TAM. GUM — CUM. Repeat each pair 3 times.",
+        tip: "Focus on the explosive release of air. Voiced stops (B, D, G) should vibrate; voiceless (P, T, K) should puff."
+      },
+      {
+        id: "neuro-artic-5",
+        title: "Long Multisyllabic Words",
+        text: "Responsibility. Communication. Refrigerator. Hippopotamus. Autobiography. Electromagnetic. Prestidigitation. Incomprehensible. Meteorological. Uncharacteristically.",
+        tip: "Break each word into syllables first. Then chain them together slowly, adding speed only when clean."
+      },
+      {
+        id: "neuro-artic-6",
+        title: "Nasals & Liquids",
+        text: "MA — NA — NGA. LA — RA — LA — RA. MAMA — NANA. LALA — RARA. Morning, running, singing, ringing. Lily really likes rolling ribbons.",
+        tip: "Nasals (M, N, NG) need the velum to lower. Liquids (L, R) need precise tongue placement."
+      },
+      {
+        id: "neuro-artic-7",
+        title: "Alternating Voicing",
+        text: "FAN — VAN. SIP — ZIP. SHUSH — JUDGE. THIN — THEN. PRICE — PRIZE. BATCH — BADGE. Alternate rapidly.",
+        tip: "Feel your larynx vibrate on voiced sounds (V, Z, J, TH in 'then'). No vibration on voiceless."
+      },
+      {
+        id: "neuro-artic-8",
+        title: "Consonant Clusters",
+        text: "STREAM — SPRING — SPLASH — STRONG — STRICT. TWELFTH — STRENGTHS — PROMPTS — CRISPS — TEXTS. Say each word 3 times.",
+        tip: "Clusters are the hardest targets in dysarthria. Slow down and articulate every consonant."
+      },
+      {
+        id: "neuro-artic-9",
+        title: "Rapid Syllable Alternation",
+        text: "BA-DA-BA-DA-BA-DA. PA-TA-PA-TA-PA-TA. KA-LA-KA-LA-KA-LA. MA-NA-MA-NA-MA-NA. Start slow, build speed over 30 seconds.",
+        tip: "Alternate between two articulatory positions. This tests motor switching speed."
+      },
+      {
+        id: "neuro-artic-10",
+        title: "Functional Phrases",
+        text: "Thank you very much. Could you repeat that please? I would like a cup of coffee. What time does the bus arrive? Nice to meet you. Have a great day.",
+        tip: "Practice these everyday phrases with exaggerated clarity. They are the building blocks of daily communication."
+      }
+    ]
+  },
+  {
+    id: "neuro-narrative",
+    level: 4,
+    title: "Narrative Coherence",
+    description: "Listen to a short story, then retell it from memory. Trains sequencing, working memory, and coherent narrative production.",
+    icon: "🧩",
+    color: "from-cyan-500/20 to-sky-600/10",
+    type: "retelling" as ExerciseType,
+    exercises: [
+      {
+        id: "neuro-retell-1",
+        title: "The Lost Dog",
+        text: "A woman was walking her dog in the park when it slipped its leash and ran off. She searched for an hour, asking other walkers. Finally, a boy found the dog hiding under a bench near the pond. The woman was so grateful she bought the boy an ice cream.",
+        tip: "Retell in order: who, what happened, how it resolved. Don't skip the emotional details.",
+        type: "retelling" as ExerciseType,
+        keyPoints: [
+          "A woman was walking her dog in the park",
+          "The dog slipped its leash and ran off",
+          "She searched for an hour asking other people",
+          "A boy found the dog under a bench near the pond",
+          "She bought the boy an ice cream as thanks"
+        ]
+      },
+      {
+        id: "neuro-retell-2",
+        title: "The Surprise Birthday",
+        text: "Mark wanted to throw a surprise party for his wife's 40th birthday. He secretly invited all their friends and booked a restaurant. On the night, he told her they were going for a quiet dinner. When they arrived, 30 people shouted 'Surprise!' She burst into tears of joy.",
+        tip: "Capture the setup, the secret plan, and the emotional payoff.",
+        type: "retelling" as ExerciseType,
+        keyPoints: [
+          "Mark planned a surprise party for his wife's 40th",
+          "He secretly invited friends and booked a restaurant",
+          "He told her it would be a quiet dinner",
+          "30 people shouted surprise when they arrived",
+          "She burst into tears of joy"
+        ]
+      },
+      {
+        id: "neuro-retell-3",
+        title: "The Recipe Disaster",
+        text: "Tom decided to bake a cake for the first time. He misread the recipe and added salt instead of sugar. The cake looked perfect but tasted terrible. His daughter tried a bite and made a funny face. They laughed together and ordered pizza instead.",
+        tip: "Focus on the sequence: intention, mistake, consequence, reaction, resolution.",
+        type: "retelling" as ExerciseType,
+        keyPoints: [
+          "Tom decided to bake a cake for the first time",
+          "He confused salt with sugar in the recipe",
+          "The cake looked good but tasted terrible",
+          "His daughter made a funny face tasting it",
+          "They laughed and ordered pizza instead"
+        ]
+      },
+      {
+        id: "neuro-retell-4",
+        title: "The Missed Train",
+        text: "Sarah was running late for an important job interview. She sprinted to the station but the train had just left. The next one wasn't for 30 minutes. She called the company, explained the situation, and they rescheduled for the afternoon. She got the job.",
+        tip: "Retell the problem, the solution she found, and the final outcome.",
+        type: "retelling" as ExerciseType,
+        keyPoints: [
+          "Sarah was late for a job interview",
+          "She missed the train by seconds",
+          "The next train was 30 minutes away",
+          "She called the company and they rescheduled",
+          "She ended up getting the job"
+        ]
+      },
+      {
+        id: "neuro-retell-5",
+        title: "The Secret Garden",
+        text: "An old man had a beautiful garden hidden behind his house. Nobody in the neighborhood knew about it. One day, a curious child peeked through the fence and saw roses, sunflowers, and a small fountain. The old man invited the child in and they spent the afternoon together.",
+        tip: "Include the setting, the discovery, and the human connection.",
+        type: "retelling" as ExerciseType,
+        keyPoints: [
+          "An old man had a hidden garden behind his house",
+          "No neighbors knew about the garden",
+          "A curious child peeked through the fence",
+          "The garden had roses, sunflowers, and a fountain",
+          "The old man invited the child in for the afternoon"
+        ]
+      },
+      {
+        id: "neuro-retell-6",
+        title: "The Library Book",
+        text: "Emma borrowed a book from the library and forgot to return it for three months. When she finally went back, she was worried about the fine. The librarian smiled and said they had just declared an amnesty week — no fines for late returns. Emma sighed with relief and checked out two more books.",
+        tip: "Sequence: action, consequence feared, twist, emotional resolution.",
+        type: "retelling" as ExerciseType,
+        keyPoints: [
+          "Emma forgot to return a library book for three months",
+          "She was worried about the late fine",
+          "The librarian said it was amnesty week",
+          "No fines were charged for late returns",
+          "Emma was relieved and borrowed two more books"
+        ]
+      },
+      {
+        id: "neuro-retell-7",
+        title: "The Walk by the Lake",
+        text: "Every Sunday, Mr. and Mrs. Chen walk around the lake near their home. Last week, they noticed a family of ducks with six ducklings. Mrs. Chen took photos while Mr. Chen tossed bread crumbs. A jogger stopped to watch and they all chatted for a while.",
+        tip: "Include the routine, the unexpected element, and the social interaction.",
+        type: "retelling" as ExerciseType,
+        keyPoints: [
+          "Mr. and Mrs. Chen walk around the lake every Sunday",
+          "They noticed a family of ducks with six ducklings",
+          "Mrs. Chen took photos of the ducks",
+          "Mr. Chen fed them bread crumbs",
+          "A jogger stopped and they all chatted together"
+        ]
+      },
+      {
+        id: "neuro-retell-8",
+        title: "The Power Outage",
+        text: "During a thunderstorm, the power went out in the whole neighborhood. The Miller family lit candles and played board games. The children loved it — they said it was more fun than watching TV. When the power came back two hours later, the kids asked to keep the candles going.",
+        tip: "Capture the disruption, the adaptation, and the surprising positive outcome.",
+        type: "retelling" as ExerciseType,
+        keyPoints: [
+          "A thunderstorm caused a power outage in the neighborhood",
+          "The Miller family lit candles",
+          "They played board games together",
+          "The children enjoyed it more than watching TV",
+          "When power returned the kids wanted to keep the candles"
+        ]
+      },
+      {
+        id: "neuro-retell-9",
+        title: "The Wrong Bus",
+        text: "Alex got on the wrong bus and ended up in an unfamiliar part of town. Instead of panicking, he decided to explore. He found a wonderful little bakery with the best croissants he'd ever tasted. Now he goes back there every Saturday morning.",
+        tip: "A mistake → exploration → discovery → new habit. Capture all four beats.",
+        type: "retelling" as ExerciseType,
+        keyPoints: [
+          "Alex accidentally took the wrong bus",
+          "He ended up in an unfamiliar neighborhood",
+          "He decided to explore instead of panicking",
+          "He discovered an amazing bakery",
+          "He now visits that bakery every Saturday"
+        ]
+      },
+      {
+        id: "neuro-retell-10",
+        title: "The Neighbor's Cat",
+        text: "Lisa heard meowing coming from a tree outside her window. A cat was stuck on a high branch. She tried calling it down but it wouldn't move. She found a ladder in the garage and carefully climbed up. The cat jumped into her arms. Later, the neighbor came to thank her with a homemade pie.",
+        tip: "Problem → attempts → solution → reward. Include specific details for richness.",
+        type: "retelling" as ExerciseType,
+        keyPoints: [
+          "Lisa heard a cat stuck in a tree outside her window",
+          "She tried calling it down but it wouldn't move",
+          "She found a ladder in the garage",
+          "The cat jumped into her arms when she climbed up",
+          "The neighbor thanked her with a homemade pie"
+        ]
+      }
+    ]
+  },
+  {
+    id: "silence-training",
+    level: 3,
+    title: "Silence Tolerance",
+    description: "Practice being comfortable with pauses and silence. Build confidence through structured silence exercises.",
+    icon: "\u{1F910}",
+    color: "from-indigo-500/20 to-violet-600/10",
+    exercises: [
+      {
+        id: "silence-1",
+        title: "Routine Prompts",
+        text: "Describe your morning routine, step by step.",
+        tip: "Wait for the silence timer to finish before answering. Focus on your breathing during the pause."
+      },
+      {
+        id: "silence-2",
+        title: "Travel Prompts",
+        text: "Talk about a place you'd love to visit and why.",
+        tip: "Embrace the silence. It gives your listener time to process and shows confidence."
+      },
+      {
+        id: "silence-3",
+        title: "Memory Prompts",
+        text: "Describe a happy childhood memory in detail.",
+        tip: "Use the silence to organize your thoughts. A pause before speaking makes your answer clearer."
       }
     ]
   }

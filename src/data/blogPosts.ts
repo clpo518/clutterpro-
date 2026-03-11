@@ -23,7 +23,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'what-is-cluttering-speech-disorder-slp-guide',
     title: "What Is Cluttering? A Guide for SLPs",
     excerpt: "Cluttering is one of the most underdiagnosed fluency disorders in speech-language pathology. Here's what every SLP needs to know — from definition to differential diagnosis.",
-    author: 'ClutterPro Editorial',
+    author: 'TalkSlower Editorial',
     date: '2026-03-01',
     readTime: '8 min',
     category: 'Clinical',
@@ -84,7 +84,13 @@ Evidence-based treatment for cluttering focuses on:
 2. **Phrasing technique** — speaking in short breath groups with natural pauses
 3. **Over-articulation** — deliberate exaggeration of consonants
 4. **Self-monitoring training** — teaching the client to catch fast speech independently
-5. **Home practice** — 10–20 min of daily structured practice with a tool like ClutterPro
+5. **Home practice** — 10–20 min of daily structured practice with a tool like TalkSlower
+
+{{DEMO_KARAOKE}}
+
+For children, engaging exercises like picture puzzles help build articulation skills while keeping motivation high.
+
+{{DEMO_REBUS}}
 
 For resources, see ASHA's Practice Portal on Fluency Disorders and the International Cluttering Association (ICA).
     `,
@@ -93,8 +99,8 @@ For resources, see ASHA's Practice Portal on Fluency Disorders and the Internati
     id: '2',
     slug: 'how-to-measure-speech-rate-cluttering-assessment',
     title: "How to Measure Speech Rate in Cluttering Therapy",
-    excerpt: "Syllables per second is the gold standard for cluttering assessment. Here's how to calculate it accurately, what norms to use, and how ClutterPro automates the process.",
-    author: 'ClutterPro Editorial',
+    excerpt: "Syllables per second is the gold standard for cluttering assessment. Here's how to calculate it accurately, what norms to use, and how TalkSlower automates the process.",
+    author: 'TalkSlower Editorial',
     date: '2026-02-15',
     readTime: '10 min',
     category: 'Clinical',
@@ -112,7 +118,7 @@ Words per minute (WPM) is intuitive but clinically problematic for two reasons:
 1. **Word length varies**: "I" and "Mediterranean" are both one word. SPS treats each syllable as a unit — the actual motor output of speech.
 2. **Silences distort the picture**: Overall speaking rate includes pauses, which cluttering clients actually tend to use *less*. Articulation rate (silences excluded) reflects the motor pattern that's clinically relevant.
 
-The Van Zaalen (2009) method — now referenced in ASHA's cluttering materials — uses articulation rate in SPS as the primary metric. This is what ClutterPro measures.
+The Van Zaalen (2009) method — now referenced in ASHA's cluttering materials — uses articulation rate in SPS as the primary metric. This is what TalkSlower measures.
 
 ## How to Calculate SPS Manually
 
@@ -126,7 +132,7 @@ Example: 180 syllables in 45 seconds of actual speech = 4.0 SPS
 
 ## Clinical Reference Values (Adults)
 
-Based on Van Zaalen et al. (2009) and English-language norms:
+Based on Van Zaalen et al. (2009) clinical norms:
 
 | Range | Label | Clinical Interpretation |
 |-------|-------|------------------------|
@@ -144,9 +150,11 @@ Note: Children and adolescents have higher normative rates. Adjust expectations 
 - Measure **pre- and post-treatment** with the same passage for valid comparison
 - Document in your SOAP note: "Articulation rate measured at X.X SPS (Van Zaalen 2009 method)"
 
-## How ClutterPro Automates This
+## How TalkSlower Automates This
 
-ClutterPro uses Deepgram Nova-2 real-time transcription with word-level timestamps to calculate SPS continuously during a session — silences automatically excluded. The result is a session-by-session SPS chart that replaces manual counting entirely.
+TalkSlower uses Deepgram Nova-2 real-time transcription with word-level timestamps to calculate SPS continuously during a session — silences automatically excluded. The result is a session-by-session SPS chart that replaces manual counting entirely.
+
+{{DEMO_GAUGE}}
 
 SLPs receive per-session reports showing average SPS, peak SPS, and variance — ready to reference in SOAP notes.
     `,
@@ -156,7 +164,7 @@ SLPs receive per-session reports showing average SPS, peak SPS, and variance —
     slug: 'cluttering-vs-stuttering-key-differences-clinicians',
     title: "Cluttering vs. Stuttering: Key Differences for Clinicians",
     excerpt: "They can co-occur, but cluttering and stuttering are fundamentally different disorders. Here's the differential diagnosis framework every SLP needs.",
-    author: 'ClutterPro Editorial',
+    author: 'TalkSlower Editorial',
     date: '2026-01-28',
     readTime: '11 min',
     category: 'Clinical',
@@ -210,7 +218,7 @@ Ask the client to slow down or read aloud. If intelligibility improves dramatica
 
 In mixed cluttering-stuttering cases:
 - Treat cluttering first: rate reduction often reduces stuttering frequency
-- Use SPS biofeedback (ClutterPro) for rate component
+- Use SPS biofeedback (TalkSlower) for rate component
 - Address stuttering anxiety and avoidance with fluency shaping or stuttering modification
 - Document both in your evaluation report and treatment plan
 
@@ -227,7 +235,7 @@ In mixed cluttering-stuttering cases:
     slug: 'cluttering-therapy-homework-home-practice-strategies',
     title: "Home Practice Strategies for Cluttering Clients",
     excerpt: "Homework is critical in cluttering therapy. Here are evidence-based home practice strategies SLPs can assign — and how to track compliance between sessions.",
-    author: 'ClutterPro Editorial',
+    author: 'TalkSlower Editorial',
     date: '2026-01-10',
     readTime: '9 min',
     category: 'Clinical',
@@ -244,6 +252,8 @@ Cluttering is a neuromotor habit. The motor pattern of speaking too fast is deep
 
 The research consensus: **10–20 minutes of daily structured practice** produces measurable SPS change within 4–6 weeks.
 
+{{DEMO_BREATHING}}
+
 ## What to Assign
 
 ### 1. Controlled Oral Reading (5–10 min/day)
@@ -255,7 +265,7 @@ Assign a reading passage at the client's level. Ask them to:
 **Why it works**: Reading provides linguistic structure, reducing the cognitive load on language formulation — so the client can focus entirely on rate.
 
 ### 2. Real-Time SPS Monitoring (5 min/day)
-With ClutterPro, clients practice with live SPS feedback on their screen. The visual gauge gives immediate reinforcement when rate is in the target zone.
+With TalkSlower, clients practice with live SPS feedback on their screen. The visual gauge gives immediate reinforcement when rate is in the target zone.
 
 This is the most efficient form of home practice for rate reduction.
 
@@ -267,7 +277,7 @@ Every time the client catches themselves speeding up, they mentally issue themse
 
 ## Tracking Compliance
 
-Without data, you're flying blind. Use ClutterPro's session log to:
+Without data, you're flying blind. Use TalkSlower's session log to:
 - See how many practice sessions the client completed
 - Review their average SPS trends between appointments
 - Identify which exercise types are most challenging
@@ -276,13 +286,13 @@ If compliance is low, revisit the homework load. 10 minutes beats 0 minutes — 
 
 ## What to Say at the End of Each Session
 
-> "Your homework this week: 5 minutes of reading in ClutterPro, every day. That's it. Focus on staying below 4.5 SPS. Next session, we'll look at your data together."
+> "Your homework this week: 5 minutes of reading in TalkSlower, every day. That's it. Focus on staying below 4.5 SPS. Next session, we'll look at your data together."
 
 Short, specific, measurable. Clients are more likely to follow through.
 
 ## CPT Coding Note
 
-Home practice assignments are typically included under **CPT 92507** (Treatment of speech, language, voice, communication, and/or auditory processing disorder). Document in your SOAP plan: "Client assigned daily home practice using ClutterPro rate monitoring tool, targeting <4.5 SPS."
+Home practice assignments are typically included under **CPT 92507** (Treatment of speech, language, voice, communication, and/or auditory processing disorder). Document in your SOAP plan: "Client assigned daily home practice using TalkSlower rate monitoring tool, targeting <4.5 SPS."
     `,
   },
   {
@@ -290,7 +300,7 @@ Home practice assignments are typically included under **CPT 92507** (Treatment 
     slug: 'asha-guidelines-cluttering-fluency-disorder-slp',
     title: "ASHA Guidelines for Cluttering: What SLPs Need to Know",
     excerpt: "ASHA's Practice Portal on Fluency Disorders covers cluttering — but the guidance is scattered. Here's a practical summary of what ASHA says and how to apply it clinically.",
-    author: 'ClutterPro Editorial',
+    author: 'TalkSlower Editorial',
     date: '2025-12-20',
     readTime: '12 min',
     category: 'Clinical',
@@ -345,7 +355,7 @@ ASHA acknowledges that the evidence base for cluttering treatment is smaller tha
 
 **Treatment plan**: Specify target SPS range (e.g., "client will demonstrate articulation rate ≤4.5 SPS in structured oral reading in 4/5 trials").
 
-**SOAP notes**: Record session SPS data. ClutterPro generates per-session SPS summaries compatible with SOAP format.
+**SOAP notes**: Record session SPS data. TalkSlower generates per-session SPS summaries compatible with SOAP format.
 
 **CPT code**: 92507 for treatment sessions. 92521 for fluency assessment if billing separately.
 
@@ -353,7 +363,7 @@ ASHA acknowledges that the evidence base for cluttering treatment is smaller tha
 
 Van Zaalen, Y., Wijnen, F., & Dejonckere, P. H. (2009). Differential diagnostic characteristics between cluttering and stuttering, Part One. *Journal of Fluency Disorders, 34*(3), 137–154.
 
-This is the foundational paper for SPS-based cluttering assessment and the methodology ClutterPro uses.
+This is the foundational paper for SPS-based cluttering assessment and the methodology TalkSlower uses.
     `,
   },
 ];

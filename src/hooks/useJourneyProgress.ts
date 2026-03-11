@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
-import { JOURNEY_STEPS, TOTAL_STEPS } from "@/data/journeyPath";
+import { getJourneySteps, TOTAL_STEPS, type FluencyGoal } from "@/data/journeyPath";
 
 interface JourneyValidation {
   step_index: number;
@@ -9,11 +9,13 @@ interface JourneyValidation {
   session_id: string | null;
 }
 
-export const useJourneyProgress = () => {
+export const useJourneyProgress = (fluencyGoal: FluencyGoal = "speed") => {
   const { user } = useAuth();
   const [currentStep, setCurrentStep] = useState(0);
   const [validations, setValidations] = useState<JourneyValidation[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const steps = getJourneySteps(fluencyGoal);
 
   // Fetch progress
   useEffect(() => {
@@ -57,12 +59,12 @@ export const useJourneyProgress = () => {
   // Check if a step is completed
   const isStepCompleted = useCallback(
     (stepIndex: number): boolean => {
-      const step = JOURNEY_STEPS[stepIndex];
+      const step = steps[stepIndex];
       if (!step) return false;
       const validated = getValidatedExercises(stepIndex);
       return validated.length >= step.requiredValidations;
     },
-    [getValidatedExercises]
+    [steps, getValidatedExercises]
   );
 
   // Check if a step is unlocked
@@ -109,7 +111,7 @@ export const useJourneyProgress = () => {
       });
 
       // Check if step is now complete
-      const step = JOURNEY_STEPS[stepIndex];
+      const step = steps[stepIndex];
       const currentValidated = getValidatedExercises(stepIndex);
       const nowValidated = currentValidated.includes(exerciseId)
         ? currentValidated.length
@@ -130,12 +132,12 @@ export const useJourneyProgress = () => {
 
       return { stepAdvanced: false, newStep: currentStep };
     },
-    [user, currentStep, getValidatedExercises]
+    [user, currentStep, steps, getValidatedExercises]
   );
 
   // Overall progress percentage
   const totalValidations = validations.length;
-  const totalRequired = JOURNEY_STEPS.reduce((sum, s) => sum + s.requiredValidations, 0);
+  const totalRequired = steps.reduce((sum, s) => sum + s.requiredValidations, 0);
   const overallProgress = Math.round((totalValidations / totalRequired) * 100);
 
   return {
@@ -148,5 +150,6 @@ export const useJourneyProgress = () => {
     validateExercise,
     overallProgress,
     totalSteps: TOTAL_STEPS,
+    steps,
   };
 };

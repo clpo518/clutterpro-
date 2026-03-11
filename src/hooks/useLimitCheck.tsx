@@ -109,16 +109,21 @@ export const useLimitCheck = (): UseLimitCheckResult => {
               // Solo patient: check trial or premium status
               const trialEndDate = profileData.trial_end_date ? new Date(profileData.trial_end_date) : null;
               const now = new Date();
-              
+
               if (trialEndDate) {
                 const daysLeft = Math.max(0, Math.ceil((trialEndDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)));
                 const trialActive = trialEndDate > now;
                 setHasActiveTrial(trialActive);
                 setTrialDaysRemaining(daysLeft);
+              } else {
+                // No trial_end_date yet — trial hasn't been activated (email not confirmed)
+                // Treat as active trial with 7 days so the user isn't blocked immediately
+                setHasActiveTrial(true);
+                setTrialDaysRemaining(7);
               }
 
               // Solo patient has access if premium (subscribed) or trial is active
-              const trialActive = trialEndDate ? trialEndDate > now : false;
+              const trialActive = trialEndDate ? trialEndDate > now : true; // if no end date, assume active (pending email confirmation)
               setLinkedTherapistValid(profileData.is_premium || trialActive);
             }
           }

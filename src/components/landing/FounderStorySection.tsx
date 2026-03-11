@@ -61,12 +61,12 @@ export const FounderStorySection = ({ audience = "patient" }: FounderStorySectio
                 <div className="relative">
                   <img
                     src={founderImage}
-                    alt="Clement Pontegnier, founder of ClutterPro"
+                    alt="Clement, founder of TalkSlower"
                     className="w-full aspect-[4/5] object-cover rounded-2xl shadow-2xl"
                   />
                   {/* Name overlay */}
                   <div className="absolute bottom-4 left-4 right-4 bg-background/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                    <p className="font-semibold text-foreground">Clement Pontegnier</p>
+                    <p className="font-semibold text-foreground">Clement</p>
                     <p className="text-sm text-muted-foreground">Founder &middot; Person who clutters</p>
                   </div>
                 </div>
@@ -113,15 +113,15 @@ export const FounderStorySection = ({ audience = "patient" }: FounderStorySectio
 
                 {isTherapist ? (
                   <p>
-                    <strong className="text-foreground">ClutterPro</strong> was born from that experience:
+                    <strong className="text-foreground">TalkSlower</strong> was born from that experience:
                     giving SLPs a tool that speaks their patients' language,
                     with rigorous clinical metrics (SPS, Van Zaalen norms) and an experience
-                    that makes people want to practice. After helping hundreds of French-speaking patients, we're bringing this tool to the US SLP community.
+                    that makes people want to practice. Built by clinicians, for clinicians — and the patients they serve.
                   </p>
                 ) : (
                   <p>
-                    <strong className="text-foreground">ClutterPro</strong> was born from late-night coding sessions, dozens of practice rounds,
-                    and a simple belief: <em>if it helps me, it can help others.</em> After helping hundreds of French-speaking patients, we're bringing this tool to the US SLP community.
+                    <strong className="text-foreground">TalkSlower</strong> was born from late-night coding sessions, dozens of practice rounds,
+                    and a simple belief: <em>if it helps me, it can help others.</em> Built by clinicians, for clinicians — and the patients they serve.
                   </p>
                 )}
               </div>
@@ -151,7 +151,7 @@ export const FounderStorySection = ({ audience = "patient" }: FounderStorySectio
             <div className="text-center mb-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
                 <Building2 className="w-4 h-4" />
-                The team behind ClutterPro
+                The team behind TalkSlower
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-foreground">
                 A solid company, a clear mission
@@ -163,7 +163,7 @@ export const FounderStorySection = ({ audience = "patient" }: FounderStorySectio
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <Building2 className="w-7 h-7 text-primary" />
                 </div>
-                <h4 className="font-semibold text-foreground mb-2">ClutterPro Inc.</h4>
+                <h4 className="font-semibold text-foreground mb-2">TalkSlower Inc.</h4>
                 <p className="text-sm text-muted-foreground">
                   A company specializing in digital health tools for speech fluency.
                 </p>
@@ -193,7 +193,7 @@ export const FounderStorySection = ({ audience = "patient" }: FounderStorySectio
             <div className="flex items-center justify-center gap-4 pt-4 border-t border-border">
               <Sparkles className="w-5 h-5 text-primary" />
               <p className="text-sm text-muted-foreground text-center">
-                <strong className="text-foreground">ClutterPro</strong> is developed and maintained with the goal of helping every person who clutters regain confidence.
+                <strong className="text-foreground">TalkSlower</strong> is developed and maintained with the goal of helping every person who clutters regain confidence.
               </p>
             </div>
           </div>

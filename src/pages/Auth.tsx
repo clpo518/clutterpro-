@@ -223,7 +223,7 @@ const Auth = () => {
     } catch (error: unknown) {
       const rawMessage = error instanceof Error ? error.message : "An error occurred";
       
-      // Provide clearer French error messages for login
+      // Provide clearer error messages for login
       if (isLogin) {
         const lower = rawMessage.toLowerCase();
         if (lower.includes("invalid login credentials") || lower.includes("invalid_credentials")) {
@@ -267,37 +267,6 @@ const Auth = () => {
         <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors">
           <ArrowLeft className="w-4 h-4" />Back to home
         </Link>
-
-        {/* Demo accounts */}
-        <div className="mb-4 p-3 rounded-xl border border-dashed border-amber-400 bg-amber-50 dark:bg-amber-900/20">
-          <p className="text-xs font-semibold text-amber-700 dark:text-amber-300 mb-2">🧪 Demo accounts</p>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={async () => {
-                setLoading(true);
-                const { error } = await signIn("demo@patient.com", "demo123");
-                if (!error) navigate("/dashboard");
-                setLoading(false);
-              }}
-              className="flex-1 text-xs py-1.5 px-2 rounded-lg bg-white dark:bg-zinc-800 border border-amber-300 hover:bg-amber-50 dark:hover:bg-zinc-700 transition-colors font-medium"
-            >
-              Patient demo
-            </button>
-            <button
-              type="button"
-              onClick={async () => {
-                setLoading(true);
-                const { error } = await signIn("demo@slp.com", "demo123");
-                if (!error) navigate("/dashboard");
-                setLoading(false);
-              }}
-              className="flex-1 text-xs py-1.5 px-2 rounded-lg bg-white dark:bg-zinc-800 border border-amber-300 hover:bg-amber-50 dark:hover:bg-zinc-700 transition-colors font-medium"
-            >
-              Therapist demo
-            </button>
-          </div>
-        </div>
 
         <Card className="shadow-2xl border-border/50">
           <CardHeader className="text-center pb-2">

@@ -308,7 +308,7 @@ const ProSubscription = () => {
           {/* Benefits Section */}
           <div className="mt-16 space-y-8">
             <h2 className="text-2xl font-display font-bold text-center">
-              Why SLPs choose ClutterPro
+              Why SLPs choose TalkSlower
             </h2>
             
             <div className="grid md:grid-cols-3 gap-6">

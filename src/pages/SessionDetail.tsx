@@ -325,7 +325,7 @@ const SessionDetail = () => {
 
     const avgSps = wpmToSps(session.avg_wpm);
     
-    const shareText = `Session Summary - ClutterPro
+    const shareText = `Session Summary - TalkSlower
 Date: ${formatDate(session.created_at)}
 Duration: ${formatDuration(session.duration_seconds)}
 Average rate: ${avgSps} syll/sec
@@ -748,7 +748,7 @@ ${session.recording_url ? `🎧 Recording available` : ""}`;
               })()}
 
               <div className="grid grid-cols-2 gap-4">
-                {/* Vitesse Moyenne - Color coded */}
+                {/* Average Speed - Color coded */}
                 {(() => {
                   const colors = getWpmColorClasses(session.avg_wpm, session.target_wpm);
                   const avgSps = wpmToSps(session.avg_wpm);

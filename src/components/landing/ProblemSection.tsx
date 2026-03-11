@@ -4,38 +4,38 @@ import { Eye, Mic, TrendingUp, MessageCircleQuestion, Zap, Shuffle } from "lucid
 const problems = [
   {
     icon: MessageCircleQuestion,
-    title: "Tired of repeating yourself?",
-    description: "Friends, coworkers, and family keep asking 'Can you say that again?' — and it's exhausting.",
+    title: '"Can you say that again?"',
+    description: "You've heard it a thousand times. At work, at dinner, on the phone. You start avoiding conversations altogether.",
   },
   {
     icon: Zap,
-    title: "Your brain races ahead of your mouth?",
-    description: "You know exactly what to say, but the words come out jumbled or too fast to follow.",
+    title: "Your mouth can't keep up with your brain",
+    description: "You know exactly what you want to say. But the words pile up, syllables get swallowed, and people look confused.",
   },
   {
     icon: Shuffle,
-    title: "Stress makes it worse?",
-    description: "Job interviews, presentations, phone calls — the higher the stakes, the faster you speak.",
+    title: "High stakes? Even faster speech.",
+    description: "Job interviews, first dates, presentations — when it matters most, your speech speeds up and clarity drops.",
   },
 ];
 
 const steps = [
   {
     icon: Mic,
-    title: "Practice that fits your life",
-    description: "12 exercise modes — from guided reading to real conversations. Short daily sessions that build lasting habits.",
+    title: "Pick an exercise. Hit record.",
+    description: "90+ exercises across 12 modes — guided reading, free conversation, tongue twisters, and more. Sessions as short as 2 minutes.",
     color: "text-blue-600",
   },
   {
     icon: Eye,
-    title: "See your progress in real time",
-    description: "Watch your speech rate live as you practice. Visual feedback shows you exactly when you're speeding up.",
+    title: "Get instant visual feedback",
+    description: "See your syllables-per-second in real time. A green light when you're on target, a nudge when you speed up.",
     color: "text-green-600",
   },
   {
     icon: TrendingUp,
-    title: "Share results with your therapist",
-    description: "Your speech therapist sees your progress remotely — no more guessing between appointments.",
+    title: "Track your progress over time",
+    description: "Watch your speech rate drop week after week. Your therapist sees it too — no more guessing between sessions.",
     color: "text-primary",
   },
 ];
@@ -97,10 +97,10 @@ export const ProblemSection = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              How ClutterPro works
+              A simple system that works
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Three ways to build lasting habits — at your own pace.
+              5 minutes a day. Real feedback. Visible progress.
             </p>
           </motion.div>
 

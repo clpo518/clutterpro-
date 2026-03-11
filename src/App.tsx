@@ -40,6 +40,8 @@ import Admin from "./pages/Admin";
 import AcousticTest from "./pages/AcousticTest";
 import DialogueLab from "./pages/DialogueLab";
 import SessionLive from "./pages/SessionLive";
+import SilenceTraining from "./pages/SilenceTraining";
+import NeurologyTraining from "./pages/NeurologyTraining";
 
 const queryClient = new QueryClient();
 
@@ -85,6 +87,8 @@ const App = () => (
             <Route path="/admin/test-acoustique" element={<ProtectedRoute><AcousticTest /></ProtectedRoute>} />
             <Route path="/dialogue-lab" element={<DialogueLab />} />
             <Route path="/session-live" element={<ProtectedRoute><SessionLive /></ProtectedRoute>} />
+            <Route path="/silence-training" element={<ProtectedRoute><SilenceTraining /></ProtectedRoute>} />
+            <Route path="/neuro-training" element={<ProtectedRoute><NeurologyTraining /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <CookieConsent />

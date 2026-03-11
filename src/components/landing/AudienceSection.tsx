@@ -10,7 +10,7 @@ import {
 const faqs = [
   {
     question: "Does this replace a speech therapist?",
-    answer: "No, ClutterPro is a complementary tool for practicing between sessions. It is ideally recommended and monitored by your practitioner. The app does not diagnose and does not replace professional care."
+    answer: "No, TalkSlower is a complementary tool for practicing between sessions. It is ideally recommended and monitored by your practitioner. The app does not diagnose and does not replace professional care."
   },
   {
     question: "What is cluttering?",
@@ -61,7 +61,7 @@ export const AudienceSection = () => {
             Have questions?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to know about ClutterPro and fluency disorders.
+            Everything you need to know about TalkSlower and fluency disorders.
           </p>
         </motion.div>
         

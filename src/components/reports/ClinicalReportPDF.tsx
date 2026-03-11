@@ -586,13 +586,13 @@ const ClinicalReportPDF: React.FC<ClinicalReportPDFProps> = ({
             The data presented should be integrated into the patient's overall evaluation.
           </Text>
           <Text style={[styles.disclaimerText, { marginTop: 6 }]}>
-            Data collected via ClutterPro.com - Fluency training platform
+            Data collected via TalkSlower.com - Fluency training platform
           </Text>
         </View>
         
         {/* Footer */}
         <View style={styles.footer}>
-          <Text style={styles.footerText}>ClutterPro.com — Speech rate measurement tool</Text>
+          <Text style={styles.footerText}>TalkSlower.com — Speech rate measurement tool</Text>
           <Text style={styles.footerText}>Page 1/1</Text>
         </View>
       </Page>

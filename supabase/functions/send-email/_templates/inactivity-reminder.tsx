@@ -46,7 +46,7 @@ export function InactivityReminderEmail(props: InactivityReminderEmailProps) {
         💡 Tip: Pair your practice with an existing habit — after coffee, during a break, before bed.
       </Text>
 
-      <Text style={signatureName}>The ClutterPro Team</Text>
+      <Text style={signatureName}>The TalkSlower Team</Text>
     </BaseLayout>
   )
 }

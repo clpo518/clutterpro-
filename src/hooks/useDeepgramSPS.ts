@@ -13,6 +13,7 @@ interface WordWithTimestamp {
   duration: number;
   isFiller: boolean;
   fillerKey?: string;
+  speaker?: number;
 }
 
 // English single-word fillers
@@ -26,10 +27,21 @@ interface FillerDetails {
 
 interface UseDeepgramSPSOptions {
   detectFillers?: boolean;
+  /** Enable speaker diarization (multi-speaker detection) */
+  diarize?: boolean;
+  /** Max number of speakers to detect (helps accuracy). 0 or undefined = auto */
+  maxSpeakers?: number;
 }
 
 /** Callback fired immediately when new words arrive (final or interim) */
 type OnWordsCallback = (words: WordWithTimestamp[], isFinal: boolean) => void;
+
+/** Per-speaker packet accumulator state */
+interface SpeakerPacketState {
+  syllCount: number;
+  firstStart: number | null;
+  lastEnd: number | null;
+}
 
 interface UseDeepgramSPSReturn {
   isConnected: boolean;
@@ -46,6 +58,8 @@ interface UseDeepgramSPSReturn {
   fillerDetails: FillerDetails;
   actualSpeakingTime: number;
   fluencyRatio: number;
+  /** Per-speaker SPS when diarization is enabled. Keys are speaker IDs (0, 1, 2...) */
+  speakerSPS: Record<number, number>;
   start: (stream: MediaStream, options?: UseDeepgramSPSOptions) => Promise<void>;
   stop: () => void;
   reset: () => void;
@@ -105,6 +119,11 @@ export function useDeepgramSPS(): UseDeepgramSPSReturn {
   const sendAudioChunkRef = useRef<((data: Float32Array) => void) | null>(null);
   const isStoppingRef = useRef(false);
   const onWordsCallbackRef = useRef<OnWordsCallback | null>(null);
+  // Diarization state
+  const diarizeRef = useRef(false);
+  const maxSpeakersRef = useRef(0);
+  const [speakerSPS, setSpeakerSPS] = useState<Record<number, number>>({});
+  const speakerPacketsRef = useRef<Map<number, SpeakerPacketState>>(new Map());
   /**
    * Check if a word is a filler (returns the matched filler key or null)
    */
@@ -179,7 +198,11 @@ export function useDeepgramSPS(): UseDeepgramSPSReturn {
    */
   const connectWebSocket = useCallback((apiKey: string) => {
     const fillerParam = detectFillersRef.current ? '&filler_words=true' : '';
-    const wsUrl = `wss://api.deepgram.com/v1/listen?model=nova-2&language=en-US&punctuate=true&interim_results=true&encoding=linear16&sample_rate=16000${fillerParam}`;
+    const diarizeParam = diarizeRef.current ? '&diarize=true&diarize_version=latest' : '';
+    const speakerParam = diarizeRef.current && maxSpeakersRef.current > 0
+      ? `&min_speakers=${maxSpeakersRef.current}&max_speakers=${maxSpeakersRef.current}`
+      : '';
+    const wsUrl = `wss://api.deepgram.com/v1/listen?model=nova-2&language=en-US&punctuate=true&interim_results=true&encoding=linear16&sample_rate=16000${fillerParam}${diarizeParam}${speakerParam}`;
 
     const socket = new WebSocket(wsUrl, ['token', apiKey]);
     socketRef.current = socket;
@@ -203,7 +226,7 @@ export function useDeepgramSPS(): UseDeepgramSPSReturn {
 
         if (data.type === 'Results' && data.channel?.alternatives?.[0]) {
           const alternative = data.channel.alternatives[0];
-          const words: Array<{ word: string; start: number; end: number }> = alternative.words || [];
+          const words: Array<{ word: string; start: number; end: number; speaker?: number }> = alternative.words || [];
 
           if (data.is_final && words.length > 0) {
             interimWordsRef.current = [];
@@ -242,7 +265,8 @@ export function useDeepgramSPS(): UseDeepgramSPSReturn {
                 syllables,
                 duration: validDuration,
                 isFiller: wordIsFiller,
-                fillerKey: wordIsFiller ? fillerKey! : undefined
+                fillerKey: wordIsFiller ? fillerKey! : undefined,
+                speaker: w.speaker
               });
 
               // Only count non-filler syllables for SPS
@@ -271,13 +295,13 @@ export function useDeepgramSPS(): UseDeepgramSPSReturn {
               const newEntries = processed.slice(-words.length);
               for (const w of newEntries) {
                 if (w.isFiller) continue;
-                
+
                 if (packetFirstStartRef.current === null) {
                   packetFirstStartRef.current = w.start;
                 }
                 packetSyllCountRef.current += w.syllables;
                 packetLastEndRef.current = w.end;
-                
+
                 if (packetSyllCountRef.current >= PACKET_SIZE) {
                   const packetDuration = packetLastEndRef.current! - packetFirstStartRef.current!;
                   if (packetDuration > 0.1) {
@@ -290,6 +314,35 @@ export function useDeepgramSPS(): UseDeepgramSPSReturn {
                   packetSyllCountRef.current = 0;
                   packetFirstStartRef.current = null;
                   packetLastEndRef.current = null;
+                }
+              }
+
+              // Per-speaker packet SPS (when diarization is enabled)
+              if (diarizeRef.current) {
+                for (const w of newEntries) {
+                  if (w.isFiller || w.speaker === undefined) continue;
+                  const spkId = w.speaker;
+
+                  if (!speakerPacketsRef.current.has(spkId)) {
+                    speakerPacketsRef.current.set(spkId, { syllCount: 0, firstStart: null, lastEnd: null });
+                  }
+                  const pkt = speakerPacketsRef.current.get(spkId)!;
+
+                  if (pkt.firstStart === null) pkt.firstStart = w.start;
+                  pkt.syllCount += w.syllables;
+                  pkt.lastEnd = w.end;
+
+                  if (pkt.syllCount >= PACKET_SIZE) {
+                    const dur = pkt.lastEnd! - pkt.firstStart!;
+                    if (dur > 0.1) {
+                      const spkSps = Math.round(Math.min(pkt.syllCount / dur, 12) * 10) / 10;
+                      setSpeakerSPS(prev => ({ ...prev, [spkId]: spkSps }));
+                    }
+                    // Reset this speaker's packet
+                    pkt.syllCount = 0;
+                    pkt.firstStart = null;
+                    pkt.lastEnd = null;
+                  }
                 }
               }
             }
@@ -391,6 +444,8 @@ export function useDeepgramSPS(): UseDeepgramSPSReturn {
     isStoppingRef.current = false;
     reconnectAttemptsRef.current = 0;
     detectFillersRef.current = options?.detectFillers ?? false;
+    diarizeRef.current = options?.diarize ?? false;
+    maxSpeakersRef.current = options?.maxSpeakers ?? 0;
     streamRef.current = stream;
 
     try {
@@ -536,6 +591,10 @@ export function useDeepgramSPS(): UseDeepgramSPSReturn {
     packetLastEndRef.current = null;
     setPacketSPS(0);
     setIsCalibrated(false);
+    diarizeRef.current = false;
+    maxSpeakersRef.current = 0;
+    setSpeakerSPS({});
+    speakerPacketsRef.current.clear();
   }, [stop]);
 
   useEffect(() => {
@@ -567,6 +626,7 @@ export function useDeepgramSPS(): UseDeepgramSPSReturn {
     fillerDetails,
     actualSpeakingTime,
     fluencyRatio,
+    speakerSPS,
     start,
     stop,
     reset,

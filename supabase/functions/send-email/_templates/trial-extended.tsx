@@ -24,7 +24,7 @@ export function TrialExtendedEmail(props: TrialExtendedEmailProps) {
       <Text style={paragraph}>Hi {userName},</Text>
 
       <Text style={paragraph}>
-        Great news! We've extended your free access to ClutterPro.
+        Great news! We've extended your free access to TalkSlower.
       </Text>
 
       <Text style={highlightBox}>
@@ -54,7 +54,7 @@ export function TrialExtendedEmail(props: TrialExtendedEmailProps) {
       </Text>
 
       <Text style={signatureText}>Talk soon,</Text>
-      <Text style={signatureName}>The ClutterPro Team</Text>
+      <Text style={signatureName}>The TalkSlower Team</Text>
     </BaseLayout>
   )
 }

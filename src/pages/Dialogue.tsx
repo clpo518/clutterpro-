@@ -5,7 +5,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Gauge, MessageCircle, Square, Play, Pause } from "lucide-react";
+import { ArrowLeft, Gauge, MessageCircle, Square, Play, Pause, FlaskConical, Users, Info } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import { useDeepgramSPS } from "@/hooks/useDeepgramSPS";
@@ -45,7 +45,9 @@ const Dialogue = () => {
   const gamification = useGamification();
 
   const [targetSPS, setTargetSPS] = useState<TargetSPS>(4.0);
+  const [forceShowIntro, setForceShowIntro] = useState(false);
   const [duration, setDuration] = useState<Duration>(60);
+  const [speakerCount, setSpeakerCount] = useState<0 | 1 | 2 | 3>(0); // 0 = Auto
   const [isRecording, setIsRecording] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [remainingTime, setRemainingTime] = useState(0);
@@ -153,7 +155,13 @@ const Dialogue = () => {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       streamRef.current = stream;
 
-      try { await deepgram.start(stream, { detectFillers: false }); } catch {
+      try {
+        await deepgram.start(stream, {
+          detectFillers: true,
+          diarize: true,
+          maxSpeakers: speakerCount > 0 ? speakerCount : undefined,
+        });
+      } catch {
         toast.info("Recording without real-time analysis.", { duration: 3000 });
       }
 
@@ -238,10 +246,15 @@ const Dialogue = () => {
 
       const gamificationResult = await gamification.updateAfterSession(elapsedTime);
 
+      // Save fillers for session detail page
+      if (deepgram.fillerCount > 0 && session.id) {
+        try { localStorage.setItem(`session_fillers_${session.id}`, JSON.stringify(deepgram.fillerDetails)); } catch { /* noop */ }
+      }
+
       setSessionResults({
         avgSps: realAvgSps, maxSps: realMaxSps, duration: elapsedTime,
         syllableCount: deepgram.syllableCount, wordCount: deepgram.wordCount,
-        sessionId: session.id, fillerCount: 0, fillerDetails: {},
+        sessionId: session.id, fillerCount: deepgram.fillerCount, fillerDetails: deepgram.fillerDetails,
         actualSpeakingTime: deepgram.actualSpeakingTime, totalSessionTime: elapsedTime,
         streakIncremented: gamificationResult.streakIncremented,
         goalJustCompleted: gamificationResult.goalJustCompleted,
@@ -274,19 +287,36 @@ const Dialogue = () => {
   const formatTime = (s: number) => `${Math.floor(s / 60).toString().padStart(2, "0")}:${(s % 60).toString().padStart(2, "0")}`;
 
   // Big gauge color
-  const gaugeColor = useMemo(() => {
-    if (deepgram.packetSPS < MIN_SPEAKING_SPS) return "hsl(var(--muted-foreground))";
-    const zone = getSPSZone(deepgram.packetSPS, targetSPS);
+  const getGaugeColorForSPS = (sps: number) => {
+    if (sps < MIN_SPEAKING_SPS) return "hsl(var(--muted-foreground))";
+    const zone = getSPSZone(sps, targetSPS);
     if (zone.zone === 'perfect' || zone.zone === 'good') return "hsl(142, 76%, 45%)";
     if (zone.zone === 'too_slow') return "hsl(210, 80%, 60%)";
     if (zone.zone === 'warning') return "hsl(38, 92%, 50%)";
     if (zone.zone === 'danger') return "hsl(0, 84%, 60%)";
     return "hsl(var(--muted-foreground))";
-  }, [deepgram.packetSPS, targetSPS]);
+  };
+
+  const gaugeColor = useMemo(() => getGaugeColorForSPS(deepgram.packetSPS), [deepgram.packetSPS, targetSPS]);
+
+  // Multi-speaker detection
+  const speakerIds = useMemo(() => Object.keys(deepgram.speakerSPS).map(Number).sort(), [deepgram.speakerSPS]);
+  const hasMultipleSpeakers = speakerIds.length > 1;
+
+  const getSpeakerEmoji = (sps: number) => {
+    if (sps < MIN_SPEAKING_SPS) return "🎤";
+    const zone = getSPSZone(sps, targetSPS);
+    if (zone.zone === 'perfect') return "✅";
+    if (zone.zone === 'good') return "👍";
+    if (zone.zone === 'too_slow') return "🐢";
+    if (zone.zone === 'warning') return "⚡";
+    if (zone.zone === 'danger') return "🔴";
+    return "🎤";
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-secondary via-background to-accent/30 flex flex-col">
-      <ExerciseIntroModal categoryId="dialogue" onDismiss={() => {}} />
+      <ExerciseIntroModal categoryId="dialogue" onDismiss={() => setForceShowIntro(false)} forceOpen={forceShowIntro} />
       {/* Header */}
       <header className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -296,6 +326,13 @@ const Dialogue = () => {
           <div className="flex items-center gap-2">
             <MessageCircle className="w-5 h-5 text-primary" />
             <span className="font-display font-bold text-sm sm:text-base">Dialogue Mode</span>
+            <button
+              onClick={() => setForceShowIntro(true)}
+              className="p-1 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
+              title="How this exercise works"
+            >
+              <Info className="w-4 h-4" />
+            </button>
           </div>
           <div className="w-20" />
         </div>
@@ -372,6 +409,42 @@ const Dialogue = () => {
               </CardContent>
             </Card>
 
+            {/* Speaker Count Selector */}
+            <Card>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Users className="w-4 h-4 text-primary" />
+                  <h3 className="text-sm font-bold">Number of speakers</h3>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 flex items-center gap-0.5">
+                    <FlaskConical className="w-3 h-3" /> experimental
+                  </span>
+                </div>
+                <div className="grid grid-cols-4 gap-2">
+                  {([0, 1, 2, 3] as const).map((count) => (
+                    <button
+                      key={count}
+                      onClick={() => setSpeakerCount(count)}
+                      className={`p-2 rounded-lg border-2 transition-all text-center ${
+                        speakerCount === count
+                          ? "border-primary bg-primary/10 shadow-md"
+                          : "border-border hover:border-primary/50"
+                      }`}
+                    >
+                      <div className={`text-sm font-bold ${speakerCount === count ? "text-primary" : ""}`}>
+                        {count === 0 ? "Auto" : count}
+                      </div>
+                      <div className="text-[9px] text-muted-foreground">
+                        {count === 0 ? "Detect" : count === 1 ? "Solo" : `${count} people`}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+                <p className="text-[10px] text-muted-foreground mt-2">
+                  Fixing the speaker count improves accuracy and avoids false detections from background noise.
+                </p>
+              </CardContent>
+            </Card>
+
             {/* Biofeedback explanation for therapists */}
             <div className="bg-muted/50 rounded-xl p-3 text-xs text-muted-foreground space-y-1">
               <p className="font-medium text-foreground/80">💡 How does biofeedback work?</p>
@@ -406,42 +479,81 @@ const Dialogue = () => {
               <p className="text-4xl font-mono font-bold tabular-nums">{formatTime(remainingTime)}</p>
             </div>
 
-            {/* BIG Emoji + Label */}
-            <div
-              className={`flex flex-col items-center justify-center w-56 h-56 rounded-full border-4 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]`}
-              style={{ borderColor: gaugeColor, backgroundColor: `${gaugeColor}15` }}
-            >
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={stableState.emoji}
-                  initial={{ scale: 0.6, opacity: 0, rotate: -10 }}
-                  animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                  exit={{ scale: 0.6, opacity: 0, rotate: 10 }}
-                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                  className="text-7xl"
-                >
-                  {stableState.emoji}
-                </motion.span>
-              </AnimatePresence>
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={stableState.label}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.35, ease: "easeInOut" }}
-                  className={`text-xl font-bold mt-2`}
-                  style={{ color: gaugeColor }}
-                >
-                  {stableState.label}
-                </motion.span>
-              </AnimatePresence>
-              {deepgram.packetSPS >= MIN_SPEAKING_SPS && (
-                <span className="text-xs text-muted-foreground mt-1 transition-opacity duration-500">
-                  {deepgram.packetSPS.toFixed(1)} syll/s
-                </span>
-              )}
-            </div>
+            {/* Multi-speaker circles */}
+            {hasMultipleSpeakers ? (
+              <div className="flex flex-col items-center gap-4">
+                <div className="flex items-center gap-1.5 text-xs text-amber-600 dark:text-amber-400">
+                  <FlaskConical className="w-3.5 h-3.5" />
+                  <span className="font-medium">Experimental diarization</span>
+                </div>
+                <div className="flex items-center justify-center gap-4 flex-wrap">
+                  {speakerIds.map((spkId) => {
+                    const spkSps = deepgram.speakerSPS[spkId] || 0;
+                    const spkColor = getGaugeColorForSPS(spkSps);
+                    const spkEmoji = getSpeakerEmoji(spkSps);
+                    const circleSize = speakerIds.length <= 2 ? "w-40 h-40" : "w-32 h-32";
+                    const emojiSize = speakerIds.length <= 2 ? "text-5xl" : "text-4xl";
+                    return (
+                      <motion.div
+                        key={spkId}
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: spkId * 0.1 }}
+                        className={`flex flex-col items-center justify-center ${circleSize} rounded-full border-4 transition-all duration-700`}
+                        style={{ borderColor: spkColor, backgroundColor: `${spkColor}15` }}
+                      >
+                        <span className={emojiSize}>{spkEmoji}</span>
+                        {spkSps >= MIN_SPEAKING_SPS && (
+                          <span className="text-xs font-bold mt-1" style={{ color: spkColor }}>
+                            {spkSps.toFixed(1)}
+                          </span>
+                        )}
+                        <span className="text-[10px] text-muted-foreground mt-0.5">
+                          Speaker {spkId + 1}
+                        </span>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : (
+              /* Single-speaker big circle */
+              <div
+                className="flex flex-col items-center justify-center w-56 h-56 rounded-full border-4 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]"
+                style={{ borderColor: gaugeColor, backgroundColor: `${gaugeColor}15` }}
+              >
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={stableState.emoji}
+                    initial={{ scale: 0.6, opacity: 0, rotate: -10 }}
+                    animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                    exit={{ scale: 0.6, opacity: 0, rotate: 10 }}
+                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                    className="text-7xl"
+                  >
+                    {stableState.emoji}
+                  </motion.span>
+                </AnimatePresence>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={stableState.label}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    className="text-xl font-bold mt-2"
+                    style={{ color: gaugeColor }}
+                  >
+                    {stableState.label}
+                  </motion.span>
+                </AnimatePresence>
+                {deepgram.packetSPS >= MIN_SPEAKING_SPS && (
+                  <span className="text-xs text-muted-foreground mt-1 transition-opacity duration-500">
+                    {deepgram.packetSPS.toFixed(1)} syll/s
+                  </span>
+                )}
+              </div>
+            )}
 
             {/* Target reminder */}
             <p className="text-sm text-muted-foreground">
@@ -450,13 +562,15 @@ const Dialogue = () => {
 
             {/* Micro-hint */}
             <p className="text-xs text-muted-foreground/70 text-center max-w-xs">
-              {stableState.label === "Speak..."
-                ? "Keep talking naturally..."
-                : stableState.label === "Perfect" || stableState.label === "Good"
-                  ? "Ideal pace, keep it up! 👍"
-                  : stableState.label === "Too fast!" || stableState.label === "Slow down..."
-                    ? "Try slowing down a little..."
-                    : "You can speed up slightly..."
+              {hasMultipleSpeakers
+                ? "Each circle shows one speaker's rate in real time."
+                : stableState.label === "Speak..."
+                  ? "Keep talking naturally..."
+                  : stableState.label === "Perfect" || stableState.label === "Good"
+                    ? "Ideal pace, keep it up! 👍"
+                    : stableState.label === "Too fast!" || stableState.label === "Slow down..."
+                      ? "Try slowing down a little..."
+                      : "You can speed up slightly..."
               }
             </p>
 

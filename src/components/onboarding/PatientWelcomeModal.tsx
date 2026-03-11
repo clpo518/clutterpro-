@@ -26,7 +26,7 @@ interface PatientWelcomeModalProps {
 const slides = [
   {
     icon: PartyPopper,
-    title: "Welcome to ClutterPro!",
+    title: "Welcome to TalkSlower!",
     description: "Thank you for trusting us. You're about to discover a tool designed to help you manage your speech rate, at your own pace.",
     visual: "welcome",
     color: "from-primary to-emerald-500",

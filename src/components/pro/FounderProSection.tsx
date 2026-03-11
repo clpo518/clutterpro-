@@ -51,12 +51,12 @@ export const FounderProSection = () => {
                 <div className="relative">
                   <img
                     src={founderImage}
-                    alt="Clément Pontegnier, founder of ClutterPro"
+                    alt="Clement, founder of TalkSlower"
                     className="w-full aspect-[4/5] object-cover rounded-2xl shadow-2xl border border-slate-700/50"
                   />
                   {/* Name overlay */}
                   <div className="absolute bottom-4 left-4 right-4 bg-slate-900/90 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-slate-700/50">
-                    <p className="font-semibold text-white">Clément Pontegnier</p>
+                    <p className="font-semibold text-white">Clement</p>
                     <p className="text-sm text-slate-400">Founder • Person who clutters</p>
                   </div>
                 </div>
@@ -94,7 +94,7 @@ export const FounderProSection = () => {
                 </p>
 
                 <p className="text-white font-medium">
-                  I built ClutterPro to fill that gap.
+                  I built TalkSlower to fill that gap.
                 </p>
 
                 <p>

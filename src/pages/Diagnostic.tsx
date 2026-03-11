@@ -16,7 +16,7 @@ import { Footer } from "@/components/landing/Footer";
 const DURATION_SECONDS = 30;
 const MIN_DURATION = 15;
 
-// --- Interpretations cliniques adaptées au diagnostic ---
+// --- Diagnostic interpretations based on clinical norms ---
 function getDiagnosticInterpretation(avgSps: number, normSps: number) {
   const diff = avgSps - normSps;
 

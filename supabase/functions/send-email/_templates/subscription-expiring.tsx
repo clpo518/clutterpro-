@@ -21,7 +21,7 @@ export function SubscriptionExpiringEmail(props: SubscriptionExpiringEmailProps)
       <Text style={paragraph}>Hi {userName},</Text>
 
       <Text style={paragraph}>
-        Your ClutterPro subscription expires on {expirationDate}.
+        Your TalkSlower subscription expires on {expirationDate}.
       </Text>
 
       <Text style={paragraph}>

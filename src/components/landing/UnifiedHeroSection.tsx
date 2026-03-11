@@ -109,8 +109,8 @@ export const UnifiedHeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Speak clearly.{" "}
-            <span className="gradient-text">Be understood.</span>
+            Stop repeating yourself.{" "}
+            <span className="gradient-text">Start being heard.</span>
           </motion.h1>
 
           <motion.p
@@ -119,7 +119,7 @@ export const UnifiedHeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            The only app built for cluttering and fast speech. Practice daily, track your speech rate, and see real progress — on your own or with your speech therapist.
+            The first app designed specifically for cluttering and fast speech. Real-time feedback on your speech rate, 90+ exercises, and progress your therapist can see.
           </motion.p>
 
           <motion.div

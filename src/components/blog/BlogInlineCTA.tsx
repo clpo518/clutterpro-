@@ -21,7 +21,7 @@ export default function BlogInlineCTA({ ctaLink, ctaLabel }: BlogInlineCTAProps)
             Measure your speech rate in 10 seconds.
           </h4>
           <p className="text-muted-foreground text-sm mb-4">
-            There's a simpler way. Try ClutterPro for free.
+            There's a simpler way. Try TalkSlower for free.
           </p>
           <Button asChild size="sm">
             <Link to={link}>

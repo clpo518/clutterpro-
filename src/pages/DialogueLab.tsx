@@ -55,6 +55,7 @@ export default function DialogueLab() {
   const deepgram = useDeepgramSPS();
 
   const [packetSize, setPacketSize] = useState<number>(10);
+  const [forceShowIntro, setForceShowIntro] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [packetHistory, setPacketHistory] = useState<PacketResult[]>([]);
   const [currentPacketSyllables, setCurrentPacketSyllables] = useState(0);
@@ -210,7 +211,7 @@ export default function DialogueLab() {
   return (
     <TooltipProvider>
       <div className="min-h-screen bg-background p-4 max-w-lg mx-auto">
-        <ExerciseIntroModal categoryId="dialogue-lab" onDismiss={() => {}} />
+        <ExerciseIntroModal categoryId="dialogue-lab" onDismiss={() => setForceShowIntro(false)} forceOpen={forceShowIntro} />
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
@@ -220,6 +221,13 @@ export default function DialogueLab() {
             <FlaskConical className="h-5 w-5 text-primary" />
             <h1 className="text-lg font-semibold">Dialogue Lab</h1>
             <Badge variant="outline" className="text-xs">beta</Badge>
+            <button
+              onClick={() => setForceShowIntro(true)}
+              className="p-1 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
+              title="How this exercise works"
+            >
+              <Info className="w-4 h-4" />
+            </button>
           </div>
           <div className="w-10" />
         </div>

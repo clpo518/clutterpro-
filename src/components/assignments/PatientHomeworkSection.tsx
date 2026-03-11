@@ -95,7 +95,7 @@ const PatientHomeworkSection = () => {
     
     if (diffDays === 0) return "Today";
     if (diffDays === 1) return "Yesterday";
-    if (diffDays < 7) return `Il y a ${diffDays} jours`;
+    if (diffDays < 7) return `${diffDays} days ago`;
     return date.toLocaleDateString("en-US", { day: "numeric", month: "short" });
   };
 

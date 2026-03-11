@@ -8,7 +8,7 @@ const MockStreakBadge = () => (
   <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/30">
     <Flame className="w-5 h-5 text-orange-500 fill-orange-500/30" />
     <span className="text-lg font-bold text-orange-500 tabular-nums">12</span>
-    <span className="text-sm text-orange-400">jours</span>
+    <span className="text-sm text-orange-400">days</span>
   </div>
 );
 
@@ -116,7 +116,7 @@ export const EngagementSection = () => {
         >
           <div className="flex justify-center gap-2 mb-6">
             <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/30">
-              Nouveau
+              New
             </Badge>
             <Badge variant="outline" className="text-slate-400 border-slate-600">
               Inspired by coaching apps
@@ -194,7 +194,7 @@ export const EngagementSection = () => {
                 {/* Patient view header */}
                 <div className="flex items-center justify-between">
                   <span className="text-xs uppercase tracking-wider text-slate-500 font-medium">
-                    Vue Patient
+                    Patient View
                   </span>
                 </div>
 
@@ -216,7 +216,7 @@ export const EngagementSection = () => {
                 {/* Therapist view header */}
                 <div className="flex items-center justify-between">
                   <span className="text-xs uppercase tracking-wider text-slate-500 font-medium">
-                    SLP View
+                    Therapist View
                   </span>
                   <Users className="w-4 h-4 text-slate-500" />
                 </div>

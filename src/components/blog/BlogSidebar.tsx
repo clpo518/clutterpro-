@@ -1,23 +1,103 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Stethoscope, Users, BarChart3, Shield, Activity, Zap } from "lucide-react";
+import { ArrowRight, Stethoscope, Users, BarChart3, Shield, Activity, Zap, List } from "lucide-react";
 import type { BlogPost } from "@/data/blogPosts";
+
+/** Extract H2 headings from markdown content and create IDs */
+function extractTocItems(content: string): { id: string; text: string }[] {
+  const lines = content.split('\n');
+  const items: { id: string; text: string }[] = [];
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('## ') && !trimmed.startsWith('### ')) {
+      const text = trimmed.replace('## ', '');
+      const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      items.push({ id, text });
+    }
+  }
+  return items;
+}
+
+/** Auto-generated sticky Table of Contents */
+function TableOfContents({ content }: { content: string }) {
+  const items = extractTocItems(content);
+  const [activeId, setActiveId] = useState('');
+
+  useEffect(() => {
+    if (items.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: '-80px 0px -70% 0px', threshold: 0.1 }
+    );
+
+    for (const item of items) {
+      const el = document.getElementById(item.id);
+      if (el) observer.observe(el);
+    }
+
+    return () => observer.disconnect();
+  }, [items]);
+
+  if (items.length < 3) return null;
+
+  return (
+    <div className="mb-6">
+      <div className="flex items-center gap-2 mb-3">
+        <List className="w-4 h-4 text-muted-foreground" />
+        <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+          In this article
+        </h4>
+      </div>
+      <nav className="space-y-0.5">
+        {items.map((item) => (
+          <a
+            key={item.id}
+            href={`#${item.id}`}
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className={`block text-[13px] leading-snug py-1.5 pl-3 border-l-2 transition-all ${
+              activeId === item.id
+                ? 'border-primary text-primary font-medium'
+                : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
+            }`}
+          >
+            {item.text}
+          </a>
+        ))}
+      </nav>
+    </div>
+  );
+}
 
 interface BlogSidebarProps {
   relatedPosts: BlogPost[];
   audience: 'pro' | 'patient';
   ctaLink?: string;
   ctaLabel?: string;
+  articleContent?: string;
 }
 
-export default function BlogSidebar({ relatedPosts, audience, ctaLink, ctaLabel }: BlogSidebarProps) {
+export default function BlogSidebar({ relatedPosts, audience, ctaLink, ctaLabel, articleContent }: BlogSidebarProps) {
   const patientLink = ctaLink || '/assessment';
   const patientLabel = ctaLabel || 'Take the test (2 min)';
   return (
     <aside className="lg:w-80 flex-shrink-0 self-start lg:sticky lg:top-24">
       <div className="space-y-6">
+        {/* Table of Contents */}
+        {articleContent && <TableOfContents content={articleContent} />}
+
         {audience === 'pro' ? (
           /* Pro/SLP CTA */
           <Card className="border-primary/30 bg-gradient-to-br from-primary/5 via-background to-muted/30">
@@ -27,7 +107,7 @@ export default function BlogSidebar({ relatedPosts, audience, ctaLink, ctaLabel 
                   <Stethoscope className="w-5 h-5 text-primary" />
                 </div>
                 <span className="font-bold text-foreground text-sm">
-                  ClutterPro for SLPs
+                  TalkSlower for SLPs
                 </span>
               </div>
 

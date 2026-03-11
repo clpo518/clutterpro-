@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import BreathingGuide from "@/components/practice/BreathingGuide";
 
 interface CategoryIntro {
   icon: string;
@@ -103,6 +104,18 @@ const categoryIntros: Record<string, CategoryIntro> = {
     ],
     tip: "Breath is the fuel of speech.",
   },
+  "silence-training": {
+    icon: "\u{1F910}",
+    title: "Silence Tolerance",
+    goal: "Practice being comfortable with pauses in conversation through structured silence exercises.",
+    steps: [
+      { emoji: "\u{1F4AC}", text: "A question appears on screen" },
+      { emoji: "\u{1F910}", text: "Wait in silence \u2014 a timer counts down" },
+      { emoji: "\u{1F5E3}\uFE0F", text: "When prompted, answer naturally" },
+      { emoji: "\u{1F504}", text: "Repeat with longer pauses each round" },
+    ],
+    tip: "Silence isn't emptiness \u2014 it's a breathing space that gives your words power.",
+  },
   "cognitive-traps": {
     icon: "🧠",
     title: "Cognitive Traps",
@@ -181,6 +194,42 @@ const categoryIntros: Record<string, CategoryIntro> = {
     ],
     tip: "An experimental tool for the detail-curious.",
   },
+  "neuro-projection": {
+    icon: "📢",
+    title: "Vocal Projection",
+    goal: "Strengthen your voice volume using real-time biofeedback. No speed measurement — only loudness.",
+    steps: [
+      { emoji: "🎙️", text: "A short calibration measures your baseline volume" },
+      { emoji: "📢", text: "Read the prompt, projecting your voice" },
+      { emoji: "📊", text: "A live gauge shows if you're in the target zone" },
+      { emoji: "🎯", text: "Aim to stay in the green zone as long as possible" },
+    ],
+    tip: "Push from your diaphragm, not your throat. Imagine someone 10 feet away needs to hear you.",
+  },
+  "neuro-articulation": {
+    icon: "🧠",
+    title: "Neuro Articulation",
+    goal: "Targeted oral-motor exercises for motor speech precision — fricatives, praxis, diadochokinesis, and more.",
+    steps: [
+      { emoji: "👄", text: "Read the exercise instructions carefully" },
+      { emoji: "🔁", text: "Repeat each pattern slowly, then speed up" },
+      { emoji: "🪞", text: "Use a mirror to check your mouth movements" },
+      { emoji: "🎯", text: "Clarity over speed — precision matters most" },
+    ],
+    tip: "These exercises come from clinical motor speech therapy. Exaggerate each movement.",
+  },
+  "neuro-narrative": {
+    icon: "🧩",
+    title: "Narrative Coherence",
+    goal: "Listen to a short story, then retell it from memory. Trains sequencing, working memory, and structured speech.",
+    steps: [
+      { emoji: "👂", text: "Listen to or read the story carefully" },
+      { emoji: "🎤", text: "Retell it from memory in your own words" },
+      { emoji: "✅", text: "An algorithm checks if the key points are covered" },
+      { emoji: "🧠", text: "Work on ordering events logically" },
+    ],
+    tip: "You don't need to remember every word — focus on the main events in order.",
+  },
 };
 
 const STORAGE_KEY = "exercise-intro-seen";
@@ -203,28 +252,67 @@ function markCategorySeen(categoryId: string) {
 interface ExerciseIntroModalProps {
   categoryId: string | null;
   onDismiss: () => void;
+  /** When true, forces the modal open even if the user has already seen it */
+  forceOpen?: boolean;
 }
 
-const ExerciseIntroModal = ({ categoryId, onDismiss }: ExerciseIntroModalProps) => {
+const ExerciseIntroModal = ({ categoryId, onDismiss, forceOpen }: ExerciseIntroModalProps) => {
   const [open, setOpen] = useState(false);
+  const [showBreathWarmup, setShowBreathWarmup] = useState(false);
 
   useEffect(() => {
     if (!categoryId) return;
+    if (!categoryIntros[categoryId]) return;
+    if (forceOpen) {
+      setOpen(true);
+      return;
+    }
     const seen = getSeenCategories();
-    if (!seen.has(categoryId) && categoryIntros[categoryId]) {
+    if (!seen.has(categoryId)) {
       setOpen(true);
     }
-  }, [categoryId]);
+  }, [categoryId, forceOpen]);
 
   const handleClose = () => {
     if (categoryId) markCategorySeen(categoryId);
     setOpen(false);
+    setShowBreathWarmup(false);
     onDismiss();
   };
 
   if (!categoryId || !categoryIntros[categoryId]) return null;
 
   const intro = categoryIntros[categoryId];
+  const isBreathCategory = categoryId === "breath-control";
+
+  // Breathing warmup sub-view
+  if (showBreathWarmup) {
+    return (
+      <Dialog open={open} onOpenChange={(v) => { if (!v) handleClose(); }}>
+        <DialogContent className="max-w-md p-0 overflow-hidden border-0 gap-0">
+          <div className="px-6 pt-6 pb-2 text-center">
+            <h2 className="text-lg font-bold text-foreground mb-1">Quick Breathing Warmup</h2>
+            <p className="text-xs text-muted-foreground">Square breathing: 4 cycles to center yourself</p>
+          </div>
+          <div className="px-6 py-2">
+            <BreathingGuide
+              pattern="square"
+              cycles={3}
+              compact
+              onComplete={() => {
+                setTimeout(handleClose, 1500);
+              }}
+            />
+          </div>
+          <div className="px-6 pb-5">
+            <Button variant="ghost" onClick={handleClose} size="sm" className="w-full text-muted-foreground">
+              Skip warmup
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
 
   return (
     <Dialog open={open} onOpenChange={(v) => { if (!v) handleClose(); }}>
@@ -277,13 +365,23 @@ const ExerciseIntroModal = ({ categoryId, onDismiss }: ExerciseIntroModalProps) 
         </div>
 
         {/* Tip + CTA */}
-        <div className="px-6 pb-6 space-y-4">
+        <div className="px-6 pb-6 space-y-3">
           <div className="flex items-start gap-2 p-2.5 rounded-lg bg-amber-50 dark:bg-amber-500/10 border border-amber-100 dark:border-amber-500/20">
-            <span className="text-sm">💡</span>
+            <span className="text-sm">{"\u{1F4A1}"}</span>
             <p className="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">{intro.tip}</p>
           </div>
+          {isBreathCategory && (
+            <Button
+              variant="outline"
+              onClick={() => setShowBreathWarmup(true)}
+              size="lg"
+              className="w-full gap-2"
+            >
+              {"\u{1F32C}\uFE0F"} Breathing warmup first
+            </Button>
+          )}
           <Button onClick={handleClose} size="lg" className="w-full gap-2">
-            Let's go!
+            {isBreathCategory ? "Start exercise" : "Let's go!"}
           </Button>
         </div>
       </DialogContent>

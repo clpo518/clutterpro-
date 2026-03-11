@@ -9,6 +9,10 @@ import { getBlogPostBySlug, blogPosts } from "@/data/blogPosts";
 import BlogInlineCTA from "@/components/blog/BlogInlineCTA";
 import BlogSidebar from "@/components/blog/BlogSidebar";
 import BlogStickyMobileCTA from "@/components/blog/BlogStickyMobileCTA";
+import BlogDemoSpeedGauge from "@/components/blog/BlogDemoSpeedGauge";
+import BlogDemoRebus from "@/components/blog/BlogDemoRebus";
+import BlogDemoKaraoke from "@/components/blog/BlogDemoKaraoke";
+import BlogDemoBreathing from "@/components/blog/BlogDemoBreathing";
 
 export default function BlogArticle() {
   const { slug } = useParams<{ slug: string }>();
@@ -22,90 +26,163 @@ export default function BlogArticle() {
     .filter(p => p.category === post.category && p.id !== post.id)
     .slice(0, 2);
 
+  /** Format inline markdown: bold, italic, code, links */
+  const fmt = (text: string) =>
+    text
+      .replace(/`([^`]+)`/g, '<code class="px-1.5 py-0.5 rounded bg-muted text-sm font-mono text-foreground">$1</code>')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary hover:underline font-medium">$1</a>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>');
+
   const renderContent = (content: string) => {
-    // Split by CTA marker first
-    const parts = content.split('{{CTA}}');
-    
-    return parts.map((part, partIndex) => {
-      const elements = part
-        .split('\n')
-        .map((line, index) => {
-          const trimmedLine = line.trim();
-          if (!trimmedLine) return <br key={`${partIndex}-${index}`} />;
+    // Split by all markers (CTA + demo components)
+    const MARKER_RE = /(\{\{CTA\}\}|\{\{DEMO_GAUGE\}\}|\{\{DEMO_REBUS\}\}|\{\{DEMO_KARAOKE\}\}|\{\{DEMO_BREATHING\}\})/;
+    const segments = content.split(MARKER_RE);
 
-          if (trimmedLine.startsWith('### ')) {
-            return (
-              <h3 key={`${partIndex}-${index}`} className="text-xl md:text-2xl font-semibold text-foreground mt-10 mb-4">
-                {trimmedLine.replace('### ', '')}
-              </h3>
-            );
-          }
+    return segments.map((segment, partIndex) => {
+      // Render marker components
+      if (segment === '{{CTA}}') return <BlogInlineCTA key={`marker-${partIndex}`} ctaLink={inlineCTALink} ctaLabel={inlineCTALabel} />;
+      if (segment === '{{DEMO_GAUGE}}') return <BlogDemoSpeedGauge key={`marker-${partIndex}`} />;
+      if (segment === '{{DEMO_REBUS}}') return <BlogDemoRebus key={`marker-${partIndex}`} />;
+      if (segment === '{{DEMO_KARAOKE}}') return <BlogDemoKaraoke key={`marker-${partIndex}`} />;
+      if (segment === '{{DEMO_BREATHING}}') return <BlogDemoBreathing key={`marker-${partIndex}`} />;
 
-          if (trimmedLine.startsWith('## ')) {
-            return (
-              <h2 key={`${partIndex}-${index}`} className="text-2xl md:text-3xl font-bold text-foreground mt-12 mb-6 leading-tight">
-                {trimmedLine.replace('## ', '')}
-              </h2>
-            );
-          }
+      const lines = segment.split('\n');
+      const elements: React.ReactNode[] = [];
+      let i = 0;
 
-          if (trimmedLine.startsWith('> ')) {
-            const text = trimmedLine.replace('> ', '');
-            return (
-              <blockquote
-                key={`${partIndex}-${index}`}
-                className="border-l-4 border-primary pl-6 py-3 my-8 bg-primary/5 rounded-r-xl italic text-foreground/80 text-lg"
-                dangerouslySetInnerHTML={{
-                  __html: text
-                    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary hover:underline font-medium">$1</a>')
-                    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold not-italic">$1</strong>')
-                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                }}
-              />
-            );
-          }
+      while (i < lines.length) {
+        const trimmed = lines[i].trim();
 
-          if (trimmedLine === '---') {
-            return <hr key={`${partIndex}-${index}`} className="my-10 border-border/50" />;
-          }
+        // Skip empty lines
+        if (!trimmed) { i++; continue; }
 
-          if (trimmedLine.startsWith('- ')) {
-            const text = trimmedLine.replace('- ', '');
-            return (
-              <li key={`${partIndex}-${index}`} className="text-foreground/80 ml-6 mb-3 list-disc list-outside text-lg leading-relaxed">
-                <span dangerouslySetInnerHTML={{
-                  __html: text
-                    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary hover:underline font-medium">$1</a>')
-                    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>')
-                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                }} />
-              </li>
-            );
-          }
+        // Skip H1 (already rendered in page header)
+        if (trimmed.startsWith('# ') && !trimmed.startsWith('## ')) { i++; continue; }
 
-          return (
-            <p
-              key={`${partIndex}-${index}`}
-              className="text-foreground/80 text-lg leading-[1.8] mb-6"
-              dangerouslySetInnerHTML={{
-                __html: trimmedLine
-                  .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary hover:underline font-medium">$1</a>')
-                  .replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>')
-                  .replace(/\*(.*?)\*/g, '<em>$1</em>')
-              }}
+        // H3
+        if (trimmed.startsWith('### ')) {
+          elements.push(
+            <h3 key={`${partIndex}-${i}`} className="text-xl md:text-2xl font-semibold text-foreground mt-10 mb-4">
+              {trimmed.replace('### ', '')}
+            </h3>
+          );
+          i++; continue;
+        }
+
+        // H2
+        if (trimmed.startsWith('## ')) {
+          elements.push(
+            <h2 key={`${partIndex}-${i}`} id={trimmed.replace('## ', '').toLowerCase().replace(/[^a-z0-9]+/g, '-')} className="text-2xl md:text-3xl font-bold text-foreground mt-12 mb-6 leading-tight scroll-mt-24">
+              {trimmed.replace('## ', '')}
+            </h2>
+          );
+          i++; continue;
+        }
+
+        // Blockquote
+        if (trimmed.startsWith('> ')) {
+          const text = trimmed.replace('> ', '');
+          elements.push(
+            <blockquote
+              key={`${partIndex}-${i}`}
+              className="border-l-4 border-primary pl-6 py-3 my-8 bg-primary/5 rounded-r-xl italic text-foreground/80 text-lg"
+              dangerouslySetInnerHTML={{ __html: fmt(text).replace(/<strong /g, '<strong ').replace(/class="text-foreground font-semibold"/g, 'class="text-foreground font-semibold not-italic"') }}
             />
           );
-        });
+          i++; continue;
+        }
 
-      // Insert inline CTA between parts
-      if (partIndex < parts.length - 1) {
-        return (
-          <div key={`part-${partIndex}`}>
-            {elements}
-            <BlogInlineCTA ctaLink={inlineCTALink} ctaLabel={inlineCTALabel} />
-          </div>
+        // HR
+        if (trimmed === '---') {
+          elements.push(<hr key={`${partIndex}-${i}`} className="my-10 border-border/50" />);
+          i++; continue;
+        }
+
+        // Markdown table: collect all | rows
+        if (trimmed.startsWith('|') && trimmed.endsWith('|')) {
+          const tableRows: string[] = [];
+          while (i < lines.length && lines[i].trim().startsWith('|') && lines[i].trim().endsWith('|')) {
+            tableRows.push(lines[i].trim());
+            i++;
+          }
+          // Parse: first row = header, second = separator (skip), rest = body
+          const parseRow = (row: string) =>
+            row.split('|').slice(1, -1).map(c => c.trim());
+
+          const headers = parseRow(tableRows[0]);
+          const bodyRows = tableRows.slice(2).map(parseRow);
+
+          elements.push(
+            <div key={`${partIndex}-table-${i}`} className="my-8 overflow-x-auto rounded-xl border border-border/60">
+              <table className="w-full text-sm md:text-base">
+                <thead>
+                  <tr className="bg-muted/50 border-b border-border/60">
+                    {headers.map((h, hi) => (
+                      <th key={hi} className="px-4 py-3 text-left font-semibold text-foreground">
+                        <span dangerouslySetInnerHTML={{ __html: fmt(h) }} />
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {bodyRows.map((row, ri) => (
+                    <tr key={ri} className="border-b border-border/30 last:border-0 hover:bg-muted/20 transition-colors">
+                      {row.map((cell, ci) => (
+                        <td key={ci} className="px-4 py-3 text-foreground/80">
+                          <span dangerouslySetInnerHTML={{ __html: fmt(cell) }} />
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+          continue;
+        }
+
+        // Numbered list: collect consecutive lines starting with digit.
+        if (/^\d+\.\s/.test(trimmed)) {
+          const items: string[] = [];
+          while (i < lines.length && /^\d+\.\s/.test(lines[i].trim())) {
+            items.push(lines[i].trim().replace(/^\d+\.\s/, ''));
+            i++;
+          }
+          elements.push(
+            <ol key={`${partIndex}-ol-${i}`} className="my-4 space-y-3">
+              {items.map((item, li) => (
+                <li key={li} className="text-foreground/80 ml-6 list-decimal list-outside text-lg leading-relaxed">
+                  <span dangerouslySetInnerHTML={{ __html: fmt(item) }} />
+                </li>
+              ))}
+            </ol>
+          );
+          continue;
+        }
+
+        // Unordered list item
+        if (trimmed.startsWith('- ')) {
+          const text = trimmed.replace('- ', '');
+          elements.push(
+            <li key={`${partIndex}-${i}`} className="text-foreground/80 ml-6 mb-3 list-disc list-outside text-lg leading-relaxed">
+              <span dangerouslySetInnerHTML={{ __html: fmt(text) }} />
+            </li>
+          );
+          i++; continue;
+        }
+
+        // Default: paragraph
+        elements.push(
+          <p
+            key={`${partIndex}-${i}`}
+            className="text-foreground/80 text-lg leading-[1.8] mb-6"
+            dangerouslySetInnerHTML={{ __html: fmt(trimmed) }}
+          />
         );
+        i++;
       }
+
       return <div key={`part-${partIndex}`}>{elements}</div>;
     });
   };
@@ -196,11 +273,12 @@ export default function BlogArticle() {
               </article>
 
               {/* Sticky Sidebar */}
-              <BlogSidebar 
-                relatedPosts={relatedPosts} 
-                audience={post.audience} 
+              <BlogSidebar
+                relatedPosts={relatedPosts}
+                audience={post.audience}
                 ctaLink={isDiagnosticArticle ? '/diagnostic' : undefined}
                 ctaLabel={isDiagnosticArticle ? 'Take the voice test (30s)' : undefined}
+                articleContent={post.content}
               />
             </div>
           </div>

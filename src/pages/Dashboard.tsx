@@ -17,8 +17,10 @@ import PatientHomeworkSection from "@/components/assignments/PatientHomeworkSect
 import { StreakBadge, DailyGoalRing } from "@/components/gamification";
 import { useGamification } from "@/hooks/useGamification";
 import AgeCalibrationModal from "@/components/onboarding/AgeCalibrationModal";
+import GoalSelectionModal from "@/components/onboarding/GoalSelectionModal";
 import { useLimitCheck } from "@/hooks/useLimitCheck";
 import PatientWelcomeModal from "@/components/onboarding/PatientWelcomeModal";
+import type { FluencyGoal } from "@/data/journeyPath";
 import TrialBanner from "@/components/dashboard/TrialBanner";
 import PatientReferralCard from "@/components/referral/PatientReferralCard";
 import JourneyWidget from "@/components/dashboard/JourneyWidget";
@@ -39,6 +41,7 @@ interface Profile {
   is_premium: boolean;
   linked_therapist_id: string | null;
   birth_year: number | null;
+  fluency_goal: FluencyGoal | null;
 }
 
 const Dashboard = () => {
@@ -50,6 +53,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [totalStats, setTotalStats] = useState({ totalSessions: 0, totalMinutes: 0, avgWpm: 0 });
   const [showCalibrationModal, setShowCalibrationModal] = useState(false);
+  const [showGoalSelection, setShowGoalSelection] = useState(false);
   const [showPatientWelcome, setShowPatientWelcome] = useState(false);
   
   // Gamification hook
@@ -76,7 +80,7 @@ const Dashboard = () => {
         // Fetch profile including birth_year for calibration check
         const { data: profileData } = await supabase
           .from("profiles")
-          .select("full_name, target_wpm, is_therapist, is_premium, linked_therapist_id, birth_year, onboarding_completed_at, created_at")
+          .select("full_name, target_wpm, is_therapist, is_premium, linked_therapist_id, birth_year, fluency_goal, onboarding_completed_at, created_at")
           .eq("id", user.id)
           .maybeSingle();
 
@@ -85,6 +89,11 @@ const Dashboard = () => {
           // Show calibration modal if birth_year is not set and user is not a therapist
           if (profileData.birth_year === null && !profileData.is_therapist) {
             setShowCalibrationModal(true);
+          }
+
+          // Show goal selection for users who have calibrated age but haven't picked a goal yet
+          if (!profileData.is_therapist && profileData.birth_year !== null && !(profileData as any).fluency_goal) {
+            setTimeout(() => setShowGoalSelection(true), 200);
           }
 
           // Check for patient welcome tour (only for non-therapists, only if never completed, and only for fresh signups)
@@ -105,6 +114,7 @@ const Dashboard = () => {
             is_premium: true,
             linked_therapist_id: null,
             birth_year: 2000,
+            fluency_goal: "speed",
           });
         }
 
@@ -204,7 +214,17 @@ const Dashboard = () => {
   const handleCalibrationComplete = (birthYear: number) => {
     setShowCalibrationModal(false);
     setProfile(prev => prev ? { ...prev, birth_year: birthYear } : null);
-    // Show patient welcome after calibration (only if not already completed in DB)
+    // Show goal selection after calibration
+    setTimeout(() => {
+      setShowGoalSelection(true);
+    }, 300);
+  };
+
+  // Handle goal selection completion
+  const handleGoalComplete = (goal: FluencyGoal) => {
+    setShowGoalSelection(false);
+    setProfile(prev => prev ? { ...prev, fluency_goal: goal } : null);
+    // Show patient welcome after goal selection
     setTimeout(() => {
       setShowPatientWelcome(true);
     }, 300);
@@ -238,9 +258,18 @@ const Dashboard = () => {
         />
       )}
       
+      {/* Goal Selection Modal - Shows after age calibration */}
+      {user && (
+        <GoalSelectionModal
+          open={showGoalSelection && !showCalibrationModal}
+          userId={user.id}
+          onComplete={handleGoalComplete}
+        />
+      )}
+
       {/* Patient Welcome Tour - Shows once after signup */}
       <PatientWelcomeModal
-        open={showPatientWelcome && !showCalibrationModal}
+        open={showPatientWelcome && !showCalibrationModal && !showGoalSelection}
         onClose={handlePatientWelcomeClose}
         patientName={profile?.full_name?.split(" ")[0]}
       />
@@ -252,7 +281,7 @@ const Dashboard = () => {
             <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
               <Activity className="w-5 h-5 text-primary-foreground" />
             </div>
-            <span className="font-semibold text-lg hidden sm:inline">ClutterPro</span>
+            <span className="font-semibold text-lg hidden sm:inline">TalkSlower</span>
           </Link>
           <div className="flex items-center gap-2">
             {/* Gamification: Streak Badge */}
@@ -363,7 +392,7 @@ const Dashboard = () => {
           )}
 
           {/* Journey Widget - Guided progression */}
-          <JourneyWidget />
+          <JourneyWidget fluencyGoal={profile?.fluency_goal || "speed"} />
 
           {/* Patient Homework Section - Top priority */}
           <PatientHomeworkSection />

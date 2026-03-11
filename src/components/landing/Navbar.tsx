@@ -46,7 +46,7 @@ export const Navbar = () => {
 
   const navLinks = [
     { href: "/#patients", label: "For Patients" },
-    { href: "/#slps", label: "For SLPs" },
+    { href: "/#for-slps", label: "For SLPs" },
     { href: "/diagnostic", label: "Voice Test" },
     { href: "/pricing", label: "Pricing" },
     { href: "/about", label: "About" },
@@ -80,7 +80,7 @@ export const Navbar = () => {
               <Activity className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="text-lg font-semibold text-foreground hidden sm:block">
-              ClutterPro
+              TalkSlower
             </span>
           </Link>
 
@@ -138,7 +138,7 @@ export const Navbar = () => {
                     <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center">
                       <Activity className="w-4 h-4 text-primary-foreground" />
                     </div>
-                    ClutterPro
+                    TalkSlower
                   </Link>
                 </SheetTitle>
               </SheetHeader>

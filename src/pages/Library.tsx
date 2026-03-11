@@ -8,19 +8,22 @@ import { Activity, ArrowLeft, BookOpen, Sparkles, Send, MessageCircle, FlaskConi
 import { motion, AnimatePresence } from "framer-motion";
 import { exerciseCategories, ExerciseCategory } from "@/data/exercises";
 import AssignExerciseModal from "@/components/assignments/AssignExerciseModal";
-import DailyExerciseCard from "@/components/dashboard/DailyExerciseCard";
 
-type FilterTab = "all" | "reading" | "oral" | "motor" | "special";
+type FilterTab = "all" | "reading" | "oral" | "motor" | "special" | "neuro";
 
 const FILTER_TABS: { id: FilterTab; label: string; emoji: string }[] = [
   { id: "all", label: "All", emoji: "📚" },
   { id: "reading", label: "Reading", emoji: "📖" },
   { id: "oral", label: "Free speech", emoji: "🎤" },
   { id: "motor", label: "Motor", emoji: "⚡" },
+  { id: "neuro", label: "Neuro", emoji: "🧠" },
   { id: "special", label: "Special", emoji: "✨" },
 ];
 
+const isNeuroCategory = (id: string) => id.startsWith("neuro-");
+
 const getFilterGroup = (cat: ExerciseCategory): FilterTab => {
+  if (isNeuroCategory(cat.id)) return "neuro";
   if (cat.type === "improvisation") return "oral";
   if (cat.type === "warmup" || cat.type === "repetition") return "motor";
   if (cat.type === "proprioception" || cat.type === "rebus") return "special";
@@ -57,7 +60,16 @@ const Library = () => {
   }, [activeFilter]);
 
   const handleCategoryClick = (categoryId: string) => {
-    navigate(`/practice?category=${categoryId}`);
+    // Route neuro categories to the dedicated NeurologyTraining page
+    if (categoryId === "neuro-projection") {
+      navigate("/neuro-training?mode=projection");
+    } else if (categoryId === "neuro-articulation") {
+      navigate("/neuro-training?mode=articulation");
+    } else if (categoryId === "neuro-narrative") {
+      navigate("/neuro-training?mode=narrative");
+    } else {
+      navigate(`/practice?category=${categoryId}`);
+    }
   };
 
   const handleAssignClick = (e: React.MouseEvent, categoryId: string, categoryTitle: string) => {
@@ -66,15 +78,27 @@ const Library = () => {
     setAssignModalOpen(true);
   };
 
-  // Get a short type label for the card
-  const getTypeLabel = (cat: ExerciseCategory) => {
+  // Get concrete skill-based labels for each category
+  const getTypeLabel = (cat: ExerciseCategory): { text: string; class: string } | null => {
+    // Neuro categories — specific clinical labels
+    if (cat.id === "neuro-projection") return { text: "Volume", class: "bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-400" };
+    if (cat.id === "neuro-articulation") return { text: "Articulation", class: "bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-400" };
+    if (cat.id === "neuro-narrative") return { text: "Memory", class: "bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-400" };
+    // Standard categories — concrete skill labels
     if (cat.isClinical) return { text: "Clinical", class: "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400" };
+    if (cat.id === "slow-reading") return { text: "Speed", class: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400" };
+    if (cat.id === "daily-life") return { text: "Speed", class: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400" };
+    if (cat.id === "articulation") return { text: "Articulation", class: "bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-400" };
+    if (cat.id === "breath-control") return { text: "Breathing", class: "bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-400" };
+    if (cat.id === "silence-training") return { text: "Pauses", class: "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400" };
+    if (cat.id === "cognitive-traps") return { text: "Coordination", class: "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400" };
+    if (cat.id === "auto-controle") return { text: "Self-awareness", class: "bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400" };
+    if (cat.id === "retelling") return { text: "Memory", class: "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400" };
     if (cat.type === "improvisation") return { text: "Free speech", class: "bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-400" };
     if (cat.type === "repetition") return { text: "Motor", class: "bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-400" };
     if (cat.type === "warmup") return { text: "Warm-up", class: "bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400" };
     if (cat.type === "proprioception") return { text: "Proprioception", class: "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400" };
     if (cat.type === "rebus") return { text: "Child", class: "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400" };
-    if (cat.type === "retelling") return { text: "Story Retelling", class: "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400" };
     return null;
   };
 
@@ -154,9 +178,6 @@ const Library = () => {
               );
             })}
           </div>
-
-          {/* Daily Exercise Recommendation */}
-          {!isTherapist && activeFilter === "all" && <DailyExerciseCard />}
 
           {/* Dialogue Mode - Featured Card */}
           {(activeFilter === "all" || activeFilter === "oral") && (

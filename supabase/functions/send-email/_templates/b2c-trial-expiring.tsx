@@ -24,7 +24,7 @@ export function B2CTrialExpiringEmail(props: B2CTrialExpiringEmailProps) {
       <Text style={paragraph}>Hi {patientName},</Text>
 
       <Text style={paragraph}>
-        Your 7-day free trial on ClutterPro is coming to an end.
+        Your 7-day free trial on TalkSlower is coming to an end.
         {daysRemaining <= 1
           ? " This is your last day to enjoy all features."
           : ` You have ${daysRemaining} days left to keep practicing without interruption.`
@@ -52,7 +52,7 @@ export function B2CTrialExpiringEmail(props: B2CTrialExpiringEmailProps) {
       </Text>
 
       <Text style={signatureText}>By your side,</Text>
-      <Text style={signatureName}>The ClutterPro Team</Text>
+      <Text style={signatureName}>The TalkSlower Team</Text>
     </BaseLayout>
   )
 }

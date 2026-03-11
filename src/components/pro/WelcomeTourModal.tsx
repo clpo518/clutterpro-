@@ -30,7 +30,7 @@ const slides = [
   {
     icon: PartyPopper,
     title: "Welcome to your Pro workspace!",
-    description: "Thank you for joining ClutterPro. You'll be able to monitor your patients, measure their speech rate, and guide their therapy remotely.",
+    description: "Thank you for joining TalkSlower. You'll be able to monitor your patients, measure their speech rate, and guide their therapy remotely.",
     visual: "welcome",
     color: "from-primary to-emerald-500",
     iconBg: "bg-primary/10",

@@ -25,7 +25,7 @@ const ResetPassword = () => {
     }
 
     if (password !== confirmPassword) {
-      toast.error("Les mots de passe ne correspondent pas.");
+      toast.error("Passwords do not match.");
       return;
     }
 
@@ -37,7 +37,7 @@ const ResetPassword = () => {
       toast.success("Password updated successfully!");
       navigate("/dashboard");
     } catch (error: unknown) {
-      const message = error instanceof Error ? error.message : "Une erreur est survenue";
+      const message = error instanceof Error ? error.message : "An error occurred";
       toast.error(message);
     } finally {
       setLoading(false);
@@ -57,16 +57,16 @@ const ResetPassword = () => {
             <div className="w-14 h-14 rounded-xl bg-primary flex items-center justify-center mx-auto mb-4">
               <Activity className="w-8 h-8 text-primary-foreground" />
             </div>
-            <CardTitle className="text-2xl">Nouveau mot de passe</CardTitle>
+            <CardTitle className="text-2xl">New password</CardTitle>
             <CardDescription>
-              Choisissez un nouveau mot de passe pour votre compte
+              Choose a new password for your account
             </CardDescription>
           </CardHeader>
 
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="new-password">Nouveau mot de passe</Label>
+                <Label htmlFor="new-password">New password</Label>
                 <div className="relative">
                   <Input
                     id="new-password"
@@ -90,7 +90,7 @@ const ResetPassword = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirm-password">Confirmer le mot de passe</Label>
+                <Label htmlFor="confirm-password">Confirm password</Label>
                 <Input
                   id="confirm-password"
                   type={showPassword ? "text" : "password"}

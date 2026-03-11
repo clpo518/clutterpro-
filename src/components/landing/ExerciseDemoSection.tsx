@@ -41,10 +41,10 @@ export const ExerciseDemoSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Practical tools to slow down
+            See it in action
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A preview of 3 of our 12 exercise modes. Each targets a different aspect of speech rate.
+            Three of our 12 exercise modes. Try them — no account needed.
           </p>
         </motion.div>
 

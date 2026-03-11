@@ -6,11 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useJourneyProgress } from "@/hooks/useJourneyProgress";
-import { JOURNEY_STEPS } from "@/data/journeyPath";
+import type { FluencyGoal } from "@/data/journeyPath";
 
 const VISIBLE_AHEAD = 2; // Show 2 steps after the current one by default
 
-const JourneyWidget = () => {
+interface JourneyWidgetProps {
+  fluencyGoal?: FluencyGoal;
+}
+
+const JourneyWidget = ({ fluencyGoal = "speed" }: JourneyWidgetProps) => {
   const navigate = useNavigate();
   const {
     currentStep,
@@ -19,7 +23,8 @@ const JourneyWidget = () => {
     isStepCompleted,
     isStepUnlocked,
     overallProgress,
-  } = useJourneyProgress();
+    steps: JOURNEY_STEPS,
+  } = useJourneyProgress(fluencyGoal);
   const [showAllSteps, setShowAllSteps] = useState(false);
 
   if (loading) {
@@ -48,7 +53,11 @@ const JourneyWidget = () => {
     const step = JOURNEY_STEPS[stepIndex];
     const validated = getValidatedExercises(stepIndex);
     const nextExerciseId = step.exerciseIds.find((id) => !validated.includes(id)) || step.exerciseIds[0];
-    navigate(`/practice?category=${categoryId}&exercise=${nextExerciseId}&journey_step=${stepIndex}`);
+    if (step.customRoute) {
+      navigate(`${step.customRoute}?journey_step=${stepIndex}&exercise=${nextExerciseId}`);
+    } else {
+      navigate(`/practice?category=${categoryId}&exercise=${nextExerciseId}&journey_step=${stepIndex}`);
+    }
   };
 
   return (
@@ -81,7 +90,9 @@ const JourneyWidget = () => {
           {currentStep === 0 && activeValidated.length === 0 ? (
             <div className="rounded-xl bg-primary/5 border border-primary/15 px-4 py-3.5 mb-4">
               <p className="text-sm font-semibold text-foreground mb-1.5">
-                Learn to speak at your own pace
+                {fluencyGoal === "fluency"
+                  ? "Build confidence in your speech flow"
+                  : "Learn to speak at your own pace"}
               </p>
               <p className="text-xs text-muted-foreground leading-relaxed mb-2">
                 8 progressive steps, from simplest to most complex.

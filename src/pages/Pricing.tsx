@@ -75,10 +75,10 @@ const Pricing = () => {
               className="text-center mb-8"
             >
               <h1 className="text-3xl md:text-4xl font-semibold mb-4">
-                Pricing
+                Simple pricing. No surprises.
               </h1>
               <p className="text-muted-foreground max-w-xl mx-auto mb-8">
-                Simple, transparent pricing for every practice. Designed for SLPs. Trusted by ASHA members.
+                Free for patients with a therapist. Affordable plans for SLPs and solo users. Cancel anytime.
               </p>
 
               {/* Audience Toggle Tabs */}
@@ -407,10 +407,10 @@ const ProPricingContent = ({
 
         <AccordionItem value="hipaa" className="bg-card border border-border rounded-xl px-5">
           <AccordionTrigger className="text-left hover:no-underline py-4">
-            <span className="font-medium text-sm">Is ClutterPro HIPAA-compliant?</span>
+            <span className="font-medium text-sm">Is TalkSlower HIPAA-compliant?</span>
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground pb-4 text-sm">
-            ClutterPro does not store Protected Health Information (PHI). Audio is processed in real time and not retained on our servers. Session data (rate scores, session counts) is stored without identifiable health records. Always consult your practice's compliance officer for full HIPAA guidance specific to your workflow.
+            TalkSlower does not store Protected Health Information (PHI). Audio is processed in real time and not retained on our servers. Session data (rate scores, session counts) is stored without identifiable health records. Always consult your practice's compliance officer for full HIPAA guidance specific to your workflow.
           </AccordionContent>
         </AccordionItem>
       </Accordion>
@@ -558,7 +558,7 @@ const PatientPricingContent = ({
             <span className="font-medium text-sm">How do I get a therapist code?</span>
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground pb-4 text-sm">
-            Ask your speech-language pathologist if they use ClutterPro. If so, they'll give you their unique Pro Code (format: PRO-XXXXXX).
+            Ask your speech-language pathologist if they use TalkSlower. If so, they'll give you their unique Pro Code (format: PRO-XXXXXX).
             If your clinician doesn't know about the app yet, invite them to discover <Link to="/" className="text-primary hover:underline">the Pro space</Link>.
           </AccordionContent>
         </AccordionItem>

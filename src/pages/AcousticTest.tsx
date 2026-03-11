@@ -276,7 +276,7 @@ const AcousticTest = () => {
             <CardContent className="pt-4 pb-4 text-center">
               <Timer className="w-4 h-4 mx-auto text-muted-foreground mb-1" />
               <p className="text-2xl font-bold">{formatTime(acoustic.elapsed)}</p>
-              <p className="text-xs text-muted-foreground">Durée</p>
+              <p className="text-xs text-muted-foreground">Duration</p>
             </CardContent>
           </Card>
           <Card>

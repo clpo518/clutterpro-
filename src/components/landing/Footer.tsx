@@ -38,7 +38,7 @@ export const Footer = () => {
               <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
                 <Activity className="w-5 h-5 text-primary-foreground" />
               </div>
-              <span className="text-lg font-semibold text-foreground">ClutterPro</span>
+              <span className="text-lg font-semibold text-foreground">TalkSlower</span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Speech fluency practice tool, recommended by speech-language pathologists.
@@ -94,13 +94,23 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 4: Patients */}
+          {/* Column 4: For SLPs */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4 text-sm">Patients</h4>
+            <h4 className="font-semibold text-foreground mb-4 text-sm">For SLPs</h4>
             <ul className="space-y-2.5">
               <li>
-                <Link to="/patients" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                  Patient Portal
+                <Link to="/pro" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Pro Features
+                </Link>
+              </li>
+              <li>
+                <Link to="/pricing" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Pro Pricing
+                </Link>
+              </li>
+              <li>
+                <Link to="/diagnostic" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Voice Test
                 </Link>
               </li>
             </ul>
@@ -121,7 +131,7 @@ export const Footer = () => {
               <Link to="/legal/terms" className="hover:text-primary transition-colors">
                 Terms of Service
               </Link>
-              <span>&copy; {new Date().getFullYear()} ClutterPro. All rights reserved.</span>
+              <span>&copy; {new Date().getFullYear()} TalkSlower. All rights reserved.</span>
             </div>
           </div>
         </div>
